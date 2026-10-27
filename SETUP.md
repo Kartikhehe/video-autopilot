@@ -1,137 +1,163 @@
-# One-time setup (about 30-40 minutes, then it runs by itself)
+# One-time setup
 
-You do 4 things once. After that, Claude makes and uploads videos on a schedule with no input from you.
+✅ **Part A (GitHub) is done.** The code lives at github.com/Kartikhehe/video-autopilot.
 
+What's left:
+- **Part B**: give Claude permission to upload to your YouTube channel (about 20 minutes).
+- **Part C**: save 3 secret values in Claude's settings (3 minutes).
+- **Part D**: start a new session and say "set up my schedule" (1 minute).
+
+> **Yes, you create "credentials" in the Google Cloud project.** That's step B5 below. Google calls it an
+> "OAuth client" and it gives you two values: a **Client ID** and a **Client secret**. Step B6 then turns
+> those into a third value, the **Refresh token**. Those 3 values are all Claude needs.
+
+Keep a notepad open (Notes / Notepad). You'll copy 3 values into it:
 ```
-Part A  GitHub         - a home for the automation's code and memory (5 min)
-Part B  Google/YouTube - permission for Claude to upload to your channel (20 min)
-Part C  Claude settings - paste 3 secret values into your Claude environment (3 min)
-Part D  Tell Claude     - "set up the schedule" (1 min)
+Client ID:      ...
+Client secret:  ...
+Refresh token:  ...
 ```
 
 ---
 
-## Part A: GitHub (5 min)
+## Part B: Google Cloud (about 20 minutes)
 
-Every run starts in a fresh, empty cloud computer. The code and the list of past videos have to live
-somewhere permanent, and that's a GitHub repository.
+### B0. Use the right Google account
+1. Open a **private/incognito window** in your browser.
+   (Chrome: `Ctrl+Shift+N` on Windows, `Cmd+Shift+N` on Mac.)
+2. Sign in to Google with **the Gmail account that owns your YouTube channel**.
+   Use that same account for every step below.
 
-1. Go to **github.com** and sign in (or create a free account).
-2. Top-right **+** → **New repository**.
-   - Name: `video-autopilot`
-   - Select **Private**
-   - Don't tick any boxes (no README, no .gitignore).
-   - Click **Create repository**.
-3. Go to **claude.ai** → click your name (bottom-left) → **Settings** → **Connectors** (or **Integrations**) →
-   **GitHub** → **Connect** → approve. When GitHub asks which repositories, allow `video-autopilot`
-   (or "All repositories").
-4. Tell Claude: *"GitHub is connected, the repo is `<your-github-username>/video-autopilot`"*.
-   Claude pushes all the code there.
-
----
-
-## Part B: Google Cloud + YouTube permission (20 min)
-
-Do this logged in with **the Gmail account that owns the YouTube channel** (your other Gmail).
-Tip: use a private/incognito browser window so you don't mix up accounts.
-
-### B1. Create a Google Cloud project
-1. Open **console.cloud.google.com** → accept the terms if asked.
-2. Top bar: click the project picker → **New Project** → name it `video-autopilot` → **Create**.
-   Make sure it's selected in the top bar afterwards.
+### B1. Create a project (a "folder" for this app)
+1. Go to **https://console.cloud.google.com**
+2. If a "Welcome" popup appears: pick your country, tick the terms box, click **Agree and continue**.
+3. At the very top, next to the "Google Cloud" logo, click the box that says **Select a project**
+   (it may already show a project name).
+4. In the window that opens, click **NEW PROJECT** (top-right of that window).
+5. Project name: type `video-autopilot`. Leave everything else. Click **CREATE**.
+6. Wait about 10 seconds. A notification appears; click **SELECT PROJECT**.
+   ✔ The top bar now shows **video-autopilot**. Check this before every step below.
 
 ### B2. Turn on the YouTube API
-1. Left menu (☰) → **APIs & Services** → **Library**.
-2. Search **YouTube Data API v3** → click it → **Enable**.
+1. Go to **https://console.cloud.google.com/apis/library/youtube.googleapis.com**
+   (check the top bar still says **video-autopilot**).
+2. Click the blue **ENABLE** button.
+3. Wait until the page changes (you'll see "API enabled" or a dashboard). Done.
 
-### B3. Set up the consent screen
-1. Left menu → **APIs & Services** → **OAuth consent screen** (it may be called **Google Auth Platform**).
-   Click **Get started**.
-2. App name: `video-autopilot`. User support email: your channel Gmail. **Next**.
-3. Audience: **External**. **Next**.
-4. Contact email: your channel Gmail. **Next** → tick agree → **Create**.
-5. Go to **Audience** (left side) → under "Test users" click **Add users** → add your channel Gmail → **Save**.
-6. Still on **Audience**: click **Publish app** → **Confirm**. Status should now say **In production**.
-   ⚠️ **This step matters.** If you leave it in "Testing", the permission expires every 7 days and uploads stop.
+### B3. Fill in the app details (the "consent screen")
+1. Go to **https://console.cloud.google.com/auth/overview**
+2. Click **GET STARTED**.
+3. **App Information**
+   - App name: `video-autopilot`
+   - User support email: pick your Gmail from the dropdown
+   - Click **NEXT**
+4. **Audience**: select **External** → **NEXT**
+5. **Contact Information**: type your Gmail → **NEXT**
+6. **Finish**: tick "I agree to the Google API Services: User Data Policy" → **CONTINUE** → **CREATE**
 
-### B4. Create the OAuth client
-1. Left side → **Clients** (or **Credentials** → **+ Create credentials** → **OAuth client ID**).
-2. Application type: **Web application**. Name: `autopilot`.
-3. Under **Authorized redirect URIs** click **Add URI** and paste exactly:
-   `https://developers.google.com/oauthplayground`
-4. **Create**. A box shows **Client ID** and **Client secret**. Copy both into a note on your computer
-   for the next steps.
+### B4. Publish the app (IMPORTANT: don't skip)
+If you skip this, YouTube permission expires every 7 days and uploads stop.
+1. Go to **https://console.cloud.google.com/auth/audience**
+2. Under **Publishing status** it says **Testing**. Click **PUBLISH APP**.
+3. A popup appears. Click **CONFIRM**.
+   ✔ Publishing status now says **In production**. (You may see a note about verification. Ignore it;
+   it doesn't apply because you're the only user.)
 
-### B5. Get the refresh token (the long-lived permission)
-1. Open **developers.google.com/oauthplayground**.
-2. Click the **gear icon ⚙** (top-right) → tick **Use your own OAuth credentials** → paste your
-   **Client ID** and **Client secret** → close the panel.
-3. On the left, find the box **"Input your own scopes"** at the bottom of Step 1 and paste:
-   `https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube.readonly`
-4. Click **Authorize APIs**.
-   - Sign in with the **channel's Gmail**.
-   - If you manage several channels, **pick the right channel** in the list.
-   - You'll see "Google hasn't verified this app". That's expected because it's your own private app. Click
-     **Advanced** → **Go to video-autopilot (unsafe)** → **Continue** / **Allow** (tick all boxes).
-5. Back in the playground, **Step 2**: click **Exchange authorization code for tokens**.
-6. Copy the **Refresh token** (starts with `1//`). Keep it secret; it's the key to your channel.
+### B5. Create the credentials (OAuth client)
+1. Go to **https://console.cloud.google.com/auth/clients**
+2. Click **+ CREATE CLIENT** (or **+ Create credentials → OAuth client ID**).
+3. **Application type**: choose **Web application**.
+4. **Name**: `autopilot`
+5. Scroll down to **Authorized redirect URIs** and click **+ ADD URI**.
+   Paste exactly this (no spaces before or after):
+   ```
+   https://developers.google.com/oauthplayground
+   ```
+   ⚠️ Put it under **redirect URIs**, not "Authorized JavaScript origins".
+6. Click **CREATE**.
+7. A popup shows **Client ID** and **Client secret**.
+   **Copy both into your notepad now.** Google may not show the secret again. Also click **DOWNLOAD JSON**
+   as a backup.
+   - Client ID looks like `123456-abc...apps.googleusercontent.com`
+   - Client secret looks like `GOCSPX-...`
+8. Click **OK**.
 
-### B6. Verify the channel (needed for custom thumbnails)
-Open **youtube.com/verify** with the channel account and verify with your phone number.
+### B6. Get the Refresh token
+1. Go to **https://developers.google.com/oauthplayground**
+2. Click the **⚙ gear icon** in the top-right corner. A small settings panel opens:
+   - Leave "OAuth flow" = **Server-side** and "Access type" = **Offline**.
+   - Tick ☑ **Use your own OAuth credentials** (at the bottom).
+   - Two boxes appear. Paste your **Client ID** and **Client secret** from the notepad.
+   - Click the gear icon again (or anywhere outside) to close the panel.
+3. Look at the **left side**, "Step 1: Select & authorize APIs". Under the long list there's a box
+   that says **"Input your own scopes"**. Click it and paste exactly:
+   ```
+   https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube.readonly
+   ```
+4. Click the blue **Authorize APIs** button.
+5. A Google sign-in page opens:
+   - Choose **your channel's Gmail**.
+   - If it asks you to **choose a channel / brand account**, pick **your YouTube channel**.
+   - You'll see **"Google hasn't verified this app"**. That's normal because it's your own private app.
+     Click **Advanced** (small grey link, bottom-left) → **Go to video-autopilot (unsafe)**.
+   - On the permissions page, tick **all** boxes if there are checkboxes → **Continue** / **Allow**.
+6. You're sent back to the playground, now on **Step 2**. Click
+   **Exchange authorization code for tokens**.
+7. A **Refresh token** box fills in (starts with `1//`). Copy it into your notepad.
+   ✔ Your notepad now has all 3 values. Keep them private, like passwords.
+
+### B7. Verify your channel with your phone (for custom thumbnails)
+1. Go to **https://www.youtube.com/verify** (still in the channel's Gmail).
+2. Enter your phone number, get the code by SMS and type it in.
 
 ---
 
-## Part C: Put the 3 secrets into Claude (3 min)
+## Part C: Save the 3 values in Claude (3 minutes)
 
-Never paste these into the chat. They go into the environment settings, which only the cloud computer can read.
+⚠️ Never paste these into the chat. They go into the environment settings.
 
-1. Open this Claude Code session on **claude.ai/code**.
-2. Click the **environment name** in the session's title bar → **Edit** (the cloud environment settings).
-3. Under **Environment variables** (or **Network secrets** / **API credentials** if that section exists), add:
+1. Open **https://claude.ai/code** and open a Claude Code session (this one is fine).
+2. At the top of the session, click the **environment name** (in the session's title bar; it opens the
+   cloud environment menu) → **Edit** next to the environment.
+3. Find **Environment variables** (it may also be called **Secrets**). Add these 3 lines exactly,
+   replacing the parts in `< >` with your values (no quotes, no spaces around `=`):
    ```
    YT_CLIENT_ID=<your Client ID>
    YT_CLIENT_SECRET=<your Client secret>
    YT_REFRESH_TOKEN=<your Refresh token>
    ```
-4. **Save**. (Network access: the default/"Trusted" level already allows Google's API servers. If a run reports
-   a blocked host, add `oauth2.googleapis.com` and `www.googleapis.com` under Allowed domains.)
+4. Click **Save**.
 
----
+## Part D: Turn it on (1 minute)
+Settings only reach **new** sessions, so:
+1. On claude.ai/code start a **New session**. Pick the **same environment** and select the
+   **Kartikhehe/video-autopilot** repository.
+2. Type:
+   > Set up my video autopilot schedule: 1 video a day at 6pm, my time zone is Asia/Kolkata.
 
-## Part D: Turn on the schedule (1 min)
+   (Change the number, time and time zone to what you want.)
 
-Start a **new** session in the same environment and say:
+Claude then checks the YouTube connection (it prints your channel name), makes and uploads one test
+video, and creates the schedule.
 
-> *Set up my video autopilot schedule: 2 videos a day at 9am and 6pm, my time zone is <your time zone>.*
+### Changing the schedule later
+In any session, say e.g. *"change my video routine to twice a day at 9am and 6pm"* or *"pause my video
+routine"*. Or manage it at **claude.ai/code → Routines**.
 
-Claude then:
-- checks the YouTube connection (prints your channel name),
-- runs one test video end-to-end,
-- creates a **Routine** (scheduled trigger) that starts a fresh session at those times. Each session
-  follows `PLAYBOOK.md`: research → story → preview QA → render → thumbnail → upload → log.
-
-### Changing the frequency later
-Just tell Claude in any session, e.g. *"change my video routine to once a day at 7pm"* or
-*"pause the video routine"*. You can also manage it at **claude.ai → Code → Routines**.
-
-### Other settings (`config.json` in the repo)
-- `"privacy"`: `"public"`, `"unlisted"` or `"private"`. Use `"private"` if you want to review each video first.
-- `"channel_name"`: add your channel name here once you've decided; it then shows in the outro.
-- `"outro_line"`: the call-to-action text.
+### Other settings (file `config.json`)
+- `"privacy"`: `"public"`, `"unlisted"` or `"private"`. Use `"private"` to review videos before publishing.
+- `"channel_name"`: add your channel name once you decide; it then appears in the outro.
+- `"outro_line"`: the call-to-action text at the end.
 
 ---
 
 ## Troubleshooting
 
-**Videos are "Private (locked)" on YouTube even though config says public.**
-Google may restrict uploads from new, unaudited API projects to private. Fix: fill in Google's
-*YouTube API Services - Audit and Quota Extension Form* (search that name) for your project and describe it
-as "personal tool that uploads my own animated videos to my own channel". It's free and usually takes days
-to a few weeks. Until then, set `"privacy": "private"` and publish each video with one click in YouTube Studio.
-
-**"invalid_grant" / token expired.** The app is probably still in "Testing". Do B3 step 6 (Publish app), then
-redo B5 and replace `YT_REFRESH_TOKEN`.
-
-**Thumbnail not set.** Verify the channel (B6).
-
-**Quota.** Uploads have their own daily allowance (around 100 per day by default), far more than 2 per day.
+| Problem | Fix |
+|---|---|
+| "Error 400: redirect_uri_mismatch" in B6 | In B5 the redirect URI is wrong. Open the client again and fix it to exactly `https://developers.google.com/oauthplayground`, then save and wait 1-2 minutes. |
+| "Access blocked: app has not completed verification" | You skipped B4 (app still in Testing). Publish it, or add your Gmail under Audience → Test users. |
+| No "Refresh token" in step B6.7 | In the gear panel, make sure Access type = **Offline** and "Use your own OAuth credentials" is ticked, then redo B6. |
+| Videos upload as **Private (locked)** | Google may restrict brand-new API projects until a free audit. Search "YouTube API Services Audit and Quota Extension Form", submit it for this project ("personal tool uploading my own animated videos to my own channel"). Meanwhile set `"privacy": "private"` and publish each video in YouTube Studio with one click. |
+| "invalid_grant" later | The token was revoked or the app was in Testing. Do B4, then repeat B6 and update `YT_REFRESH_TOKEN`. |
+| Thumbnail not applied | Do B7 (phone verification). |
