@@ -133,3 +133,72 @@ def make(S, path, variant='face'):
         s2 = skia.Surface(w, h)
         s2.getCanvas().drawImageRect(img, skia.Rect.MakeWH(w, h), skia.SamplingOptions(skia.CubicResampler.Mitchell()))
         s2.makeImageSnapshot().save(p, skia.kPNG)
+
+
+def make_vertical(S, path):
+    """1080x1920 cover for Shorts: huge stacked words, exhausted face, glowing device, looming habit."""
+    th = S['spec'].get('thumbnail', {})
+    hero = S['hero']
+    words = th.get('words', ['WHAT', 'IT', 'TAKES.'])
+    hl = th.get('highlight', len(words) - 1)
+    hl_col = th.get('highlight_color', URGE['say'])
+    gcol = th.get('glow', URGE['glow'])
+    OW, OH = 1080, 1920
+    surf = skia.Surface(OW, OH)
+    c = surf.getCanvas()
+    c.drawRect(skia.Rect.MakeWH(OW, OH), paint(shader=lin_grad((0, 0), (0, OH), ['#05060b', '#101426', '#141a30'])))
+    draw_urge(c, 760, 1430, 430, 2.0, eye=1.0, look=(-0.7, 0.5), mouth=1.0)
+    rrect(c, -80, 1290, 900, 260, 130, '#7d8099', '#9a9db6', ow=10)
+    hx, hy, r = 430, 1130, 290
+    circle(c, hx, hy, r, hero['skin'], ow=14)
+    exhausted_face(c, hx, hy, r, (1, 0.35), gcol)
+    draw_hair(c, hx, hy, r, hero, 0.5)
+    bl = skia.Path()
+    bl.moveTo(-50, OH + 50); bl.lineTo(-50, 1450); bl.cubicTo(300, 1390, 650, 1430, 900, 1480)
+    bl.cubicTo(1000, 1500, 1060, 1490, OW + 50, 1500); bl.lineTo(OW + 50, OH + 50); bl.close()
+    c.drawPath(bl, paint('#26315c')); c.drawPath(bl, paint('#46578f', stroke=10))
+    _device(c, 820, 1330, 0.95, th.get('device', 'phone'), (mix(gcol, '#ffffff', 0.55), gcol), gcol)
+    if th.get('device', 'phone') != 'laptop':
+        for (x2, y2) in ((715, 1440), (935, 1390)):
+            circle(c, x2, y2, 55, hero['skin'], ow=11)
+    lp_ = paint(shader=rad_grad((760, 1300), 700, [(gcol, 0.5), (gcol, 0.0)]))
+    lp_.setBlendMode(skia.BlendMode.kScreen)
+    c.drawRect(skia.Rect.MakeWH(OW, OH), lp_)
+    if th.get('badge'):
+        bw = measure(th['badge'], 64, TF_BOLD) + 70
+        c.save(); c.rotate(-6, 250, 760)
+        rrect(c, 250 - bw / 2, 712, bw, 100, 22, '#111116', '#ff3b30', ow=6)
+        text(c, th['badge'], 250, 787, 64, '#ff4136', tf=TF_BOLD, shadow=False, glow_col='#ff3b30')
+        c.restore()
+    vp = paint(shader=rad_grad((OW / 2, OH / 2), OH * 0.62, [('#000000', 0), ('#000000', 0), ('#000000', 0.45)], [0, 0.6, 1]))
+    c.drawRect(skia.Rect.MakeWH(OW, OH), vp)
+    # stacked title, auto-sized to the width
+    size = 175
+    f = font(TF_BOLD, size)
+    lines, cur = [], []
+    for i, w in enumerate(words):
+        test = ' '.join(x for x, _ in cur + [(w, i)])
+        if cur and f.measureText(test) > OW - 110:
+            lines.append(cur)
+            cur = []
+        cur.append((w, i))
+    lines.append(cur)
+    widest = max(f.measureText(' '.join(w for w, _ in ln)) for ln in lines)
+    if widest > OW - 110:
+        size *= (OW - 110) / widest
+        f = font(TF_BOLD, size)
+    y = 300
+    for ln in lines:
+        lw = f.measureText(' '.join(w for w, _ in ln))
+        x = OW / 2 - lw / 2
+        for w, i in ln:
+            c.drawString(w, x + 8, y + 12, f, paint('#000000', 0.75, blur=10))
+            c.drawString(w, x, y, f, paint('#000000', stroke=size * 0.17))
+            c.drawString(w, x, y, f, paint(hl_col if i == hl else '#ffffff'))
+            x += f.measureText(w + ' ')
+        y += size * 1.05
+    img = surf.makeImageSnapshot()
+    img.save(path, skia.kPNG)
+    s2 = skia.Surface(270, 480)
+    s2.getCanvas().drawImageRect(img, skia.Rect.MakeWH(270, 480), skia.SamplingOptions(skia.CubicResampler.Mitchell()))
+    s2.makeImageSnapshot().save(path.replace('.png', '_small.png'), skia.kPNG)

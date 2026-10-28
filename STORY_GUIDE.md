@@ -153,3 +153,19 @@ All templates accept `camera`: push (default), push_slow, close, pan_right, pan_
 new template or prop to `engine/library.py` in the same flat style (thick dark outlines, flat fills, soft
 glow), register it in `TEMPLATES`, document it in this table, and check it in the preview. New settings
 keep the channel fresh, but never break existing templates.
+
+---
+
+## YouTube Shorts (`"format": "short"`)
+Vertical 1080x1920, 20-59 s (aim 35-45 s). Same templates; the 16:9 scene is scaled to fill the height and a
+9:16 window follows `params.focus` [x, y] (optional `focus_to` for a pan, `zoom` >= 1). Keep the hero and the
+creature inside a ~600 px wide window around the focus (check the preview!).
+- `"short": {"hook": {"text": "IT'S 3AM. WHY ARE YOU *STILL* *AWAKE?*", "until": 3.0, "y": 470, "size": 96},
+  "highlight_color": "#ffc04d", "cover_time": 1.2, "cta": true, "cta_text": "SUBSCRIBE"}`
+- Captions: <= 8 words, punchy, `*word*` highlights. They're drawn big in the lower third.
+- Shot rhythm: 3-6 s per scene, ~10 scenes. Hook question in the first frame, problem → escalation →
+  reframe line → small fix → payoff → one-line closer that loops back to the hook.
+- No outro scene (a SUBSCRIBE pill appears automatically on the last 2.5 s). `card`/`end_card` text sizes
+  must be small (~46-62) to fit the narrow frame.
+- Outputs: `video.mp4`, `thumbnail.png` (1080x1920 cover with `thumbnail.badge` support), `cover_frame.png`.
+  YouTube uses a frame of the Short as its cover, so the first ~1 s must look like a thumbnail.

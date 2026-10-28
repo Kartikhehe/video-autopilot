@@ -23,10 +23,11 @@ def out_dir(spec):
 
 def _worker(path, f0, f1, out):
     spec, S = ST.load(path)
-    cmd = ['ffmpeg', '-v', 'error', '-y', '-f', 'rawvideo', '-pix_fmt', 'bgra', '-s', f'{W}x{H}', '-r', str(FPS), '-i', '-',
+    ow, oh = S['out_w'], S['out_h']
+    cmd = ['ffmpeg', '-v', 'error', '-y', '-f', 'rawvideo', '-pix_fmt', 'bgra', '-s', f'{ow}x{oh}', '-r', str(FPS), '-i', '-',
            '-c:v', 'libx264', '-preset', 'medium', '-crf', '19', '-pix_fmt', 'yuv420p', out]
     p = subprocess.Popen(cmd, stdin=subprocess.PIPE)
-    surf = skia.Surface(W, H)
+    surf = skia.Surface(ow, oh)
     c = surf.getCanvas()
     for fi in range(f0, f1):
         c.clear(col('#000000'))
@@ -48,6 +49,15 @@ def check(path):
 
 
 def thumbs(spec, S, d):
+    if S.get('short'):
+        TH.make_vertical(S, os.path.join(d, 'thumbnail.png'))
+        ct = spec.get('short', {}).get('cover_time', 1.0)
+        surf = skia.Surface(S['out_w'], S['out_h'])
+        c = surf.getCanvas()
+        c.clear(col('#000000'))
+        ST.render_frame(c, ct, int(ct * FPS), S)
+        surf.makeImageSnapshot().save(os.path.join(d, 'cover_frame.png'), skia.kPNG)
+        return
     TH.make(S, os.path.join(d, 'thumbnail.png'), spec.get('thumbnail', {}).get('variant', 'face'))
     TH.make(S, os.path.join(d, 'thumbnail_alt.png'), 'split' if spec.get('thumbnail', {}).get('variant', 'face') == 'face' else 'face')
 
@@ -59,16 +69,17 @@ def preview(path):
     for i, sc in enumerate(S['timeline']):
         for frac in (0.3, 0.75):
             gt = sc['t0'] + sc['duration'] * frac
-            surf = skia.Surface(W, H)
+            surf = skia.Surface(S['out_w'], S['out_h'])
             c = surf.getCanvas()
             c.clear(col('#000000'))
             ST.render_frame(c, gt, int(gt * FPS), S)
             fp = os.path.join(d, f'prev_{i:02d}_{int(frac * 100)}.png')
             surf.makeImageSnapshot().save(fp, skia.kPNG)
             frames.append(fp)
-    cols = 4
+    cols = 8 if S.get('short') else 4
+    tile = '270:480' if S.get('short') else '480:270'
     subprocess.run(['ffmpeg', '-v', 'error', '-y', '-pattern_type', 'glob', '-i', os.path.join(d, 'prev_*.png'),
-                    '-vf', f'scale=480:270,tile={cols}x{(len(frames) + cols - 1) // cols}:padding=6:color=0x222222',
+                    '-vf', f'scale={tile},tile={cols}x{(len(frames) + cols - 1) // cols}:padding=6:color=0x222222',
                     '-frames:v', '1', os.path.join(d, 'preview.jpg')], check=True)
     for fp in frames:
         os.remove(fp)
@@ -104,7 +115,7 @@ def full(path, workers=4):
     yt = spec['youtube']
     cfg = S['config']
     desc = yt['description'].rstrip()
-    ch = ST.chapters(S)
+    ch = [] if S.get('short') else ST.chapters(S)
     if ch:
         desc += '\n\n⏱️ Chapters\n' + '\n'.join(ch)
     if cfg.get('description_footer'):
@@ -117,7 +128,7 @@ def full(path, workers=4):
         json.dump(meta, f, indent=2, ensure_ascii=False)
     # QA sheet of the finished video
     subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', os.path.join(d, 'video.mp4'), '-vf',
-                    'fps=1/4,scale=384:-1,tile=6x8:padding=4', '-frames:v', '1', os.path.join(d, 'final_sheet.jpg')])
+                    'fps=1/2,scale=216:-1,tile=10x3:padding=4' if S.get('short') else 'fps=1/4,scale=384:-1,tile=6x8:padding=4', '-frames:v', '1', os.path.join(d, 'final_sheet.jpg')])
     print('done:', os.path.join(d, 'video.mp4'))
 
 

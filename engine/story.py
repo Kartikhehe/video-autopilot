@@ -28,9 +28,11 @@ def load(path):
     hero['hoodie_dark'] = cast.get('hero', {}).get('hoodie_dark', mix(hero['hoodie'], '#000000', 0.25))
     friend['hoodie_dark'] = cast.get('friend', {}).get('hoodie_dark', mix(friend['hoodie'], '#000000', 0.25))
     set_urge_color(cast.get('habit', {}).get('glow', '#ff2e88'))
-    S = dict(hero=hero, friend=friend, config=cfg, spec=spec)
+    short = spec.get('format') == 'short'
+    S = dict(hero=hero, friend=friend, config=cfg, spec=spec, short=short,
+             out_w=1080 if short else W, out_h=1920 if short else H)
     scenes = list(spec['scenes'])
-    if not any(s['template'] == 'outro' for s in scenes):
+    if not short and not any(s['template'] == 'outro' for s in scenes):
         scenes.append(dict(template='outro', duration=cfg.get('outro_seconds', 9), mood='calm'))
     tl, t0 = [], 0.0
     for s in scenes:
@@ -46,7 +48,10 @@ def validate(spec, S):
     errs, warns = [], []
     cfg = S['config']
     total = S['total']
-    lo, hi = cfg.get('min_seconds', 140), cfg.get('max_seconds', 178)
+    if S.get('short'):
+        lo, hi = cfg.get('short_min_seconds', 20), cfg.get('short_max_seconds', 59)
+    else:
+        lo, hi = cfg.get('min_seconds', 140), cfg.get('max_seconds', 178)
     if not lo <= total <= hi:
         errs.append(f'total duration {total:.1f}s outside {lo}-{hi}s')
     caps = 0
@@ -64,14 +69,14 @@ def validate(spec, S):
             caps += 1
             if b > d + 0.01 or a < 0:
                 errs.append(f'{name}: caption "{s}" outside scene (0-{d})')
-            if b - a < 1.8:
+            if b - a < (1.2 if S.get('short') else 1.8):
                 warns.append(f'{name}: caption "{s}" only {b - a:.1f}s on screen')
             if a < prev_end:
                 errs.append(f'{name}: caption "{s}" overlaps previous caption')
             prev_end = b
-            if measure(s, 50) > 1700:
+            if not S.get('short') and measure(s, 50) > 1700:
                 errs.append(f'{name}: caption too wide: "{s}"')
-            if len(s.split()) > 11:
+            if len(s.split()) > (8 if S.get('short') else 11):
                 warns.append(f'{name}: caption has {len(s.split())} words (aim for <= 9): "{s}"')
         p = sc.get('params', {})
         if sc['template'] == 'montage':
@@ -83,7 +88,7 @@ def validate(spec, S):
         for tw, s in p.get('urge', {}).get('whispers', []):
             if len(s) > 26:
                 warns.append(f'{name}: whisper "{s}" is long (keep it under ~4 words)')
-    if caps < 25:
+    if caps < (8 if S.get('short') else 25):
         warns.append(f'only {caps} captions; the reference rhythm is ~35-50')
     yt = spec.get('youtube', {})
     if not yt.get('title') or len(yt.get('title', '')) > 100:
@@ -108,6 +113,9 @@ def draw_caption(c, s, a, t_local):
 
 
 def render_frame(c, gt, fi, S):
+    if S.get('short'):
+        from . import shorts
+        return shorts.render_frame(c, gt, fi, S)
     for sc in S['timeline']:
         t0, dur = sc['t0'], sc['duration']
         if t0 <= gt < t0 + dur or sc is S['timeline'][-1]:

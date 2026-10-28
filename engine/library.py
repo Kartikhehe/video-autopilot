@@ -428,7 +428,7 @@ def t_bedroom(c, t, d, p, S):
     if 'urge' in p:
         urge_from(c, t, d, p['urge'], 1150, 760)
     c.restore()
-    if p.get('label'):
+    if p.get('label') and not S.get('short'):
         text(c, p['label'], 90, 140, 64, '#f3ede2', tf=TF_BOLD, align='left', a=ramp(t, 0.05, 0.4))
 
 
@@ -721,7 +721,7 @@ def t_desk(c, t, d, p, S):
     if 'urge' in p:
         urge_from(c, t, d, p['urge'], 1520, 820)
     c.restore()
-    if p.get('label'):
+    if p.get('label') and not S.get('short'):
         text(c, p['label'], 90, 140, 64, '#f3ede2', tf=TF_BOLD, align='left', a=ramp(t, 0.05, 0.4))
 
 
@@ -738,7 +738,7 @@ def t_montage(c, t, d, p, S):
             if s.get('label'):
                 sp['label'] = s['label']
             TEMPLATES[s['template']](c, lt, sd, sp, S)
-            if s.get('label') and s['template'] not in ('bedroom', 'desk'):
+            if s.get('label') and s['template'] not in ('bedroom', 'desk') and not S.get('short'):
                 text(c, s['label'], 90, 140, 64, '#f3ede2', tf=TF_BOLD, align='left', a=ramp(lt, 0.05, 0.4))
             if lt < 0.12 and acc > 0:
                 c.drawRect(skia.Rect.MakeWH(W, H), paint('#000000', 1 - lt / 0.12))
