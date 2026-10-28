@@ -19,6 +19,9 @@ python3 -m youtube.auth_check        # if NOT SET UP → still make the video, s
 
 ## 1. Learn from the channel
 - Read `config.json`, `STORY_GUIDE.md` (all of it, every run) and the history (`history/*.json`).
+- The owner sometimes uploads by hand, so also list the channel's real uploads:
+  `python3 -c "from youtube import api; [print(u['published'][:10], u['title']) for u in api.channel_uploads(60)]"`.
+  Treat every topic there as used. Never upload a story whose title is already on the channel (the uploader refuses it too).
 - If credentials work: `python3 -m youtube.stats`. Note which topics/angles get the most **views/day** and
   **likes/view**, separately for long and short. Lean toward what works; never repeat the same topic within
   30 days (long) or the same fact/effect within 60 days (short).

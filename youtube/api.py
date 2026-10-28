@@ -116,6 +116,26 @@ def set_thumbnail(video_id, path):
                       'youtube.com/verify)')
 
 
+def channel_uploads(limit=200):
+    """[{video_id, title, published}] for the channel's most recent uploads (includes ones made outside the autopilot)."""
+    ch = get('channels', part='contentDetails', mine='true')['items'][0]
+    pl, out, page = ch['contentDetails']['relatedPlaylists']['uploads'], [], None
+    while len(out) < limit:
+        j = get('playlistItems', part='snippet', playlistId=pl, maxResults=50, **({'pageToken': page} if page else {}))
+        out += [dict(video_id=i['snippet']['resourceId']['videoId'], title=i['snippet']['title'],
+                     published=i['snippet']['publishedAt']) for i in j.get('items', [])]
+        page = j.get('nextPageToken')
+        if not page:
+            break
+    return out
+
+
+def same_title_upload(title):
+    """An existing channel upload with this title, or None."""
+    t = title.strip().lower()
+    return next((u for u in channel_uploads() if u['title'].strip().lower() == t), None)
+
+
 def video_status(video_id):
     j = get('videos', part='status,snippet,statistics', id=video_id)
     return j['items'][0] if j.get('items') else None

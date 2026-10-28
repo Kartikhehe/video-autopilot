@@ -46,6 +46,9 @@ def main():
         sys.exit(0 if a.dry_run else 1)
     ch = api.my_channel()
     print('channel:', ch['snippet']['title'])
+    dup = api.same_title_upload(meta['title'])
+    if dup:
+        sys.exit(f"already on the channel: https://youtu.be/{dup['video_id']} '{dup['title']}'. Not uploading a duplicate.")
     res = api.upload_video(meta)
     vid = res['id']
     print('uploaded:', f'https://youtu.be/{vid}', '(scheduled for ' + meta['publishAt'] + ')' if meta.get('publishAt') else '')
