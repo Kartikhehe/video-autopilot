@@ -340,16 +340,39 @@
     }
   ],
   "thumbnail": {
+    "layout": "scene",
+    "scene": {
+      "index": 6,
+      "t": 3.2,
+      "zoom": 1.05,
+      "focus": [
+        900,
+        560
+      ]
+    },
     "words": [
-      "NOT",
       "21",
-      "DAYS."
+      "DAYS?"
     ],
-    "highlight": 1,
+    "strike": [
+      0,
+      1
+    ],
+    "highlight": -1,
     "highlight_color": "#7fe0a0",
-    "glow": "#7fe0a0",
-    "device": "none",
-    "badge": "IT'S 66"
+    "title_y": 260,
+    "title_size": 210,
+    "big": {
+      "text": "66",
+      "x": 540,
+      "y": 1560,
+      "size": 420,
+      "color": "#7fe0a0",
+      "rotate": -6,
+      "sub": "DAYS. REALLY.",
+      "sub_size": 86
+    },
+    "device": "none"
   },
   "youtube": {
     "title": "It Doesn't Take 21 Days To Build A Habit #shorts",

@@ -171,6 +171,20 @@ creature inside a ~600 px wide window around the focus (check the preview!).
 - Outputs: `video.mp4`, `thumbnail.png` (1080x1920 cover with `thumbnail.badge` support), `cover_frame.png`.
   YouTube uses a frame of the Short as its cover, so the first ~1 s must look like a thumbnail.
 
+### Shorts thumbnails (`"layout": "scene"`, preferred)
+Build the cover from a real frame of the Short so every thumbnail looks different, then add one loud element:
+```json
+"thumbnail": {"layout": "scene", "scene": {"index": 4, "t": 3.2, "zoom": 1.1, "focus": [870, 520], "params": {"expr": "shock"}},
+  "words": ["STUCK?", "DO", "THIS."], "highlight": 0, "highlight_color": "#ffd84d", "title_y": 250, "title_size": 190,
+  "big": {"text": "+60%", "y": 1560, "size": 330, "color": "#ffd84d", "sub": "MORE IDEAS"},
+  "strike": [], "colors": {"2": "#ff5a4e"}, "tint": "#ff3030", "badge": "SAY THIS INSTEAD", "badge_pos": [540, 1720],
+  "arrows": [[x0, y0, x1, y1]], "rings": [[x, y, r]]}
+```
+- Pick the most expressive frame (shock/wow face, the creature at its biggest, the payoff) and override params to sharpen it.
+- One hook: a giant number (`big`), a crossed-out myth (`strike`), or a short command. Max ~4 title words.
+- Vary it every Short: different scene type, colour, text position (top vs. bottom) and hook style from the last 3 uploads.
+- Keep the face visible: nothing big on top of it. Check `thumbnail_small.png`; it must read at phone size.
+
 ### Extra scene params (all templates)
 - `thoughts`: thought bubbles `[{"t": 0.5, "until": 4, "x": 900, "y": 400, "text": "why did i SAY that??", "to": [700, 600], "size": 34}]`
 - `pov: "friend"`: draw the scene from the friend's side (friend becomes the main character).

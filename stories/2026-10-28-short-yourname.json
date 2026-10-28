@@ -250,16 +250,32 @@
     }
   ],
   "thumbnail": {
+    "layout": "scene",
+    "scene": {
+      "index": 3,
+      "t": 3.6,
+      "zoom": 1.2,
+      "focus": [
+        955,
+        470
+      ]
+    },
     "words": [
       "SAY",
       "YOUR",
+      "OWN",
       "NAME."
     ],
-    "highlight": 2,
+    "highlight": 3,
     "highlight_color": "#8fd3ff",
-    "glow": "#8fd3ff",
-    "device": "none",
-    "badge": "BEFORE A SPEECH"
+    "title_y": 1380,
+    "title_size": 175,
+    "badge": "BEFORE YOU PANIC",
+    "badge_pos": [
+      540,
+      1780
+    ],
+    "device": "none"
   },
   "youtube": {
     "title": "Nervous? Talk To Yourself Like This #shorts",

@@ -289,15 +289,55 @@
     }
   ],
   "thumbnail": {
+    "layout": "scene",
+    "scene": {
+      "index": 1,
+      "t": 4.2,
+      "zoom": 1.1,
+      "focus": [
+        930,
+        600
+      ],
+      "params": {
+        "expr": "shock",
+        "urge": {
+          "size": 190,
+          "x": 1190,
+          "y": 930,
+          "look": [
+            -1,
+            -0.4
+          ],
+          "eye": 1.0,
+          "mouth": 1.0
+        }
+      }
+    },
+    "tint": "#ff3030",
     "words": [
-      "NAME",
-      "IT."
+      "NEVER",
+      "SAY",
+      "\"CALM",
+      "DOWN\""
     ],
-    "highlight": 0,
+    "highlight": -1,
+    "colors": {
+      "2": "#ff5a4e",
+      "3": "#ff5a4e"
+    },
+    "strike": [
+      2,
+      3
+    ],
+    "title_y": 240,
+    "title_size": 150,
     "highlight_color": "#ff5a4e",
-    "glow": "#ff5a4e",
-    "device": "none",
-    "badge": "\"I FEEL...\""
+    "badge": "SAY THIS INSTEAD",
+    "badge_pos": [
+      540,
+      1720
+    ],
+    "device": "none"
   },
   "youtube": {
     "title": "Why \"Calm Down\" Never Works #shorts",

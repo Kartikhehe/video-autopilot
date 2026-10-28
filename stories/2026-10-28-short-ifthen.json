@@ -293,16 +293,31 @@
     }
   ],
   "thumbnail": {
+    "layout": "scene",
+    "scene": {
+      "index": 4,
+      "t": 3.2,
+      "zoom": 1.0
+    },
     "words": [
-      "91%",
-      "VS",
-      "38%"
+      "ONE",
+      "SENTENCE"
     ],
-    "highlight": 0,
-    "highlight_color": "#b07cff",
-    "glow": "#b07cff",
-    "device": "none",
-    "badge": "ONE SENTENCE"
+    "highlight": 1,
+    "highlight_color": "#c9a2ff",
+    "title_y": 230,
+    "title_size": 170,
+    "big": {
+      "text": "91%",
+      "x": 540,
+      "y": 1650,
+      "size": 340,
+      "color": "#5dff8f",
+      "rotate": -5,
+      "sub": "vs 38% without it",
+      "sub_size": 74
+    },
+    "device": "none"
   },
   "youtube": {
     "title": "Why \"This Week\" Never Comes #shorts",

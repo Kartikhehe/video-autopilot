@@ -138,6 +138,8 @@ def make(S, path, variant='face'):
 def make_vertical(S, path):
     """1080x1920 cover for Shorts: huge stacked words, exhausted face, glowing device, looming habit."""
     th = S['spec'].get('thumbnail', {})
+    if th.get('layout') == 'scene':
+        return make_vertical_scene(S, path)
     hero = S['hero']
     words = th.get('words', ['WHAT', 'IT', 'TAKES.'])
     hl = th.get('highlight', len(words) - 1)
@@ -198,6 +200,135 @@ def make_vertical(S, path):
             c.drawString(w, x, y, f, paint(hl_col if i == hl else '#ffffff'))
             x += f.measureText(w + ' ')
         y += size * 1.05
+    img = surf.makeImageSnapshot()
+    img.save(path, skia.kPNG)
+    s2 = skia.Surface(270, 480)
+    s2.getCanvas().drawImageRect(img, skia.Rect.MakeWH(270, 480), skia.SamplingOptions(skia.CubicResampler.Mitchell()))
+    s2.makeImageSnapshot().save(path.replace('.png', '_small.png'), skia.kPNG)
+
+
+def _stack(c, words, hl, y, size, hl_col, colors=None, strike=(), max_w=980, ow_=1080):
+    """Stacked, outlined, auto-wrapped title. colors: per-word overrides; strike: word indexes crossed out in red."""
+    f = font(TF_BOLD, size)
+    lines, cur = [], []
+    for i, w in enumerate(words):
+        if cur and f.measureText(' '.join(x for x, _ in cur + [(w, i)])) > max_w:
+            lines.append(cur)
+            cur = []
+        cur.append((w, i))
+    lines.append(cur)
+    widest = max(f.measureText(' '.join(w for w, _ in ln)) for ln in lines)
+    if widest > max_w:
+        size *= max_w / widest
+        f = font(TF_BOLD, size)
+    for ln in lines:
+        x = ow_ / 2 - f.measureText(' '.join(w for w, _ in ln)) / 2
+        for w, i in ln:
+            colr = (colors or {}).get(str(i)) or (hl_col if i == hl else '#ffffff')
+            c.drawString(w, x + 8, y + 12, f, paint('#000000', 0.75, blur=10))
+            c.drawString(w, x, y, f, paint('#000000', stroke=size * 0.17))
+            c.drawString(w, x, y, f, paint(colr))
+            wd = f.measureText(w)
+            if i in strike:
+                c.drawLine(x - 14, y - size * 0.28, x + wd + 14, y - size * 0.40, paint('#000000', stroke=size * 0.12))
+                c.drawLine(x - 10, y - size * 0.28, x + wd + 10, y - size * 0.40, paint('#ff2d2d', stroke=size * 0.065))
+            x += f.measureText(w + ' ')
+        y += size * 1.05
+    return y
+
+
+def _arrow(c, x0, y0, x1, y1, colr='#ff2d2d', w=34):
+    """Fat hand-drawn style arrow with a dark outline."""
+    ang = math.atan2(y1 - y0, x1 - x0)
+    mx, my = (x0 + x1) / 2 - math.sin(ang) * 60, (y0 + y1) / 2 + math.cos(ang) * 60
+    hx, hy = x1 - math.cos(ang) * w * 1.6, y1 - math.sin(ang) * w * 1.6
+    body = skia.Path()
+    body.moveTo(x0, y0); body.quadTo(mx, my, hx, hy)
+    head = skia.Path()
+    for k, (dx, dy) in enumerate(((math.cos(ang) * w * 1.9, math.sin(ang) * w * 1.9),
+                                  (-math.sin(ang) * w * 1.5, math.cos(ang) * w * 1.5),
+                                  (math.sin(ang) * w * 1.5, -math.cos(ang) * w * 1.5))):
+        (head.moveTo if k == 0 else head.lineTo)(hx + dx, hy + dy)
+    head.close()
+    bp = paint('#000000', stroke=w + 18); bp.setStrokeCap(skia.Paint.kRound_Cap)
+    c.drawPath(body, bp); c.drawPath(head, paint('#000000', stroke=18))
+    fp = paint(colr, stroke=w); fp.setStrokeCap(skia.Paint.kRound_Cap)
+    c.drawPath(body, fp); c.drawPath(head, paint(colr))
+
+
+def make_vertical_scene(S, path):
+    """Shorts cover built from a real frame of the story (each Short looks different) + bold overlays.
+
+    thumbnail: {"layout": "scene", "scene": {"index": 3, "t": 1.0, "zoom": 1.3, "focus": [x, y], "params": {...overrides}},
+                "tint": "#hex", "words": [...], "highlight": i, "colors": {"0": "#hex"}, "strike": [i], "title_y": 260,
+                "title_size": 170, "band": "#hex", "big": {"text": "+60%", "x": 540, "y": 1500, "size": 300, "color": "#hex",
+                "rotate": -6}, "arrows": [[x0, y0, x1, y1]], "rings": [[x, y, r]], "badge": "...", "badge_pos": [x, y]}
+    """
+    from . import shorts as SH
+    th = S['spec'].get('thumbnail', {})
+    sc_cfg = th.get('scene', {})
+    tl = S['timeline']
+    sc = dict(tl[sc_cfg.get('index', 0)])
+    prm = dict(sc.get('params', {}))
+    prm.update(sc_cfg.get('params', {}))
+    for k in ('focus', 'zoom'):
+        if k in sc_cfg:
+            prm[k] = sc_cfg[k]
+    prm.pop('focus_to', None)
+    sc['params'] = prm
+    t = sc_cfg.get('t', 1.0)
+    OW, OH = 1080, 1920
+    surf = skia.Surface(OW, OH)
+    c = surf.getCanvas()
+    c.clear(col('#000000'))
+    fx, fy, z = SH.focus_for(sc, t)
+    c.save(); c.translate(OW / 2, OH / 2); c.scale(z, z); c.translate(-fx, -fy)
+    L.TEMPLATES[sc['template']](c, t, sc['duration'], prm, S)
+    c.restore()
+    if th.get('tint'):
+        tp = paint(th['tint'], 0.28); tp.setBlendMode(skia.BlendMode.kMultiply)
+        c.drawRect(skia.Rect.MakeWH(OW, OH), tp)
+    # dark gradients top and bottom so text always reads
+    c.drawRect(skia.Rect.MakeWH(OW, 760), paint(shader=lin_grad((0, 0), (0, 760), [('#000000', 0.8), ('#000000', 0.0)])))
+    c.drawRect(skia.Rect.MakeXYWH(0, OH - 760, OW, 760), paint(shader=lin_grad((0, OH - 760), (0, OH), [('#000000', 0.0), ('#000000', 0.85)])))
+    hl_col = th.get('highlight_color', URGE['say'])
+    for (x, y, r) in th.get('rings', []):
+        c.drawCircle(x, y, r, paint('#000000', stroke=30))
+        c.drawCircle(x, y, r, paint('#ff2d2d', stroke=16))
+    for a in th.get('arrows', []):
+        _arrow(c, *a)
+    big = th.get('big')
+    if big:
+        c.save(); c.rotate(big.get('rotate', -5), big.get('x', 540), big.get('y', 1500))
+        bs = big.get('size', 300)
+        f = font(TF_BOLD, bs)
+        while f.measureText(big['text']) > 1000:
+            bs *= 0.92; f = font(TF_BOLD, bs)
+        bx = big.get('x', 540) - f.measureText(big['text']) / 2
+        by = big.get('y', 1500)
+        c.drawString(big['text'], bx, by, f, paint(big.get('color', hl_col), 0.85, blur=bs * 0.18))
+        c.drawString(big['text'], bx + 10, by + 14, f, paint('#000000', 0.8, blur=8))
+        c.drawString(big['text'], bx, by, f, paint('#000000', stroke=bs * 0.16))
+        c.drawString(big['text'], bx, by, f, paint(big.get('color', hl_col)))
+        if big.get('sub'):
+            text(c, big['sub'], big.get('x', 540), by + bs * 0.42, big.get('sub_size', 70), '#ffffff', tf=TF_BOLD,
+                 outline='#000000', ow=14, shadow=True)
+        c.restore()
+    words = th.get('words', [])
+    if words:
+        ty, tsz = th.get('title_y', 270), th.get('title_size', 170)
+        if th.get('band'):
+            c.save(); c.rotate(-3, OW / 2, ty)
+            rrect(c, 30, ty - tsz * 1.0, OW - 60, tsz * 1.05 * (1 + (len(words) > 2)) + 40, 26, th['band'], '#000000', ow=10)
+            c.restore()
+        _stack(c, words, th.get('highlight', -1), ty, tsz, hl_col, th.get('colors'), tuple(th.get('strike', [])))
+    if th.get('badge'):
+        bx, by = th.get('badge_pos', [540, 1760])
+        bw = measure(th['badge'], 66, TF_BOLD) + 80
+        c.save(); c.rotate(-4, bx, by)
+        rrect(c, bx - bw / 2, by - 62, bw, 110, 24, '#ff2d2d', '#000000', ow=8)
+        text(c, th['badge'], bx, by + 18, 66, '#ffffff', tf=TF_BOLD, shadow=False)
+        c.restore()
     img = surf.makeImageSnapshot()
     img.save(path, skia.kPNG)
     s2 = skia.Surface(270, 480)

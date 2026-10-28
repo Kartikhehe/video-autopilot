@@ -323,16 +323,47 @@
     }
   ],
   "thumbnail": {
+    "layout": "scene",
+    "scene": {
+      "index": 4,
+      "t": 4.6,
+      "zoom": 1.15,
+      "focus": [
+        870,
+        520
+      ],
+      "params": {
+        "hero": {
+          "activity": "idle",
+          "x": 790,
+          "expr": "wow",
+          "look": [
+            -0.6,
+            -0.4
+          ]
+        }
+      }
+    },
     "words": [
       "STUCK?",
-      "GO",
-      "WALK."
+      "DO",
+      "THIS."
     ],
-    "highlight": 2,
+    "highlight": 0,
     "highlight_color": "#ffd84d",
-    "glow": "#ffd84d",
-    "device": "none",
-    "badge": "+60% IDEAS"
+    "title_y": 250,
+    "title_size": 190,
+    "big": {
+      "text": "+60%",
+      "x": 540,
+      "y": 1560,
+      "size": 330,
+      "color": "#ffd84d",
+      "rotate": -6,
+      "sub": "MORE IDEAS",
+      "sub_size": 86
+    },
+    "device": "none"
   },
   "youtube": {
     "title": "Stuck? Stop Sitting There. #shorts",
