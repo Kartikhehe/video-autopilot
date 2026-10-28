@@ -1,0 +1,319 @@
+{
+  "id": "2026-10-28-short-nameit",
+  "format": "short",
+  "topic": "affect labeling: naming a feeling calms the brain's alarm (Lieberman et al. 2007)",
+  "cast": {
+    "hero": {
+      "skin": "#7a4a2e",
+      "hoodie": "#e0a43a",
+      "pants": "#2f3550",
+      "hair": "#1b120c",
+      "hair_style": "curly",
+      "shoe": "#efe9e0"
+    },
+    "habit": {
+      "glow": "#ff5a4e"
+    }
+  },
+  "music": {
+    "key": -2,
+    "tempo": 90,
+    "seed": 97
+  },
+  "short": {
+    "hook": {
+      "text": "WHY *\"CALM* *DOWN\"* NEVER WORKS",
+      "until": 3.2,
+      "y": 440,
+      "size": 96
+    },
+    "highlight_color": "#ff7a6e",
+    "cover_time": 1.3
+  },
+  "scenes": [
+    {
+      "template": "face",
+      "duration": 3.4,
+      "mood": "tense",
+      "params": {
+        "expr": "worried",
+        "bg": "dark",
+        "glow": "#ff5a4e",
+        "glow_amt": 0.35,
+        "pulse": true,
+        "sweat": true,
+        "look": [
+          0,
+          0.2
+        ]
+      }
+    },
+    {
+      "template": "bedroom",
+      "duration": 5.0,
+      "mood": "tense",
+      "params": {
+        "pose": "sitting",
+        "light": "night",
+        "expr": "worried",
+        "sweat": true,
+        "focus": [
+          860,
+          540
+        ],
+        "urge": {
+          "size": 80,
+          "grow": 170,
+          "x": 1060,
+          "y": 880,
+          "look": [
+            -1,
+            -0.2
+          ],
+          "say_x": 960,
+          "say_y": 260,
+          "whispers": [
+            [
+              0.5,
+              "they hate you."
+            ],
+            [
+              2.7,
+              "you'll mess up."
+            ]
+          ]
+        }
+      },
+      "captions": [
+        [
+          0.2,
+          4.8,
+          "The feeling just kept *growing.*"
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 4.6,
+      "mood": "dark",
+      "params": {
+        "expr": [
+          [
+            0,
+            "sad"
+          ],
+          [
+            2.3,
+            "determined"
+          ]
+        ],
+        "bg": "dark",
+        "glow": "#ff5a4e",
+        "glow_amt": 0.2,
+        "look": [
+          0,
+          0.2
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          2.2,
+          "Fighting it made it *louder.*"
+        ],
+        [
+          2.3,
+          4.4,
+          "So he tried something *weird.*"
+        ]
+      ]
+    },
+    {
+      "template": "bedroom",
+      "duration": 5.0,
+      "mood": "curious",
+      "params": {
+        "pose": "sitting",
+        "light": "lamp",
+        "expr": [
+          [
+            0,
+            "worried"
+          ],
+          [
+            2.4,
+            "calm"
+          ]
+        ],
+        "focus": [
+          860,
+          540
+        ],
+        "urge": {
+          "size": 170,
+          "grow": 90,
+          "x": 1060,
+          "y": 880,
+          "look": [
+            -1,
+            -0.2
+          ]
+        },
+        "thoughts": [
+          {
+            "t": 0.5,
+            "x": 760,
+            "y": 300,
+            "text": "i feel... ANXIOUS.",
+            "to": [
+              800,
+              480
+            ],
+            "size": 36
+          }
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          4.8,
+          "He just *named* it. Out loud."
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 6.4,
+      "mood": "hope",
+      "params": {
+        "expr": [
+          [
+            0,
+            "neutral"
+          ],
+          [
+            2.3,
+            "wow"
+          ],
+          [
+            4.3,
+            "calm"
+          ]
+        ],
+        "bg": "warm",
+        "look": [
+          0,
+          0
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          2.2,
+          "UCLA scientists scanned brains doing this."
+        ],
+        [
+          2.3,
+          4.2,
+          "Naming the feeling *quieted* the brain's alarm."
+        ],
+        [
+          4.3,
+          6.2,
+          "It's called *affect* *labeling.*"
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 4.4,
+      "mood": "tender",
+      "params": {
+        "expr": "calm",
+        "bg": "warm",
+        "look": [
+          0,
+          0.1
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          2.2,
+          "You can't *fight* a feeling away."
+        ],
+        [
+          2.3,
+          4.2,
+          "But you can *name* it."
+        ]
+      ]
+    },
+    {
+      "template": "bedroom",
+      "duration": 3.6,
+      "mood": "hope",
+      "params": {
+        "pose": "sitting",
+        "light": "lamp",
+        "expr": "calm",
+        "focus": [
+          860,
+          540
+        ],
+        "urge": {
+          "size": 40,
+          "x": 1060,
+          "y": 880,
+          "eye": 0.6,
+          "pop_at": 1.6
+        }
+      },
+      "captions": [
+        [
+          0.2,
+          3.4,
+          "Smaller *already.*"
+        ]
+      ]
+    },
+    {
+      "template": "end_card",
+      "duration": 3.6,
+      "mood": "calm",
+      "fade_in": 0.1,
+      "params": {
+        "text": "Name it to tame it.",
+        "size": 58
+      }
+    }
+  ],
+  "thumbnail": {
+    "words": [
+      "NAME",
+      "IT."
+    ],
+    "highlight": 0,
+    "highlight_color": "#ff5a4e",
+    "glow": "#ff5a4e",
+    "device": "none",
+    "badge": "\"I FEEL...\""
+  },
+  "youtube": {
+    "title": "Why \"Calm Down\" Never Works #shorts",
+    "description": "Telling yourself to calm down usually makes it worse. Try this instead: name the feeling. \"I feel anxious.\" \"I'm angry.\"\n\nIn a UCLA brain-scan study, people who put a word to an emotional image showed less activity in the amygdala, the brain's alarm system, than people who didn't. Psychologists call it affect labeling.\n\nNext time it hits: pause, and say (or write) exactly what you feel. One word is enough.\n\nResearch: Lieberman et al. (2007), \"Putting Feelings Into Words\", Psychological Science.\n\n#shorts #anxiety #psychology #emotions #mentalhealth #animation #selfimprovement",
+    "tags": [
+      "shorts",
+      "affect labeling",
+      "name it to tame it",
+      "anxiety tips",
+      "how to calm down",
+      "emotional regulation",
+      "psychology facts",
+      "mental health",
+      "animated story",
+      "self improvement"
+    ],
+    "comment": "One word for how you feel right now? 👇"
+  }
+}

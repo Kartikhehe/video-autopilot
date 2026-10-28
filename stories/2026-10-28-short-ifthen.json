@@ -1,0 +1,324 @@
+{
+  "id": "2026-10-28-short-ifthen",
+  "format": "short",
+  "topic": "implementation intentions: day, time and place plans (Milne, Orbell & Sheeran 2002: 91% vs 38%)",
+  "cast": {
+    "hero": {
+      "skin": "#a9714a",
+      "hoodie": "#2f6f4f",
+      "pants": "#3a3f4a",
+      "hair": "#16100c",
+      "hair_style": "short",
+      "shoe": "#f2f2f2"
+    },
+    "habit": {
+      "glow": "#b07cff"
+    }
+  },
+  "music": {
+    "key": -4,
+    "tempo": 96,
+    "seed": 131
+  },
+  "short": {
+    "hook": {
+      "text": "WHY *\"THIS* *WEEK\"* NEVER COMES",
+      "until": 3.2,
+      "y": 440,
+      "size": 96
+    },
+    "highlight_color": "#c9a2ff",
+    "cover_time": 1.3
+  },
+  "scenes": [
+    {
+      "template": "bedroom",
+      "duration": 3.4,
+      "mood": "groove",
+      "params": {
+        "pose": "standing",
+        "light": "day",
+        "expr": "happy",
+        "corner_item": "shoes",
+        "focus": [
+          760,
+          540
+        ],
+        "thoughts": [
+          {
+            "t": 0.4,
+            "x": 960,
+            "y": 420,
+            "text": "gym this week!",
+            "to": [
+              800,
+              500
+            ],
+            "size": 34
+          }
+        ]
+      }
+    },
+    {
+      "template": "montage",
+      "duration": 5.0,
+      "mood": "numb",
+      "params": {
+        "shots": [
+          {
+            "dur": 1.6,
+            "template": "bedroom",
+            "params": {
+              "pose": "lying_phone",
+              "light": "night",
+              "clock": "21:40",
+              "expr": "bored",
+              "focus": [
+                760,
+                540
+              ]
+            }
+          },
+          {
+            "dur": 1.6,
+            "template": "bedroom",
+            "params": {
+              "pose": "lying_phone",
+              "light": "night",
+              "clock": "23:10",
+              "expr": "bored",
+              "focus": [
+                760,
+                540
+              ]
+            }
+          },
+          {
+            "dur": 1.8,
+            "template": "bedroom",
+            "params": {
+              "pose": "lying_phone",
+              "light": "night",
+              "clock": "00:30",
+              "expr": "tired",
+              "bags": 0.6,
+              "corner_item": "shoes",
+              "focus": [
+                760,
+                540
+              ]
+            }
+          }
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          1.6,
+          "Monday: *tomorrow.*"
+        ],
+        [
+          1.7,
+          3.2,
+          "Wednesday: *tomorrow.*"
+        ],
+        [
+          3.3,
+          4.8,
+          "Sunday: *next* *week.*"
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 4.4,
+      "mood": "sad",
+      "params": {
+        "expr": [
+          [
+            0,
+            "sad"
+          ],
+          [
+            2.2,
+            "neutral"
+          ]
+        ],
+        "bg": "dark",
+        "look": [
+          0,
+          0.2
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          2.1,
+          "He wasn't *lazy.*"
+        ],
+        [
+          2.2,
+          4.2,
+          "His plan had no *when.*"
+        ]
+      ]
+    },
+    {
+      "template": "bedroom",
+      "duration": 5.4,
+      "mood": "curious",
+      "params": {
+        "pose": "sitting_activity",
+        "activity": "write",
+        "light": "lamp",
+        "expr": "determined",
+        "focus": [
+          860,
+          540
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          2.6,
+          "So he wrote *one* sentence:"
+        ],
+        [
+          2.7,
+          5.2,
+          "\"*Monday,* *7AM,* the park.\""
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 6.6,
+      "mood": "hope",
+      "params": {
+        "expr": [
+          [
+            0,
+            "neutral"
+          ],
+          [
+            2.3,
+            "wow"
+          ],
+          [
+            4.4,
+            "happy"
+          ]
+        ],
+        "bg": "warm",
+        "look": [
+          0,
+          0
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          2.2,
+          "In one study, students who wrote this..."
+        ],
+        [
+          2.3,
+          4.3,
+          "...*91%* actually exercised."
+        ],
+        [
+          4.4,
+          6.4,
+          "Without a plan? Only *38%.*"
+        ]
+      ]
+    },
+    {
+      "template": "hangout",
+      "duration": 4.6,
+      "mood": "triumph",
+      "params": {
+        "place": "park",
+        "sky": "dawn",
+        "focus": [
+          760,
+          540
+        ],
+        "hero": {
+          "activity": "ball",
+          "expr": "happy",
+          "x": 760
+        },
+        "friend": {
+          "present": false
+        }
+      },
+      "captions": [
+        [
+          0.3,
+          4.4,
+          "Monday. *7AM.* He showed up."
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 4.0,
+      "mood": "tender",
+      "params": {
+        "expr": "calm",
+        "bg": "warm",
+        "look": [
+          0,
+          0.1
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          3.8,
+          "It's called an *if-then* plan."
+        ]
+      ]
+    },
+    {
+      "template": "end_card",
+      "duration": 3.6,
+      "mood": "calm",
+      "fade_in": 0.1,
+      "params": {
+        "text": "Give your goal a time and a place.",
+        "size": 48
+      }
+    }
+  ],
+  "thumbnail": {
+    "words": [
+      "91%",
+      "VS",
+      "38%"
+    ],
+    "highlight": 0,
+    "highlight_color": "#b07cff",
+    "glow": "#b07cff",
+    "device": "none",
+    "badge": "ONE SENTENCE"
+  },
+  "youtube": {
+    "title": "Why \"This Week\" Never Comes #shorts",
+    "description": "\"I'll work out this week\" has no day, no time and no place, so it never happens.\n\nIn a study with 248 students, those who wrote down exactly when and where they'd exercise (\"Monday, 7 AM, the park\") were far more likely to actually do it: 91% exercised, versus 38% of students who didn't make a plan. Psychologists call it an implementation intention, or an if-then plan.\n\nPick one goal and write one sentence: day, time, place.\n\nResearch: Milne, Orbell & Sheeran (2002), British Journal of Health Psychology.\n\n#shorts #discipline #habits #psychology #motivation #animation #selfimprovement",
+    "tags": [
+      "shorts",
+      "implementation intentions",
+      "if then plan",
+      "how to stop procrastinating",
+      "discipline",
+      "habits",
+      "psychology facts",
+      "goal setting",
+      "animated story",
+      "self improvement"
+    ],
+    "comment": "Write yours: day, time, place 👇"
+  }
+}

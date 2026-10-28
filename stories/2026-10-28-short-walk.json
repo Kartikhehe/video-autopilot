@@ -1,0 +1,354 @@
+{
+  "id": "2026-10-28-short-walk",
+  "format": "short",
+  "topic": "walking boosts creative thinking (Oppezzo & Schwartz 2014, ~60% more creative ideas)",
+  "cast": {
+    "hero": {
+      "skin": "#c98e64",
+      "hoodie": "#2f8f83",
+      "pants": "#2b2f3a",
+      "hair": "#241812",
+      "hair_style": "bun",
+      "shoe": "#f2c14e"
+    },
+    "habit": {
+      "glow": "#ffd84d"
+    }
+  },
+  "music": {
+    "key": 2,
+    "tempo": 100,
+    "seed": 83
+  },
+  "short": {
+    "hook": {
+      "text": "STARING AT A *BLANK* *PAGE?*",
+      "until": 3.2,
+      "y": 440,
+      "size": 100
+    },
+    "highlight_color": "#ffd84d",
+    "cover_time": 1.3
+  },
+  "scenes": [
+    {
+      "template": "desk",
+      "duration": 3.4,
+      "mood": "tense",
+      "params": {
+        "pose": "staring",
+        "screen": "work",
+        "light": "lamp",
+        "expr": "worried",
+        "bags": 0.5,
+        "focus": [
+          960,
+          540
+        ],
+        "thoughts": [
+          {
+            "t": 0.4,
+            "x": 960,
+            "y": 420,
+            "text": "think...",
+            "to": [
+              860,
+              560
+            ],
+            "size": 34
+          },
+          {
+            "t": 1.4,
+            "x": 1090,
+            "y": 500,
+            "text": "THINK!!",
+            "to": [
+              900,
+              580
+            ],
+            "size": 36
+          }
+        ]
+      }
+    },
+    {
+      "template": "desk",
+      "duration": 4.4,
+      "mood": "tense",
+      "params": {
+        "pose": "head_down",
+        "screen": "work",
+        "note": "DUE 9AM",
+        "light": "lamp",
+        "expr": "sad",
+        "bags": 0.8,
+        "focus": [
+          960,
+          540
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          4.2,
+          "Two hours. *Zero* ideas."
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 4.6,
+      "mood": "numb",
+      "params": {
+        "expr": [
+          [
+            0,
+            "tired"
+          ],
+          [
+            2.3,
+            "sad"
+          ]
+        ],
+        "bg": "dark",
+        "bags": 0.8,
+        "look": [
+          0,
+          0.3
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          2.2,
+          "The harder she *forced* it..."
+        ],
+        [
+          2.3,
+          4.4,
+          "...the *emptier* it got."
+        ]
+      ]
+    },
+    {
+      "template": "hangout",
+      "duration": 5.2,
+      "mood": "curious",
+      "params": {
+        "place": "park",
+        "sky": "day",
+        "focus": [
+          1150,
+          540
+        ],
+        "focus_to": [
+          980,
+          540
+        ],
+        "hero": {
+          "activity": "walk_in",
+          "from_x": 1380,
+          "x": 1000,
+          "walk_dur": 5.2,
+          "expr": "neutral",
+          "look": [
+            -0.8,
+            0
+          ]
+        },
+        "friend": {
+          "present": false
+        }
+      },
+      "captions": [
+        [
+          0.2,
+          2.6,
+          "So she did the *opposite.*"
+        ],
+        [
+          2.7,
+          5.0,
+          "She went for a *walk.*"
+        ]
+      ]
+    },
+    {
+      "template": "hangout",
+      "duration": 6.2,
+      "mood": "hope",
+      "params": {
+        "place": "park",
+        "sky": "day",
+        "focus": [
+          1000,
+          540
+        ],
+        "focus_to": [
+          800,
+          540
+        ],
+        "hero": {
+          "activity": "walk_in",
+          "from_x": 1250,
+          "x": 760,
+          "walk_dur": 6.2,
+          "expr": "wow",
+          "look": [
+            -0.8,
+            -0.2
+          ]
+        },
+        "friend": {
+          "present": false
+        },
+        "thoughts": [
+          {
+            "t": 0.6,
+            "x": 1000,
+            "y": 330,
+            "text": "what if...",
+            "to": [
+              1060,
+              520
+            ],
+            "size": 34
+          },
+          {
+            "t": 2.4,
+            "x": 820,
+            "y": 260,
+            "text": "OH.",
+            "to": [
+              900,
+              500
+            ],
+            "size": 40
+          },
+          {
+            "t": 4.0,
+            "x": 980,
+            "y": 380,
+            "text": "the ending!!",
+            "to": [
+              820,
+              520
+            ],
+            "size": 34
+          }
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          2.9,
+          "Stanford researchers *tested* this."
+        ],
+        [
+          3.0,
+          6.0,
+          "Walking boosted creative ideas by about *60%.*"
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 4.6,
+      "mood": "hope",
+      "params": {
+        "expr": [
+          [
+            0,
+            "wow"
+          ],
+          [
+            2.3,
+            "happy"
+          ]
+        ],
+        "bg": "warm",
+        "glow": "#ffd84d",
+        "glow_amt": 0.35,
+        "sparkles": true,
+        "look": [
+          0,
+          0
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          2.2,
+          "Even sitting back down *after*..."
+        ],
+        [
+          2.3,
+          4.4,
+          "...the boost *stayed.*"
+        ]
+      ]
+    },
+    {
+      "template": "desk",
+      "duration": 4.4,
+      "mood": "triumph",
+      "params": {
+        "pose": "typing",
+        "screen": "work",
+        "note": "DONE!",
+        "light": "lamp",
+        "expr": "happy",
+        "focus": [
+          960,
+          540
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          4.2,
+          "Ten minutes outside. *Three* pages done."
+        ]
+      ]
+    },
+    {
+      "template": "end_card",
+      "duration": 3.6,
+      "mood": "calm",
+      "fade_in": 0.1,
+      "params": {
+        "text": "Stuck? Move your feet.",
+        "size": 56
+      }
+    }
+  ],
+  "thumbnail": {
+    "words": [
+      "STUCK?",
+      "GO",
+      "WALK."
+    ],
+    "highlight": 2,
+    "highlight_color": "#ffd84d",
+    "glow": "#ffd84d",
+    "device": "none",
+    "badge": "+60% IDEAS"
+  },
+  "youtube": {
+    "title": "Stuck? Stop Sitting There. #shorts",
+    "description": "Staring at a blank page, forcing ideas that won't come? Your body might be the problem, not your brain.\n\nIn Stanford experiments, people came up with about 60% more creative ideas while walking than while sitting. Walking indoors on a treadmill worked as well as walking outside, and the boost lasted for a while after they sat back down. It helps with brainstorming, not with single right-answer problems.\n\nNext time you're stuck: 10 minutes, no phone, just walk.\n\nResearch: Oppezzo & Schwartz (2014), \"Give Your Ideas Some Legs\", Journal of Experimental Psychology: Learning, Memory, and Cognition.\n\n#shorts #creativity #psychology #productivity #study #animation #selfimprovement",
+    "tags": [
+      "shorts",
+      "walking creativity",
+      "creative block",
+      "how to get ideas",
+      "writer's block",
+      "study tips",
+      "psychology facts",
+      "productivity",
+      "animated story",
+      "self improvement"
+    ],
+    "comment": "Where do you get your best ideas? 👇"
+  }
+}
