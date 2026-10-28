@@ -123,7 +123,8 @@ def full(path, workers=4):
     meta = dict(title=yt['title'], description=desc, tags=yt.get('tags', []), categoryId=str(cfg.get('category_id', '27')),
                 privacyStatus=cfg.get('privacy', 'public'), madeForKids=False, defaultLanguage=cfg.get('language', 'en'),
                 video=os.path.join(d, 'video.mp4'), thumbnail=os.path.join(d, 'thumbnail.png'), story=os.path.relpath(path, ROOT),
-                topic=spec.get('topic'), id=spec['id'])
+                topic=spec.get('topic'), id=spec['id'], kind='short' if S.get('short') else 'long',
+                comment=yt.get('comment'))
     with open(os.path.join(d, 'metadata.json'), 'w') as f:
         json.dump(meta, f, indent=2, ensure_ascii=False)
     # QA sheet of the finished video

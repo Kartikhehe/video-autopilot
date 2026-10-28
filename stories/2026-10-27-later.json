@@ -2,85 +2,702 @@
   "id": "2026-10-27-later",
   "topic": "procrastination (fear of not being good enough)",
   "cast": {
-    "hero": {"skin": "#d9a77b", "hoodie": "#3a9d8f", "pants": "#2f3550", "hair": "#2b1b14", "hair_style": "long", "shoe": "#f2efe6"},
-    "friend": {"skin": "#8d5a3b", "hoodie": "#e07a5f", "pants": "#3a3550", "hair": "#1e1410", "hair_style": "curly", "shoe": "#f2c14e", "height": 1.03},
-    "habit": {"glow": "#3dd6ff"}
+    "hero": {
+      "skin": "#d9a77b",
+      "hoodie": "#3a9d8f",
+      "pants": "#2f3550",
+      "hair": "#2b1b14",
+      "hair_style": "long",
+      "shoe": "#f2efe6"
+    },
+    "friend": {
+      "skin": "#8d5a3b",
+      "hoodie": "#e07a5f",
+      "pants": "#3a3550",
+      "hair": "#1e1410",
+      "hair_style": "curly",
+      "shoe": "#f2c14e",
+      "height": 1.03
+    },
+    "habit": {
+      "glow": "#3dd6ff"
+    }
   },
-  "music": {"key": 2, "tempo": 92, "seed": 7},
+  "music": {
+    "key": 2,
+    "tempo": 92,
+    "seed": 7
+  },
   "scenes": [
-    {"template": "card", "duration": 4, "mood": "calm", "chapter": "Who she was", "fade_in": 0,
-     "params": {"text": "Nobody decides to waste a year."}},
-    {"template": "hangout", "duration": 10, "mood": "warm",
-     "params": {"place": "park", "sky": "day", "camera": "pan_right",
-                "hero": {"activity": "sketch", "expr": "happy", "x": 760},
-                "friend": {"activity": "idle", "expr": "happy", "x": 1080, "look": [-0.8, 0]}},
-     "captions": [[0.6, 3.4, "She could draw anything."], [3.7, 6.6, "Her best friend called her 'the artist.'"],
-                  [6.9, 9.8, "Art school portfolio due in 30 days."]]},
-    {"template": "desk", "duration": 8, "mood": "calm", "chapter": "Just a break",
-     "params": {"pose": "typing", "screen": "work", "expr": "smile", "note": "30 DAYS",
-                "urge": {"size": 40, "appear_at": 4.2, "x": 1560, "y": 820, "whispers": [[5.4, "later..."]]}},
-     "captions": [[0.4, 3.6, "She opened the portfolio file."], [4.0, 7.7, "Just one quick break first."]]},
-    {"template": "phone_feed", "duration": 7, "mood": "curious", "params": {"tap_at": 5.0, "clock": "21:14"},
-     "captions": [[0.4, 3.0, "One video turned into ten."], [3.4, 6.7, "\"Five more minutes.\""]]},
-    {"template": "face", "duration": 6, "mood": "rush",
-     "params": {"expr": [[0, "wow"], [2.2, "dazed"]], "glow": "#3dd6ff", "glow_amt": 0.5, "pulse": true, "sparkles": true, "pupil_glow": "#3dd6ff"},
-     "captions": [[0.8, 5.7, "Every scroll felt like a tiny reward."]]},
-    {"template": "desk", "duration": 8, "mood": "dark", "chapter": "Tomorrow",
-     "params": {"pose": "staring", "screen": "feed", "expr": "bored", "note": "29 DAYS", "papers": 2,
-                "urge": {"size": 60, "grow": 85, "x": 1560, "y": 820, "whispers": [[1.0, "tomorrow."]]}},
-     "captions": [[0.4, 3.6, "Hours vanished."], [4.0, 7.7, "The file stayed blank."]]},
-    {"template": "montage", "duration": 12, "mood": "tense",
-     "params": {"shots": [
-        {"dur": 4, "template": "desk", "params": {"pose": "staring", "screen": "feed", "expr": "bored", "note": "21 DAYS", "papers": 4, "urge": {"size": 100, "x": 1560, "y": 820}}},
-        {"dur": 4, "template": "desk", "params": {"pose": "head_down", "screen": "game", "expr": "tired", "note": "14 DAYS", "papers": 7, "bags": 0.6, "urge": {"size": 140, "x": 1540, "y": 820, "mouth": 0.4}}},
-        {"dur": 4, "template": "desk", "params": {"pose": "staring", "screen": "feed", "expr": "tired", "note": "9 DAYS", "papers": 10, "bags": 1.0, "light": "dark", "urge": {"size": 190, "x": 1500, "y": 840, "mouth": 0.7}}}]},
-     "captions": [[0.3, 5.6, "Every day, she said 'tomorrow.'"], [6.0, 11.7, "And every day, it got bigger."]]},
-    {"template": "phone_chat", "duration": 9, "mood": "numb",
-     "params": {"contact": "Zoe", "clock": "19:02",
-                "messages": [[0.5, "L", "art cafe tonight?"], [2.4, "R", "can't, too busy"], [3.6, "L", "busy drawing? :)"],
-                             [5.0, "R", "yeah"], [6.2, "L", "can i see?"]],
-                "typing": [1.3, 2.4, "R"], "seen_at": 6.9},
-     "captions": [[6.6, 8.8, "She wasn't drawing. She was hiding."]]},
-    {"template": "bedroom", "duration": 8, "mood": "tense",
-     "params": {"pose": "lying_phone", "clock": "02:40", "expr": "worried", "sweat": true, "phone_color": "#3dd6ff",
-                "urge": {"size": 170, "x": 1150, "y": 760, "whispers": [[0.8, "there's still time."], [4.2, "just relax."]]}},
-     "captions": [[0.4, 3.8, "At 2 a.m., the guilt showed up."], [4.2, 7.8, "So she scrolled to drown it out."]]},
-    {"template": "mirror", "duration": 7, "mood": "dark", "params": {"expr": "tired", "urge_at": 3.4, "wall": "#3d4a5c"},
-     "captions": [[0.4, 3.3, "Lazy. Behind. A fraud."], [3.6, 6.8, "That's what she told herself."]]},
-    {"template": "face", "duration": 8, "mood": "sad", "chapter": "The truth",
-     "params": {"expr": "sad", "bg": "dark", "bags": 1.0, "tear_at": 4.0, "glow": "#3dd6ff", "glow_amt": 0.12},
-     "captions": [[0.4, 3.8, "The truth? She wasn't lazy."], [4.2, 7.8, "She was scared it wouldn't be good enough."]]},
-    {"template": "bedroom", "duration": 7, "mood": "tender",
-     "params": {"pose": "standing", "light": "lamp", "clock": "08:10", "expr": [[0, "sad"], [3.0, "determined"]], "put_away": [0.6, 2.7],
-                "corner_item": "sketchbook", "label": "3 DAYS LEFT",
-                "urge": {"size": 150, "grow": 120, "x": 1500, "y": 880, "alpha": 0.9}},
-     "captions": [[0.4, 3.3, "Three days left."], [3.6, 6.8, "She locked the phone in a drawer."]]},
-    {"template": "desk", "duration": 8, "mood": "tense",
-     "params": {"pose": "typing", "screen": "work", "expr": "determined", "note": "3 DAYS", "light": "lamp",
-                "urge": {"size": 150, "x": 1520, "y": 830, "whispers": [[0.6, "it's not good enough."], [3.8, "start tomorrow."]]}},
-     "captions": [[0.4, 4.0, "It whispered louder than ever."], [4.4, 7.8, "She started anyway. Badly."]]},
-    {"template": "montage", "duration": 14, "mood": "hope", "chapter": "Starting ugly",
-     "params": {"shots": [
-        {"dur": 4.6, "template": "desk", "label": "72 HOURS", "params": {"pose": "typing", "screen": "work", "expr": "determined", "note": "DRAFT 1", "urge": {"size": 110, "x": 1540, "y": 830, "whispers": [[0.8, "later..."]]}}},
-        {"dur": 4.6, "template": "desk", "label": "48 HOURS", "params": {"pose": "typing", "screen": "work", "expr": "neutral", "note": "DRAFT 4", "light": "dawn", "urge": {"size": 65, "x": 1540, "y": 830, "alpha": 0.7}}},
-        {"dur": 4.8, "template": "desk", "label": "24 HOURS", "params": {"pose": "typing", "screen": "work", "expr": "smile", "note": "FINAL", "light": "day", "urge": {"size": 30, "x": 1540, "y": 830, "pop_at": 2.0}}}]},
-     "captions": [[0.4, 4.2, "Ugly first drafts."], [4.9, 8.9, "One small piece every hour."], [9.5, 13.7, "It shrank every time she ignored it."]]},
-    {"template": "phone_chat", "duration": 8, "mood": "tender",
-     "params": {"contact": "Zoe", "clock": "23:52", "glow": "#ffcf8a",
-                "messages": [[0.5, "R", "just submitted it."], [1.6, "R", "sorry i disappeared."], [3.6, "L", "NO WAY"],
-                             [4.6, "L", "i'm so proud of you"], [5.8, "L", "art cafe. tomorrow. no excuses"]],
-                "typing": [2.4, 3.6, "L"]},
-     "captions": [[5.9, 7.9, "Zoe was the first to know."]]},
-    {"template": "gallery", "duration": 10, "mood": "triumph", "chapter": "Done",
-     "params": {"plaque": "accepted", "cheer_at": 6.8},
-     "captions": [[0.6, 4.4, "Months later, her work hung on a wall."], [4.8, 8.8, "Done beat perfect."]]},
-    {"template": "end_card", "duration": 4.5, "mood": "calm", "fade_in": 0, "params": {"text": "Start before you feel ready."}}
+    {
+      "template": "card",
+      "duration": 4,
+      "mood": "calm",
+      "chapter": "Who she was",
+      "fade_in": 0,
+      "params": {
+        "text": "Nobody decides to waste a year."
+      }
+    },
+    {
+      "template": "hangout",
+      "duration": 10,
+      "mood": "warm",
+      "params": {
+        "place": "park",
+        "sky": "day",
+        "camera": "pan_right",
+        "hero": {
+          "activity": "sketch",
+          "expr": "happy",
+          "x": 760
+        },
+        "friend": {
+          "activity": "idle",
+          "expr": "happy",
+          "x": 1080,
+          "look": [
+            -0.8,
+            0
+          ]
+        }
+      },
+      "captions": [
+        [
+          0.6,
+          3.4,
+          "She could draw anything."
+        ],
+        [
+          3.7,
+          6.6,
+          "Her best friend called her 'the artist.'"
+        ],
+        [
+          6.9,
+          9.8,
+          "Art school portfolio due in 30 days."
+        ]
+      ]
+    },
+    {
+      "template": "desk",
+      "duration": 8,
+      "mood": "calm",
+      "chapter": "Just a break",
+      "params": {
+        "pose": "typing",
+        "screen": "work",
+        "expr": "smile",
+        "note": "30 DAYS",
+        "urge": {
+          "size": 40,
+          "appear_at": 4.2,
+          "x": 1560,
+          "y": 820,
+          "whispers": [
+            [
+              5.4,
+              "later..."
+            ]
+          ]
+        }
+      },
+      "captions": [
+        [
+          0.4,
+          3.6,
+          "She opened the portfolio file."
+        ],
+        [
+          4.0,
+          7.7,
+          "Just one quick break first."
+        ]
+      ]
+    },
+    {
+      "template": "phone_feed",
+      "duration": 7,
+      "mood": "curious",
+      "params": {
+        "tap_at": 5.0,
+        "clock": "21:14"
+      },
+      "captions": [
+        [
+          0.4,
+          3.0,
+          "One video turned into ten."
+        ],
+        [
+          3.4,
+          6.7,
+          "\"Five more minutes.\""
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 6,
+      "mood": "rush",
+      "params": {
+        "expr": [
+          [
+            0,
+            "wow"
+          ],
+          [
+            2.2,
+            "dazed"
+          ]
+        ],
+        "glow": "#3dd6ff",
+        "glow_amt": 0.5,
+        "pulse": true,
+        "sparkles": true,
+        "pupil_glow": "#3dd6ff"
+      },
+      "captions": [
+        [
+          0.8,
+          5.7,
+          "Every scroll felt like a tiny reward."
+        ]
+      ]
+    },
+    {
+      "template": "desk",
+      "duration": 8,
+      "mood": "dark",
+      "chapter": "Tomorrow",
+      "params": {
+        "pose": "staring",
+        "screen": "feed",
+        "expr": "bored",
+        "note": "29 DAYS",
+        "papers": 2,
+        "urge": {
+          "size": 60,
+          "grow": 85,
+          "x": 1560,
+          "y": 820,
+          "whispers": [
+            [
+              1.0,
+              "tomorrow."
+            ]
+          ]
+        }
+      },
+      "captions": [
+        [
+          0.4,
+          3.6,
+          "Hours vanished."
+        ],
+        [
+          4.0,
+          7.7,
+          "The file stayed blank."
+        ]
+      ]
+    },
+    {
+      "template": "montage",
+      "duration": 12,
+      "mood": "tense",
+      "params": {
+        "shots": [
+          {
+            "dur": 4,
+            "template": "desk",
+            "params": {
+              "pose": "staring",
+              "screen": "feed",
+              "expr": "bored",
+              "note": "21 DAYS",
+              "papers": 4,
+              "urge": {
+                "size": 100,
+                "x": 1560,
+                "y": 820
+              }
+            }
+          },
+          {
+            "dur": 4,
+            "template": "desk",
+            "params": {
+              "pose": "head_down",
+              "screen": "game",
+              "expr": "tired",
+              "note": "14 DAYS",
+              "papers": 7,
+              "bags": 0.6,
+              "urge": {
+                "size": 140,
+                "x": 1540,
+                "y": 820,
+                "mouth": 0.4
+              }
+            }
+          },
+          {
+            "dur": 4,
+            "template": "desk",
+            "params": {
+              "pose": "staring",
+              "screen": "feed",
+              "expr": "tired",
+              "note": "9 DAYS",
+              "papers": 10,
+              "bags": 1.0,
+              "light": "dark",
+              "urge": {
+                "size": 190,
+                "x": 1500,
+                "y": 840,
+                "mouth": 0.7
+              }
+            }
+          }
+        ]
+      },
+      "captions": [
+        [
+          0.3,
+          5.6,
+          "Every day, she said 'tomorrow.'"
+        ],
+        [
+          6.0,
+          11.7,
+          "And every day, it got bigger."
+        ]
+      ]
+    },
+    {
+      "template": "phone_chat",
+      "duration": 9,
+      "mood": "numb",
+      "params": {
+        "contact": "Zoe",
+        "clock": "19:02",
+        "messages": [
+          [
+            0.5,
+            "L",
+            "art cafe tonight?"
+          ],
+          [
+            2.4,
+            "R",
+            "can't, too busy"
+          ],
+          [
+            3.6,
+            "L",
+            "busy drawing? :)"
+          ],
+          [
+            5.0,
+            "R",
+            "yeah"
+          ],
+          [
+            6.2,
+            "L",
+            "can i see?"
+          ]
+        ],
+        "typing": [
+          1.3,
+          2.4,
+          "R"
+        ],
+        "seen_at": 6.9
+      },
+      "captions": [
+        [
+          6.6,
+          8.8,
+          "She wasn't drawing. She was hiding."
+        ]
+      ]
+    },
+    {
+      "template": "bedroom",
+      "duration": 8,
+      "mood": "tense",
+      "params": {
+        "pose": "lying_phone",
+        "clock": "02:40",
+        "expr": "worried",
+        "sweat": true,
+        "phone_color": "#3dd6ff",
+        "urge": {
+          "size": 170,
+          "x": 1150,
+          "y": 760,
+          "whispers": [
+            [
+              0.8,
+              "there's still time."
+            ],
+            [
+              4.2,
+              "just relax."
+            ]
+          ]
+        }
+      },
+      "captions": [
+        [
+          0.4,
+          3.8,
+          "At 2 a.m., the guilt showed up."
+        ],
+        [
+          4.2,
+          7.8,
+          "So she scrolled to drown it out."
+        ]
+      ]
+    },
+    {
+      "template": "mirror",
+      "duration": 7,
+      "mood": "dark",
+      "params": {
+        "expr": "tired",
+        "urge_at": 3.4,
+        "wall": "#3d4a5c"
+      },
+      "captions": [
+        [
+          0.4,
+          3.3,
+          "Lazy. Behind. A fraud."
+        ],
+        [
+          3.6,
+          6.8,
+          "That's what she told herself."
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 8,
+      "mood": "sad",
+      "chapter": "The truth",
+      "params": {
+        "expr": "sad",
+        "bg": "dark",
+        "bags": 1.0,
+        "tear_at": 4.0,
+        "glow": "#3dd6ff",
+        "glow_amt": 0.12
+      },
+      "captions": [
+        [
+          0.4,
+          3.8,
+          "The truth? She wasn't lazy."
+        ],
+        [
+          4.2,
+          7.8,
+          "She was scared it wouldn't be good enough."
+        ]
+      ]
+    },
+    {
+      "template": "bedroom",
+      "duration": 7,
+      "mood": "tender",
+      "params": {
+        "pose": "standing",
+        "light": "lamp",
+        "clock": "08:10",
+        "expr": [
+          [
+            0,
+            "sad"
+          ],
+          [
+            3.0,
+            "determined"
+          ]
+        ],
+        "put_away": [
+          0.6,
+          2.7
+        ],
+        "corner_item": "sketchbook",
+        "label": "3 DAYS LEFT",
+        "urge": {
+          "size": 150,
+          "grow": 120,
+          "x": 1500,
+          "y": 880,
+          "alpha": 0.9
+        }
+      },
+      "captions": [
+        [
+          0.4,
+          3.3,
+          "Three days left."
+        ],
+        [
+          3.6,
+          6.8,
+          "She locked the phone in a drawer."
+        ]
+      ]
+    },
+    {
+      "template": "desk",
+      "duration": 8,
+      "mood": "tense",
+      "params": {
+        "pose": "typing",
+        "screen": "work",
+        "expr": "determined",
+        "note": "3 DAYS",
+        "light": "lamp",
+        "urge": {
+          "size": 150,
+          "x": 1520,
+          "y": 830,
+          "whispers": [
+            [
+              0.6,
+              "it's not good enough."
+            ],
+            [
+              3.8,
+              "start tomorrow."
+            ]
+          ]
+        }
+      },
+      "captions": [
+        [
+          0.4,
+          4.0,
+          "It whispered louder than ever."
+        ],
+        [
+          4.4,
+          7.8,
+          "She started anyway. Badly."
+        ]
+      ]
+    },
+    {
+      "template": "montage",
+      "duration": 14,
+      "mood": "hope",
+      "chapter": "Starting ugly",
+      "params": {
+        "shots": [
+          {
+            "dur": 4.6,
+            "template": "desk",
+            "label": "72 HOURS",
+            "params": {
+              "pose": "typing",
+              "screen": "work",
+              "expr": "determined",
+              "note": "DRAFT 1",
+              "urge": {
+                "size": 110,
+                "x": 1540,
+                "y": 830,
+                "whispers": [
+                  [
+                    0.8,
+                    "later..."
+                  ]
+                ]
+              }
+            }
+          },
+          {
+            "dur": 4.6,
+            "template": "desk",
+            "label": "48 HOURS",
+            "params": {
+              "pose": "typing",
+              "screen": "work",
+              "expr": "neutral",
+              "note": "DRAFT 4",
+              "light": "dawn",
+              "urge": {
+                "size": 65,
+                "x": 1540,
+                "y": 830,
+                "alpha": 0.7
+              }
+            }
+          },
+          {
+            "dur": 4.8,
+            "template": "desk",
+            "label": "24 HOURS",
+            "params": {
+              "pose": "typing",
+              "screen": "work",
+              "expr": "smile",
+              "note": "FINAL",
+              "light": "day",
+              "urge": {
+                "size": 30,
+                "x": 1540,
+                "y": 830,
+                "pop_at": 2.0
+              }
+            }
+          }
+        ]
+      },
+      "captions": [
+        [
+          0.4,
+          4.2,
+          "Ugly first drafts."
+        ],
+        [
+          4.9,
+          8.9,
+          "One small piece every hour."
+        ],
+        [
+          9.5,
+          13.7,
+          "It shrank every time she ignored it."
+        ]
+      ]
+    },
+    {
+      "template": "phone_chat",
+      "duration": 8,
+      "mood": "tender",
+      "params": {
+        "contact": "Zoe",
+        "clock": "23:52",
+        "glow": "#ffcf8a",
+        "messages": [
+          [
+            0.5,
+            "R",
+            "just submitted it."
+          ],
+          [
+            1.6,
+            "R",
+            "sorry i disappeared."
+          ],
+          [
+            3.6,
+            "L",
+            "NO WAY"
+          ],
+          [
+            4.6,
+            "L",
+            "i'm so proud of you"
+          ],
+          [
+            5.8,
+            "L",
+            "art cafe. tomorrow. no excuses"
+          ]
+        ],
+        "typing": [
+          2.4,
+          3.6,
+          "L"
+        ]
+      },
+      "captions": [
+        [
+          5.9,
+          7.9,
+          "Zoe was the first to know."
+        ]
+      ]
+    },
+    {
+      "template": "gallery",
+      "duration": 10,
+      "mood": "triumph",
+      "chapter": "Done",
+      "params": {
+        "plaque": "accepted",
+        "cheer_at": 6.8
+      },
+      "captions": [
+        [
+          0.6,
+          4.4,
+          "Months later, her work hung on a wall."
+        ],
+        [
+          4.8,
+          8.8,
+          "Done beat perfect."
+        ]
+      ]
+    },
+    {
+      "template": "end_card",
+      "duration": 4.5,
+      "mood": "calm",
+      "fade_in": 0,
+      "params": {
+        "text": "Start before you feel ready."
+      }
+    }
   ],
-  "thumbnail": {"words": ["TOMORROW", "IS", "A", "LIE."], "highlight": 0, "highlight_color": "#3dd6ff", "glow": "#3dd6ff",
-                "device": "phone", "variant": "face", "split_left": {"place": "park", "sky": "day", "activity": "sketch"}},
+  "thumbnail": {
+    "words": [
+      "TOMORROW",
+      "IS",
+      "A",
+      "LIE."
+    ],
+    "highlight": 0,
+    "highlight_color": "#3dd6ff",
+    "glow": "#3dd6ff",
+    "device": "phone",
+    "variant": "face",
+    "split_left": {
+      "place": "park",
+      "sky": "day",
+      "activity": "sketch"
+    }
+  },
   "youtube": {
     "title": "Procrastination Is Stealing Your Dreams.",
     "description": "\"Just one quick break.\" Thirty days later, the file was still blank.\n\nA short animated story about procrastination - and the truth most people miss: it usually isn't laziness. It's fear of not being good enough.\n\nIf you're stuck right now: lock the phone away, start ugly, and do one small piece. The voice that says 'tomorrow' gets quieter every time you ignore it.\n\nStart before you feel ready.\n\n#procrastination #selfimprovement #discipline #motivation #animation #productivity",
-    "tags": ["procrastination", "how to stop procrastinating", "self improvement", "discipline", "motivation", "animated story", "productivity", "fear of failure", "perfectionism", "study motivation", "dopamine", "life lessons"]
+    "tags": [
+      "procrastination",
+      "how to stop procrastinating",
+      "self improvement",
+      "discipline",
+      "motivation",
+      "animated story",
+      "productivity",
+      "fear of failure",
+      "perfectionism",
+      "study motivation",
+      "dopamine",
+      "life lessons"
+    ],
+    "comment": "What's the thing you keep saying you'll start 'tomorrow'? 👇"
   }
 }

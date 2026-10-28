@@ -107,7 +107,8 @@ something, etc. The reframe line is the heart of the video.
   "thumbnail": {"words": ["WHAT","LUST","TAKES."], "highlight": 1, "highlight_color": "#ff3d6e",
                 "glow": "#ff8a3d", "device": "phone|laptop", "variant": "face|split",
                 "split_left": {"place": "rooftop|park|street", "sky": "sunset|day|dusk|night", "activity": "guitar|sketch|camera|ball|book|idle"}},
-  "youtube": {"title": "...", "description": "...", "tags": ["...", "..."]}
+  "youtube": {"title": "...", "description": "...", "tags": ["...", "..."],
+              "comment": "first comment posted by the channel: a question that invites replies 👇"}
 }
 ```
 Times inside a scene are **seconds from the start of that scene**.

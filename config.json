@@ -9,5 +9,15 @@
   "max_seconds": 178,
   "description_footer": "",
   "niche": "Short animated stories (no narration, captions only) about the hidden cost of a bad habit and how to break it. Audience: 15-30 year olds into self-improvement.",
-  "avoid_topics": ["suicide or self-harm", "eating disorders", "drug use instructions", "politics", "religion debates", "real people or brands"]
+  "avoid_topics": [
+    "suicide or self-harm",
+    "eating disorders",
+    "drug use instructions",
+    "politics",
+    "religion debates",
+    "real people or brands"
+  ],
+  "timezone": "Asia/Kolkata",
+  "short_min_seconds": 20,
+  "short_max_seconds": 59
 }

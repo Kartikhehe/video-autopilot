@@ -2,7 +2,7 @@
 
 Env vars (set once in the Claude Code cloud environment settings):
   YT_CLIENT_ID, YT_CLIENT_SECRET, YT_REFRESH_TOKEN
-Scopes needed on the refresh token: youtube.upload + youtube.readonly
+Scopes needed on the refresh token: youtube.upload + youtube.readonly (+ youtube.force-ssl to post comments)
 """
 import json, os, sys, time, datetime
 import requests
@@ -10,7 +10,8 @@ import requests
 API = 'https://www.googleapis.com/youtube/v3'
 UPLOAD = 'https://www.googleapis.com/upload/youtube/v3'
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-HISTORY = os.path.join(ROOT, 'history.json')
+HISTORY = os.path.join(ROOT, 'history.json')          # legacy single file (read only)
+HISTORY_DIR = os.path.join(ROOT, 'history')           # one file per upload, so parallel runs never conflict in git
 
 
 class YTError(Exception):
@@ -121,15 +122,43 @@ def video_status(video_id):
 
 
 def load_history():
+    """All uploads, oldest first (merges history/*.json and the legacy history.json)."""
+    out = []
     if os.path.exists(HISTORY):
         with open(HISTORY) as f:
-            return json.load(f)
-    return []
+            out.extend(json.load(f))
+    if os.path.isdir(HISTORY_DIR):
+        for fn in sorted(os.listdir(HISTORY_DIR)):
+            if fn.endswith('.json'):
+                with open(os.path.join(HISTORY_DIR, fn)) as f:
+                    e = json.load(f)
+                e['_file'] = fn
+                out.append(e)
+    return sorted(out, key=lambda e: e.get('date', ''))
 
 
-def save_history(h):
-    with open(HISTORY, 'w') as f:
-        json.dump(h, f, indent=2, ensure_ascii=False)
+def save_entry(entry):
+    os.makedirs(HISTORY_DIR, exist_ok=True)
+    fn = entry.get('_file') or f"{entry['id']}.json"
+    data = {k: v for k, v in entry.items() if k != '_file'}
+    with open(os.path.join(HISTORY_DIR, fn), 'w') as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+
+
+def post_comment(video_id, text_):
+    """Top-level comment from the channel (needs youtube.force-ssl scope). YouTube has no API to pin it."""
+    body = {'snippet': {'videoId': video_id, 'topLevelComment': {'snippet': {'textOriginal': text_}}}}
+    r = requests.post(f'{API}/commentThreads', params={'part': 'snippet'}, headers=_h({'Content-Type': 'application/json'}),
+                      data=json.dumps(body), timeout=60)
+    if r.status_code != 200:
+        raise YTError(f'comment {r.status_code}: {r.text[:300]}  (needs the youtube.force-ssl scope on the refresh '
+                      'token, see SETUP.md B6)')
+    return r.json()
+
+
+def token_scopes():
+    r = requests.get('https://oauth2.googleapis.com/tokeninfo', params={'access_token': token()}, timeout=30)
+    return r.json().get('scope', '').split() if r.status_code == 200 else []
 
 
 def now_iso():

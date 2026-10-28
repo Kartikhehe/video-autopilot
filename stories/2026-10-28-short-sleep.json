@@ -3,52 +3,364 @@
   "format": "short",
   "topic": "revenge bedtime procrastination (staying up late to get 'me time')",
   "cast": {
-    "hero": {"skin": "#c68a5e", "hoodie": "#2f5d8f", "pants": "#2b2f3a", "hair": "#1a120d", "hair_style": "curly", "shoe": "#efe9e0"},
-    "habit": {"glow": "#ffb02e"}
+    "hero": {
+      "skin": "#c68a5e",
+      "hoodie": "#2f5d8f",
+      "pants": "#2b2f3a",
+      "hair": "#1a120d",
+      "hair_style": "curly",
+      "shoe": "#efe9e0"
+    },
+    "habit": {
+      "glow": "#ffb02e"
+    }
   },
-  "music": {"key": 1, "tempo": 98, "seed": 31},
-  "short": {"hook": {"text": "IT'S 3AM. WHY ARE YOU *STILL* *AWAKE?*", "until": 3.2, "y": 470, "size": 98},
-            "highlight_color": "#ffc04d", "cover_time": 1.2},
+  "music": {
+    "key": 1,
+    "tempo": 98,
+    "seed": 31
+  },
+  "short": {
+    "hook": {
+      "text": "IT'S 3AM. WHY ARE YOU *STILL* *AWAKE?*",
+      "until": 3.2,
+      "y": 470,
+      "size": 98
+    },
+    "highlight_color": "#ffc04d",
+    "cover_time": 1.2
+  },
   "scenes": [
-    {"template": "bedroom", "duration": 3.4, "mood": "tense",
-     "params": {"pose": "lying_phone", "clock": "03:12", "expr": "tired", "bags": 1.0, "sweat": true, "phone_color": "#ffcf7a",
-                "focus": [700, 540], "camera": "close",
-                "urge": {"size": 150, "x": 930, "y": 760, "mouth": 0.6, "look": [-1, 0.2]}}},
-    {"template": "desk", "duration": 4.2, "mood": "numb",
-     "params": {"pose": "typing", "screen": "work", "expr": "tired", "note": "DUE 5PM", "papers": 6, "light": "day", "focus": [960, 540]},
-     "captions": [[0.2, 4.0, "All day, his time belonged to *everyone* *else.*"]]},
-    {"template": "bedroom", "duration": 4.0, "mood": "curious",
-     "params": {"pose": "sitting_phone", "light": "lamp", "clock": "23:30", "expr": "smile", "phone_color": "#ffcf7a", "focus": [900, 540]},
-     "captions": [[0.2, 3.8, "So at night, he *took* *it* *back.*"]]},
-    {"template": "phone_feed", "duration": 4.0, "mood": "curious", "params": {"tap_at": 3.0, "clock": "23:31"},
-     "captions": [[0.2, 3.8, "\"Just one hour of *me* *time.*\""]]},
-    {"template": "montage", "duration": 6.0, "mood": "tense",
-     "params": {"shots": [
-        {"dur": 2, "template": "bedroom", "params": {"pose": "lying_phone", "clock": "00:58", "expr": "dazed", "phone_color": "#ffcf7a", "focus": [680, 540], "urge": {"size": 60, "x": 880, "y": 760}}},
-        {"dur": 2, "template": "bedroom", "params": {"pose": "lying_phone", "clock": "01:59", "expr": "bored", "bags": 0.5, "phone_color": "#ffcf7a", "focus": [680, 540], "urge": {"size": 100, "x": 880, "y": 760, "mouth": 0.3}}},
-        {"dur": 2, "template": "bedroom", "params": {"pose": "lying_phone", "clock": "03:12", "expr": "tired", "bags": 1.0, "light": "dark", "phone_color": "#ffcf7a", "focus": [680, 540], "urge": {"size": 140, "x": 880, "y": 760, "mouth": 0.6}}}]},
-     "captions": [[0.1, 1.9, "*1* *AM.*"], [2.1, 3.9, "*2* *AM.*"], [4.1, 5.9, "*3* *AM.*"]]},
-    {"template": "face", "duration": 4.5, "mood": "numb",
-     "params": {"expr": "tired", "bags": 1.0, "bg": "warm", "look": [0, 0.3]},
-     "captions": [[0.2, 4.3, "Every morning: *wrecked.* Every night: again."]]},
-    {"template": "face", "duration": 6.0, "mood": "sad",
-     "params": {"expr": "sad", "bg": "dark", "bags": 1.0, "tear_at": 2.6, "glow": "#ffb02e", "glow_amt": 0.12},
-     "captions": [[0.2, 2.9, "He wasn't taking time back from his day."], [3.0, 5.8, "He was stealing it from *tomorrow.*"]]},
-    {"template": "bedroom", "duration": 5.0, "mood": "tender",
-     "params": {"pose": "sitting_activity", "activity": "book", "light": "lamp", "clock": "21:30", "phone_far": true, "expr": "calm",
-                "focus": [960, 540], "urge": {"size": 45, "x": 1120, "y": 880, "alpha": 0.7}},
-     "captions": [[0.2, 2.4, "So he took his me-time *earlier.*"], [2.5, 4.8, "Phone across the room."]]},
-    {"template": "bedroom", "duration": 4.2, "mood": "hope",
-     "params": {"pose": "asleep", "expr": "calm", "light": "dawn", "clock": "07:00", "zzz": true, "phone_far": true, "focus": [700, 540],
-                "urge": {"size": 30, "x": 880, "y": 760, "eye": 0.5, "pop_at": 1.0}},
-     "captions": [[0.3, 4.0, "First time in months, he woke up *rested.*"]]},
-    {"template": "end_card", "duration": 3.6, "mood": "calm", "fade_in": 0.1, "params": {"text": "Sleep is me-time too.", "size": 54}}
+    {
+      "template": "bedroom",
+      "duration": 3.4,
+      "mood": "tense",
+      "params": {
+        "pose": "lying_phone",
+        "clock": "03:12",
+        "expr": "tired",
+        "bags": 1.0,
+        "sweat": true,
+        "phone_color": "#ffcf7a",
+        "focus": [
+          700,
+          540
+        ],
+        "camera": "close",
+        "urge": {
+          "size": 150,
+          "x": 930,
+          "y": 760,
+          "mouth": 0.6,
+          "look": [
+            -1,
+            0.2
+          ]
+        }
+      }
+    },
+    {
+      "template": "desk",
+      "duration": 4.2,
+      "mood": "numb",
+      "params": {
+        "pose": "typing",
+        "screen": "work",
+        "expr": "tired",
+        "note": "DUE 5PM",
+        "papers": 6,
+        "light": "day",
+        "focus": [
+          960,
+          540
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          4.0,
+          "All day, his time belonged to *everyone* *else.*"
+        ]
+      ]
+    },
+    {
+      "template": "bedroom",
+      "duration": 4.0,
+      "mood": "curious",
+      "params": {
+        "pose": "sitting_phone",
+        "light": "lamp",
+        "clock": "23:30",
+        "expr": "smile",
+        "phone_color": "#ffcf7a",
+        "focus": [
+          900,
+          540
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          3.8,
+          "So at night, he *took* *it* *back.*"
+        ]
+      ]
+    },
+    {
+      "template": "phone_feed",
+      "duration": 4.0,
+      "mood": "curious",
+      "params": {
+        "tap_at": 3.0,
+        "clock": "23:31"
+      },
+      "captions": [
+        [
+          0.2,
+          3.8,
+          "\"Just one hour of *me* *time.*\""
+        ]
+      ]
+    },
+    {
+      "template": "montage",
+      "duration": 6.0,
+      "mood": "tense",
+      "params": {
+        "shots": [
+          {
+            "dur": 2,
+            "template": "bedroom",
+            "params": {
+              "pose": "lying_phone",
+              "clock": "00:58",
+              "expr": "dazed",
+              "phone_color": "#ffcf7a",
+              "focus": [
+                680,
+                540
+              ],
+              "urge": {
+                "size": 60,
+                "x": 880,
+                "y": 760
+              }
+            }
+          },
+          {
+            "dur": 2,
+            "template": "bedroom",
+            "params": {
+              "pose": "lying_phone",
+              "clock": "01:59",
+              "expr": "bored",
+              "bags": 0.5,
+              "phone_color": "#ffcf7a",
+              "focus": [
+                680,
+                540
+              ],
+              "urge": {
+                "size": 100,
+                "x": 880,
+                "y": 760,
+                "mouth": 0.3
+              }
+            }
+          },
+          {
+            "dur": 2,
+            "template": "bedroom",
+            "params": {
+              "pose": "lying_phone",
+              "clock": "03:12",
+              "expr": "tired",
+              "bags": 1.0,
+              "light": "dark",
+              "phone_color": "#ffcf7a",
+              "focus": [
+                680,
+                540
+              ],
+              "urge": {
+                "size": 140,
+                "x": 880,
+                "y": 760,
+                "mouth": 0.6
+              }
+            }
+          }
+        ]
+      },
+      "captions": [
+        [
+          0.1,
+          1.9,
+          "*1* *AM.*"
+        ],
+        [
+          2.1,
+          3.9,
+          "*2* *AM.*"
+        ],
+        [
+          4.1,
+          5.9,
+          "*3* *AM.*"
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 4.5,
+      "mood": "numb",
+      "params": {
+        "expr": "tired",
+        "bags": 1.0,
+        "bg": "warm",
+        "look": [
+          0,
+          0.3
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          4.3,
+          "Every morning: *wrecked.* Every night: again."
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 6.0,
+      "mood": "sad",
+      "params": {
+        "expr": "sad",
+        "bg": "dark",
+        "bags": 1.0,
+        "tear_at": 2.6,
+        "glow": "#ffb02e",
+        "glow_amt": 0.12
+      },
+      "captions": [
+        [
+          0.2,
+          2.9,
+          "He wasn't taking time back from his day."
+        ],
+        [
+          3.0,
+          5.8,
+          "He was stealing it from *tomorrow.*"
+        ]
+      ]
+    },
+    {
+      "template": "bedroom",
+      "duration": 5.0,
+      "mood": "tender",
+      "params": {
+        "pose": "sitting_activity",
+        "activity": "book",
+        "light": "lamp",
+        "clock": "21:30",
+        "phone_far": true,
+        "expr": "calm",
+        "focus": [
+          960,
+          540
+        ],
+        "urge": {
+          "size": 45,
+          "x": 1120,
+          "y": 880,
+          "alpha": 0.7
+        }
+      },
+      "captions": [
+        [
+          0.2,
+          2.4,
+          "So he took his me-time *earlier.*"
+        ],
+        [
+          2.5,
+          4.8,
+          "Phone across the room."
+        ]
+      ]
+    },
+    {
+      "template": "bedroom",
+      "duration": 4.2,
+      "mood": "hope",
+      "params": {
+        "pose": "asleep",
+        "expr": "calm",
+        "light": "dawn",
+        "clock": "07:00",
+        "zzz": true,
+        "phone_far": true,
+        "focus": [
+          700,
+          540
+        ],
+        "urge": {
+          "size": 30,
+          "x": 880,
+          "y": 760,
+          "eye": 0.5,
+          "pop_at": 1.0
+        }
+      },
+      "captions": [
+        [
+          0.3,
+          4.0,
+          "First time in months, he woke up *rested.*"
+        ]
+      ]
+    },
+    {
+      "template": "end_card",
+      "duration": 3.6,
+      "mood": "calm",
+      "fade_in": 0.1,
+      "params": {
+        "text": "Sleep is me-time too.",
+        "size": 54
+      }
+    }
   ],
-  "thumbnail": {"words": ["WHY", "YOU", "CAN'T", "SLEEP"], "highlight": 3, "highlight_color": "#ffb02e", "glow": "#ffb02e",
-                "device": "phone", "badge": "3:12 AM"},
+  "thumbnail": {
+    "words": [
+      "WHY",
+      "YOU",
+      "CAN'T",
+      "SLEEP"
+    ],
+    "highlight": 3,
+    "highlight_color": "#ffb02e",
+    "glow": "#ffb02e",
+    "device": "phone",
+    "badge": "3:12 AM"
+  },
   "youtube": {
     "title": "Why You Stay Up So Late (Even When You're Exhausted) #shorts",
     "description": "You're not awake because you're not tired. You're awake because the night is the only time that feels like yours.\n\nBut you're not taking that time back from your day. You're stealing it from tomorrow.\n\nTry this: take your me-time earlier, and charge your phone across the room.\n\n#shorts #sleep #revengebedtimeprocrastination #selfimprovement #animation #discipline",
-    "tags": ["shorts", "revenge bedtime procrastination", "why can't i sleep", "staying up late", "sleep schedule", "phone at night", "self improvement", "animated story", "me time", "discipline"]
+    "tags": [
+      "shorts",
+      "revenge bedtime procrastination",
+      "why can't i sleep",
+      "staying up late",
+      "sleep schedule",
+      "phone at night",
+      "self improvement",
+      "animated story",
+      "me time",
+      "discipline"
+    ],
+    "comment": "What time did you fall asleep last night? 👇"
   }
 }

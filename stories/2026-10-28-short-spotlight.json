@@ -3,57 +3,457 @@
   "format": "short",
   "topic": "the spotlight effect (people notice your embarrassing moment far less than you think)",
   "cast": {
-    "hero": {"skin": "#d9a77b", "hoodie": "#e8e4dc", "pants": "#2b2f3a", "hair": "#1a120d", "hair_style": "cap", "cap": "#c8423b", "shoe": "#efe9e0", "stain": true},
-    "friend": {"skin": "#8d5a3b", "hoodie": "#5b5f97", "pants": "#2f3550", "hair": "#16100c", "hair_style": "short", "shoe": "#f2c14e"},
-    "habit": {"glow": "#ff8a3d"}
+    "hero": {
+      "skin": "#d9a77b",
+      "hoodie": "#e8e4dc",
+      "pants": "#2b2f3a",
+      "hair": "#1a120d",
+      "hair_style": "cap",
+      "cap": "#c8423b",
+      "shoe": "#efe9e0",
+      "stain": true
+    },
+    "friend": {
+      "skin": "#8d5a3b",
+      "hoodie": "#5b5f97",
+      "pants": "#2f3550",
+      "hair": "#16100c",
+      "hair_style": "short",
+      "shoe": "#f2c14e"
+    },
+    "habit": {
+      "glow": "#ff8a3d"
+    }
   },
-  "music": {"key": -3, "tempo": 102, "seed": 61},
-  "short": {"hook": {"text": "YOU THINK *EVERYONE* *NOTICED.*", "until": 3.0, "y": 440, "size": 100},
-            "highlight_color": "#ffb45e", "cover_time": 1.3},
+  "music": {
+    "key": -3,
+    "tempo": 102,
+    "seed": 61
+  },
+  "short": {
+    "hook": {
+      "text": "YOU THINK *EVERYONE* *NOTICED.*",
+      "until": 3.0,
+      "y": 440,
+      "size": 100
+    },
+    "highlight_color": "#ffb45e",
+    "cover_time": 1.3
+  },
   "scenes": [
-    {"template": "hangout", "duration": 3.2, "mood": "tense",
-     "params": {"place": "street", "sky": "day", "focus": [960, 540], "camera": "close",
-                "hero": {"activity": "idle", "expr": "shock", "x": 960, "look": [0, 0.8]}, "friend": {"present": false},
-                "extras": [{"x": 700, "expr": "neutral", "look": [0.8, 0], "look_as": {"hoodie": "#6d8f5a", "hair_style": "bun", "hair": "#4a2a18", "skin": "#f2d2b0"}},
-                           {"x": 1230, "expr": "neutral", "look": [-0.8, 0], "look_as": {"hoodie": "#8a5aa8", "hair_style": "short", "hair": "#2a1a10", "skin": "#a9714a"}}],
-                "spotlight": {"x": 960, "from": 0.0}}},
-    {"template": "bedroom", "duration": 4.0, "mood": "curious",
-     "params": {"pose": "standing", "x": 760, "light": "day", "clock": "07:52", "expr": "shock", "look": [0, 0.8], "focus": [700, 540]},
-     "captions": [[0.2, 3.8, "Coffee. White hoodie. *7:52* *AM.*"]]},
-    {"template": "hangout", "duration": 5.0, "mood": "tense",
-     "params": {"place": "street", "sky": "day", "focus": [960, 540],
-                "hero": {"activity": "idle", "expr": "worried", "x": 960, "look": [0, 0.7]}, "friend": {"present": false},
-                "extras": [{"x": 700, "expr": "neutral", "look": [0.8, 0], "look_as": {"hoodie": "#6d8f5a", "hair_style": "bun", "hair": "#4a2a18", "skin": "#f2d2b0"}},
-                           {"x": 1230, "expr": "neutral", "look": [-0.8, 0], "look_as": {"hoodie": "#8a5aa8", "hair_style": "short", "hair": "#2a1a10", "skin": "#a9714a"}}],
-                "spotlight": {"x": 960, "from": 0.0},
-                "thoughts": [{"t": 0.5, "x": 960, "y": 300, "text": "everyone is STARING", "to": [960, 520], "size": 38}]},
-     "captions": [[0.2, 2.4, "All day, it felt like a *spotlight.*"], [2.5, 4.8, "Every glance felt like *judgment.*"]]},
-    {"template": "face", "duration": 4.0, "mood": "dark",
-     "params": {"expr": "worried", "bg": "dark", "sweat": true, "bags": 0.3, "look": [0, 0.6], "camera": "close"},
-     "captions": [[0.2, 3.8, "He replayed it for *hours.*"]]},
-    {"template": "hangout", "duration": 6.4, "mood": "hope",
-     "params": {"place": "street", "sky": "day", "focus": [700, 540], "focus_to": [1220, 540], "camera": "still",
-                "hero": {"activity": "idle", "expr": "worried", "x": 960, "look": [0, 0.7]}, "friend": {"present": false},
-                "extras": [{"x": 600, "expr": "worried", "look": [0, -0.4], "look_as": {"hoodie": "#6d8f5a", "hair_style": "bun", "hair": "#4a2a18", "skin": "#f2d2b0"}},
-                           {"x": 1300, "expr": "sad", "look": [0, 0.5], "look_as": {"hoodie": "#8a5aa8", "hair_style": "short", "hair": "#2a1a10", "skin": "#a9714a"}}],
-                "thoughts": [{"t": 0.3, "x": 640, "y": 330, "text": "is my hair weird??", "to": [610, 520], "size": 32},
-                             {"t": 2.2, "x": 960, "y": 280, "text": "everyone saw the stain", "to": [960, 520], "size": 32},
-                             {"t": 3.8, "x": 1280, "y": 330, "text": "is she mad at me?", "to": [1300, 520], "size": 32}]},
-     "captions": [[0.3, 6.2, "Meanwhile: everyone was busy worrying about *themselves.*"]]},
-    {"template": "face", "duration": 6.4, "mood": "curious",
-     "params": {"expr": [[0, "neutral"], [4.3, "wow"]], "bg": "dark", "glow": "#ff8a3d", "glow_amt": 0.15},
-     "captions": [[0.2, 2.2, "Psychologists tested this with an *embarrassing* shirt."], [2.3, 4.2, "Wearers guessed *half* the room noticed."], [4.3, 6.2, "Only about *1* *in* *4* did."]]},
-    {"template": "hangout", "duration": 5.0, "mood": "warm",
-     "params": {"place": "street", "sky": "day", "focus": [940, 540],
-                "hero": {"activity": "talk", "expr": "happy", "x": 830, "look": [0.8, 0]},
-                "friend": {"activity": "idle", "expr": "happy", "x": 1060, "look": [-0.8, 0]}},
-     "captions": [[0.2, 2.4, "It's called the *spotlight* *effect.*"], [2.5, 4.8, "Same stain. He just stopped *caring.*"]]},
-    {"template": "card", "duration": 3.6, "mood": "calm", "params": {"text": "Relax.", "size": 80, "sub": "Nobody's watching that closely."}}
+    {
+      "template": "hangout",
+      "duration": 3.2,
+      "mood": "tense",
+      "params": {
+        "place": "street",
+        "sky": "day",
+        "focus": [
+          960,
+          540
+        ],
+        "camera": "close",
+        "hero": {
+          "activity": "idle",
+          "expr": "shock",
+          "x": 960,
+          "look": [
+            0,
+            0.8
+          ]
+        },
+        "friend": {
+          "present": false
+        },
+        "extras": [
+          {
+            "x": 700,
+            "expr": "neutral",
+            "look": [
+              0.8,
+              0
+            ],
+            "look_as": {
+              "hoodie": "#6d8f5a",
+              "hair_style": "bun",
+              "hair": "#4a2a18",
+              "skin": "#f2d2b0"
+            }
+          },
+          {
+            "x": 1230,
+            "expr": "neutral",
+            "look": [
+              -0.8,
+              0
+            ],
+            "look_as": {
+              "hoodie": "#8a5aa8",
+              "hair_style": "short",
+              "hair": "#2a1a10",
+              "skin": "#a9714a"
+            }
+          }
+        ],
+        "spotlight": {
+          "x": 960,
+          "from": 0.0
+        }
+      }
+    },
+    {
+      "template": "bedroom",
+      "duration": 4.0,
+      "mood": "curious",
+      "params": {
+        "pose": "standing",
+        "x": 760,
+        "light": "day",
+        "clock": "07:52",
+        "expr": "shock",
+        "look": [
+          0,
+          0.8
+        ],
+        "focus": [
+          700,
+          540
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          3.8,
+          "Coffee. White hoodie. *7:52* *AM.*"
+        ]
+      ]
+    },
+    {
+      "template": "hangout",
+      "duration": 5.0,
+      "mood": "tense",
+      "params": {
+        "place": "street",
+        "sky": "day",
+        "focus": [
+          960,
+          540
+        ],
+        "hero": {
+          "activity": "idle",
+          "expr": "worried",
+          "x": 960,
+          "look": [
+            0,
+            0.7
+          ]
+        },
+        "friend": {
+          "present": false
+        },
+        "extras": [
+          {
+            "x": 700,
+            "expr": "neutral",
+            "look": [
+              0.8,
+              0
+            ],
+            "look_as": {
+              "hoodie": "#6d8f5a",
+              "hair_style": "bun",
+              "hair": "#4a2a18",
+              "skin": "#f2d2b0"
+            }
+          },
+          {
+            "x": 1230,
+            "expr": "neutral",
+            "look": [
+              -0.8,
+              0
+            ],
+            "look_as": {
+              "hoodie": "#8a5aa8",
+              "hair_style": "short",
+              "hair": "#2a1a10",
+              "skin": "#a9714a"
+            }
+          }
+        ],
+        "spotlight": {
+          "x": 960,
+          "from": 0.0
+        },
+        "thoughts": [
+          {
+            "t": 0.5,
+            "x": 960,
+            "y": 300,
+            "text": "everyone is STARING",
+            "to": [
+              960,
+              520
+            ],
+            "size": 38
+          }
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          2.4,
+          "All day, it felt like a *spotlight.*"
+        ],
+        [
+          2.5,
+          4.8,
+          "Every glance felt like *judgment.*"
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 4.0,
+      "mood": "dark",
+      "params": {
+        "expr": "worried",
+        "bg": "dark",
+        "sweat": true,
+        "bags": 0.3,
+        "look": [
+          0,
+          0.6
+        ],
+        "camera": "close"
+      },
+      "captions": [
+        [
+          0.2,
+          3.8,
+          "He replayed it for *hours.*"
+        ]
+      ]
+    },
+    {
+      "template": "hangout",
+      "duration": 6.4,
+      "mood": "hope",
+      "params": {
+        "place": "street",
+        "sky": "day",
+        "focus": [
+          700,
+          540
+        ],
+        "focus_to": [
+          1220,
+          540
+        ],
+        "camera": "still",
+        "hero": {
+          "activity": "idle",
+          "expr": "worried",
+          "x": 960,
+          "look": [
+            0,
+            0.7
+          ]
+        },
+        "friend": {
+          "present": false
+        },
+        "extras": [
+          {
+            "x": 600,
+            "expr": "worried",
+            "look": [
+              0,
+              -0.4
+            ],
+            "look_as": {
+              "hoodie": "#6d8f5a",
+              "hair_style": "bun",
+              "hair": "#4a2a18",
+              "skin": "#f2d2b0"
+            }
+          },
+          {
+            "x": 1300,
+            "expr": "sad",
+            "look": [
+              0,
+              0.5
+            ],
+            "look_as": {
+              "hoodie": "#8a5aa8",
+              "hair_style": "short",
+              "hair": "#2a1a10",
+              "skin": "#a9714a"
+            }
+          }
+        ],
+        "thoughts": [
+          {
+            "t": 0.3,
+            "x": 640,
+            "y": 330,
+            "text": "is my hair weird??",
+            "to": [
+              610,
+              520
+            ],
+            "size": 32
+          },
+          {
+            "t": 2.2,
+            "x": 960,
+            "y": 280,
+            "text": "everyone saw the stain",
+            "to": [
+              960,
+              520
+            ],
+            "size": 32
+          },
+          {
+            "t": 3.8,
+            "x": 1280,
+            "y": 330,
+            "text": "is she mad at me?",
+            "to": [
+              1300,
+              520
+            ],
+            "size": 32
+          }
+        ]
+      },
+      "captions": [
+        [
+          0.3,
+          6.2,
+          "Meanwhile: everyone was busy worrying about *themselves.*"
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 6.4,
+      "mood": "curious",
+      "params": {
+        "expr": [
+          [
+            0,
+            "neutral"
+          ],
+          [
+            4.3,
+            "wow"
+          ]
+        ],
+        "bg": "dark",
+        "glow": "#ff8a3d",
+        "glow_amt": 0.15
+      },
+      "captions": [
+        [
+          0.2,
+          2.2,
+          "Psychologists tested this with an *embarrassing* shirt."
+        ],
+        [
+          2.3,
+          4.2,
+          "Wearers guessed *half* the room noticed."
+        ],
+        [
+          4.3,
+          6.2,
+          "Only about *1* *in* *4* did."
+        ]
+      ]
+    },
+    {
+      "template": "hangout",
+      "duration": 5.0,
+      "mood": "warm",
+      "params": {
+        "place": "street",
+        "sky": "day",
+        "focus": [
+          940,
+          540
+        ],
+        "hero": {
+          "activity": "talk",
+          "expr": "happy",
+          "x": 830,
+          "look": [
+            0.8,
+            0
+          ]
+        },
+        "friend": {
+          "activity": "idle",
+          "expr": "happy",
+          "x": 1060,
+          "look": [
+            -0.8,
+            0
+          ]
+        }
+      },
+      "captions": [
+        [
+          0.2,
+          2.4,
+          "It's called the *spotlight* *effect.*"
+        ],
+        [
+          2.5,
+          4.8,
+          "Same stain. He just stopped *caring.*"
+        ]
+      ]
+    },
+    {
+      "template": "card",
+      "duration": 3.6,
+      "mood": "calm",
+      "params": {
+        "text": "Relax.",
+        "size": 80,
+        "sub": "Nobody's watching that closely."
+      }
+    }
   ],
-  "thumbnail": {"words": ["NOBODY", "NOTICED."], "highlight": 1, "highlight_color": "#ff8a3d", "glow": "#ff8a3d", "device": "none", "badge": "EVERYONE SAW?"},
+  "thumbnail": {
+    "words": [
+      "NOBODY",
+      "NOTICED."
+    ],
+    "highlight": 1,
+    "highlight_color": "#ff8a3d",
+    "glow": "#ff8a3d",
+    "device": "none",
+    "badge": "EVERYONE SAW?"
+  },
   "youtube": {
     "title": "Nobody Noticed (As Much As You Think) #shorts",
     "description": "You spill something, say something weird, trip in public, and it feels like the whole world saw.\n\nIt's called the spotlight effect. In a famous study, students wearing an embarrassing T-shirt guessed about half the room noticed. In reality, only about 1 in 4 did. Everyone else was busy worrying about themselves.\n\nResearch: Gilovich, Medvec & Savitsky (2000), Journal of Personality and Social Psychology.\n\n#shorts #psychology #socialanxiety #overthinking #confidence #animation #selfimprovement",
-    "tags": ["shorts", "spotlight effect", "psychology facts", "social anxiety", "overthinking", "embarrassing", "confidence", "nobody is watching", "animated story", "self improvement"]
+    "tags": [
+      "shorts",
+      "spotlight effect",
+      "psychology facts",
+      "social anxiety",
+      "overthinking",
+      "embarrassing",
+      "confidence",
+      "nobody is watching",
+      "animated story",
+      "self improvement"
+    ],
+    "comment": "What's the most embarrassing thing you're STILL thinking about? 😅👇"
   }
 }

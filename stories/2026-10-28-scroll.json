@@ -2,109 +2,900 @@
   "id": "2026-10-28-scroll",
   "topic": "doomscrolling (scrolling so you never have to feel the silence / loneliness)",
   "cast": {
-    "hero": {"skin": "#8a5a3c", "hoodie": "#c8423b", "pants": "#2b2f3a", "hair": "#16100c", "hair_style": "short", "shoe": "#efe9e0"},
-    "friend": {"skin": "#f0c9a0", "hoodie": "#4f7cac", "pants": "#3a3550", "hair": "#6b3a20", "hair_style": "bun", "shoe": "#f2c14e", "height": 0.97},
-    "habit": {"glow": "#a46bff"}
+    "hero": {
+      "skin": "#8a5a3c",
+      "hoodie": "#c8423b",
+      "pants": "#2b2f3a",
+      "hair": "#16100c",
+      "hair_style": "short",
+      "shoe": "#efe9e0"
+    },
+    "friend": {
+      "skin": "#f0c9a0",
+      "hoodie": "#4f7cac",
+      "pants": "#3a3550",
+      "hair": "#6b3a20",
+      "hair_style": "bun",
+      "shoe": "#f2c14e",
+      "height": 0.97
+    },
+    "habit": {
+      "glow": "#a46bff"
+    }
   },
-  "music": {"key": -2, "tempo": 94, "seed": 23},
+  "music": {
+    "key": -2,
+    "tempo": 94,
+    "seed": 23
+  },
   "scenes": [
-    {"template": "card", "duration": 4, "mood": "calm", "chapter": "Who he was", "fade_in": 0,
-     "params": {"text": "Online all day. Alone every night."}},
-    {"template": "hangout", "duration": 10, "mood": "warm",
-     "params": {"place": "street", "sky": "dusk", "camera": "pan_right",
-                "hero": {"activity": "camera", "expr": "happy", "x": 760, "look": [0.6, 0]},
-                "friend": {"activity": "wave", "expr": "happy", "x": 1100, "look": [-0.8, 0]}},
-     "captions": [[0.6, 3.4, "He saw the world through a camera."], [3.7, 6.6, "Sunday sunrise walks with Maya."],
-                  [6.9, 9.8, "The city photo contest closed in 3 weeks."]]},
-    {"template": "bedroom", "duration": 7, "mood": "calm",
-     "params": {"pose": "lying_phone", "clock": "23:40", "expr": "bored", "corner_item": "camera"},
-     "captions": [[0.5, 3.3, "One night, the house felt too quiet."], [3.6, 6.7, "So he opened an app. Just to kill time."]]},
-    {"template": "phone_feed", "duration": 7, "mood": "curious", "params": {"tap_at": 5.0, "clock": "23:41"},
-     "captions": [[0.4, 3.0, "Video after video."], [3.4, 6.7, "\"One more.\""]]},
-    {"template": "face", "duration": 6, "mood": "rush",
-     "params": {"expr": [[0, "wow"], [2.2, "dazed"]], "glow": "#a46bff", "glow_amt": 0.5, "pulse": true, "sparkles": true, "pupil_glow": "#c9a6ff"},
-     "captions": [[0.8, 5.7, "Every swipe: something new. Something loud."]]},
-    {"template": "bedroom", "duration": 7, "mood": "dark", "chapter": "One more",
-     "params": {"pose": "lying_phone", "clock": "01:10", "expr": "dazed", "phone_color": "#c9a6ff", "corner_item": "camera",
-                "urge": {"size": 45, "appear_at": 2.4, "x": 1050, "y": 705, "look": [-1, -0.2], "whispers": [[4.4, "one more."]]}},
-     "captions": [[0.4, 3.3, "It filled every silent second."], [3.6, 6.8, "And something in the silence woke up."]]},
-    {"template": "hangout", "duration": 9, "mood": "numb",
-     "params": {"place": "park", "sky": "dawn", "camera": "push_slow",
-                "hero": {"activity": "phone", "expr": "tired", "x": 760, "bags": 0.6, "look": [0, 0.8]},
-                "friend": {"activity": "camera", "expr": "happy", "x": 1120, "look": [0.4, -0.6]},
-                "urge": {"on_shoulder": true, "size": 32, "look": [1, 0], "say_x": 520, "say_y": 330, "whispers": [[4.6, "it's just a sunrise."]]}},
-     "captions": [[0.4, 4.2, "He still showed up on Sunday..."], [4.6, 8.7, "...and missed the sunrise looking down."]]},
-    {"template": "montage", "duration": 10, "mood": "tense",
-     "params": {"shots": [
-        {"dur": 3.3, "template": "bedroom", "params": {"pose": "lying_phone", "clock": "00:30", "expr": "dazed", "phone_color": "#c9a6ff", "bags": 0.2, "urge": {"size": 75, "x": 1150, "y": 760}}},
-        {"dur": 3.3, "template": "bedroom", "params": {"pose": "lying_phone", "clock": "01:45", "expr": "bored", "phone_color": "#c9a6ff", "bags": 0.6, "urge": {"size": 125, "x": 1150, "y": 760, "mouth": 0.3}}},
-        {"dur": 3.4, "template": "bedroom", "params": {"pose": "lying_phone", "clock": "03:05", "expr": "tired", "phone_color": "#c9a6ff", "bags": 1.0, "light": "dark", "urge": {"size": 180, "x": 1150, "y": 760, "mouth": 0.6}}}]},
-     "captions": [[0.3, 4.8, "Thirty seconds at a time..."], [5.1, 9.8, "...he lost whole nights."]]},
-    {"template": "face", "duration": 6, "mood": "numb",
-     "params": {"expr": "tired", "bg": "dark", "bags": 1.0, "glow": "#a46bff", "glow_amt": 0.3, "pupil_glow": "#c9a6ff", "look": [0, 0.6]},
-     "captions": [[0.4, 2.9, "He couldn't finish a movie."], [3.2, 5.8, "Couldn't sit in silence for one minute."]]},
-    {"template": "phone_chat", "duration": 9, "mood": "numb",
-     "params": {"contact": "Maya", "clock": "18:20",
-                "messages": [[0.5, "L", "sunday walk?"], [2.4, "R", "cant, tired"], [3.6, "L", "contest closes friday!!"],
-                             [5.0, "R", "i'll see"], [6.2, "L", "you used to love this"]],
-                "typing": [1.3, 2.4, "R"], "seen_at": 6.9},
-     "captions": [[6.6, 8.8, "Strangers' lives felt easier than his own."]]},
-    {"template": "hangout", "duration": 6, "mood": "sad",
-     "params": {"place": "rooftop", "sky": "dusk", "poster": ["PHOTO CONTEST", "CLOSED"], "camera": "pan_left", "empty_seat": true,
-                "hero": {"present": false},
-                "friend": {"activity": "sit", "expr": "sad", "x": 1120, "look": [-1, 0.2]}},
-     "captions": [[0.4, 2.8, "Maya stopped asking."], [3.1, 5.8, "The contest closed without him."]]},
-    {"template": "mirror", "duration": 7, "mood": "dark", "params": {"expr": "tired", "urge_at": 3.4, "wall": "#4a3f5c"},
-     "captions": [[0.4, 3.3, "A thousand videos that week."], [3.6, 6.8, "Not one real conversation."]]},
-    {"template": "face", "duration": 8, "mood": "sad", "chapter": "The truth",
-     "params": {"expr": "sad", "bg": "dark", "bags": 1.0, "tear_at": 4.2, "glow": "#a46bff", "glow_amt": 0.12},
-     "captions": [[0.4, 3.9, "The scroll felt like company."], [4.3, 7.8, "But nobody on the screen knew his name."]]},
-    {"template": "bedroom", "duration": 7, "mood": "tender",
-     "params": {"pose": "standing", "light": "lamp", "clock": "21:00", "expr": [[0, "sad"], [3.0, "determined"]], "put_away": [0.6, 2.7],
-                "corner_item": "camera",
-                "urge": {"size": 150, "grow": 125, "x": 1500, "y": 880, "alpha": 0.9}},
-     "captions": [[0.4, 3.3, "He deleted the app."], [3.6, 6.8, "Phone in the drawer. No more."]]},
-    {"template": "card", "duration": 2.6, "mood": "silence", "fade_in": 0, "fade_out": 0, "params": {"text": "45 minutes later..."}},
-    {"template": "desk", "duration": 8, "mood": "tense", "fade_in": 0,
-     "params": {"pose": "staring", "screen": "feed", "expr": [[0, "worried"], [5.2, "tired"]], "light": "dark", "bags": 1.0,
-                "urge": {"size": 220, "x": 1560, "y": 860, "mouth": 0.5, "say_x": 1420, "say_y": 260,
-                         "whispers": [[0.5, "you're bored."], [2.3, "just one video."], [4.1, "nobody will know."]]}},
-     "captions": [[5.3, 7.8, "He found another screen."]]},
-    {"template": "bedroom", "duration": 8, "mood": "silence", "chapter": "The silence",
-     "params": {"pose": "sitting", "light": "dark", "clock": "02:12", "expr": [[0, "sad"], [4.4, "calm"]], "look": [1, 0.1],
-                "corner_item": "camera", "corner_glow": true, "camera": "push_slow"},
-     "captions": [[0.5, 3.9, "So he tried the scariest thing: nothing."], [4.3, 7.8, "It hurt. Then it got quiet. Then it got okay."]]},
-    {"template": "phone_chat", "duration": 8, "mood": "tender",
-     "params": {"contact": "Maya", "clock": "02:31", "glow": "#ffcf8a",
-                "messages": [[0.5, "R", "maya. i'm sorry"], [1.6, "R", "i've been hiding in my phone"], [3.6, "L", "i've missed you"],
-                             [4.6, "L", "sunday. 5:30am. bring the camera"], [5.8, "R", "i'll be there"]],
-                "typing": [2.4, 3.6, "L"]},
-     "captions": [[6.0, 7.9, "He told her the truth."]]},
-    {"template": "montage", "duration": 14, "mood": "hope", "chapter": "30 days",
-     "params": {"shots": [
-        {"dur": 3.5, "template": "bedroom", "label": "DAY 1", "params": {"pose": "lying_awake", "clock": "01:20", "expr": "worried", "sweat": true, "phone_far": true,
-                                                                            "urge": {"size": 190, "x": 1150, "y": 760, "mouth": 0.5, "say_x": 1430, "say_y": 330, "whispers": [[0.4, "just one video."]]}}},
-        {"dur": 3.5, "template": "bedroom", "label": "DAY 6", "params": {"pose": "sitting_activity", "activity": "camera", "clock": "22:40", "expr": "determined", "phone_far": true, "light": "lamp",
-                                                                            "urge": {"size": 115, "x": 1320, "y": 880, "alpha": 0.85, "say_x": 1430, "say_y": 520, "whispers": [[0.6, "boring..."]]}}},
-        {"dur": 3.5, "template": "bedroom", "label": "DAY 15", "params": {"pose": "asleep", "expr": "asleep", "clock": "23:30", "zzz": true, "phone_far": true,
-                                                                             "urge": {"size": 60, "x": 1150, "y": 760, "alpha": 0.55, "eye": 0.4}}},
-        {"dur": 3.5, "template": "bedroom", "label": "DAY 30", "params": {"pose": "asleep", "expr": "calm", "clock": "05:10", "light": "dawn", "phone_far": true,
-                                                                             "urge": {"size": 28, "x": 1150, "y": 760, "eye": 0.6, "pop_at": 1.4}}}]},
-     "captions": [[0.4, 3.2, "Day one, the silence was loud."], [3.8, 6.7, "Boredom came. He let it."],
-                  [7.3, 10.2, "His mind got quieter."], [10.8, 13.7, "It lost its grip."]]},
-    {"template": "sunrise", "duration": 8, "mood": "triumph",
-     "params": {"activity": "camera", "friend": true},
-     "captions": [[0.6, 3.6, "Sunday. 5:30 a.m."], [4.0, 7.7, "This time, he looked up."]]},
-    {"template": "gallery", "duration": 8, "mood": "triumph",
-     "params": {"plaque": "1st place", "cheer_at": 4.6, "seed": 9},
-     "captions": [[0.5, 3.9, "Next year, he entered the contest."], [4.3, 7.7, "Real life was slower. And worth it."]]},
-    {"template": "end_card", "duration": 4.5, "mood": "calm", "fade_in": 0, "params": {"text": "Look up. Your life is happening there."}}
+    {
+      "template": "card",
+      "duration": 4,
+      "mood": "calm",
+      "chapter": "Who he was",
+      "fade_in": 0,
+      "params": {
+        "text": "Online all day. Alone every night."
+      }
+    },
+    {
+      "template": "hangout",
+      "duration": 10,
+      "mood": "warm",
+      "params": {
+        "place": "street",
+        "sky": "dusk",
+        "camera": "pan_right",
+        "hero": {
+          "activity": "camera",
+          "expr": "happy",
+          "x": 760,
+          "look": [
+            0.6,
+            0
+          ]
+        },
+        "friend": {
+          "activity": "wave",
+          "expr": "happy",
+          "x": 1100,
+          "look": [
+            -0.8,
+            0
+          ]
+        }
+      },
+      "captions": [
+        [
+          0.6,
+          3.4,
+          "He saw the world through a camera."
+        ],
+        [
+          3.7,
+          6.6,
+          "Sunday sunrise walks with Maya."
+        ],
+        [
+          6.9,
+          9.8,
+          "The city photo contest closed in 3 weeks."
+        ]
+      ]
+    },
+    {
+      "template": "bedroom",
+      "duration": 7,
+      "mood": "calm",
+      "params": {
+        "pose": "lying_phone",
+        "clock": "23:40",
+        "expr": "bored",
+        "corner_item": "camera"
+      },
+      "captions": [
+        [
+          0.5,
+          3.3,
+          "One night, the house felt too quiet."
+        ],
+        [
+          3.6,
+          6.7,
+          "So he opened an app. Just to kill time."
+        ]
+      ]
+    },
+    {
+      "template": "phone_feed",
+      "duration": 7,
+      "mood": "curious",
+      "params": {
+        "tap_at": 5.0,
+        "clock": "23:41"
+      },
+      "captions": [
+        [
+          0.4,
+          3.0,
+          "Video after video."
+        ],
+        [
+          3.4,
+          6.7,
+          "\"One more.\""
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 6,
+      "mood": "rush",
+      "params": {
+        "expr": [
+          [
+            0,
+            "wow"
+          ],
+          [
+            2.2,
+            "dazed"
+          ]
+        ],
+        "glow": "#a46bff",
+        "glow_amt": 0.5,
+        "pulse": true,
+        "sparkles": true,
+        "pupil_glow": "#c9a6ff"
+      },
+      "captions": [
+        [
+          0.8,
+          5.7,
+          "Every swipe: something new. Something loud."
+        ]
+      ]
+    },
+    {
+      "template": "bedroom",
+      "duration": 7,
+      "mood": "dark",
+      "chapter": "One more",
+      "params": {
+        "pose": "lying_phone",
+        "clock": "01:10",
+        "expr": "dazed",
+        "phone_color": "#c9a6ff",
+        "corner_item": "camera",
+        "urge": {
+          "size": 45,
+          "appear_at": 2.4,
+          "x": 1050,
+          "y": 705,
+          "look": [
+            -1,
+            -0.2
+          ],
+          "whispers": [
+            [
+              4.4,
+              "one more."
+            ]
+          ]
+        }
+      },
+      "captions": [
+        [
+          0.4,
+          3.3,
+          "It filled every silent second."
+        ],
+        [
+          3.6,
+          6.8,
+          "And something in the silence woke up."
+        ]
+      ]
+    },
+    {
+      "template": "hangout",
+      "duration": 9,
+      "mood": "numb",
+      "params": {
+        "place": "park",
+        "sky": "dawn",
+        "camera": "push_slow",
+        "hero": {
+          "activity": "phone",
+          "expr": "tired",
+          "x": 760,
+          "bags": 0.6,
+          "look": [
+            0,
+            0.8
+          ]
+        },
+        "friend": {
+          "activity": "camera",
+          "expr": "happy",
+          "x": 1120,
+          "look": [
+            0.4,
+            -0.6
+          ]
+        },
+        "urge": {
+          "on_shoulder": true,
+          "size": 32,
+          "look": [
+            1,
+            0
+          ],
+          "say_x": 520,
+          "say_y": 330,
+          "whispers": [
+            [
+              4.6,
+              "it's just a sunrise."
+            ]
+          ]
+        }
+      },
+      "captions": [
+        [
+          0.4,
+          4.2,
+          "He still showed up on Sunday..."
+        ],
+        [
+          4.6,
+          8.7,
+          "...and missed the sunrise looking down."
+        ]
+      ]
+    },
+    {
+      "template": "montage",
+      "duration": 10,
+      "mood": "tense",
+      "params": {
+        "shots": [
+          {
+            "dur": 3.3,
+            "template": "bedroom",
+            "params": {
+              "pose": "lying_phone",
+              "clock": "00:30",
+              "expr": "dazed",
+              "phone_color": "#c9a6ff",
+              "bags": 0.2,
+              "urge": {
+                "size": 75,
+                "x": 1150,
+                "y": 760
+              }
+            }
+          },
+          {
+            "dur": 3.3,
+            "template": "bedroom",
+            "params": {
+              "pose": "lying_phone",
+              "clock": "01:45",
+              "expr": "bored",
+              "phone_color": "#c9a6ff",
+              "bags": 0.6,
+              "urge": {
+                "size": 125,
+                "x": 1150,
+                "y": 760,
+                "mouth": 0.3
+              }
+            }
+          },
+          {
+            "dur": 3.4,
+            "template": "bedroom",
+            "params": {
+              "pose": "lying_phone",
+              "clock": "03:05",
+              "expr": "tired",
+              "phone_color": "#c9a6ff",
+              "bags": 1.0,
+              "light": "dark",
+              "urge": {
+                "size": 180,
+                "x": 1150,
+                "y": 760,
+                "mouth": 0.6
+              }
+            }
+          }
+        ]
+      },
+      "captions": [
+        [
+          0.3,
+          4.8,
+          "Thirty seconds at a time..."
+        ],
+        [
+          5.1,
+          9.8,
+          "...he lost whole nights."
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 6,
+      "mood": "numb",
+      "params": {
+        "expr": "tired",
+        "bg": "dark",
+        "bags": 1.0,
+        "glow": "#a46bff",
+        "glow_amt": 0.3,
+        "pupil_glow": "#c9a6ff",
+        "look": [
+          0,
+          0.6
+        ]
+      },
+      "captions": [
+        [
+          0.4,
+          2.9,
+          "He couldn't finish a movie."
+        ],
+        [
+          3.2,
+          5.8,
+          "Couldn't sit in silence for one minute."
+        ]
+      ]
+    },
+    {
+      "template": "phone_chat",
+      "duration": 9,
+      "mood": "numb",
+      "params": {
+        "contact": "Maya",
+        "clock": "18:20",
+        "messages": [
+          [
+            0.5,
+            "L",
+            "sunday walk?"
+          ],
+          [
+            2.4,
+            "R",
+            "cant, tired"
+          ],
+          [
+            3.6,
+            "L",
+            "contest closes friday!!"
+          ],
+          [
+            5.0,
+            "R",
+            "i'll see"
+          ],
+          [
+            6.2,
+            "L",
+            "you used to love this"
+          ]
+        ],
+        "typing": [
+          1.3,
+          2.4,
+          "R"
+        ],
+        "seen_at": 6.9
+      },
+      "captions": [
+        [
+          6.6,
+          8.8,
+          "Strangers' lives felt easier than his own."
+        ]
+      ]
+    },
+    {
+      "template": "hangout",
+      "duration": 6,
+      "mood": "sad",
+      "params": {
+        "place": "rooftop",
+        "sky": "dusk",
+        "poster": [
+          "PHOTO CONTEST",
+          "CLOSED"
+        ],
+        "camera": "pan_left",
+        "empty_seat": true,
+        "hero": {
+          "present": false
+        },
+        "friend": {
+          "activity": "sit",
+          "expr": "sad",
+          "x": 1120,
+          "look": [
+            -1,
+            0.2
+          ]
+        }
+      },
+      "captions": [
+        [
+          0.4,
+          2.8,
+          "Maya stopped asking."
+        ],
+        [
+          3.1,
+          5.8,
+          "The contest closed without him."
+        ]
+      ]
+    },
+    {
+      "template": "mirror",
+      "duration": 7,
+      "mood": "dark",
+      "params": {
+        "expr": "tired",
+        "urge_at": 3.4,
+        "wall": "#4a3f5c"
+      },
+      "captions": [
+        [
+          0.4,
+          3.3,
+          "A thousand videos that week."
+        ],
+        [
+          3.6,
+          6.8,
+          "Not one real conversation."
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 8,
+      "mood": "sad",
+      "chapter": "The truth",
+      "params": {
+        "expr": "sad",
+        "bg": "dark",
+        "bags": 1.0,
+        "tear_at": 4.2,
+        "glow": "#a46bff",
+        "glow_amt": 0.12
+      },
+      "captions": [
+        [
+          0.4,
+          3.9,
+          "The scroll felt like company."
+        ],
+        [
+          4.3,
+          7.8,
+          "But nobody on the screen knew his name."
+        ]
+      ]
+    },
+    {
+      "template": "bedroom",
+      "duration": 7,
+      "mood": "tender",
+      "params": {
+        "pose": "standing",
+        "light": "lamp",
+        "clock": "21:00",
+        "expr": [
+          [
+            0,
+            "sad"
+          ],
+          [
+            3.0,
+            "determined"
+          ]
+        ],
+        "put_away": [
+          0.6,
+          2.7
+        ],
+        "corner_item": "camera",
+        "urge": {
+          "size": 150,
+          "grow": 125,
+          "x": 1500,
+          "y": 880,
+          "alpha": 0.9
+        }
+      },
+      "captions": [
+        [
+          0.4,
+          3.3,
+          "He deleted the app."
+        ],
+        [
+          3.6,
+          6.8,
+          "Phone in the drawer. No more."
+        ]
+      ]
+    },
+    {
+      "template": "card",
+      "duration": 2.6,
+      "mood": "silence",
+      "fade_in": 0,
+      "fade_out": 0,
+      "params": {
+        "text": "45 minutes later..."
+      }
+    },
+    {
+      "template": "desk",
+      "duration": 8,
+      "mood": "tense",
+      "fade_in": 0,
+      "params": {
+        "pose": "staring",
+        "screen": "feed",
+        "expr": [
+          [
+            0,
+            "worried"
+          ],
+          [
+            5.2,
+            "tired"
+          ]
+        ],
+        "light": "dark",
+        "bags": 1.0,
+        "urge": {
+          "size": 220,
+          "x": 1560,
+          "y": 860,
+          "mouth": 0.5,
+          "say_x": 1420,
+          "say_y": 260,
+          "whispers": [
+            [
+              0.5,
+              "you're bored."
+            ],
+            [
+              2.3,
+              "just one video."
+            ],
+            [
+              4.1,
+              "nobody will know."
+            ]
+          ]
+        }
+      },
+      "captions": [
+        [
+          5.3,
+          7.8,
+          "He found another screen."
+        ]
+      ]
+    },
+    {
+      "template": "bedroom",
+      "duration": 8,
+      "mood": "silence",
+      "chapter": "The silence",
+      "params": {
+        "pose": "sitting",
+        "light": "dark",
+        "clock": "02:12",
+        "expr": [
+          [
+            0,
+            "sad"
+          ],
+          [
+            4.4,
+            "calm"
+          ]
+        ],
+        "look": [
+          1,
+          0.1
+        ],
+        "corner_item": "camera",
+        "corner_glow": true,
+        "camera": "push_slow"
+      },
+      "captions": [
+        [
+          0.5,
+          3.9,
+          "So he tried the scariest thing: nothing."
+        ],
+        [
+          4.3,
+          7.8,
+          "It hurt. Then it got quiet. Then it got okay."
+        ]
+      ]
+    },
+    {
+      "template": "phone_chat",
+      "duration": 8,
+      "mood": "tender",
+      "params": {
+        "contact": "Maya",
+        "clock": "02:31",
+        "glow": "#ffcf8a",
+        "messages": [
+          [
+            0.5,
+            "R",
+            "maya. i'm sorry"
+          ],
+          [
+            1.6,
+            "R",
+            "i've been hiding in my phone"
+          ],
+          [
+            3.6,
+            "L",
+            "i've missed you"
+          ],
+          [
+            4.6,
+            "L",
+            "sunday. 5:30am. bring the camera"
+          ],
+          [
+            5.8,
+            "R",
+            "i'll be there"
+          ]
+        ],
+        "typing": [
+          2.4,
+          3.6,
+          "L"
+        ]
+      },
+      "captions": [
+        [
+          6.0,
+          7.9,
+          "He told her the truth."
+        ]
+      ]
+    },
+    {
+      "template": "montage",
+      "duration": 14,
+      "mood": "hope",
+      "chapter": "30 days",
+      "params": {
+        "shots": [
+          {
+            "dur": 3.5,
+            "template": "bedroom",
+            "label": "DAY 1",
+            "params": {
+              "pose": "lying_awake",
+              "clock": "01:20",
+              "expr": "worried",
+              "sweat": true,
+              "phone_far": true,
+              "urge": {
+                "size": 190,
+                "x": 1150,
+                "y": 760,
+                "mouth": 0.5,
+                "say_x": 1430,
+                "say_y": 330,
+                "whispers": [
+                  [
+                    0.4,
+                    "just one video."
+                  ]
+                ]
+              }
+            }
+          },
+          {
+            "dur": 3.5,
+            "template": "bedroom",
+            "label": "DAY 6",
+            "params": {
+              "pose": "sitting_activity",
+              "activity": "camera",
+              "clock": "22:40",
+              "expr": "determined",
+              "phone_far": true,
+              "light": "lamp",
+              "urge": {
+                "size": 115,
+                "x": 1320,
+                "y": 880,
+                "alpha": 0.85,
+                "say_x": 1430,
+                "say_y": 520,
+                "whispers": [
+                  [
+                    0.6,
+                    "boring..."
+                  ]
+                ]
+              }
+            }
+          },
+          {
+            "dur": 3.5,
+            "template": "bedroom",
+            "label": "DAY 15",
+            "params": {
+              "pose": "asleep",
+              "expr": "asleep",
+              "clock": "23:30",
+              "zzz": true,
+              "phone_far": true,
+              "urge": {
+                "size": 60,
+                "x": 1150,
+                "y": 760,
+                "alpha": 0.55,
+                "eye": 0.4
+              }
+            }
+          },
+          {
+            "dur": 3.5,
+            "template": "bedroom",
+            "label": "DAY 30",
+            "params": {
+              "pose": "asleep",
+              "expr": "calm",
+              "clock": "05:10",
+              "light": "dawn",
+              "phone_far": true,
+              "urge": {
+                "size": 28,
+                "x": 1150,
+                "y": 760,
+                "eye": 0.6,
+                "pop_at": 1.4
+              }
+            }
+          }
+        ]
+      },
+      "captions": [
+        [
+          0.4,
+          3.2,
+          "Day one, the silence was loud."
+        ],
+        [
+          3.8,
+          6.7,
+          "Boredom came. He let it."
+        ],
+        [
+          7.3,
+          10.2,
+          "His mind got quieter."
+        ],
+        [
+          10.8,
+          13.7,
+          "It lost its grip."
+        ]
+      ]
+    },
+    {
+      "template": "sunrise",
+      "duration": 8,
+      "mood": "triumph",
+      "params": {
+        "activity": "camera",
+        "friend": true
+      },
+      "captions": [
+        [
+          0.6,
+          3.6,
+          "Sunday. 5:30 a.m."
+        ],
+        [
+          4.0,
+          7.7,
+          "This time, he looked up."
+        ]
+      ]
+    },
+    {
+      "template": "gallery",
+      "duration": 8,
+      "mood": "triumph",
+      "params": {
+        "plaque": "1st place",
+        "cheer_at": 4.6,
+        "seed": 9
+      },
+      "captions": [
+        [
+          0.5,
+          3.9,
+          "Next year, he entered the contest."
+        ],
+        [
+          4.3,
+          7.7,
+          "Real life was slower. And worth it."
+        ]
+      ]
+    },
+    {
+      "template": "end_card",
+      "duration": 4.5,
+      "mood": "calm",
+      "fade_in": 0,
+      "params": {
+        "text": "Look up. Your life is happening there."
+      }
+    }
   ],
-  "thumbnail": {"words": ["ONE", "MORE", "SCROLL."], "highlight": 2, "highlight_color": "#b98cff", "glow": "#a46bff",
-                "device": "phone", "variant": "face", "split_left": {"place": "street", "sky": "dusk", "activity": "camera"}},
+  "thumbnail": {
+    "words": [
+      "ONE",
+      "MORE",
+      "SCROLL."
+    ],
+    "highlight": 2,
+    "highlight_color": "#b98cff",
+    "glow": "#a46bff",
+    "device": "phone",
+    "variant": "face",
+    "split_left": {
+      "place": "street",
+      "sky": "dusk",
+      "activity": "camera"
+    }
+  },
   "youtube": {
     "title": "Why You Can't Stop Scrolling.",
     "description": "\"Just to kill time.\" Then a thousand videos a week, and not one real conversation.\n\nA short animated story about doomscrolling and the reason it's so hard to stop: it isn't really about the videos. It's about never having to sit in the silence. The scroll feels like company, but nobody on the screen knows your name.\n\nIf you're stuck in it right now:\n• Charge your phone outside your bedroom.\n• Let yourself be bored for 10 minutes. The urge peaks, then fades.\n• Text one real person today.\n\nLook up. Your life is happening there.\n\nIf this helped, like, share it with someone who needs it, and subscribe for more.\n\n#doomscrolling #selfimprovement #dopamine #screentime #loneliness #animation #motivation",
-    "tags": ["doomscrolling", "how to stop scrolling", "phone addiction", "dopamine detox", "screen time", "social media addiction", "loneliness", "self improvement", "animated story", "brain rot", "attention span", "motivation"]
+    "tags": [
+      "doomscrolling",
+      "how to stop scrolling",
+      "phone addiction",
+      "dopamine detox",
+      "screen time",
+      "social media addiction",
+      "loneliness",
+      "self improvement",
+      "animated story",
+      "brain rot",
+      "attention span",
+      "motivation"
+    ],
+    "comment": "What would you do with the hours you get back? 👇"
   }
 }

@@ -92,8 +92,9 @@ If you skip this, YouTube permission expires every 7 days and uploads stop.
 3. Look at the **left side**, "Step 1: Select & authorize APIs". Under the long list there's a box
    that says **"Input your own scopes"**. Click it and paste exactly:
    ```
-   https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube.readonly
+   https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/youtube.force-ssl
    ```
+   (the third one lets the autopilot post the first comment under each video)
 4. Click the blue **Authorize APIs** button.
 5. A Google sign-in page opens:
    - Choose **your channel's Gmail**.
@@ -126,14 +127,17 @@ If you skip this, YouTube permission expires every 7 days and uploads stop.
    YT_CLIENT_SECRET=<your Client secret>
    YT_REFRESH_TOKEN=<your Refresh token>
    ```
-4. Click **Save**.
+4. In the same settings, if there is a **Repositories** section, add **Kartikhehe/video-autopilot** so every
+   session (including scheduled ones) starts with the code already there.
+5. Click **Save**.
 
 ## Part D: Turn it on (1 minute)
 Settings only reach **new** sessions, so:
 1. On claude.ai/code start a **New session**. Pick the **same environment** and select the
    **Kartikhehe/video-autopilot** repository.
 2. Type:
-   > Set up my video autopilot schedule: 1 video a day at 6pm, my time zone is Asia/Kolkata.
+   > Set up my schedule: 2 videos a day at 12pm and 6pm, and 5 shorts a day every 2 hours starting 10AM.
+   > My time zone is Asia/Kolkata.
 
    (Change the number, time and time zone to what you want.)
 

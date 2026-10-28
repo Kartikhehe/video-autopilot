@@ -3,54 +3,377 @@
   "format": "short",
   "topic": "social media comparison (feeling behind in life)",
   "cast": {
-    "hero": {"skin": "#f2d2b0", "hoodie": "#e07a5f", "pants": "#2f3550", "hair": "#3a2618", "hair_style": "bun", "shoe": "#efe9e0"},
-    "friend": {"skin": "#8d5a3b", "hoodie": "#4caf7a", "pants": "#2b2f3a", "hair": "#1a120d", "hair_style": "cap", "cap": "#2f6fd6", "shoe": "#efe9e0", "height": 1.06},
-    "habit": {"glow": "#3dff9a"}
+    "hero": {
+      "skin": "#f2d2b0",
+      "hoodie": "#e07a5f",
+      "pants": "#2f3550",
+      "hair": "#3a2618",
+      "hair_style": "bun",
+      "shoe": "#efe9e0"
+    },
+    "friend": {
+      "skin": "#8d5a3b",
+      "hoodie": "#4caf7a",
+      "pants": "#2b2f3a",
+      "hair": "#1a120d",
+      "hair_style": "cap",
+      "cap": "#2f6fd6",
+      "shoe": "#efe9e0",
+      "height": 1.06
+    },
+    "habit": {
+      "glow": "#3dff9a"
+    }
   },
-  "music": {"key": 3, "tempo": 100, "seed": 47},
-  "short": {"hook": {"text": "SHE WAS HAPPY. UNTIL SHE *OPENED* *HER* *PHONE.*", "until": 3.0, "y": 450, "size": 92},
-            "highlight_color": "#5dffaa", "cover_time": 1.2},
+  "music": {
+    "key": 3,
+    "tempo": 100,
+    "seed": 47
+  },
+  "short": {
+    "hook": {
+      "text": "SHE WAS HAPPY. UNTIL SHE *OPENED* *HER* *PHONE.*",
+      "until": 3.0,
+      "y": 450,
+      "size": 92
+    },
+    "highlight_color": "#5dffaa",
+    "cover_time": 1.2
+  },
   "scenes": [
-    {"template": "face", "duration": 3.2, "mood": "tense",
-     "params": {"expr": [[0, "wow"], [1.4, "worried"]], "bg": "dark", "glow": "#3dff9a", "glow_amt": 0.5, "pulse": true, "pupil_glow": "#5dffaa", "bags": 0.4, "camera": "close"}},
-    {"template": "hangout", "duration": 4.2, "mood": "warm",
-     "params": {"place": "park", "sky": "day", "focus": [960, 540], "camera": "push",
-                "hero": {"activity": "sketch", "expr": "happy", "x": 860},
-                "friend": {"activity": "idle", "expr": "happy", "x": 1080, "look": [-0.8, 0]}},
-     "captions": [[0.2, 4.0, "She was doing *fine.* Drawing. Laughing. Living."]]},
-    {"template": "phone_feed", "duration": 4.2, "mood": "curious", "params": {"tap_at": 3.4, "clock": "21:14", "special_color": "#3dff9a"},
-     "captions": [[0.2, 2.0, "Someone's *new* *car.*"], [2.1, 4.0, "Someone's *dream* *trip.*"]]},
-    {"template": "face", "duration": 4.0, "mood": "dark",
-     "params": {"expr": [[0, "neutral"], [1.5, "sad"]], "bg": "dark", "glow": "#3dff9a", "glow_amt": 0.35, "pupil_glow": "#5dffaa", "look": [0, 0.5]},
-     "captions": [[0.2, 3.8, "Everyone was *winning.* Except her."]]},
-    {"template": "hangout", "duration": 4.5, "mood": "dark",
-     "params": {"place": "park", "sky": "dusk", "focus": [960, 540],
-                "hero": {"activity": "idle", "expr": "sad", "x": 860, "look": [0, 0.6]},
-                "friend": {"activity": "wave", "expr": "happy", "x": 1080, "look": [-0.8, 0]},
-                "urge": {"on_shoulder": true, "size": 45, "look": [1, 0], "say_x": 960, "say_y": 290, "whispers": [[0.8, "you're behind."]]}},
-     "captions": [[0.2, 4.3, "Her own wins started to look *small.*"]]},
-    {"template": "mirror", "duration": 4.0, "mood": "tense", "params": {"expr": "tired", "urge_at": 1.0, "wall": "#3d5c4a", "bags": 0.7},
-     "captions": [[0.2, 3.8, "She started hating her *own* life."]]},
-    {"template": "face", "duration": 6.0, "mood": "sad",
-     "params": {"expr": "sad", "bg": "dark", "bags": 0.8, "tear_at": 2.6, "glow": "#3dff9a", "glow_amt": 0.1},
-     "captions": [[0.2, 2.9, "She was comparing their *best* *moment...*"], [3.0, 5.8, "...to her ordinary *Tuesday.*"]]},
-    {"template": "phone_chat", "duration": 5.5, "mood": "tender",
-     "params": {"contact": "Leo", "clock": "21:40", "glow": "#ffcf8a",
-                "messages": [[0.3, "L", "that drawing you posted??"], [1.1, "L", "genuinely insane"], [2.4, "R", "it's nothing"], [3.3, "L", "it's not nothing."]],
-                "typing": [1.6, 2.4, "R"]},
-     "captions": [[3.6, 5.4, "Real people saw what she *couldn't.*"]]},
-    {"template": "hangout", "duration": 4.5, "mood": "hope",
-     "params": {"place": "park", "sky": "day", "focus": [960, 540],
-                "hero": {"activity": "sketch", "expr": "happy", "x": 860},
-                "friend": {"activity": "idle", "expr": "happy", "x": 1080, "look": [-0.8, 0]},
-                "urge": {"size": 26, "x": 1000, "y": 900, "eye": 0.6, "pop_at": 1.0}},
-     "captions": [[0.3, 4.3, "She muted the noise. *Looked* at her life."]]},
-    {"template": "card", "duration": 3.8, "mood": "calm", "params": {"text": "You're not behind.", "size": 62, "sub": "You're just not filtered."}}
+    {
+      "template": "face",
+      "duration": 3.2,
+      "mood": "tense",
+      "params": {
+        "expr": [
+          [
+            0,
+            "wow"
+          ],
+          [
+            1.4,
+            "worried"
+          ]
+        ],
+        "bg": "dark",
+        "glow": "#3dff9a",
+        "glow_amt": 0.5,
+        "pulse": true,
+        "pupil_glow": "#5dffaa",
+        "bags": 0.4,
+        "camera": "close"
+      }
+    },
+    {
+      "template": "hangout",
+      "duration": 4.2,
+      "mood": "warm",
+      "params": {
+        "place": "park",
+        "sky": "day",
+        "focus": [
+          960,
+          540
+        ],
+        "camera": "push",
+        "hero": {
+          "activity": "sketch",
+          "expr": "happy",
+          "x": 860
+        },
+        "friend": {
+          "activity": "idle",
+          "expr": "happy",
+          "x": 1080,
+          "look": [
+            -0.8,
+            0
+          ]
+        }
+      },
+      "captions": [
+        [
+          0.2,
+          4.0,
+          "She was doing *fine.* Drawing. Laughing. Living."
+        ]
+      ]
+    },
+    {
+      "template": "phone_feed",
+      "duration": 4.2,
+      "mood": "curious",
+      "params": {
+        "tap_at": 3.4,
+        "clock": "21:14",
+        "special_color": "#3dff9a"
+      },
+      "captions": [
+        [
+          0.2,
+          2.0,
+          "Someone's *new* *car.*"
+        ],
+        [
+          2.1,
+          4.0,
+          "Someone's *dream* *trip.*"
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 4.0,
+      "mood": "dark",
+      "params": {
+        "expr": [
+          [
+            0,
+            "neutral"
+          ],
+          [
+            1.5,
+            "sad"
+          ]
+        ],
+        "bg": "dark",
+        "glow": "#3dff9a",
+        "glow_amt": 0.35,
+        "pupil_glow": "#5dffaa",
+        "look": [
+          0,
+          0.5
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          3.8,
+          "Everyone was *winning.* Except her."
+        ]
+      ]
+    },
+    {
+      "template": "hangout",
+      "duration": 4.5,
+      "mood": "dark",
+      "params": {
+        "place": "park",
+        "sky": "dusk",
+        "focus": [
+          960,
+          540
+        ],
+        "hero": {
+          "activity": "idle",
+          "expr": "sad",
+          "x": 860,
+          "look": [
+            0,
+            0.6
+          ]
+        },
+        "friend": {
+          "activity": "wave",
+          "expr": "happy",
+          "x": 1080,
+          "look": [
+            -0.8,
+            0
+          ]
+        },
+        "urge": {
+          "on_shoulder": true,
+          "size": 45,
+          "look": [
+            1,
+            0
+          ],
+          "say_x": 960,
+          "say_y": 290,
+          "whispers": [
+            [
+              0.8,
+              "you're behind."
+            ]
+          ]
+        }
+      },
+      "captions": [
+        [
+          0.2,
+          4.3,
+          "Her own wins started to look *small.*"
+        ]
+      ]
+    },
+    {
+      "template": "mirror",
+      "duration": 4.0,
+      "mood": "tense",
+      "params": {
+        "expr": "tired",
+        "urge_at": 1.0,
+        "wall": "#3d5c4a",
+        "bags": 0.7
+      },
+      "captions": [
+        [
+          0.2,
+          3.8,
+          "She started hating her *own* life."
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 6.0,
+      "mood": "sad",
+      "params": {
+        "expr": "sad",
+        "bg": "dark",
+        "bags": 0.8,
+        "tear_at": 2.6,
+        "glow": "#3dff9a",
+        "glow_amt": 0.1
+      },
+      "captions": [
+        [
+          0.2,
+          2.9,
+          "She was comparing their *best* *moment...*"
+        ],
+        [
+          3.0,
+          5.8,
+          "...to her ordinary *Tuesday.*"
+        ]
+      ]
+    },
+    {
+      "template": "phone_chat",
+      "duration": 5.5,
+      "mood": "tender",
+      "params": {
+        "contact": "Leo",
+        "clock": "21:40",
+        "glow": "#ffcf8a",
+        "messages": [
+          [
+            0.3,
+            "L",
+            "that drawing you posted??"
+          ],
+          [
+            1.1,
+            "L",
+            "genuinely insane"
+          ],
+          [
+            2.4,
+            "R",
+            "it's nothing"
+          ],
+          [
+            3.3,
+            "L",
+            "it's not nothing."
+          ]
+        ],
+        "typing": [
+          1.6,
+          2.4,
+          "R"
+        ]
+      },
+      "captions": [
+        [
+          3.6,
+          5.4,
+          "Real people saw what she *couldn't.*"
+        ]
+      ]
+    },
+    {
+      "template": "hangout",
+      "duration": 4.5,
+      "mood": "hope",
+      "params": {
+        "place": "park",
+        "sky": "day",
+        "focus": [
+          960,
+          540
+        ],
+        "hero": {
+          "activity": "sketch",
+          "expr": "happy",
+          "x": 860
+        },
+        "friend": {
+          "activity": "idle",
+          "expr": "happy",
+          "x": 1080,
+          "look": [
+            -0.8,
+            0
+          ]
+        },
+        "urge": {
+          "size": 26,
+          "x": 1000,
+          "y": 900,
+          "eye": 0.6,
+          "pop_at": 1.0
+        }
+      },
+      "captions": [
+        [
+          0.3,
+          4.3,
+          "She muted the noise. *Looked* at her life."
+        ]
+      ]
+    },
+    {
+      "template": "card",
+      "duration": 3.8,
+      "mood": "calm",
+      "params": {
+        "text": "You're not behind.",
+        "size": 62,
+        "sub": "You're just not filtered."
+      }
+    }
   ],
-  "thumbnail": {"words": ["WHY", "YOU", "FEEL", "BEHIND"], "highlight": 3, "highlight_color": "#3dff9a", "glow": "#3dff9a", "device": "phone"},
+  "thumbnail": {
+    "words": [
+      "WHY",
+      "YOU",
+      "FEEL",
+      "BEHIND"
+    ],
+    "highlight": 3,
+    "highlight_color": "#3dff9a",
+    "glow": "#3dff9a",
+    "device": "phone"
+  },
   "youtube": {
     "title": "Why You Always Feel Behind #shorts",
     "description": "You open your phone happy. Five minutes later you feel like you're losing at life.\n\nYou're comparing everyone's best moment to your ordinary Tuesday.\n\nMute the noise. Look at your own life for a minute. You're not behind. You're just not filtered.\n\n#shorts #comparison #selfimprovement #socialmedia #mentalhealth #animation #motivation",
-    "tags": ["shorts", "comparison", "feeling behind in life", "social media comparison", "stop comparing yourself", "self worth", "self improvement", "animated story", "motivation", "mental health"]
+    "tags": [
+      "shorts",
+      "comparison",
+      "feeling behind in life",
+      "social media comparison",
+      "stop comparing yourself",
+      "self worth",
+      "self improvement",
+      "animated story",
+      "motivation",
+      "mental health"
+    ],
+    "comment": "Name one thing you're proud of this year that nobody posted about 👇"
   }
 }
