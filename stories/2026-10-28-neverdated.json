@@ -1,0 +1,1067 @@
+{
+  "id": "2026-10-28-neverdated",
+  "topic": "the secret shame of never having been in a relationship in your 20s (late bloomer): hiding keeps you stuck, saying it sets you free",
+  "cast": {
+    "hero": {
+      "skin": "#b5835a",
+      "hoodie": "#4a6b8a",
+      "pants": "#2b2f3a",
+      "hair": "#3a2216",
+      "hair_style": "messy",
+      "shoe": "#efe9e0"
+    },
+    "friend": {
+      "skin": "#e8bf98",
+      "hoodie": "#e3a33e",
+      "pants": "#33405e",
+      "hair": "#c8423b",
+      "hair_style": "beanie",
+      "shoe": "#f2c14e",
+      "height": 1.03
+    },
+    "habit": {
+      "glow": "#e05a8a"
+    }
+  },
+  "music": {
+    "key": -2,
+    "tempo": 90,
+    "seed": 401
+  },
+  "scenes": [
+    {
+      "template": "card",
+      "duration": 4,
+      "mood": "calm",
+      "chapter": "The secret",
+      "fade_in": 0,
+      "params": {
+        "text": "Some secrets feel too embarrassing to say out loud."
+      }
+    },
+    {
+      "template": "hangout",
+      "duration": 10,
+      "mood": "warm",
+      "params": {
+        "place": "rooftop",
+        "sky": "sunset",
+        "poster": [
+          "SAM'S 22ND",
+          "TONIGHT"
+        ],
+        "extras": [
+          {
+            "x": 1330,
+            "expr": "happy",
+            "look": [
+              0.8,
+              0
+            ],
+            "look_as": {
+              "hoodie": "#c8423b",
+              "hair_style": "long",
+              "hair": "#2a1a10",
+              "skin": "#e8bf98"
+            }
+          },
+          {
+            "x": 1460,
+            "expr": "happy",
+            "look": [
+              -0.8,
+              0
+            ],
+            "look_as": {
+              "hoodie": "#3d6fb6",
+              "hair_style": "short",
+              "hair": "#16100c",
+              "skin": "#8d5a3b"
+            }
+          },
+          {
+            "x": 300,
+            "expr": "happy",
+            "look": [
+              0.8,
+              0
+            ],
+            "look_as": {
+              "hoodie": "#6d8f5a",
+              "hair_style": "bun",
+              "hair": "#4a2a18",
+              "skin": "#f2d2b0"
+            }
+          },
+          {
+            "x": 430,
+            "expr": "happy",
+            "look": [
+              -0.8,
+              0
+            ],
+            "look_as": {
+              "hoodie": "#8a5aa8",
+              "hair_style": "curly",
+              "hair": "#1a120d",
+              "skin": "#a9714a"
+            }
+          }
+        ],
+        "hero": {
+          "activity": "talk",
+          "expr": "happy",
+          "x": 760,
+          "look": [
+            0.6,
+            0
+          ]
+        },
+        "friend": {
+          "activity": "wave",
+          "expr": "happy",
+          "x": 1080
+        }
+      },
+      "captions": [
+        [
+          0.5,
+          4.6,
+          "At every party, he laughed the loudest."
+        ],
+        [
+          5.0,
+          9.6,
+          "So nobody would ask the question."
+        ]
+      ]
+    },
+    {
+      "template": "hangout",
+      "duration": 7,
+      "mood": "curious",
+      "params": {
+        "place": "rooftop",
+        "sky": "dusk",
+        "poster": [
+          "SAM'S 22ND",
+          "TONIGHT"
+        ],
+        "extras": [
+          {
+            "x": 1330,
+            "expr": "happy",
+            "look": [
+              0.8,
+              0
+            ],
+            "look_as": {
+              "hoodie": "#c8423b",
+              "hair_style": "long",
+              "hair": "#2a1a10",
+              "skin": "#e8bf98"
+            }
+          },
+          {
+            "x": 1460,
+            "expr": "happy",
+            "look": [
+              -0.8,
+              0
+            ],
+            "look_as": {
+              "hoodie": "#3d6fb6",
+              "hair_style": "short",
+              "hair": "#16100c",
+              "skin": "#8d5a3b"
+            }
+          }
+        ],
+        "hero": {
+          "activity": "idle",
+          "expr": [
+            [
+              0,
+              "happy"
+            ],
+            [
+              1.6,
+              "worried"
+            ]
+          ],
+          "x": 900,
+          "look": [
+            0.8,
+            0
+          ]
+        },
+        "friend": {
+          "present": false
+        },
+        "thoughts": [
+          {
+            "t": 0.5,
+            "x": 1360,
+            "y": 380,
+            "text": "so... seeing anyone?",
+            "to": [
+              1330,
+              560
+            ],
+            "size": 38
+          }
+        ]
+      },
+      "captions": [
+        [
+          1.0,
+          3.6,
+          "\"So... are you seeing anyone?\""
+        ],
+        [
+          3.9,
+          6.7,
+          "\"Uh, nothing serious.\""
+        ]
+      ]
+    },
+    {
+      "template": "phone_feed",
+      "duration": 7,
+      "mood": "numb",
+      "params": {
+        "tap_at": 5.0,
+        "clock": "23:40",
+        "special_color": "#e05a8a"
+      },
+      "captions": [
+        [
+          0.4,
+          3.2,
+          "At home, the feed was full of couples."
+        ],
+        [
+          3.5,
+          6.7,
+          "Anniversaries. Proposals. Everyone his age."
+        ]
+      ]
+    },
+    {
+      "template": "bedroom",
+      "duration": 8,
+      "mood": "dark",
+      "params": {
+        "pose": "lying_awake",
+        "light": "dark",
+        "clock": "01:20",
+        "expr": "sad",
+        "urge": {
+          "size": 40,
+          "grow": 110,
+          "appear_at": 1.5,
+          "x": 1050,
+          "y": 705,
+          "look": [
+            -1,
+            -0.2
+          ],
+          "whispers": [
+            [
+              3.0,
+              "what's wrong with you?"
+            ],
+            [
+              5.4,
+              "21 and nothing."
+            ]
+          ]
+        }
+      },
+      "captions": [
+        [
+          0.4,
+          3.0,
+          "21. Never dated. Never even close."
+        ],
+        [
+          3.3,
+          7.7,
+          "And a voice that kept saying it."
+        ]
+      ]
+    },
+    {
+      "template": "mirror",
+      "duration": 7,
+      "mood": "dark",
+      "params": {
+        "expr": [
+          [
+            0,
+            "worried"
+          ],
+          [
+            3.5,
+            "sad"
+          ]
+        ],
+        "bags": 0.6,
+        "urge_at": 3.0
+      },
+      "captions": [
+        [
+          0.4,
+          3.3,
+          "He searched himself for the flaw."
+        ],
+        [
+          3.6,
+          6.7,
+          "Too quiet? Too awkward? Too late?"
+        ]
+      ]
+    },
+    {
+      "template": "phone_chat",
+      "duration": 8,
+      "mood": "numb",
+      "params": {
+        "contact": "Sam",
+        "clock": "18:05",
+        "messages": [
+          [
+            0.5,
+            "L",
+            "bowling sat! bring someone if u want"
+          ],
+          [
+            2.4,
+            "R",
+            "can't, busy"
+          ],
+          [
+            4.0,
+            "L",
+            "you said that last time too"
+          ]
+        ],
+        "typing": [
+          1.4,
+          2.4,
+          "R"
+        ],
+        "seen_at": 5.0
+      },
+      "captions": [
+        [
+          5.4,
+          7.8,
+          "So he started saying no."
+        ]
+      ]
+    },
+    {
+      "template": "montage",
+      "duration": 10,
+      "mood": "tense",
+      "params": {
+        "shots": [
+          {
+            "dur": 3.3,
+            "template": "bedroom",
+            "params": {
+              "pose": "lying_phone",
+              "clock": "20:10",
+              "expr": "bored",
+              "phone_color": "#ffb3cf",
+              "urge": {
+                "size": 110,
+                "x": 1150,
+                "y": 760
+              }
+            }
+          },
+          {
+            "dur": 3.3,
+            "template": "bedroom",
+            "params": {
+              "pose": "lying_phone",
+              "clock": "21:30",
+              "expr": "sad",
+              "phone_color": "#ffb3cf",
+              "bags": 0.5,
+              "urge": {
+                "size": 150,
+                "x": 1150,
+                "y": 760,
+                "mouth": 0.3
+              }
+            }
+          },
+          {
+            "dur": 3.4,
+            "template": "bedroom",
+            "params": {
+              "pose": "lying_awake",
+              "clock": "02:10",
+              "expr": "tired",
+              "bags": 1.0,
+              "light": "dark",
+              "urge": {
+                "size": 195,
+                "x": 1150,
+                "y": 760,
+                "mouth": 0.6
+              }
+            }
+          }
+        ]
+      },
+      "captions": [
+        [
+          0.4,
+          3.0,
+          "He skipped the parties."
+        ],
+        [
+          3.4,
+          6.3,
+          "Then the hangouts."
+        ],
+        [
+          6.7,
+          9.6,
+          "Hiding felt safer than being asked."
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 7,
+      "mood": "sad",
+      "chapter": "The truth",
+      "params": {
+        "expr": "sad",
+        "bg": "dark",
+        "bags": 0.8,
+        "look": [
+          0,
+          0.3
+        ]
+      },
+      "captions": [
+        [
+          0.4,
+          3.3,
+          "Shame told him he was the only one."
+        ],
+        [
+          3.6,
+          6.7,
+          "Shame lies."
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 7,
+      "mood": "sad",
+      "params": {
+        "expr": [
+          [
+            0,
+            "neutral"
+          ],
+          [
+            3.4,
+            "worried"
+          ]
+        ],
+        "bg": "dark",
+        "glow": "#e05a8a",
+        "glow_amt": 0.2,
+        "look": [
+          0,
+          0.1
+        ]
+      },
+      "captions": [
+        [
+          0.4,
+          3.3,
+          "Way more people are in his shoes than admit it."
+        ],
+        [
+          3.6,
+          6.7,
+          "They're just hiding it too."
+        ]
+      ]
+    },
+    {
+      "template": "hangout",
+      "duration": 8,
+      "mood": "tender",
+      "chapter": "Saying it",
+      "params": {
+        "place": "park",
+        "sky": "dusk",
+        "hero": {
+          "activity": "sit",
+          "expr": "worried",
+          "x": 800,
+          "look": [
+            0.6,
+            0
+          ]
+        },
+        "friend": {
+          "activity": "sit",
+          "expr": "neutral",
+          "x": 1080,
+          "look": [
+            -0.8,
+            0
+          ]
+        },
+        "thoughts": [
+          {
+            "t": 0.6,
+            "x": 1160,
+            "y": 470,
+            "text": "where have you been, man?",
+            "to": [
+              1080,
+              640
+            ],
+            "size": 36
+          }
+        ]
+      },
+      "captions": [
+        [
+          0.4,
+          3.6,
+          "One night, Sam asked where he'd been."
+        ],
+        [
+          4.0,
+          7.7,
+          "He almost lied again."
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 7,
+      "mood": "tender",
+      "params": {
+        "expr": [
+          [
+            0,
+            "worried"
+          ],
+          [
+            3.4,
+            "sad"
+          ]
+        ],
+        "bg": "warm",
+        "tear_at": 4.0,
+        "look": [
+          0.4,
+          0.2
+        ]
+      },
+      "captions": [
+        [
+          0.4,
+          3.3,
+          "\"I've never been in a relationship.\""
+        ],
+        [
+          3.6,
+          6.7,
+          "\"I'm 21. I'm embarrassed.\""
+        ]
+      ]
+    },
+    {
+      "template": "hangout",
+      "duration": 8,
+      "mood": "hope",
+      "params": {
+        "place": "park",
+        "sky": "dusk",
+        "hero": {
+          "activity": "sit",
+          "expr": [
+            [
+              0,
+              "worried"
+            ],
+            [
+              4.2,
+              "wow"
+            ]
+          ],
+          "x": 800,
+          "look": [
+            0.6,
+            0
+          ],
+          "urge": {
+            "on_shoulder": true,
+            "size": 34,
+            "pop_at": 6.4
+          }
+        },
+        "friend": {
+          "activity": "sit",
+          "expr": "smile",
+          "x": 1080,
+          "look": [
+            -0.8,
+            0
+          ]
+        },
+        "thoughts": [
+          {
+            "t": 0.5,
+            "x": 1180,
+            "y": 440,
+            "text": "dude. me neither, until 24.",
+            "to": [
+              1080,
+              640
+            ],
+            "size": 36
+          }
+        ],
+        "urge": {
+          "on_shoulder": true,
+          "size": 34,
+          "pop_at": 6.4
+        }
+      },
+      "captions": [
+        [
+          0.4,
+          3.8,
+          "Sam didn't laugh."
+        ],
+        [
+          4.2,
+          7.7,
+          "\"I thought it was just me too.\""
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 7,
+      "mood": "hope",
+      "chapter": "The turn",
+      "params": {
+        "expr": [
+          [
+            0,
+            "neutral"
+          ],
+          [
+            3.3,
+            "calm"
+          ]
+        ],
+        "bg": "warm",
+        "look": [
+          0,
+          0
+        ]
+      },
+      "captions": [
+        [
+          0.4,
+          3.2,
+          "There's no deadline for love."
+        ],
+        [
+          3.5,
+          6.7,
+          "There's just the life you live meanwhile."
+        ]
+      ]
+    },
+    {
+      "template": "montage",
+      "duration": 12,
+      "mood": "warm",
+      "params": {
+        "shots": [
+          {
+            "dur": 4,
+            "template": "hangout",
+            "params": {
+              "place": "street",
+              "sky": "day",
+              "hero": {
+                "activity": "talk",
+                "expr": "happy",
+                "x": 760
+              },
+              "friend": {
+                "activity": "idle",
+                "expr": "happy",
+                "x": 1100,
+                "look": [
+                  -0.8,
+                  0
+                ]
+              }
+            }
+          },
+          {
+            "dur": 4,
+            "template": "hangout",
+            "params": {
+              "place": "park",
+              "sky": "day",
+              "hero": {
+                "activity": "ball",
+                "expr": "happy",
+                "x": 760
+              },
+              "friend": {
+                "activity": "wave",
+                "expr": "happy",
+                "x": 1100
+              }
+            }
+          },
+          {
+            "dur": 4,
+            "template": "hangout",
+            "params": {
+              "place": "rooftop",
+              "sky": "sunset",
+              "poster": [
+                "KARAOKE",
+                "FRI 9PM"
+              ],
+              "hero": {
+                "activity": "idle",
+                "expr": "happy",
+                "x": 760,
+                "look": [
+                  0.6,
+                  0
+                ]
+              },
+              "friend": {
+                "activity": "drum",
+                "expr": "happy",
+                "x": 1100
+              }
+            }
+          }
+        ]
+      },
+      "captions": [
+        [
+          0.4,
+          3.7,
+          "He said yes to things again."
+        ],
+        [
+          4.2,
+          7.7,
+          "Pickup games. Long walks. Sam's terrible karaoke."
+        ],
+        [
+          8.2,
+          11.7,
+          "He stopped hiding behind \"nothing serious.\""
+        ]
+      ]
+    },
+    {
+      "template": "hangout",
+      "duration": 9,
+      "mood": "triumph",
+      "chapter": "The party",
+      "params": {
+        "place": "rooftop",
+        "sky": "sunset",
+        "poster": [
+          "SAM'S 23RD",
+          "TONIGHT"
+        ],
+        "extras": [
+          {
+            "x": 1330,
+            "expr": "happy",
+            "look": [
+              0.8,
+              0
+            ],
+            "look_as": {
+              "hoodie": "#c8423b",
+              "hair_style": "long",
+              "hair": "#2a1a10",
+              "skin": "#e8bf98"
+            }
+          },
+          {
+            "x": 1460,
+            "expr": "happy",
+            "look": [
+              -0.8,
+              0
+            ],
+            "look_as": {
+              "hoodie": "#3d6fb6",
+              "hair_style": "short",
+              "hair": "#16100c",
+              "skin": "#8d5a3b"
+            }
+          },
+          {
+            "x": 300,
+            "expr": "happy",
+            "look": [
+              0.8,
+              0
+            ],
+            "look_as": {
+              "hoodie": "#6d8f5a",
+              "hair_style": "bun",
+              "hair": "#4a2a18",
+              "skin": "#f2d2b0"
+            }
+          },
+          {
+            "x": 430,
+            "expr": "happy",
+            "look": [
+              -0.8,
+              0
+            ],
+            "look_as": {
+              "hoodie": "#8a5aa8",
+              "hair_style": "curly",
+              "hair": "#1a120d",
+              "skin": "#a9714a"
+            }
+          }
+        ],
+        "hero": {
+          "activity": "talk",
+          "expr": "happy",
+          "x": 760,
+          "look": [
+            0.6,
+            0
+          ]
+        },
+        "friend": {
+          "activity": "wave",
+          "expr": "happy",
+          "x": 1080
+        },
+        "thoughts": [
+          {
+            "t": 0.4,
+            "x": 1330,
+            "y": 380,
+            "text": "seeing anyone?",
+            "to": [
+              1330,
+              560
+            ],
+            "size": 38
+          }
+        ]
+      },
+      "captions": [
+        [
+          0.6,
+          3.4,
+          "\"Seeing anyone?\""
+        ],
+        [
+          3.8,
+          8.6,
+          "\"Not yet. And honestly? That's okay.\""
+        ]
+      ]
+    },
+    {
+      "template": "sunrise",
+      "duration": 6,
+      "mood": "calm",
+      "params": {
+        "activity": "sit",
+        "friend": true
+      },
+      "captions": [
+        [
+          0.4,
+          2.8,
+          "The secret got smaller"
+        ],
+        [
+          3.0,
+          5.8,
+          "the moment he said it."
+        ]
+      ]
+    },
+    {
+      "template": "end_card",
+      "duration": 4.5,
+      "mood": "calm",
+      "fade_in": 0,
+      "params": {
+        "text": "You're not behind. You're on your own time."
+      }
+    }
+  ],
+  "thumbnail": {
+    "layout": "scene",
+    "device": "none",
+    "slant": 60,
+    "words": [
+      "21.",
+      "NEVER",
+      "DATED."
+    ],
+    "highlight": 2,
+    "highlight_color": "#e05a8a",
+    "title_y": 150,
+    "title_size": 145,
+    "title_w": 1700,
+    "shade": [
+      "top"
+    ],
+    "panels": [
+      {
+        "scene": {
+          "template": "hangout",
+          "t": 2.0,
+          "zoom": 1.25,
+          "focus": [
+            820,
+            600
+          ],
+          "params": {
+            "place": "rooftop",
+            "sky": "dusk",
+            "poster": [
+              "SAM'S 22ND",
+              "TONIGHT"
+            ],
+            "extras": [
+              {
+                "x": 520,
+                "expr": "happy",
+                "look": [
+                  0.8,
+                  0
+                ],
+                "look_as": {
+                  "hoodie": "#6d8f5a",
+                  "hair_style": "bun",
+                  "hair": "#4a2a18",
+                  "skin": "#f2d2b0"
+                }
+              },
+              {
+                "x": 640,
+                "expr": "happy",
+                "look": [
+                  -0.8,
+                  0
+                ],
+                "look_as": {
+                  "hoodie": "#8a5aa8",
+                  "hair_style": "curly",
+                  "hair": "#1a120d",
+                  "skin": "#a9714a"
+                }
+              }
+            ],
+            "hero": {
+              "activity": "idle",
+              "expr": "sad",
+              "x": 900,
+              "look": [
+                -0.8,
+                0.2
+              ],
+              "bags": 0.6
+            },
+            "friend": {
+              "present": false
+            }
+          }
+        },
+        "label": "HIDING IT",
+        "ok": false
+      },
+      {
+        "scene": {
+          "template": "hangout",
+          "t": 2.0,
+          "zoom": 1.35,
+          "focus": [
+            940,
+            600
+          ],
+          "params": {
+            "place": "park",
+            "sky": "sunset",
+            "hero": {
+              "activity": "talk",
+              "expr": "happy",
+              "x": 800,
+              "look": [
+                0.6,
+                0
+              ]
+            },
+            "friend": {
+              "activity": "idle",
+              "expr": "happy",
+              "x": 1080,
+              "look": [
+                -0.8,
+                0
+              ]
+            }
+          }
+        },
+        "label": "SAYING IT",
+        "ok": true,
+        "label_color": "#7dffa8"
+      }
+    ]
+  },
+  "youtube": {
+    "title": "The Secret Nobody Admits In Their 20s.",
+    "description": "21, never been in a relationship, and too embarrassed to tell anyone.\n\nA short animated story about one of the most common secrets nobody talks about. He laughed the loudest at every party so nobody would ask, said \"nothing serious\", and slowly stopped showing up. Shame told him he was the only one. Shame lies.\n\nYou're far less alone than it feels: in a 2022 Pew Research Center survey, 63% of US men aged 18 to 29 said they were single. Most people in your shoes are just hiding it too.\n\nIf this is you:\n• Tell one person you trust. Secrets shrink when they're said out loud.\n• Don't stop living while you wait. Say yes to the hangouts, the classes, the trips.\n• There's no deadline. Comparing your timeline to someone's highlight reel only makes it louder.\n\nYou're not behind. You're on your own time.\n\nIf this helped, share it with someone who needs it, and subscribe for more.\n\n#selfimprovement #insecurity #relationships #latebloomer #mentalhealth #animation #motivation",
+    "tags": [
+      "never been in a relationship",
+      "late bloomer",
+      "insecurity",
+      "never dated",
+      "single in your 20s",
+      "shame",
+      "self improvement",
+      "animated story",
+      "mental health",
+      "loneliness"
+    ],
+    "comment": "If this is you, you're not the only one. How old were you when you stopped hiding it? 👇"
+  }
+}
