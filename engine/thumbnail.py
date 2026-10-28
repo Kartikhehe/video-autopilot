@@ -1,5 +1,6 @@
 """Thumbnails from the story's cast: 'face' (one big emotion + glowing device + habit) and 'split' (life vs. habit)."""
 from .draw import *
+import random
 from . import library as L
 
 
@@ -70,6 +71,8 @@ def make(S, path, variant='face'):
     th = S['spec'].get('thumbnail', {})
     if variant == 'scene':
         return make_scene(S, path, W, H)
+    if variant == 'hero':
+        return make_hero(S, path, W, H)
     hero = S['hero']
     words = th.get('words', ['WHAT', 'IT', 'TAKES.'])
     hl = th.get('highlight', 1)
@@ -455,4 +458,145 @@ def _finish(S, th, path, OW, OH, surf):
     sw, sh = (270, 480) if vertical else (320, 180)
     s2 = skia.Surface(sw, sh)
     s2.getCanvas().drawImageRect(img, skia.Rect.MakeWH(sw, sh), skia.SamplingOptions(skia.CubicResampler.Mitchell()))
+    s2.makeImageSnapshot().save(path.replace('.png', '_small.png'), skia.kPNG)
+
+
+def _heart(c, x, y, r, colr, a=1.0):
+    p = skia.Path()
+    p.moveTo(x, y + r * 0.9)
+    p.cubicTo(x - r * 1.6, y - r * 0.2, x - r * 0.8, y - r * 1.3, x, y - r * 0.45)
+    p.cubicTo(x + r * 0.8, y - r * 1.3, x + r * 1.6, y - r * 0.2, x, y + r * 0.9)
+    c.drawPath(p, paint(colr, a))
+    c.drawPath(p, paint('#000000', a, stroke=r * 0.14))
+
+
+def _drop(c, x, y, r, a=1.0):
+    p = skia.Path()
+    p.moveTo(x, y - r * 1.4); p.quadTo(x + r, y + r * 0.1, x, y + r * 0.8); p.quadTo(x - r, y + r * 0.1, x, y - r * 1.4)
+    c.drawPath(p, paint('#d6efff', a))
+    c.drawPath(p, paint('#000000', a, stroke=r * 0.22))
+    circle(c, x - r * 0.25, y - r * 0.1, r * 0.22, '#ffffff', None, a=a)
+
+
+def make_hero(S, path, OW=W, OH=H):
+    """Big, lit, expressive close-up of the hero with one bold word (the channel's 'film poster' style).
+
+    thumbnail: {"layout": "hero", "bg": "bedroom|rain", "expr": "tired", "look": [x, y], "bags": 1, "glow": "#ff4f8b",
+                "light_dir": [x, y], "prop": "phone|fists|none", "particles": "hearts|sweat|none", "hero_x": 900,
+                "words": ["DOPAMINE."], "highlight": -1, "highlight_color": "#hex", "title_rotate": -3}
+    """
+    th = S['spec'].get('thumbnail', {})
+    g = th.get('glow', '#ff4f8b')
+    ldir = th.get('light_dir', (0.8, 0.4))
+    hero = dict(S['hero'], shade=dict(dir=ldir, rim=g, amt=0.42, rim_a=0.9))
+    surf = skia.Surface(OW, OH)
+    c = surf.getCanvas()
+    bg = th.get('bg', 'bedroom')
+    hx, hy, sc = th.get('hero_x', OW * 0.45), th.get('hero_y', OH * 0.57), th.get('scale', 3.8)
+    rnd = random.Random(5)
+    if bg == 'rain':
+        c.drawRect(skia.Rect.MakeWH(OW, OH), paint(shader=lin_grad((0, 0), (0, OH), ['#0b1424', '#1a2a44', '#0d1626'])))
+        for _ in range(16):
+            bx, by, br = rnd.uniform(0, OW), rnd.uniform(OH * 0.2, OH * 0.7), rnd.uniform(30, 90)
+            glow(c, bx, by, br * 2.2, rnd.choice(['#ffcf7a', '#9fc4ff', '#ffe6b0']), 0.35)
+        c.drawRect(skia.Rect.MakeXYWH(0, OH * 0.78, OW, OH * 0.22), paint(shader=lin_grad((0, OH * 0.78), (0, OH), ['#0e1a2e', '#060b14'])))
+    else:
+        c.drawRect(skia.Rect.MakeWH(OW, OH), paint(shader=rad_grad((OW * 0.6, OH * 0.45), OW * 0.8, ['#1c1830', '#0a0912', '#040407'])))
+        rrect(c, hx - 560, hy + 40, 600, 300, 140, '#1b2038', '#2b3254', ow=10)       # pillow
+        rrect(c, hx + 120, hy - 20, 520, 280, 140, '#171b30', '#262c48', ow=10)
+    feet_y = hy + 328 * sc * hero.get('height', 1.0)
+    r = draw_person(c, hx, feet_y, sc, hero, th.get('expr', 'tired'), 1.0, look=tuple(th.get('look', (0.6, 0.4))),
+                    arms=((6, 3), (-6, -3)), face_kw=dict(bags=th.get('bags', 1.0), pupil_glow=th.get('eye_glow')))
+    hcx, hcy = r['head']
+    hr = r['hr']
+    prop = th.get('prop', 'phone')
+    if bg == 'bedroom':                                                               # blanket over the shoulders
+        bl = skia.Path()
+        bl.moveTo(-50, OH + 50); bl.lineTo(-50, hy + hr * 1.35)
+        bl.cubicTo(OW * 0.25, hy + hr * 1.05, OW * 0.55, hy + hr * 1.45, OW * 0.8, hy + hr * 1.2)
+        bl.cubicTo(OW * 0.9, hy + hr * 1.1, OW, hy + hr * 1.25, OW + 50, hy + hr * 1.2); bl.lineTo(OW + 50, OH + 50); bl.close()
+        c.drawPath(bl, paint(shader=lin_grad((0, hy + hr), (0, OH), ['#2c3561', '#141a33'])))
+        c.drawPath(bl, paint('#000000', stroke=10))
+    px, py = hcx + hr * 1.2, hcy + hr * 0.78
+    if prop == 'phone':
+        c.save(); c.rotate(-14, px, py)
+        rrect(c, px - 95, py - 175, 190, 350, 34, '#14141c', '#000000', ow=10)
+        rrect(c, px - 80, py - 158, 160, 316, 24, mix(g, '#ffffff', 0.35), None)
+        c.drawRect(skia.Rect.MakeXYWH(px - 80, py - 158, 160, 316), paint(shader=lin_grad((px, py - 158), (px, py + 158), [(mix(g, '#ffffff', 0.6), 1), (g, 1)]), a=0.9))
+        c.restore()
+        for k, (dx, dy, rr) in enumerate(((62, 135, 60), (-72, 110, 52))):                # fingers / hand
+            circle(c, px + dx, py + dy, rr, hero['skin'], '#000000', ow=9)
+    elif prop == 'fists':                                                              # running arms, pumping
+        shy = hcy + hr * 1.5
+        for side, (fx, fy) in ((-1, (hcx - hr * 1.3, hcy + hr * 0.7)), (1, (hcx + hr * 1.55, hcy + hr * 1.3))):
+            sx_ = hcx + side * hr * 0.95
+            ex_, ey_ = (sx_ + fx) / 2 + side * hr * 0.45, (shy + fy) / 2 + hr * 0.35
+            limb(c, [(sx_, shy), (ex_, ey_), (fx, fy)], hr * 0.42, hero['hoodie'], ow=10)
+            circle(c, fx, fy, hr * 0.33, hero['skin'], '#000000', ow=10)
+            for k in range(3):
+                c.drawLine(fx - hr * 0.16 + k * hr * 0.15, fy - hr * 0.24, fx - hr * 0.16 + k * hr * 0.15, fy - hr * 0.04,
+                           paint('#000000', 0.7, stroke=6))
+            for k in range(3):
+                c.drawLine(fx + side * hr * 0.45, fy - hr * 0.25 + k * hr * 0.22, fx + side * hr * 0.85, fy - hr * 0.25 + k * hr * 0.22,
+                           paint('#ffffff', 0.55, stroke=8))
+        for k, (dx, dy, rr) in enumerate(((0.55, 0.62, 0.16), (0.8, 0.5, 0.2), (1.08, 0.36, 0.25))):   # cold breath
+            oval(c, hcx + dx * hr, hcy + dy * hr, rr * hr, rr * hr * 0.7, '#e8f2ff', a=0.32 - k * 0.07)
+    # coloured light from the light source onto the scene
+    lsx, lsy = (px, py) if prop == 'phone' else (hcx + ldir[0] * hr * 3, hcy + ldir[1] * hr * 3)
+    lp_ = paint(shader=rad_grad((lsx, lsy), OW * 0.55, [(g, 0.55), (g, 0.18), (g, 0.0)], [0, 0.35, 1]))
+    lp_.setBlendMode(skia.BlendMode.kScreen)
+    c.drawRect(skia.Rect.MakeWH(OW, OH), lp_)
+    parts = th.get('particles', 'none')
+    if parts == 'hearts':                                     # a glowing stream of rewards from the phone into the head
+        p0, p2 = (px + 20, py - hr * 0.75), (hcx + hr * 0.1, hcy - hr * 1.05)
+        p1 = (px + hr * 1.6, hcy - hr * 1.9)
+        def qb(u):
+            return ((1 - u) ** 2 * p0[0] + 2 * (1 - u) * u * p1[0] + u * u * p2[0],
+                    (1 - u) ** 2 * p0[1] + 2 * (1 - u) * u * p1[1] + u * u * p2[1])
+        rib = skia.Path(); rib.moveTo(*p0); rib.quadTo(*p1, *p2)
+        for w_, a_ in ((90, 0.18), (46, 0.35), (16, 0.9)):
+            c.drawPath(rib, paint(g if w_ > 20 else mix(g, '#ffffff', 0.6), a_, stroke=w_, blur=w_ * 0.4))
+        for i in range(16):
+            u = (i + 0.5) / 16
+            x, y = qb(u)
+            x += 60 * math.sin(i * 2.3); y += 50 * math.cos(i * 1.7)
+            glow(c, x, y, 80, g, 0.5)
+            if i % 4 == 2:
+                lbl = ['+1', '99+', '3', '+5', '12'][i % 5]
+                bw = measure(lbl, 44, TF_BOLD) + 40
+                rrect(c, x - bw / 2, y - 34, bw, 64, 32, '#ff3045', '#000000', ow=6)
+                text(c, lbl, x, y + 14, 44, '#ffffff', tf=TF_BOLD, shadow=False)
+            else:
+                _heart(c, x, y, 30 + 12 * math.sin(i * 2.1) + 10 * (1 - u), rnd.choice([g, mix(g, '#ffffff', 0.4), '#ff3b6b']))
+    elif parts == 'sweat':
+        for (dx, dy, rr) in ((-0.55, -0.55, 0.11), (0.62, -0.42, 0.1), (-0.8, 0.05, 0.09), (0.86, 0.1, 0.12),
+                             (0.2, -0.82, 0.08), (-0.3, -0.85, 0.07), (0.7, 0.55, 0.08)):
+            _drop(c, hcx + dx * hr, hcy + dy * hr, rr * hr)
+    if th.get('rain', bg == 'rain'):
+        for _ in range(260):
+            x, y = rnd.uniform(-100, OW), rnd.uniform(-60, OH)
+            c.drawLine(x, y, x + 10, y + 56, paint('#cfe0ff', rnd.uniform(0.25, 0.6), stroke=rnd.uniform(2, 4)))
+    vp = paint(shader=rad_grad((OW / 2, OH * 0.55), OW * 0.7, [('#000000', 0), ('#000000', 0), ('#000000', 0.6)], [0, 0.55, 1]))
+    c.drawRect(skia.Rect.MakeWH(OW, OH), vp)
+    words = th.get('words', [])
+    if words:
+        tsz = th.get('title_size', 210)
+        f = font(TF_BOLD, tsz)
+        txt = ' '.join(words)
+        while f.measureText(txt) > OW - 140:
+            tsz *= 0.94; f = font(TF_BOLD, tsz)
+        ty = th.get('title_y', tsz * 0.95)
+        c.save(); c.rotate(th.get('title_rotate', 0), OW / 2, ty)
+        x = OW / 2 - f.measureText(txt) / 2
+        hl, hlc = th.get('highlight', -1), th.get('highlight_color', g)
+        for i, w in enumerate(words):
+            c.drawString(w, x + 10, ty + 16, f, paint('#000000', 0.8, blur=12))
+            c.drawString(w, x, ty, f, paint('#000000', stroke=tsz * 0.2))
+            c.drawString(w, x, ty, f, paint(hlc if i == hl else th.get('title_color', '#ffffff')))
+            x += f.measureText(w + ' ')
+        c.restore()
+    img = surf.makeImageSnapshot()
+    img.save(path, skia.kPNG)
+    s2 = skia.Surface(320, 180)
+    s2.getCanvas().drawImageRect(img, skia.Rect.MakeWH(320, 180), skia.SamplingOptions(skia.CubicResampler.Mitchell()))
     s2.makeImageSnapshot().save(path.replace('.png', '_small.png'), skia.kPNG)

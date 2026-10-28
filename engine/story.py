@@ -100,8 +100,8 @@ def validate(spec, S):
     th = spec.get('thumbnail', {})
     if not th.get('words') or len(th['words']) > 4:
         errs.append('thumbnail.words must be 1-4 words')
-    if not th.get('panels'):
-        warns.append('thumbnail: use a before/after split ("panels"), see STORY_GUIDE "Thumbnails"')
+    if not th.get('panels') and th.get('layout') != 'hero':
+        warns.append('thumbnail: use a "hero" close-up or a before/after split ("panels"), see STORY_GUIDE "Thumbnails"')
     return errs, warns
 
 
@@ -110,8 +110,8 @@ def draw_caption(c, s, a, t_local):
         return
     rise = (1 - ramp(t_local, 0, 0.35)) * 8
     w = measure(s, 50)
-    c.drawRoundRect(skia.Rect.MakeXYWH(W / 2 - w / 2 - 30, 962 + rise, w + 60, 70), 30, 30, paint('#000000', 0.32 * a, blur=18))
-    text(c, s, W / 2, 1012 + rise, 50, '#f6f0e4', a=a)
+    c.drawRoundRect(skia.Rect.MakeXYWH(W / 2 - w / 2 - 30, 962 + rise, w + 60, 70), 30, 30, paint('#000000', 0.55 * a, blur=18))
+    text(c, s, W / 2, 1012 + rise, 50, '#f6f0e4', a=a, outline='#000000', ow=7)
 
 
 def render_frame(c, gt, fi, S):

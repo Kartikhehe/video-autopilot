@@ -59,7 +59,7 @@ def thumbs(spec, S, d):
         surf.makeImageSnapshot().save(os.path.join(d, 'cover_frame.png'), skia.kPNG)
         return
     th = spec.get('thumbnail', {})
-    v = 'scene' if th.get('layout') == 'scene' else th.get('variant', 'face')
+    v = th.get('layout') if th.get('layout') in ('scene', 'hero') else th.get('variant', 'face')
     TH.make(S, os.path.join(d, 'thumbnail.png'), v)
     TH.make(S, os.path.join(d, 'thumbnail_alt.png'), 'split' if v != 'split' else 'face')
 
@@ -98,7 +98,8 @@ def full(path, workers=4):
     bounds = [nf * i // workers for i in range(workers + 1)]
     segs = [os.path.join(d, f'seg{i}.mp4') for i in range(workers)]
     mus = spec.get('music', {})
-    Score(S['total'], mus.get('key', 0), mus.get('tempo', 96), mus.get('seed', 1)).render(S['timeline'], os.path.join(d, 'score.wav'))
+    Score(S['total'], mus.get('key', 0), mus.get('tempo', 96), mus.get('seed', 1)).render(S['timeline'], os.path.join(d, 'score.wav'),
+                                                                                         short=bool(S.get('short')))
     print('score done, rendering frames...', flush=True)
     ps = [Process(target=_worker, args=(path, bounds[i], bounds[i + 1], segs[i])) for i in range(workers)]
     [p.start() for p in ps]

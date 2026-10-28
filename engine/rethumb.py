@@ -24,6 +24,8 @@ def main():
         TH.make_vertical(S, out)
     elif th.get('layout') == 'scene':
         TH.make_scene(S, out, W, H)
+    elif th.get('layout') == 'hero':
+        TH.make_hero(S, out, W, H)
     else:
         TH.make(S, out, th.get('variant', 'face'))
     print(out)

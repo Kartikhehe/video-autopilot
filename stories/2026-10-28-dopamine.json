@@ -1,0 +1,830 @@
+{
+  "id": "2026-10-28-dopamine",
+  "topic": "dopamine and the phone (it's the chase, not the pleasure): reading feels boring after endless swiping",
+  "cast": {
+    "hero": {
+      "skin": "#e2b48c",
+      "hoodie": "#3b4a7a",
+      "pants": "#2b2f3a",
+      "hair": "#2a1a12",
+      "hair_style": "messy",
+      "shoe": "#efe9e0"
+    },
+    "friend": {
+      "skin": "#8d5a3b",
+      "hoodie": "#e07a5f",
+      "pants": "#2f3550",
+      "hair": "#16100c",
+      "hair_style": "bun",
+      "shoe": "#f2c14e",
+      "height": 0.96
+    },
+    "habit": {
+      "glow": "#ff4f8b"
+    }
+  },
+  "music": {
+    "key": -1,
+    "tempo": 92,
+    "seed": 211
+  },
+  "scenes": [
+    {
+      "template": "card",
+      "duration": 4,
+      "mood": "calm",
+      "chapter": "Before",
+      "fade_in": 0,
+      "params": {
+        "text": "Your brain has a reward button."
+      }
+    },
+    {
+      "template": "hangout",
+      "duration": 9,
+      "mood": "warm",
+      "params": {
+        "place": "park",
+        "sky": "day",
+        "hero": {
+          "activity": "book",
+          "expr": "happy",
+          "x": 760
+        },
+        "friend": {
+          "activity": "idle",
+          "expr": "happy",
+          "x": 1110,
+          "look": [
+            -0.8,
+            0
+          ]
+        }
+      },
+      "captions": [
+        [
+          0.5,
+          4.2,
+          "He used to read a book a week."
+        ],
+        [
+          4.6,
+          8.6,
+          "Every Sunday, he and Nina swapped."
+        ]
+      ]
+    },
+    {
+      "template": "bedroom",
+      "duration": 7,
+      "mood": "curious",
+      "chapter": "The hook",
+      "params": {
+        "pose": "lying_phone",
+        "clock": "22:40",
+        "expr": "bored",
+        "phone_color": "#ffb3cf"
+      },
+      "captions": [
+        [
+          0.5,
+          3.4,
+          "One night, he picked up his phone instead."
+        ],
+        [
+          3.8,
+          6.7,
+          "Just for a minute."
+        ]
+      ]
+    },
+    {
+      "template": "phone_feed",
+      "duration": 7,
+      "mood": "rush",
+      "params": {
+        "tap_at": 5.0,
+        "clock": "22:41",
+        "special_color": "#ff4f8b"
+      },
+      "captions": [
+        [
+          0.4,
+          3.2,
+          "Swipe. Something new."
+        ],
+        [
+          3.5,
+          6.7,
+          "Swipe. Something better."
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 6,
+      "mood": "rush",
+      "params": {
+        "expr": [
+          [
+            0,
+            "wow"
+          ],
+          [
+            2.6,
+            "dazed"
+          ]
+        ],
+        "bg": "dark",
+        "glow": "#ff4f8b",
+        "glow_amt": 0.45,
+        "sparkles": true,
+        "pupil_glow": "#ff4f8b"
+      },
+      "captions": [
+        [
+          0.4,
+          2.8,
+          "Every swipe felt like opening a gift."
+        ],
+        [
+          3.1,
+          5.8,
+          "His brain wanted the next one."
+        ]
+      ]
+    },
+    {
+      "template": "bedroom",
+      "duration": 7,
+      "mood": "curious",
+      "params": {
+        "pose": "lying_phone",
+        "clock": "23:58",
+        "expr": "dazed",
+        "phone_color": "#ffb3cf",
+        "urge": {
+          "size": 45,
+          "appear_at": 2.2,
+          "x": 1050,
+          "y": 705,
+          "look": [
+            -1,
+            -0.2
+          ],
+          "whispers": [
+            [
+              4.2,
+              "one more."
+            ]
+          ]
+        }
+      },
+      "captions": [
+        [
+          0.4,
+          3.3,
+          "And something started to grow."
+        ],
+        [
+          3.6,
+          6.7,
+          "It fed on every swipe."
+        ]
+      ]
+    },
+    {
+      "template": "hangout",
+      "duration": 8,
+      "mood": "numb",
+      "params": {
+        "place": "park",
+        "sky": "day",
+        "hero": {
+          "activity": "book",
+          "expr": "bored",
+          "x": 760,
+          "distracted": true,
+          "distracted_at": 2.5
+        },
+        "friend": {
+          "activity": "idle",
+          "expr": "happy",
+          "x": 1110,
+          "look": [
+            -0.8,
+            0
+          ]
+        }
+      },
+      "captions": [
+        [
+          0.4,
+          3.5,
+          "Sunday. Same bench. Same swap."
+        ],
+        [
+          3.9,
+          7.7,
+          "But the pages felt... slow."
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 6,
+      "mood": "numb",
+      "params": {
+        "expr": "tired",
+        "bg": "warm",
+        "bags": 0.4,
+        "look": [
+          0.4,
+          0.6
+        ]
+      },
+      "captions": [
+        [
+          0.4,
+          2.8,
+          "He read one line. Then the same line again."
+        ],
+        [
+          3.1,
+          5.8,
+          "His thumb kept looking for something to swipe."
+        ]
+      ]
+    },
+    {
+      "template": "montage",
+      "duration": 10,
+      "mood": "tense",
+      "params": {
+        "shots": [
+          {
+            "dur": 3.3,
+            "template": "bedroom",
+            "params": {
+              "pose": "lying_phone",
+              "clock": "00:30",
+              "expr": "dazed",
+              "phone_color": "#ffb3cf",
+              "bags": 0.3,
+              "urge": {
+                "size": 80,
+                "x": 1150,
+                "y": 760
+              }
+            }
+          },
+          {
+            "dur": 3.3,
+            "template": "bedroom",
+            "params": {
+              "pose": "lying_phone",
+              "clock": "01:50",
+              "expr": "bored",
+              "phone_color": "#ffb3cf",
+              "bags": 0.7,
+              "urge": {
+                "size": 130,
+                "x": 1150,
+                "y": 760,
+                "mouth": 0.3
+              }
+            }
+          },
+          {
+            "dur": 3.4,
+            "template": "bedroom",
+            "params": {
+              "pose": "lying_phone",
+              "clock": "02:55",
+              "expr": "tired",
+              "phone_color": "#ffb3cf",
+              "bags": 1.0,
+              "light": "dark",
+              "urge": {
+                "size": 185,
+                "x": 1150,
+                "y": 760,
+                "mouth": 0.6
+              }
+            }
+          }
+        ]
+      },
+      "captions": [
+        [
+          0.4,
+          4.6,
+          "Twenty minutes became two hours."
+        ],
+        [
+          5.0,
+          9.6,
+          "Two hours became every night."
+        ]
+      ]
+    },
+    {
+      "template": "phone_chat",
+      "duration": 8,
+      "mood": "numb",
+      "params": {
+        "contact": "Nina",
+        "clock": "17:05",
+        "messages": [
+          [
+            0.5,
+            "L",
+            "did u finish the dragon one?"
+          ],
+          [
+            2.2,
+            "R",
+            "not yet lol"
+          ],
+          [
+            3.6,
+            "L",
+            "sunday swap?"
+          ],
+          [
+            5.0,
+            "L",
+            "you ok?"
+          ]
+        ],
+        "typing": [
+          1.2,
+          2.2,
+          "R"
+        ],
+        "seen_at": 6.0
+      },
+      "captions": [
+        [
+          5.6,
+          7.8,
+          "Nina kept asking. He kept saying later."
+        ]
+      ]
+    },
+    {
+      "template": "desk",
+      "duration": 7,
+      "mood": "dark",
+      "params": {
+        "pose": "staring",
+        "screen": "feed",
+        "light": "dark",
+        "expr": "tired",
+        "bags": 0.8,
+        "papers": 4,
+        "urge": {
+          "size": 200,
+          "x": 1560,
+          "y": 860,
+          "mouth": 0.4,
+          "look": [
+            -1,
+            0
+          ]
+        }
+      },
+      "captions": [
+        [
+          0.4,
+          3.3,
+          "Homework. Books. Friends."
+        ],
+        [
+          3.6,
+          6.7,
+          "Everything real started to feel boring."
+        ]
+      ]
+    },
+    {
+      "template": "mirror",
+      "duration": 7,
+      "mood": "dark",
+      "chapter": "The truth",
+      "params": {
+        "expr": "tired",
+        "bags": 1.0,
+        "urge_at": 3.0
+      },
+      "captions": [
+        [
+          0.4,
+          3.0,
+          "He wasn't lazy. He wasn't broken."
+        ],
+        [
+          3.3,
+          6.7,
+          "His brain had gotten used to the fast stuff."
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 8,
+      "mood": "sad",
+      "params": {
+        "expr": "sad",
+        "bg": "dark",
+        "bags": 0.8,
+        "look": [
+          0,
+          0.2
+        ]
+      },
+      "captions": [
+        [
+          0.4,
+          2.7,
+          "Dopamine isn't pleasure."
+        ],
+        [
+          3.0,
+          5.4,
+          "It's the chase. The \"maybe the next one.\""
+        ],
+        [
+          5.7,
+          7.8,
+          "And a phone never runs out of next ones."
+        ]
+      ]
+    },
+    {
+      "template": "bedroom",
+      "duration": 7,
+      "mood": "tender",
+      "chapter": "The turn",
+      "params": {
+        "pose": "standing",
+        "light": "lamp",
+        "clock": "21:30",
+        "expr": [
+          [
+            0,
+            "sad"
+          ],
+          [
+            3.0,
+            "determined"
+          ]
+        ],
+        "put_away": [
+          0.6,
+          2.7
+        ],
+        "urge": {
+          "size": 170,
+          "grow": 140,
+          "x": 1500,
+          "y": 880,
+          "alpha": 0.9
+        }
+      },
+      "captions": [
+        [
+          0.4,
+          3.3,
+          "So he made the fast stuff harder to reach."
+        ],
+        [
+          3.6,
+          6.8,
+          "Phone in the drawer. Book on the pillow."
+        ]
+      ]
+    },
+    {
+      "template": "bedroom",
+      "duration": 8,
+      "mood": "silence",
+      "params": {
+        "pose": "sitting_activity",
+        "activity": "book",
+        "light": "lamp",
+        "clock": "21:45",
+        "expr": [
+          [
+            0,
+            "bored"
+          ],
+          [
+            4.5,
+            "neutral"
+          ]
+        ],
+        "phone_far": true,
+        "urge": {
+          "size": 130,
+          "grow": 100,
+          "x": 1320,
+          "y": 880,
+          "alpha": 0.85,
+          "say_x": 1430,
+          "say_y": 520,
+          "whispers": [
+            [
+              1.0,
+              "so boring."
+            ],
+            [
+              4.0,
+              "just check it."
+            ]
+          ]
+        }
+      },
+      "captions": [
+        [
+          0.4,
+          3.6,
+          "The first nights were brutally boring."
+        ],
+        [
+          4.2,
+          7.7,
+          "That was the point."
+        ]
+      ]
+    },
+    {
+      "template": "phone_chat",
+      "duration": 8,
+      "mood": "tender",
+      "params": {
+        "contact": "Nina",
+        "clock": "21:50",
+        "glow": "#ffcf8a",
+        "messages": [
+          [
+            0.5,
+            "R",
+            "honestly? i've been stuck on my phone"
+          ],
+          [
+            1.9,
+            "R",
+            "haven't read in weeks"
+          ],
+          [
+            3.6,
+            "L",
+            "same thing happened to me last year"
+          ],
+          [
+            4.8,
+            "L",
+            "sunday. bring the dragon one"
+          ],
+          [
+            6.0,
+            "R",
+            "deal"
+          ]
+        ],
+        "typing": [
+          2.6,
+          3.6,
+          "L"
+        ]
+      },
+      "captions": [
+        [
+          5.7,
+          7.9,
+          "He told her the truth."
+        ]
+      ]
+    },
+    {
+      "template": "montage",
+      "duration": 12,
+      "mood": "hope",
+      "chapter": "21 days",
+      "params": {
+        "shots": [
+          {
+            "dur": 4,
+            "template": "bedroom",
+            "label": "DAY 1",
+            "params": {
+              "pose": "sitting_activity",
+              "activity": "book",
+              "light": "lamp",
+              "clock": "21:40",
+              "expr": "worried",
+              "phone_far": true,
+              "urge": {
+                "size": 120,
+                "x": 1320,
+                "y": 880,
+                "alpha": 0.85,
+                "say_x": 1430,
+                "say_y": 520,
+                "whispers": [
+                  [
+                    0.5,
+                    "one swipe."
+                  ]
+                ]
+              }
+            }
+          },
+          {
+            "dur": 4,
+            "template": "bedroom",
+            "label": "DAY 7",
+            "params": {
+              "pose": "sitting_activity",
+              "activity": "book",
+              "light": "lamp",
+              "clock": "21:40",
+              "expr": "neutral",
+              "phone_far": true,
+              "urge": {
+                "size": 65,
+                "x": 1320,
+                "y": 880,
+                "alpha": 0.7
+              }
+            }
+          },
+          {
+            "dur": 4,
+            "template": "bedroom",
+            "label": "DAY 21",
+            "params": {
+              "pose": "sitting_activity",
+              "activity": "book",
+              "light": "lamp",
+              "clock": "22:10",
+              "expr": "happy",
+              "phone_far": true,
+              "urge": {
+                "size": 30,
+                "x": 1320,
+                "y": 880,
+                "eye": 0.5,
+                "pop_at": 1.6
+              }
+            }
+          }
+        ]
+      },
+      "captions": [
+        [
+          0.4,
+          3.8,
+          "Day 1: ten pages. Ten very long pages."
+        ],
+        [
+          4.2,
+          7.8,
+          "Day 7: the boredom got quieter."
+        ],
+        [
+          8.2,
+          11.7,
+          "Day 21: he forgot to check."
+        ]
+      ]
+    },
+    {
+      "template": "hangout",
+      "duration": 8,
+      "mood": "triumph",
+      "chapter": "Sunday",
+      "params": {
+        "place": "park",
+        "sky": "day",
+        "hero": {
+          "activity": "walk_in",
+          "from_x": 1660,
+          "x": 1270,
+          "walk_dur": 3.0,
+          "expr": "happy",
+          "look": [
+            -0.6,
+            0
+          ]
+        },
+        "friend": {
+          "activity": "wave",
+          "expr": "happy",
+          "x": 760,
+          "look": [
+            0.8,
+            0
+          ]
+        },
+        "hi5_at": 4.2
+      },
+      "captions": [
+        [
+          0.5,
+          3.6,
+          "Sunday. Same bench."
+        ],
+        [
+          4.4,
+          7.7,
+          "This time, he'd finished first."
+        ]
+      ]
+    },
+    {
+      "template": "hangout",
+      "duration": 7,
+      "mood": "calm",
+      "params": {
+        "place": "park",
+        "sky": "sunset",
+        "hero": {
+          "activity": "book",
+          "expr": "calm",
+          "x": 760
+        },
+        "friend": {
+          "activity": "idle",
+          "expr": "happy",
+          "x": 1110,
+          "look": [
+            -0.8,
+            0
+          ]
+        }
+      },
+      "captions": [
+        [
+          0.4,
+          3.3,
+          "Slow things didn't get faster."
+        ],
+        [
+          3.6,
+          6.7,
+          "He just got his patience back."
+        ]
+      ]
+    },
+    {
+      "template": "end_card",
+      "duration": 4.5,
+      "mood": "calm",
+      "fade_in": 0,
+      "params": {
+        "text": "Boredom is where your life comes back."
+      }
+    }
+  ],
+  "thumbnail": {
+    "layout": "hero",
+    "bg": "bedroom",
+    "expr": "tired",
+    "look": [
+      0.8,
+      0.5
+    ],
+    "bags": 1.0,
+    "glow": "#ff4f8b",
+    "eye_glow": "#ff4f8b",
+    "light_dir": [
+      0.8,
+      0.4
+    ],
+    "prop": "phone",
+    "particles": "hearts",
+    "hero_x": 780,
+    "words": [
+      "DOPAMINE."
+    ]
+  },
+  "youtube": {
+    "title": "Dopamine Is Lying To You.",
+    "description": "He used to read a book a week. Now he can't finish a page.\n\nA short animated story about dopamine and your phone. Dopamine isn't really pleasure: it's the chase, the \"maybe the next one\". Neuroscientists describe it as being more about wanting than liking. Endless feeds never run out of next ones, so slow, real things start to feel boring.\n\nIf this is you right now:\n• Make the fast stuff harder to reach: phone in another room, apps off the home screen.\n• Expect the first days to be boring. The boredom is the point; it fades.\n• Pick one slow thing (a book, a walk, a real conversation) and give it 20 minutes a day.\n\nBoredom is where your life comes back.\n\nIf this helped, share it with someone who needs it, and subscribe for more.\n\n#dopamine #selfimprovement #screentime #focus #discipline #animation #motivation",
+    "tags": [
+      "dopamine",
+      "dopamine and phone",
+      "why can't i focus",
+      "can't read anymore",
+      "phone addiction",
+      "screen time",
+      "self improvement",
+      "animated story",
+      "attention span",
+      "discipline"
+    ],
+    "comment": "When was the last time you read a whole book? 📚👇"
+  }
+}

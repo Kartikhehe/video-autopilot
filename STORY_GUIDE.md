@@ -80,8 +80,9 @@ something, etc. The reframe line is the heart of the video.
 - Title: 3-7 words, a statement with a sting, ends with a period. Pattern ideas: "X Is Stealing Your Life.",
   "What X Really Takes From You.", "He Fed It Every Night.", "The X Trap.", "Why You Can't Stop X."
   Never clickbait anything the video doesn't deliver.
-- Thumbnail: a **before/after split** built from the story's own scenes (see "Thumbnails" below). The old fixed
-  `variant: face` template made every video look the same, so don't use it.
+- Thumbnail: either a **"hero" close-up** (one huge word + a big, lit, expressive close-up, like the channel's
+  best-performing style) or a **before/after split** from the story's own scenes. See "Thumbnails" below. The old
+  fixed `variant: face` template made every video look the same, so don't use it.
 - Description: 1 hook line, 2-3 sentences of what the story is about and the reframe, 2-3 practical tips,
   the closing aphorism, a soft CTA, 5-7 hashtags. Chapters are added automatically from scenes with `chapter`.
 
@@ -156,6 +157,12 @@ keep the channel fresh, but never break existing templates.
 
 ---
 
+## Music
+The score is one continuous piece: neighbouring scenes with related moods share a section, sections change only on
+bar lines with a crossfade, and every mood uses the same chord cycle, so nothing clashes. Still, don't flip moods
+back and forth every scene: keep runs of 2+ scenes in the same mood family (warm/groove/triumph, calm/tender/hope,
+sad/numb, curious/rush/dark/tense) so the music has room to breathe.
+
 ## YouTube Shorts (`"format": "short"`)
 Vertical 1080x1920, 20-59 s (aim 35-45 s). Same templates; the 16:9 scene is scaled to fill the height and a
 9:16 window follows `params.focus` [x, y] (optional `focus_to` for a pan, `zoom` >= 1). Keep the hero and the
@@ -170,7 +177,17 @@ creature inside a ~600 px wide window around the focus (check the preview!).
 - Outputs: `video.mp4`, `thumbnail.png` (1080x1920 cover with `thumbnail.badge` support), `cover_frame.png`.
   YouTube uses a frame of the Short as its cover, so the first ~1 s must look like a thumbnail.
 
-### Thumbnails (long videos and Shorts): before/after split
+### Thumbnails, style 1: "hero" close-up (long videos)
+One big word and one big emotion, lit like a film poster ("DOPAMINE.", "DISCIPLINE."):
+```json
+"thumbnail": {"layout": "hero", "bg": "bedroom|rain", "expr": "tired|grit|shock|sad|...", "look": [0.8, 0.5], "bags": 1.0,
+  "glow": "#ff4f8b", "eye_glow": "#ff4f8b", "light_dir": [0.8, 0.4], "prop": "phone|fists|none",
+  "particles": "hearts|sweat|none", "hero_x": 800, "words": ["DOPAMINE."], "title_rotate": -4}
+```
+- 1-2 words, the topic itself. The face sells the feeling; the glow colour is the habit's colour.
+- Alternate with the split style and vary bg/prop/expression/colour vs. the last 3 uploads.
+
+### Thumbnails, style 2: before/after split (long videos and Shorts)
 The best performer ("Lust Is Stealing Your Life.") is a split: the happy life on one side, the trapped version on the
 other, big faces, and 3 words ("LUST TOOK THIS."). A viewer gets it in one second. Build every thumbnail that way,
 from two real scenes of the story (left/right for 16:9, top/bottom for Shorts):

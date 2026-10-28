@@ -177,6 +177,7 @@ EXPR = {
     'shock': dict(brow=-12, brow_y=-16, mouth='o', eye='wide'),
     'calm': dict(brow=-3, brow_y=0, mouth='smile', eye='closed'),
     'asleep': dict(brow=0, brow_y=4, mouth='line', eye='closed'),
+    'grit': dict(brow=-26, brow_y=10, mouth='teeth', eye='dot'),
 }
 
 
@@ -336,6 +337,13 @@ def draw_face(c, hx, hy, r, expr='neutral', look=(0, 0), blink=0.0, bags=None, p
         for i in range(1, 7):
             p.lineTo(mx - r * 0.15 + i * r * 0.05, my + r * 0.03 + (r * 0.025 if i % 2 else -r * 0.015))
         c.drawPath(p, paint(INK, stroke=r * 0.04))
+    elif m == 'teeth':
+        rect = skia.Rect.MakeLTRB(mx - r * 0.2, my - r * 0.07, mx + r * 0.2, my + r * 0.11)
+        c.drawRoundRect(rect, r * 0.05, r * 0.05, paint('#fbf7f0'))
+        c.drawLine(mx - r * 0.19, my + r * 0.02, mx + r * 0.19, my + r * 0.02, paint(INK, stroke=r * 0.02))
+        for k in (-2, -1, 0, 1, 2):
+            c.drawLine(mx + k * r * 0.07, my - r * 0.06, mx + k * r * 0.07, my + r * 0.1, paint(INK, stroke=r * 0.015))
+        c.drawRoundRect(rect, r * 0.05, r * 0.05, paint(INK, stroke=r * 0.04))
     elif m == 'flat_down':
         p.moveTo(mx - r * 0.13, my + r * 0.04)
         p.quadTo(mx, my - r * 0.01, mx + r * 0.13, my + r * 0.04)
@@ -361,8 +369,30 @@ def draw_face(c, hx, hy, r, expr='neutral', look=(0, 0), blink=0.0, bags=None, p
         c.drawPath(dp, paint(INK, stroke=r * 0.025))
 
 
+def shade_head(c, hx, hy, r, shade):
+    """Soft form shadow on the far side + coloured rim light on the lit side (thumbnail-quality lighting)."""
+    lx, ly = shade.get('dir', (-0.7, -0.6))
+    n = math.hypot(lx, ly) or 1
+    lx, ly = lx / n, ly / n
+    c.save()
+    c.clipPath(skia.Path().addCircle(hx, hy, r * 0.97), skia.ClipOp.kIntersect, True)
+    sp = paint(shader=lin_grad((hx + lx * r, hy + ly * r), (hx - lx * r, hy - ly * r),
+                               [('#000000', 0.0), ('#000000', 0.0), ('#1a0f2a', shade.get('amt', 0.38))], [0, 0.45, 1]))
+    c.drawRect(skia.Rect.MakeLTRB(hx - r, hy - r, hx + r, hy + r), sp)
+    oval(c, hx + lx * r * 0.45, hy + ly * r * 0.5, r * 0.32, r * 0.2, '#ffffff', a=shade.get('spec', 0.12))
+    c.restore()
+    rim = shade.get('rim')
+    if rim:
+        arc = skia.Path()
+        ang = math.degrees(math.atan2(-ly, -lx)) if shade.get('rim_back') else math.degrees(math.atan2(ly, lx))
+        arc.addArc(skia.Rect.MakeLTRB(hx - r * 0.93, hy - r * 0.93, hx + r * 0.93, hy + r * 0.93), ang - 55, 110)
+        c.drawPath(arc, paint(rim, shade.get('rim_a', 0.85), stroke=r * 0.07, blur=r * 0.04))
+
+
 def draw_head(c, hx, hy, r, ch, expr='neutral', t=0, **kw):
     circle(c, hx, hy, r, ch['skin'], ow=r * 0.065)
+    if ch.get('shade'):
+        shade_head(c, hx, hy, r, ch['shade'])
     kw.setdefault('extra', {})
     kw['extra'] = dict(kw['extra'], skin=ch['skin'])
     draw_face(c, hx, hy, r, expr, **kw)

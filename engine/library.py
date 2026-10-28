@@ -76,8 +76,12 @@ def person_activity(c, x, y, t, ch, act='idle', expr='neutral', look=(0, 0), s=1
     blink = blink_at(t, 3.4, (hash(ch.get('hoodie', '')) % 7) * 0.3)
     common = dict(look=tuple(look), blink=blink, pose=pose)
     common.update(kw)
+    run = common.pop('run', False)
     if walk_ph is not None:
-        common.update(legs=walk_legs(walk_ph), bob=-abs(math.sin(walk_ph)) * 8)
+        common.update(legs=walk_legs(walk_ph, 40 if run else 24), bob=-abs(math.sin(walk_ph)) * (14 if run else 8))
+        if run:
+            sw = math.sin(walk_ph)
+            common['arms'] = ((-30 + 15 * sw, -145 + 40 * sw), (30 + 15 * sw, 145 + 40 * sw))   # elbows out, fists up, pumping
     if act == 'guitar':
         return draw_person(c, x, y, s, ch, expr, t, prop='guitar', arms=strum_arms(t), **common)
     if act == 'guitar_still':
@@ -131,7 +135,8 @@ def person_activity(c, x, y, t, ch, act='idle', expr='neutral', look=(0, 0), s=1
         return bucket_drummer(c, x, y, t, ch, expr, look, s)
     if act == 'sit':
         return draw_person(c, x, y, s, ch, expr, t, arms=((-10, 30), (10, -30)), **dict(common, pose='sit'))
-    return draw_person(c, x, y, s, ch, expr, t, arms=kw.pop('arms', ((10, 5), (-10, -5))), **common)
+    arms = common.pop('arms', None) or kw.pop('arms', ((10, 5), (-10, -5)))
+    return draw_person(c, x, y, s, ch, expr, t, arms=arms, **common)
 
 
 def bucket_drummer(c, x, y, t, ch, expr='happy', look=(0, 0), s=1.0, speed=6.0, amp=1.0):
@@ -299,6 +304,12 @@ def t_hangout(c, t, d, p, S):
     hero, friend = S['hero'], S['friend']
     hp, fp = p.get('hero', {'present': True}), p.get('friend', {'present': True})
     hi = ramp(t, p['hi5_at'], p['hi5_at'] + 0.4) if 'hi5_at' in p else 0
+    if p.get('banner'):
+        bx0, bx1, by = p.get('banner_x', (420, 1500))[0], p.get('banner_x', (420, 1500))[1], 330
+        for bx in (bx0, bx1):
+            rrect(c, bx - 14, by - 10, 28, 920 - by, 6, '#d8d2c4', INK, ow=5)
+        rrect(c, bx0, by - 40, bx1 - bx0, 110, 10, p.get('banner_col', '#c8423b'), INK, ow=6)
+        text(c, p['banner'], (bx0 + bx1) / 2, by + 38, 72, '#fff3d6', tf=TF_BOLD, shadow=False)
     for ex in p.get('extras', []):
         ch_ = dict(KID, **ex.get('look_as', {}))
         ch_.setdefault('hoodie_dark', mix(ch_['hoodie'], '#000000', 0.25))
@@ -317,16 +328,22 @@ def t_hangout(c, t, d, p, S):
         act = hp.get('activity', 'guitar')
         hx = hp.get('x', 760)
         walk_ph = None
-        if act == 'walk_in':
-            k = ease_in_out(t / hp.get('walk_dur', 3.0))
-            hx = lerp(hp.get('from_x', 1660), hp.get('x', 1270), k)
-            walk_ph = t * 9 if k < 1 else None
+        run = act == 'run'
+        if act in ('walk_in', 'run'):
+            k = ease_in_out(t / hp.get('walk_dur', 3.0)) if 'from_x' in hp else 1.0
+            hx = lerp(hp.get('from_x', hx), hp.get('x', 1270 if not run else hx), k)
+            walk_ph = t * (15 if run else 9) if (k < 1 or run) else None
             act = 'idle'
         if hi > 0:
             r = draw_person(c, hx, 900, 1.0, hero, 'happy', t, arms=((120 * hi + 10, 150 * hi + 5), (-10, -5)), look=(1, 0))
         else:
+            fkw = {}
+            if hp.get('bags'):
+                fkw['bags'] = hp['bags']
+            if hp.get('sweat'):
+                fkw['sweat'] = math.sin(t * 3)
             r = person_activity(c, hx, 900, t, hero, act, at_time(hp.get('expr', 'happy'), t), hp.get('look', (0.5, 0)), walk_ph=walk_ph,
-                                face_kw=dict(bags=hp.get('bags', 0)) if hp.get('bags') else None)
+                                face_kw=fkw or None, run=run)
         if act in ('guitar',) and not hp.get('no_notes'):
             notes(c, t, hx, 560, 5)
         if hp.get('distracted'):
@@ -1025,6 +1042,15 @@ def _wrap(fn):
             cam(c, t, d, p, 'push')
             draw_spotlight(c, t, p['spotlight'])
             c.restore()
+        if p.get('rain'):
+            c.drawRect(skia.Rect.MakeWH(W, H), paint('#0a1830', 0.22))
+            rnd = random.Random(11)
+            rp = paint('#c9dcff', 0.45 if p['rain'] is True else float(p['rain']), stroke=3)
+            for _ in range(160):
+                x0, y0, sp_ = rnd.uniform(-200, W), rnd.uniform(0, H), rnd.uniform(1400, 2000)
+                y = (y0 + t * sp_) % (H + 200) - 100
+                x = x0 + (y + 100) * 0.18
+                c.drawLine(x, y, x + 9, y + 46, rp)
         if p.get('thoughts'):
             c.save()
             cam(c, t, d, p, 'push')

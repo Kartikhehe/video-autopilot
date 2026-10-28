@@ -17,6 +17,9 @@ BASE_CH = {
 MAJ_PENTA = [0, 2, 4, 7, 9]
 MIN_SCALE = [0, 2, 3, 5, 7, 8, 10]
 
+CYC = ['C', 'G', 'Am', 'F']          # one chord cycle for the whole score
+FAMILY = dict(warm='bright', groove='bright', triumph='bright', calm='soft', tender='soft', hope='soft',
+              sad='low', numb='low', curious='dark', rush='dark', dark='dark', tense='dark', silence='silence')
 MOOD_LEVEL = dict(warm=-20, groove=-19.5, calm=-23, curious=-21, rush=-20, dark=-21.5, tense=-18.5, numb=-24,
                   sad=-22, tender=-22, hope=-21, triumph=-18, silence=-30)
 
@@ -45,6 +48,7 @@ class Score:
         self.sfx = np.zeros((self.N, 2))
         self.key = key
         self.beat = 60.0 / tempo
+        self.bar = 4 * self.beat
         self.rng = np.random.default_rng(seed)
         self.CH = {k: [m + key for m in v] for k, v in BASE_CH.items()}
 
@@ -107,14 +111,14 @@ class Score:
         for k, idx in enumerate(pattern):
             self.add(self.music, t + k * step, self.ks(notes[min(idx, len(notes) - 1)] + 12, 2.0, 0.4), gain, -0.2)
 
-    def pad(self, t, chord, dur, gain=0.06, cutoff=1400, attack=1.2):
-        n = int((dur + 1.5) * SR)
+    def pad(self, t, chord, dur, gain=0.06, cutoff=1400, attack=0.6, release=0.6):
+        n = int((dur + release) * SR)
         tt = np.arange(n) / SR
         out = np.zeros(n)
         for m in self.CH[chord][1:5]:
             for det in (-0.08, 0.0, 0.07):
                 out += 2 * ((tt * mf(m) * 2 ** (det / 12) + self.rng.random()) % 1.0) - 1
-        out = lp(out, cutoff, 2) * np.minimum(1, tt / attack) * np.clip((dur + 1.5 - tt) / 1.5, 0, 1) / 12
+        out = lp(out, cutoff, 2) * np.minimum(1, tt / attack) * np.clip((dur + release - tt) / release, 0, 1) / 12
         self.add(self.music, t, np.stack([out, np.roll(out, 900)], 1), gain)
 
     def drone(self, t, dur, m=33, gain=0.1, dark=280):
@@ -227,81 +231,84 @@ class Score:
             self.bucket(t + 0.35, 0.35, 0)
 
     # ------------------------------------------------ moods
-    def mood(self, name, t0, d, scene):
-        b = self.beat
-        p = scene.get('params', {})
-        if name == 'silence':
+    # Every mood follows ONE chord cycle on ONE bar grid for the whole video (CYC[global bar % 4]), so when one
+    # section crossfades into the next the harmony and the beat line up instead of clashing.
+    def chord(self, gbar):
+        return CYC[gbar % len(CYC)]
+
+    def mood(self, name, t0, d, gb0, perc=True):
+        """Render `name` from t0 (on the bar grid, global bar index gb0) for d seconds into self.music."""
+        b, bar = self.beat, self.bar
+        nb = int(np.ceil(d / bar))
+        bars = [(t0 + k * bar, self.chord(gb0 + k)) for k in range(nb)]
+        prog = [self.chord(gb0 + k) for k in range(4)]
+        if name == 'silence':                  # near-silence: one soft, slow pad so the room never goes dead
+            for st, ch in bars[::2]:
+                self.pad(st, ch, 2 * bar, 0.03, 600, 1.5, 1.5)
             return
         if name in ('warm', 'groove', 'triumph'):
-            bt = b * (0.92 if name == 'groove' else 1.0)
-            prog = ['C', 'G', 'Am', 'F']
-            bars = int(np.ceil(d / (4 * bt)))
-            perc = name != 'warm' or scene['template'] in ('hangout', 'stage')
-            for bar in range(bars):
-                ch = prog[bar % 4]
-                st = t0 + bar * 4 * bt
+            for k, (st, ch) in enumerate(bars):
                 pattern = ((0, 1), (1, 1), (1.5, 0), (2.5, 0), (3, 1)) + (((3.5, 0),) if name == 'triumph' else ())
-                for k, (off, down) in enumerate(pattern):
-                    if st + off * bt < t0 + d - 0.3:
-                        self.strum(st + off * bt, ch, 0.16 if k else 0.2, bool(down), 1.7)
-                if perc:
+                for q, (off, down) in enumerate(pattern):
+                    self.strum(st + off * b, ch, 0.16 if q else 0.2, bool(down), 1.7)
+                if perc and name != 'warm':
                     for q in range(4):
-                        if st + q * bt < t0 + d - 0.2:
-                            self.bucket(st + q * bt, 0.3 if q % 2 == 0 else 0.2)
-                            if q % 2:
-                                self.slap(st + q * bt, 0.14)
-                self.note(st, self.CH[ch][0], 4 * bt, 0.15, 0.5)
+                        self.bucket(st + q * b, 0.3 if q % 2 == 0 else 0.2)
+                        if q % 2:
+                            self.slap(st + q * b, 0.14)
+                self.note(st, self.CH[ch][0], bar, 0.15, 0.5)
                 if name == 'triumph':
-                    self.pad(st, ch, 4 * bt, 0.04, 1800, 0.3)
-            self.melody(t0 + 4 * bt if name == 'warm' else t0, d - 4 * bt if name == 'warm' else d, prog, bt,
-                        gain=0.11 if name != 'triumph' else 0.13, density=0.55 if name == 'warm' else 0.75)
+                    self.pad(st, ch, bar, 0.04, 1800, 0.3)
+            lead = bar if name == 'warm' else 0
+            self.melody(t0 + lead, d - lead, prog, b, gain=0.11 if name != 'triumph' else 0.13,
+                        density=0.55 if name == 'warm' else 0.75)
         elif name == 'calm':
-            for i, ch in enumerate(['Am', 'F', 'C', 'G']):
-                if i * 3.5 < d:
-                    self._arp(t0 + i * 3.5, ch, 0.44, min(8, int((d - i * 3.5) / 0.44)), 0.13)
-            self.pad(t0, 'Am', d, 0.04)
+            for st, ch in bars:
+                self._arp(st, ch, bar / 8, 8, 0.13)
+                self.pad(st, ch, bar, 0.035)
         elif name == 'curious':
-            self.drone(t0, d + 0.5, 33, 0.07)
-            self.pad(t0, 'Dm', d, 0.04, 900)
-            self.melody(t0 + 0.4, d - 0.6, None, 0.7, minor=True, gain=0.08, vel=0.35, density=0.45, octave=81)
+            self.drone(t0, d, 33, 0.06)
+            for st, ch in bars:
+                self.pad(st, ch, bar, 0.035, 900)
+            self.melody(t0 + b, d - b, None, b, minor=True, gain=0.08, vel=0.35, density=0.45, octave=81)
         elif name == 'rush':
-            self.pad(t0, 'Fmaj7', d, 0.10, 3500, 0.4)
+            for st, ch in bars:
+                self.pad(st, ch, bar, 0.08, 3500, 0.4)
             self.sparkle(t0 + 0.3, d - 0.6, 9, 0.07)
-            for k in range(int(d / 1.05)):
-                self.heartbeat(t0 + 0.6 + k * 1.05, 0.28)
+            for k in range(int(d / (2 * b))):
+                self.heartbeat(t0 + k * 2 * b, 0.26)
         elif name == 'dark':
-            self.drone(t0, d + 0.5, 31, 0.10, 220)
-            self.pad(t0, 'Am', d, 0.04, 800)
-            self.melody(t0 + 0.4, d - 0.6, None, 0.6, minor=True, gain=0.1, vel=0.35, density=0.4, octave=72)
+            self.drone(t0, d, 33, 0.09, 220)
+            for st, ch in bars:
+                self.pad(st, ch, bar, 0.035, 800)
+            self.melody(t0 + b, d - b, None, b, minor=True, gain=0.1, vel=0.35, density=0.4, octave=72)
         elif name == 'tense':
-            self.drone(t0, d + 0.5, 29, 0.13, 240)
-            self.pad(t0, 'Dm', d, 0.05, 700)
-            n = int(d / 0.5)
-            for k in range(n):
-                self.heartbeat(t0 + 0.2 + k * (0.62 - 0.2 * k / max(n, 1)), 0.22 + 0.15 * k / max(n, 1))
+            self.drone(t0, d, 33, 0.11, 240)
+            for st, ch in bars:
+                self.pad(st, ch, bar, 0.04, 700)
+            for k in range(int(d / b)):
+                self.heartbeat(t0 + k * b, 0.18 + 0.12 * k * b / max(d, 1))
         elif name == 'numb':
-            self.pad(t0, 'Em', d, 0.05, 700)
-            for k in range(int(d)):
-                self.tick(t0 + 0.3 + k)
-            self.melody(t0 + 0.8, d - 1, None, 0.65, minor=True, gain=0.07, vel=0.3, density=0.35)
+            for st, ch in bars:
+                self.pad(st, ch, bar, 0.045, 700)
+            for k in range(int(d / b)):
+                self.tick(t0 + k * b)
+            self.melody(t0 + bar, d - bar, None, b, minor=True, gain=0.07, vel=0.3, density=0.3)
         elif name == 'sad':
-            prog = ['Am', 'F', 'C', 'G']
-            for i in range(int(np.ceil(d / 2.0))):
-                self.note(t0 + i * 2.0, self.CH[prog[i % 4]][0], 2.2, 0.14, 0.4)
-            self.melody(t0 + 0.2, d - 0.4, prog, 0.5, minor=True, gain=0.16, vel=0.4, density=0.75, octave=69)
+            for st, ch in bars:
+                self.note(st, self.CH[ch][0], bar * 1.1, 0.14, 0.4)
+            self.melody(t0 + b, d - b, prog, b, minor=True, gain=0.15, vel=0.4, density=0.6, octave=69)
         elif name == 'tender':
-            prog = ['F', 'C', 'G', 'Am']
-            for i in range(int(np.ceil(d / 2.0))):
-                self.pick(t0 + i * 2.0, prog[i % 4], 0.13, 0.33)
-                self.note(t0 + i * 2.0, self.CH[prog[i % 4]][0], 2.0, 0.12, 0.4)
+            for st, ch in bars:
+                self.pick(st, ch, 0.13, bar / 6)
+                self.note(st, self.CH[ch][0], bar, 0.12, 0.4)
         elif name == 'hope':
-            prog = ['Am', 'F', 'C', 'G']
-            for i in range(int(np.ceil(d / 2.0))):
-                ch = prog[i % 4]
-                self.pick(t0 + i * 2.0, ch, 0.14, 0.3)
-                self.note(t0 + i * 2.0, self.CH[ch][0], 2.0, 0.13, 0.45)
-            self.pad(t0, 'Fmaj7', d, 0.06, 2000)
-            self.melody(t0 + d * 0.4, d * 0.6, prog, 0.5, gain=0.1, density=0.6)
+            for st, ch in bars:
+                self.pick(st, ch, 0.14, bar / 6)
+                self.note(st, self.CH[ch][0], bar, 0.13, 0.45)
+                self.pad(st, ch, bar, 0.05, 2000)
+            half = bar * max(1, nb // 2)
+            self.melody(t0 + half, d - half, prog, b, gain=0.1, density=0.6)
 
     def _arp(self, t, chord, step, n, gain):
         notes = self.CH[chord][1:]
@@ -315,7 +322,7 @@ class Score:
         def urge_sfx(u, base, dur):
             for tw, _ in u.get('whispers', []):
                 self.whisper(base + tw, 1.3, 0.2)
-            if u.get('size', 0) >= 150 and sc.get('mood') not in ('tense',):
+            if u.get('size', 0) >= 150 and sc.get('mood') not in ('tense', 'rush'):
                 for k in range(int(dur / 1.2)):
                     self.heartbeat(base + 0.3 + k * 1.2, 0.18)
             if 'pop_at' in u:
@@ -376,10 +383,63 @@ class Score:
             if fn:
                 fn(t0 + ts)
 
-    # ------------------------------------------------ mix
-    def render(self, timeline, path):
+    # ------------------------------------------------ cues
+    def cues(self, timeline, short=False):
+        """Group scenes into a few long musical sections: consecutive scenes of the same mood family share one
+        section, sections shorter than a minimum are merged into a neighbour, boundaries snap to bar lines."""
+        cs = []
         for sc in timeline:
-            self.mood(sc.get('mood', 'calm'), sc['t0'], sc['duration'], sc)
+            m = sc.get('mood', 'calm')
+            if cs and FAMILY.get(m) == FAMILY.get(cs[-1]['moods'][0][0]):
+                cs[-1]['moods'].append((m, sc['duration'])); cs[-1]['end'] = sc['t0'] + sc['duration']
+            else:
+                cs.append(dict(start=sc['t0'], end=sc['t0'] + sc['duration'], moods=[(m, sc['duration'])],
+                               perc=sc['template'] in ('hangout', 'stage', 'gallery', 'sunrise')))
+        min_len, max_n = (8.0, 3) if short else (12.0, 99)
+        while len(cs) > 1:
+            lens = [c['end'] - c['start'] for c in cs]
+            i = int(np.argmin(lens))
+            if lens[i] >= min_len and len(cs) <= max_n:
+                break
+            j = i - 1 if i > 0 else 1
+            a, b_ = sorted((i, j))
+            cs[a] = dict(start=cs[a]['start'], end=cs[b_]['end'], moods=cs[a]['moods'] + cs[b_]['moods'],
+                         perc=cs[a]['perc'] or cs[b_]['perc'])
+            del cs[b_]
+        out = []
+        for k, c in enumerate(cs):
+            dur = {}
+            for m, d in c['moods']:
+                dur[m] = dur.get(m, 0) + d
+            start = 0.0 if k == 0 else round(c['start'] / self.bar) * self.bar
+            out.append(dict(start=start, mood=max(dur, key=dur.get), perc=c['perc']))
+        for k, c in enumerate(out):
+            c['end'] = out[k + 1]['start'] if k + 1 < len(out) else self.total
+        return [c for c in out if c['end'] - c['start'] > 0.5]
+
+    # ------------------------------------------------ mix
+    def render(self, timeline, path, short=False):
+        xf = min(self.bar, 2.6)                  # crossfade length between sections
+        music = np.zeros_like(self.music)
+        cues = self.cues(timeline, short)
+        for k, c in enumerate(cues):
+            gb0 = int(round(c['start'] / self.bar))
+            pre = 0 if k == 0 else 1             # start one bar early so the crossfade has material
+            self.music = np.zeros_like(music)
+            keep_sfx, self.sfx = self.sfx, np.zeros_like(music)   # the mood's beats/heartbeats fade with the section
+            self.mood(c['mood'], (gb0 - pre) * self.bar, c['end'] - c['start'] + (pre + 1) * self.bar, gb0 - pre, c['perc'])
+            self.music += self.sfx * 1.1
+            self.sfx = keep_sfx
+            tt = np.arange(self.N) / SR
+            up = np.ones(self.N) if k == 0 else np.clip((tt - (c['start'] - xf / 2)) / xf, 0, 1)
+            last = k == len(cues) - 1
+            down = np.ones(self.N) if last else np.clip(((c['end'] + xf / 2) - tt) / xf, 0, 1)
+            env = np.sin(np.pi / 2 * up) * np.sin(np.pi / 2 * down)   # equal-power crossfade
+            seg = self.music[int(c['start'] * SR):int(c['end'] * SR)]
+            rms = np.sqrt((seg ** 2).mean()) + 1e-9
+            music += self.music * env[:, None] * (10 ** (MOOD_LEVEL.get(c['mood'], -21) / 20) / rms)
+        self.music = music
+        for sc in timeline:
             self.auto_sfx(sc)
         rng = np.random.default_rng(1)
         n = int(2.4 * SR)
@@ -391,22 +451,10 @@ class Score:
         swet = np.stack([fftconvolve(self.sfx[:, k], ir[:, k])[:self.N] for k in range(2)], 1)
         mix = self.music * 0.8 + wet * 0.55 + self.sfx * 0.9 + swet * 0.2
         mix = hp(mix.T, 28).T
-        ref = np.sqrt((mix ** 2).mean()) + 1e-9
-        gains = np.ones(len(mix))
-        for sc in timeline:
-            a, b = int(sc['t0'] * SR), int((sc['t0'] + sc['duration']) * SR)
-            seg = mix[a:b]
-            if len(seg) == 0 or sc.get('mood') == 'silence':
-                continue
-            cur = 20 * np.log10(np.sqrt((seg ** 2).mean()) / ref + 1e-9)
-            gains[a:b] = 10 ** ((MOOD_LEVEL.get(sc.get('mood', 'calm'), -21) + 20 - cur) / 20)
-        gains = np.clip(gains, 0.1, 6.0)
-        k = int(0.5 * SR)
-        gains = np.convolve(np.pad(gains, (k, k), mode='edge'), np.ones(2 * k + 1) / (2 * k + 1), 'same')[k:-k]
-        mix *= gains[:, None]
         n_end = int(self.total * SR)
-        fo = int(2.5 * SR)
-        mix[n_end - fo:n_end] *= np.linspace(1, 0, fo)[:, None]
+        fi, fo = int(0.6 * SR), int(3.0 * SR)
+        mix[:fi] *= np.linspace(0, 1, fi)[:, None]
+        mix[n_end - fo:n_end] *= np.linspace(1, 0, fo)[:, None] ** 1.5
         mix = mix[:n_end]
         mix /= np.max(np.abs(mix)) + 1e-9
         mix = np.tanh(mix * 1.6) / np.tanh(1.6) * 0.89
@@ -415,3 +463,4 @@ class Score:
             w.setsampwidth(2)
             w.setframerate(SR)
             w.writeframes((mix * 32767).astype(np.int16).tobytes())
+        return cues

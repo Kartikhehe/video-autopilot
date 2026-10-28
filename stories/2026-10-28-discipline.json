@@ -1,0 +1,907 @@
+{
+  "id": "2026-10-28-discipline",
+  "topic": "motivation vs discipline: motivation is a feeling, discipline is doing it anyway (first 10K)",
+  "cast": {
+    "hero": {
+      "skin": "#a9714a",
+      "hoodie": "#2f3542",
+      "pants": "#1f2330",
+      "hair": "#16100c",
+      "hair_style": "short",
+      "shoe": "#f2c14e"
+    },
+    "friend": {
+      "skin": "#f0c9a0",
+      "hoodie": "#2f8f83",
+      "pants": "#2b2f3a",
+      "hair": "#6b3a20",
+      "hair_style": "curly",
+      "shoe": "#efe9e0",
+      "height": 1.03
+    },
+    "habit": {
+      "glow": "#6fa8ff"
+    }
+  },
+  "music": {
+    "key": 3,
+    "tempo": 100,
+    "seed": 233
+  },
+  "scenes": [
+    {
+      "template": "card",
+      "duration": 4,
+      "mood": "calm",
+      "chapter": "The plan",
+      "fade_in": 0,
+      "params": {
+        "text": "Motivation shows up. Then it leaves."
+      }
+    },
+    {
+      "template": "hangout",
+      "duration": 9,
+      "mood": "groove",
+      "params": {
+        "place": "rooftop",
+        "sky": "sunset",
+        "poster": [
+          "CITY 10K",
+          "MAR 3"
+        ],
+        "hero": {
+          "activity": "idle",
+          "expr": "happy",
+          "x": 760,
+          "look": [
+            0.6,
+            -0.3
+          ]
+        },
+        "friend": {
+          "activity": "wave",
+          "expr": "happy",
+          "x": 1110
+        }
+      },
+      "captions": [
+        [
+          0.5,
+          4.2,
+          "He signed up for his first 10K."
+        ],
+        [
+          4.6,
+          8.6,
+          "Race day: March 3rd. Eight weeks away."
+        ]
+      ]
+    },
+    {
+      "template": "bedroom",
+      "duration": 6,
+      "mood": "groove",
+      "params": {
+        "pose": "standing",
+        "light": "day",
+        "clock": "07:00",
+        "expr": "happy",
+        "corner_item": "shoes"
+      },
+      "captions": [
+        [
+          0.4,
+          2.8,
+          "Day 1, he felt unstoppable."
+        ],
+        [
+          3.1,
+          5.8,
+          "New shoes. New playlist. New him."
+        ]
+      ]
+    },
+    {
+      "template": "hangout",
+      "duration": 7,
+      "mood": "groove",
+      "params": {
+        "place": "park",
+        "sky": "dawn",
+        "hero": {
+          "activity": "run",
+          "from_x": 1500,
+          "x": 700,
+          "walk_dur": 6.5,
+          "expr": "happy",
+          "look": [
+            -0.8,
+            0
+          ]
+        },
+        "friend": {
+          "present": false
+        }
+      },
+      "captions": [
+        [
+          0.4,
+          3.3,
+          "5:30 a.m. Two miles."
+        ],
+        [
+          3.6,
+          6.7,
+          "Motivation made it easy."
+        ]
+      ]
+    },
+    {
+      "template": "montage",
+      "duration": 8,
+      "mood": "groove",
+      "params": {
+        "shots": [
+          {
+            "dur": 4,
+            "template": "hangout",
+            "label": "DAY 2",
+            "params": {
+              "place": "park",
+              "sky": "dawn",
+              "hero": {
+                "activity": "run",
+                "x": 900,
+                "expr": "happy"
+              },
+              "friend": {
+                "present": false
+              }
+            }
+          },
+          {
+            "dur": 4,
+            "template": "hangout",
+            "label": "DAY 3",
+            "params": {
+              "place": "street",
+              "sky": "dawn",
+              "hero": {
+                "activity": "run",
+                "x": 900,
+                "expr": "tired",
+                "sweat": true
+              },
+              "friend": {
+                "present": false
+              }
+            }
+          }
+        ]
+      },
+      "captions": [
+        [
+          0.4,
+          3.6,
+          "Day 2: still fired up."
+        ],
+        [
+          4.2,
+          7.7,
+          "Day 3: legs on fire. Still went."
+        ]
+      ]
+    },
+    {
+      "template": "bedroom",
+      "duration": 7,
+      "mood": "curious",
+      "chapter": "Day 4",
+      "params": {
+        "pose": "lying_awake",
+        "light": "dark",
+        "clock": "05:30",
+        "expr": [
+          [
+            0,
+            "asleep"
+          ],
+          [
+            2.2,
+            "tired"
+          ]
+        ],
+        "rain": true
+      },
+      "captions": [
+        [
+          0.4,
+          3.0,
+          "Day 4. Rain."
+        ],
+        [
+          3.3,
+          6.7,
+          "The alarm rang. The feeling didn't."
+        ]
+      ]
+    },
+    {
+      "template": "bedroom",
+      "duration": 8,
+      "mood": "dark",
+      "params": {
+        "pose": "lying_awake",
+        "light": "dark",
+        "clock": "05:34",
+        "expr": "tired",
+        "rain": true,
+        "urge": {
+          "size": 50,
+          "grow": 120,
+          "x": 1050,
+          "y": 705,
+          "look": [
+            -1,
+            -0.2
+          ],
+          "whispers": [
+            [
+              1.0,
+              "not today."
+            ],
+            [
+              3.2,
+              "you're tired."
+            ],
+            [
+              5.4,
+              "tomorrow."
+            ]
+          ]
+        }
+      },
+      "captions": [
+        [
+          0.4,
+          3.6,
+          "Something warm whispered from the blanket."
+        ],
+        [
+          4.0,
+          7.7,
+          "It sounded like good advice."
+        ]
+      ]
+    },
+    {
+      "template": "bedroom",
+      "duration": 6,
+      "mood": "numb",
+      "params": {
+        "pose": "asleep",
+        "light": "day",
+        "clock": "07:48",
+        "expr": "asleep",
+        "zzz": true,
+        "urge": {
+          "size": 120,
+          "x": 1050,
+          "y": 705,
+          "look": [
+            -1,
+            -0.2
+          ],
+          "mouth": 0.4
+        }
+      },
+      "captions": [
+        [
+          0.4,
+          2.8,
+          "He waited to feel like it."
+        ],
+        [
+          3.1,
+          5.8,
+          "He never felt like it."
+        ]
+      ]
+    },
+    {
+      "template": "montage",
+      "duration": 9,
+      "mood": "tense",
+      "params": {
+        "shots": [
+          {
+            "dur": 3,
+            "template": "bedroom",
+            "label": "DAY 5",
+            "params": {
+              "pose": "lying_phone",
+              "light": "dark",
+              "clock": "05:40",
+              "expr": "bored",
+              "urge": {
+                "size": 130,
+                "x": 1150,
+                "y": 760
+              }
+            }
+          },
+          {
+            "dur": 3,
+            "template": "bedroom",
+            "label": "DAY 8",
+            "params": {
+              "pose": "lying_phone",
+              "light": "dark",
+              "clock": "06:10",
+              "expr": "tired",
+              "bags": 0.6,
+              "urge": {
+                "size": 165,
+                "x": 1150,
+                "y": 760,
+                "mouth": 0.3
+              }
+            }
+          },
+          {
+            "dur": 3,
+            "template": "bedroom",
+            "label": "DAY 12",
+            "params": {
+              "pose": "lying_phone",
+              "light": "dark",
+              "clock": "08:20",
+              "expr": "tired",
+              "bags": 1.0,
+              "urge": {
+                "size": 205,
+                "x": 1150,
+                "y": 760,
+                "mouth": 0.6
+              }
+            }
+          }
+        ]
+      },
+      "captions": [
+        [
+          0.3,
+          2.8,
+          "Day 5: skipped."
+        ],
+        [
+          3.1,
+          5.8,
+          "Day 8: skipped."
+        ],
+        [
+          6.1,
+          8.8,
+          "Day 12: \"I'll restart Monday.\""
+        ]
+      ]
+    },
+    {
+      "template": "phone_chat",
+      "duration": 8,
+      "mood": "numb",
+      "params": {
+        "contact": "Theo",
+        "clock": "19:12",
+        "messages": [
+          [
+            0.5,
+            "L",
+            "saturday long run?"
+          ],
+          [
+            2.0,
+            "L",
+            "race is in 5 weeks"
+          ],
+          [
+            3.6,
+            "L",
+            "you good man?"
+          ]
+        ],
+        "seen_at": 4.4
+      },
+      "captions": [
+        [
+          4.8,
+          7.8,
+          "Theo kept checking in. He stopped answering."
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 7,
+      "mood": "sad",
+      "params": {
+        "expr": "sad",
+        "bg": "dark",
+        "bags": 0.7,
+        "look": [
+          0,
+          0.2
+        ]
+      },
+      "captions": [
+        [
+          0.4,
+          3.3,
+          "He thought something was wrong with him."
+        ],
+        [
+          3.6,
+          6.7,
+          "Everyone else seemed so motivated."
+        ]
+      ]
+    },
+    {
+      "template": "mirror",
+      "duration": 7,
+      "mood": "dark",
+      "chapter": "The truth",
+      "params": {
+        "expr": [
+          [
+            0,
+            "tired"
+          ],
+          [
+            4.0,
+            "neutral"
+          ]
+        ],
+        "bags": 0.8,
+        "urge_at": 2.0
+      },
+      "captions": [
+        [
+          0.4,
+          3.3,
+          "But motivation is a feeling."
+        ],
+        [
+          3.6,
+          6.7,
+          "And feelings don't show up on schedule."
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 7,
+      "mood": "hope",
+      "params": {
+        "expr": [
+          [
+            0,
+            "neutral"
+          ],
+          [
+            3.0,
+            "determined"
+          ]
+        ],
+        "bg": "warm",
+        "look": [
+          0,
+          0
+        ]
+      },
+      "captions": [
+        [
+          0.4,
+          3.3,
+          "Discipline is doing it anyway."
+        ],
+        [
+          3.6,
+          6.7,
+          "Tired. Bored. Not feeling it."
+        ]
+      ]
+    },
+    {
+      "template": "bedroom",
+      "duration": 7,
+      "mood": "tender",
+      "chapter": "The turn",
+      "params": {
+        "pose": "standing",
+        "light": "dark",
+        "clock": "05:30",
+        "expr": "determined",
+        "corner_item": "shoes",
+        "rain": true,
+        "urge": {
+          "size": 140,
+          "grow": 90,
+          "x": 1500,
+          "y": 880,
+          "alpha": 0.9,
+          "say_x": 1430,
+          "say_y": 520,
+          "whispers": [
+            [
+              0.8,
+              "it's raining."
+            ]
+          ]
+        }
+      },
+      "captions": [
+        [
+          0.4,
+          3.3,
+          "So he made the rule tiny."
+        ],
+        [
+          3.6,
+          6.8,
+          "Shoes on. Run to the corner. That's it."
+        ]
+      ]
+    },
+    {
+      "template": "hangout",
+      "duration": 8,
+      "mood": "tense",
+      "params": {
+        "place": "street",
+        "sky": "dawn",
+        "rain": true,
+        "hero": {
+          "activity": "run",
+          "from_x": 1450,
+          "x": 760,
+          "walk_dur": 7.5,
+          "expr": "grit",
+          "sweat": true,
+          "look": [
+            -0.8,
+            0
+          ]
+        },
+        "friend": {
+          "present": false
+        }
+      },
+      "captions": [
+        [
+          0.4,
+          2.7,
+          "Day 13. Rain."
+        ],
+        [
+          3.0,
+          5.3,
+          "He hated every step."
+        ],
+        [
+          5.6,
+          7.8,
+          "He went anyway."
+        ]
+      ]
+    },
+    {
+      "template": "phone_chat",
+      "duration": 7,
+      "mood": "tender",
+      "params": {
+        "contact": "Theo",
+        "clock": "06:20",
+        "glow": "#ffcf8a",
+        "messages": [
+          [
+            0.5,
+            "R",
+            "sorry. i fell off"
+          ],
+          [
+            1.8,
+            "R",
+            "saturday?"
+          ],
+          [
+            3.4,
+            "L",
+            "always. 7am. bring water"
+          ]
+        ],
+        "typing": [
+          2.4,
+          3.4,
+          "L"
+        ]
+      },
+      "captions": [
+        [
+          4.4,
+          6.8,
+          "He told Theo the truth."
+        ]
+      ]
+    },
+    {
+      "template": "montage",
+      "duration": 12,
+      "mood": "hope",
+      "chapter": "8 weeks",
+      "params": {
+        "shots": [
+          {
+            "dur": 4,
+            "template": "hangout",
+            "label": "DAY 20",
+            "params": {
+              "place": "park",
+              "sky": "dawn",
+              "rain": true,
+              "hero": {
+                "activity": "run",
+                "x": 820,
+                "expr": "tired",
+                "sweat": true
+              },
+              "friend": {
+                "present": false
+              },
+              "urge": {
+                "size": 70,
+                "x": 1250,
+                "y": 900,
+                "alpha": 0.8,
+                "say_x": 1350,
+                "say_y": 520,
+                "whispers": [
+                  [
+                    0.5,
+                    "go home."
+                  ]
+                ]
+              }
+            }
+          },
+          {
+            "dur": 4,
+            "template": "hangout",
+            "label": "DAY 34",
+            "params": {
+              "place": "park",
+              "sky": "day",
+              "hero": {
+                "activity": "run",
+                "x": 760,
+                "expr": "determined"
+              },
+              "friend": {
+                "activity": "wave",
+                "x": 1120,
+                "expr": "happy"
+              },
+              "urge": {
+                "size": 38,
+                "x": 1400,
+                "y": 900,
+                "alpha": 0.6
+              }
+            }
+          },
+          {
+            "dur": 4,
+            "template": "hangout",
+            "label": "DAY 49",
+            "params": {
+              "place": "street",
+              "sky": "dawn",
+              "hero": {
+                "activity": "run",
+                "x": 900,
+                "expr": "calm"
+              },
+              "friend": {
+                "present": false
+              },
+              "urge": {
+                "size": 26,
+                "x": 1300,
+                "y": 900,
+                "eye": 0.5,
+                "pop_at": 1.6
+              }
+            }
+          }
+        ]
+      },
+      "captions": [
+        [
+          0.4,
+          3.7,
+          "Some days he felt great."
+        ],
+        [
+          4.2,
+          7.7,
+          "Most days he didn't."
+        ],
+        [
+          8.2,
+          11.7,
+          "He ran either way."
+        ]
+      ]
+    },
+    {
+      "template": "hangout",
+      "duration": 9,
+      "mood": "triumph",
+      "chapter": "Race day",
+      "params": {
+        "place": "street",
+        "sky": "day",
+        "banner": "FINISH",
+        "hero": {
+          "activity": "run",
+          "from_x": 1700,
+          "x": 960,
+          "walk_dur": 5.0,
+          "expr": [
+            [
+              0,
+              "grit"
+            ],
+            [
+              5.0,
+              "happy"
+            ]
+          ],
+          "sweat": true,
+          "look": [
+            -0.8,
+            0
+          ]
+        },
+        "friend": {
+          "activity": "wave",
+          "expr": "happy",
+          "x": 600,
+          "look": [
+            0.8,
+            0
+          ]
+        },
+        "extras": [
+          {
+            "x": 300,
+            "activity": "wave",
+            "expr": "happy",
+            "look": [
+              0.8,
+              0
+            ],
+            "look_as": {
+              "hoodie": "#c8423b",
+              "hair_style": "long",
+              "hair": "#2a1a10",
+              "skin": "#e8bf98"
+            }
+          },
+          {
+            "x": 1650,
+            "activity": "wave",
+            "expr": "happy",
+            "look": [
+              -0.8,
+              0
+            ],
+            "look_as": {
+              "hoodie": "#e3a33e",
+              "hair_style": "cap",
+              "cap": "#2f6fd6",
+              "skin": "#7a4a2e"
+            }
+          }
+        ]
+      },
+      "captions": [
+        [
+          0.4,
+          2.8,
+          "March 3rd."
+        ],
+        [
+          3.0,
+          5.6,
+          "At mile five, he wasn't motivated."
+        ],
+        [
+          5.9,
+          8.7,
+          "He finished anyway."
+        ]
+      ]
+    },
+    {
+      "template": "sunrise",
+      "duration": 6,
+      "mood": "calm",
+      "params": {
+        "activity": "sit",
+        "friend": true
+      },
+      "captions": [
+        [
+          0.4,
+          2.8,
+          "Motivation got him started."
+        ],
+        [
+          3.1,
+          5.8,
+          "Discipline got him here."
+        ]
+      ]
+    },
+    {
+      "template": "end_card",
+      "duration": 4.5,
+      "mood": "calm",
+      "fade_in": 0,
+      "params": {
+        "text": "Don't wait to feel ready."
+      }
+    }
+  ],
+  "thumbnail": {
+    "layout": "hero",
+    "bg": "rain",
+    "expr": "grit",
+    "look": [
+      0,
+      0
+    ],
+    "bags": 0.6,
+    "glow": "#ffb35c",
+    "light_dir": [
+      -0.8,
+      -0.3
+    ],
+    "prop": "fists",
+    "particles": "sweat",
+    "words": [
+      "DISCIPLINE."
+    ],
+    "title_rotate": -4,
+    "hero_x": 900
+  },
+  "youtube": {
+    "title": "Stop Waiting To Feel Motivated.",
+    "description": "Day 1 he felt unstoppable. Day 4 it rained, and the feeling never came back.\n\nA short animated story about motivation vs. discipline. Motivation is a feeling, and feelings don't show up on schedule. Discipline is doing the thing anyway: tired, bored, not feeling it.\n\nIf you keep waiting to feel ready:\n• Make the rule tiny. \"Shoes on, run to the corner\" beats \"run 5 miles\".\n• Decide once, not every morning. Same time, same place.\n• Tell one person. Someone who checks in makes skipping harder.\n\nDon't wait to feel ready.\n\nIf this helped, share it with someone who needs it, and subscribe for more.\n\n#discipline #motivation #selfimprovement #habits #running #animation #mindset",
+    "tags": [
+      "discipline",
+      "motivation vs discipline",
+      "how to be disciplined",
+      "no motivation",
+      "consistency",
+      "self improvement",
+      "animated story",
+      "habits",
+      "running motivation",
+      "mindset"
+    ],
+    "comment": "What are you doing today even though you don't feel like it? 👇"
+  }
+}
