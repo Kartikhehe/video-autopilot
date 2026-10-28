@@ -175,9 +175,7 @@ creature inside a ~600 px wide window around the focus (check the preview!).
 - No outro scene (a SUBSCRIBE pill appears automatically on the last 2.5 s). `card`/`end_card` text sizes
   must be small (~46-62) to fit the narrow frame.
 - Outputs: `video.mp4`, `thumbnail.png` (1080x1920 cover with `thumbnail.badge` support), `cover_frame.png`.
-  The Shorts feed ignores uploaded thumbnails and shows a frame of the video as the cover. So the designed
-  `thumbnail` is rendered automatically as the first 0.3 s of every Short (`"cover_frame": false` turns it off) and
-  `cover_frame.png` is that frame: the owner can pick it as the cover in the YouTube app (Edit → thumbnail).
+  YouTube uses a frame of the Short as its cover, so the first ~1 s must look like a thumbnail.
 
 ### Thumbnails, style 1: "hero" close-up (long videos)
 One big word and one big emotion, lit like a film poster ("DOPAMINE.", "DISCIPLINE."):

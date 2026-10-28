@@ -51,7 +51,7 @@ def check(path):
 def thumbs(spec, S, d):
     if S.get('short'):
         TH.make_vertical(S, os.path.join(d, 'thumbnail.png'))
-        ct = spec.get('short', {}).get('cover_time', 0.1 if spec.get('short', {}).get('cover_frame', True) else 1.0)
+        ct = spec.get('short', {}).get('cover_time', 1.0)
         surf = skia.Surface(S['out_w'], S['out_h'])
         c = surf.getCanvas()
         c.clear(col('#000000'))

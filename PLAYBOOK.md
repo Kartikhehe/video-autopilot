@@ -74,8 +74,5 @@ for i in 1 2 3 4; do git pull --rebase origin main && git push origin HEAD:main 
 ```
 `out/` is git-ignored: never commit videos.
 
-Shorts: the Shorts feed ignores uploaded thumbnails. The designed thumbnail is baked into the first 0.3 s of the
-video, so mention in the final message that the owner can set it as the cover in the YouTube app (Edit → thumbnail).
-
 ## 8. Final message (becomes the run summary / notification)
 One short paragraph: KIND, title, link, scheduled time, topic + the key fact or reframe, anything needing attention.
