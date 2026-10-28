@@ -1,0 +1,435 @@
+{
+  "id": "2026-10-28-short-nature",
+  "format": "short",
+  "topic": "120 minutes a week in nature linked to better health and wellbeing, any split works (White et al. 2019, ~20,000 people)",
+  "cast": {
+    "hero": {
+      "skin": "#d9a77b",
+      "hoodie": "#8a5aa8",
+      "pants": "#2b2f3a",
+      "hair": "#1b120c",
+      "hair_style": "curly",
+      "shoe": "#efe9e0"
+    },
+    "friend": {
+      "skin": "#a9714a",
+      "hoodie": "#4f7cac",
+      "pants": "#2f3550",
+      "hair": "#16100c",
+      "hair_style": "short",
+      "shoe": "#f2c14e"
+    },
+    "habit": {
+      "glow": "#9be15d"
+    }
+  },
+  "music": {
+    "key": 2,
+    "tempo": 90,
+    "seed": 317
+  },
+  "short": {
+    "hook": {
+      "text": "HOW MUCH NATURE DO YOU *ACTUALLY* *NEED?*",
+      "until": 3.2,
+      "y": 430,
+      "size": 92
+    },
+    "highlight_color": "#b6f27a",
+    "cover_time": 1.3
+  },
+  "scenes": [
+    {
+      "template": "bedroom",
+      "duration": 3.4,
+      "mood": "numb",
+      "params": {
+        "pose": "sitting_phone",
+        "light": "dark",
+        "clock": "18:30",
+        "expr": "bored",
+        "focus": [
+          860,
+          560
+        ]
+      }
+    },
+    {
+      "template": "montage",
+      "duration": 4.4,
+      "mood": "numb",
+      "params": {
+        "shots": [
+          {
+            "dur": 1.5,
+            "template": "desk",
+            "params": {
+              "pose": "staring",
+              "screen": "work",
+              "light": "lamp",
+              "expr": "bored",
+              "focus": [
+                980,
+                560
+              ]
+            }
+          },
+          {
+            "dur": 1.5,
+            "template": "bedroom",
+            "params": {
+              "pose": "lying_phone",
+              "light": "dark",
+              "clock": "23:40",
+              "expr": "bored",
+              "focus": [
+                800,
+                560
+              ]
+            }
+          },
+          {
+            "dur": 1.4,
+            "template": "desk",
+            "params": {
+              "pose": "staring",
+              "screen": "work",
+              "light": "lamp",
+              "expr": "tired",
+              "focus": [
+                980,
+                560
+              ]
+            }
+          }
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          4.2,
+          "School. Screen. Bed. *Repeat.*"
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 4.0,
+      "mood": "numb",
+      "params": {
+        "expr": "tired",
+        "bg": "dark",
+        "bags": 0.6,
+        "look": [
+          0,
+          0.3
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          3.8,
+          "He felt *flat.* All the time."
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 5.6,
+      "mood": "curious",
+      "params": {
+        "expr": [
+          [
+            0,
+            "neutral"
+          ],
+          [
+            2.6,
+            "wow"
+          ]
+        ],
+        "bg": "warm",
+        "look": [
+          0,
+          0
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          2.5,
+          "A study of *20,000* people asked:"
+        ],
+        [
+          2.6,
+          5.4,
+          "how much time outside *makes* *a* *difference?*"
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 6.0,
+      "mood": "hope",
+      "params": {
+        "expr": [
+          [
+            0,
+            "wow"
+          ],
+          [
+            3.0,
+            "happy"
+          ]
+        ],
+        "bg": "warm",
+        "glow": "#9be15d",
+        "glow_amt": 0.25,
+        "sparkles": true,
+        "look": [
+          0,
+          0
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          2.9,
+          "The line: *120* *minutes* a week."
+        ],
+        [
+          3.0,
+          5.8,
+          "Those people felt *healthier* and *happier.*"
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 3.8,
+      "mood": "hope",
+      "params": {
+        "expr": "happy",
+        "bg": "warm",
+        "look": [
+          0,
+          0
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          3.6,
+          "And it didn't matter *how* you split it."
+        ]
+      ]
+    },
+    {
+      "template": "montage",
+      "duration": 5.0,
+      "mood": "warm",
+      "params": {
+        "shots": [
+          {
+            "dur": 1.7,
+            "template": "hangout",
+            "params": {
+              "place": "park",
+              "sky": "day",
+              "focus": [
+                940,
+                560
+              ],
+              "hero": {
+                "activity": "walk_in",
+                "from_x": 1300,
+                "x": 900,
+                "walk_dur": 1.7,
+                "expr": "happy",
+                "look": [
+                  -0.8,
+                  0
+                ]
+              },
+              "friend": {
+                "present": false
+              }
+            }
+          },
+          {
+            "dur": 1.6,
+            "template": "hangout",
+            "params": {
+              "place": "park",
+              "sky": "day",
+              "focus": [
+                940,
+                560
+              ],
+              "hero": {
+                "activity": "book",
+                "expr": "calm",
+                "x": 780
+              },
+              "friend": {
+                "activity": "ball",
+                "expr": "happy",
+                "x": 1110
+              }
+            }
+          },
+          {
+            "dur": 1.7,
+            "template": "hangout",
+            "params": {
+              "place": "park",
+              "sky": "sunset",
+              "focus": [
+                940,
+                560
+              ],
+              "hero": {
+                "activity": "idle",
+                "expr": "happy",
+                "x": 780,
+                "look": [
+                  0.6,
+                  -0.3
+                ]
+              },
+              "friend": {
+                "activity": "wave",
+                "expr": "happy",
+                "x": 1110
+              }
+            }
+          }
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          4.8,
+          "20 minutes a day. Phone in *pocket.*"
+        ]
+      ]
+    },
+    {
+      "template": "sunrise",
+      "duration": 4.0,
+      "mood": "warm",
+      "params": {
+        "activity": "sit",
+        "friend": true,
+        "focus": [
+          970,
+          560
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          3.8,
+          "Two hours a week. That's *it.*"
+        ]
+      ]
+    },
+    {
+      "template": "end_card",
+      "duration": 3.6,
+      "mood": "calm",
+      "fade_in": 0.1,
+      "params": {
+        "text": "Two hours a week. Go outside.",
+        "size": 46
+      }
+    }
+  ],
+  "thumbnail": {
+    "layout": "scene",
+    "device": "none",
+    "shade": [
+      "top"
+    ],
+    "slant": -60,
+    "words": [
+      "FEEL",
+      "FLAT?"
+    ],
+    "highlight": 1,
+    "highlight_color": "#9be15d",
+    "title_y": 190,
+    "title_size": 170,
+    "panels": [
+      {
+        "scene": {
+          "template": "bedroom",
+          "t": 1.0,
+          "zoom": 1.6,
+          "focus": [
+            800,
+            620
+          ],
+          "params": {
+            "pose": "lying_phone",
+            "light": "dark",
+            "clock": "23:40",
+            "expr": "tired",
+            "bags": 0.8
+          }
+        },
+        "label": "0 MIN OUTSIDE",
+        "ok": false
+      },
+      {
+        "scene": {
+          "template": "hangout",
+          "t": 1.5,
+          "zoom": 1.45,
+          "focus": [
+            940,
+            560
+          ],
+          "params": {
+            "place": "park",
+            "sky": "sunset",
+            "hero": {
+              "activity": "idle",
+              "expr": "happy",
+              "x": 780,
+              "look": [
+                0.6,
+                -0.3
+              ]
+            },
+            "friend": {
+              "activity": "wave",
+              "expr": "happy",
+              "x": 1110
+            }
+          }
+        },
+        "label": "120 MIN A WEEK",
+        "ok": true,
+        "label_color": "#b6f27a"
+      }
+    ]
+  },
+  "youtube": {
+    "title": "How Much Nature Do You Actually Need? #shorts",
+    "description": "School, screen, bed, repeat, and you feel flat all the time? Your brain might just need more sky.\n\nIn a study of about 20,000 people in England, those who spent at least 120 minutes a week in nature were more likely to report good health and high wellbeing than people who spent none. It didn't matter if the two hours came in one trip or several short ones. (It's a survey, so it shows a link, not proof of cause.)\n\nTry it: 20 minutes a day outside, phone in your pocket.\n\nResearch: White et al. (2019), \"Spending at least 120 minutes a week in nature is associated with good health and wellbeing\", Scientific Reports.\n\n#shorts #nature #mentalhealth #psychology #wellbeing #animation #selfimprovement",
+    "tags": [
+      "shorts",
+      "120 minutes in nature",
+      "nature and mental health",
+      "go outside",
+      "wellbeing",
+      "feeling flat",
+      "psychology facts",
+      "mental health",
+      "animated story",
+      "self improvement"
+    ],
+    "comment": "How many minutes were you outside today? 🌳👇"
+  }
+}

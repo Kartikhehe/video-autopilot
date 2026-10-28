@@ -369,6 +369,9 @@ def draw_face(c, hx, hy, r, expr='neutral', look=(0, 0), blink=0.0, bags=None, p
         c.drawPath(dp, paint(INK, stroke=r * 0.025))
 
 
+DEFAULT_SHADE = dict(dir=(-0.6, -0.75), amt=0.2, spec=0.08)   # subtle form shading on every head
+
+
 def shade_head(c, hx, hy, r, shade):
     """Soft form shadow on the far side + coloured rim light on the lit side (thumbnail-quality lighting)."""
     lx, ly = shade.get('dir', (-0.7, -0.6))
@@ -391,8 +394,7 @@ def shade_head(c, hx, hy, r, shade):
 
 def draw_head(c, hx, hy, r, ch, expr='neutral', t=0, **kw):
     circle(c, hx, hy, r, ch['skin'], ow=r * 0.065)
-    if ch.get('shade'):
-        shade_head(c, hx, hy, r, ch['shade'])
+    shade_head(c, hx, hy, r, ch.get('shade') or DEFAULT_SHADE)
     kw.setdefault('extra', {})
     kw['extra'] = dict(kw['extra'], skin=ch['skin'])
     draw_face(c, hx, hy, r, expr, **kw)

@@ -1,0 +1,375 @@
+{
+  "id": "2026-10-28-short-examwrite",
+  "format": "short",
+  "topic": "writing about worries for 10 minutes before an exam: anxious students scored nearly a grade higher (Ramirez & Beilock 2011)",
+  "cast": {
+    "hero": {
+      "skin": "#7a4a2e",
+      "hoodie": "#c8423b",
+      "pants": "#2b2f3a",
+      "hair": "#16100c",
+      "hair_style": "cap",
+      "cap": "#2f6fd6",
+      "shoe": "#efe9e0"
+    },
+    "habit": {
+      "glow": "#3fe0c5"
+    }
+  },
+  "music": {
+    "key": 1,
+    "tempo": 98,
+    "seed": 311
+  },
+  "short": {
+    "hook": {
+      "text": "EXAM IN *10* *MINUTES?* DO THIS.",
+      "until": 3.2,
+      "y": 430,
+      "size": 96
+    },
+    "highlight_color": "#5ff2da",
+    "cover_time": 1.3
+  },
+  "scenes": [
+    {
+      "template": "desk",
+      "duration": 3.4,
+      "mood": "tense",
+      "params": {
+        "pose": "staring",
+        "screen": "work",
+        "papers": 5,
+        "light": "lamp",
+        "expr": "worried",
+        "bags": 0.5,
+        "focus": [
+          980,
+          560
+        ],
+        "thoughts": [
+          {
+            "t": 0.3,
+            "x": 900,
+            "y": 420,
+            "text": "what if i blank?",
+            "to": [
+              820,
+              560
+            ],
+            "size": 34
+          }
+        ]
+      }
+    },
+    {
+      "template": "face",
+      "duration": 4.2,
+      "mood": "tense",
+      "params": {
+        "expr": "worried",
+        "bg": "dark",
+        "glow": "#3fe0c5",
+        "glow_amt": 0.35,
+        "pulse": true,
+        "sweat": true,
+        "look": [
+          0,
+          0.2
+        ],
+        "thoughts": [
+          {
+            "t": 0.4,
+            "x": 760,
+            "y": 330,
+            "text": "i'll fail",
+            "to": [
+              860,
+              450
+            ],
+            "size": 34
+          },
+          {
+            "t": 1.4,
+            "x": 1040,
+            "y": 470,
+            "text": "everyone's smarter",
+            "to": [
+              1000,
+              520
+            ],
+            "size": 32
+          }
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          4.0,
+          "His head was full of *what-ifs.*"
+        ]
+      ]
+    },
+    {
+      "template": "desk",
+      "duration": 4.4,
+      "mood": "tense",
+      "params": {
+        "pose": "head_down",
+        "screen": "work",
+        "note": "EXAM 9AM",
+        "papers": 5,
+        "light": "lamp",
+        "expr": "sad",
+        "focus": [
+          980,
+          560
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          2.1,
+          "Worry isn't just a feeling."
+        ],
+        [
+          2.2,
+          4.2,
+          "It *hogs* the memory you need."
+        ]
+      ]
+    },
+    {
+      "template": "bedroom",
+      "duration": 5.6,
+      "mood": "curious",
+      "params": {
+        "pose": "sitting_activity",
+        "activity": "write",
+        "light": "day",
+        "clock": "08:40",
+        "expr": "determined",
+        "focus": [
+          860,
+          560
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          2.6,
+          "So he tried something *strange.*"
+        ],
+        [
+          2.7,
+          5.4,
+          "He *wrote* *down* every worry. 10 minutes."
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 6.2,
+      "mood": "hope",
+      "params": {
+        "expr": [
+          [
+            0,
+            "neutral"
+          ],
+          [
+            2.4,
+            "wow"
+          ]
+        ],
+        "bg": "warm",
+        "look": [
+          0,
+          0
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          2.3,
+          "In a classroom study, anxious students..."
+        ],
+        [
+          2.4,
+          6.0,
+          "...scored nearly a *grade* *higher.*"
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 4.6,
+      "mood": "hope",
+      "params": {
+        "expr": [
+          [
+            0,
+            "neutral"
+          ],
+          [
+            2.2,
+            "calm"
+          ]
+        ],
+        "bg": "warm",
+        "look": [
+          0,
+          0
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          2.1,
+          "Writing it down *empties* the tank."
+        ],
+        [
+          2.2,
+          4.4,
+          "So your brain can *think.*"
+        ]
+      ]
+    },
+    {
+      "template": "desk",
+      "duration": 4.0,
+      "mood": "triumph",
+      "params": {
+        "pose": "typing",
+        "screen": "work",
+        "note": "EXAM",
+        "light": "day",
+        "expr": "determined",
+        "focus": [
+          980,
+          560
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          3.8,
+          "He walked in *lighter.*"
+        ]
+      ]
+    },
+    {
+      "template": "hangout",
+      "duration": 4.0,
+      "mood": "triumph",
+      "params": {
+        "place": "street",
+        "sky": "day",
+        "focus": [
+          760,
+          560
+        ],
+        "hero": {
+          "activity": "wave",
+          "expr": "happy",
+          "x": 760
+        },
+        "friend": {
+          "present": false
+        }
+      },
+      "captions": [
+        [
+          0.2,
+          3.8,
+          "Not magic. Just *room* to think."
+        ]
+      ]
+    },
+    {
+      "template": "end_card",
+      "duration": 3.6,
+      "mood": "calm",
+      "fade_in": 0.1,
+      "params": {
+        "text": "Write the worry first.",
+        "size": 58
+      }
+    }
+  ],
+  "thumbnail": {
+    "layout": "scene",
+    "device": "none",
+    "shade": [
+      "top"
+    ],
+    "slant": -70,
+    "words": [
+      "EXAM",
+      "TOMORROW?"
+    ],
+    "highlight": 1,
+    "highlight_color": "#3fe0c5",
+    "title_y": 180,
+    "title_size": 140,
+    "panels": [
+      {
+        "scene": {
+          "template": "desk",
+          "t": 1.0,
+          "zoom": 1.7,
+          "focus": [
+            880,
+            640
+          ],
+          "params": {
+            "pose": "head_down",
+            "screen": "work",
+            "light": "lamp",
+            "expr": "sad",
+            "papers": 5
+          }
+        },
+        "label": "JUST WORRYING",
+        "ok": false
+      },
+      {
+        "scene": {
+          "template": "bedroom",
+          "t": 1.5,
+          "zoom": 1.6,
+          "focus": [
+            860,
+            600
+          ],
+          "params": {
+            "pose": "sitting_activity",
+            "activity": "write",
+            "light": "day",
+            "expr": "determined"
+          }
+        },
+        "label": "WRITE WORRIES: 10 MIN",
+        "ok": true,
+        "label_color": "#5ff2da"
+      }
+    ]
+  },
+  "youtube": {
+    "title": "Do This 10 Minutes Before Any Exam #shorts",
+    "description": "Mind full of \"what if I blank?\" right before a test? Worry doesn't just feel bad: it eats up the working memory you need to answer questions.\n\nIn a classroom study, students wrote about their worries for 10 minutes right before a big exam. The most anxious students scored nearly a grade higher than anxious students who just sat quietly.\n\nNext exam: grab a page, write every worry down, then walk in lighter.\n\nResearch: Ramirez & Beilock (2011), \"Writing About Testing Worries Boosts Exam Performance in the Classroom\", Science.\n\n#shorts #exam #studytips #anxiety #psychology #animation #students",
+    "tags": [
+      "shorts",
+      "exam anxiety",
+      "test anxiety tips",
+      "study tips",
+      "before exam",
+      "expressive writing",
+      "psychology facts",
+      "students",
+      "animated story",
+      "self improvement"
+    ],
+    "comment": "What exam do you have coming up? 👇"
+  }
+}

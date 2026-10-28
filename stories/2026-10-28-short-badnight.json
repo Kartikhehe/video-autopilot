@@ -1,0 +1,427 @@
+{
+  "id": "2026-10-28-short-badnight",
+  "format": "short",
+  "topic": "sleep loss makes the brain's alarm (amygdala) ~60% more reactive: why you snap after a bad night (Yoo et al. 2007)",
+  "cast": {
+    "hero": {
+      "skin": "#c98e64",
+      "hoodie": "#5b7fa8",
+      "pants": "#2b2f3a",
+      "hair": "#2a1a12",
+      "hair_style": "curly",
+      "shoe": "#efe9e0"
+    },
+    "friend": {
+      "skin": "#f0c9a0",
+      "hoodie": "#e3a33e",
+      "pants": "#33405e",
+      "hair": "#5a3a1a",
+      "hair_style": "short",
+      "shoe": "#f2c14e"
+    },
+    "habit": {
+      "glow": "#ff6a3d"
+    }
+  },
+  "music": {
+    "key": -3,
+    "tempo": 94,
+    "seed": 307
+  },
+  "short": {
+    "hook": {
+      "text": "BAD SLEEP? THIS IS WHY YOU *SNAP.*",
+      "until": 3.2,
+      "y": 430,
+      "size": 96
+    },
+    "highlight_color": "#ff8a5c",
+    "cover_time": 1.3
+  },
+  "scenes": [
+    {
+      "template": "bedroom",
+      "duration": 3.4,
+      "mood": "tense",
+      "params": {
+        "pose": "lying_awake",
+        "clock": "03:12",
+        "expr": "tired",
+        "bags": 1.0,
+        "light": "dark",
+        "focus": [
+          800,
+          560
+        ]
+      }
+    },
+    {
+      "template": "bedroom",
+      "duration": 4.0,
+      "mood": "tense",
+      "params": {
+        "pose": "sitting",
+        "light": "day",
+        "clock": "07:00",
+        "expr": "tired",
+        "bags": 1.0,
+        "focus": [
+          860,
+          560
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          3.8,
+          "*4* *hours* of sleep. Again."
+        ]
+      ]
+    },
+    {
+      "template": "hangout",
+      "duration": 4.6,
+      "mood": "tense",
+      "params": {
+        "place": "street",
+        "sky": "day",
+        "focus": [
+          940,
+          560
+        ],
+        "hero": {
+          "activity": "idle",
+          "expr": "tired",
+          "x": 780,
+          "look": [
+            0.8,
+            0
+          ],
+          "bags": 1.0
+        },
+        "friend": {
+          "activity": "talk",
+          "expr": "happy",
+          "x": 1110,
+          "look": [
+            -0.8,
+            0
+          ]
+        },
+        "thoughts": [
+          {
+            "t": 0.3,
+            "x": 1040,
+            "y": 330,
+            "text": "hey! did you see--",
+            "to": [
+              1100,
+              480
+            ],
+            "size": 34
+          }
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          4.4,
+          "Her friend said one *harmless* thing..."
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 3.6,
+      "mood": "tense",
+      "sfx": [
+        [
+          0.4,
+          "boom"
+        ]
+      ],
+      "params": {
+        "expr": [
+          [
+            0,
+            "tired"
+          ],
+          [
+            0.4,
+            "grit"
+          ]
+        ],
+        "bg": "dark",
+        "glow": "#ff6a3d",
+        "glow_amt": 0.55,
+        "pulse": true,
+        "bags": 1.0
+      },
+      "captions": [
+        [
+          0.3,
+          3.4,
+          "...and she *exploded.*"
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 4.4,
+      "mood": "sad",
+      "params": {
+        "expr": "sad",
+        "bg": "dark",
+        "bags": 1.0,
+        "look": [
+          0,
+          0.3
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          2.1,
+          "She felt *awful* after."
+        ],
+        [
+          2.2,
+          4.2,
+          "That wasn't *her.*"
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 6.0,
+      "mood": "curious",
+      "params": {
+        "expr": [
+          [
+            0,
+            "neutral"
+          ],
+          [
+            2.4,
+            "wow"
+          ]
+        ],
+        "bg": "dark",
+        "glow": "#ff6a3d",
+        "glow_amt": 0.3,
+        "look": [
+          0,
+          0
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          2.3,
+          "Scientists scanned *sleep-deprived* brains."
+        ],
+        [
+          2.4,
+          5.8,
+          "The brain's alarm reacted over *60%* more."
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 4.2,
+      "mood": "hope",
+      "params": {
+        "expr": [
+          [
+            0,
+            "neutral"
+          ],
+          [
+            2.1,
+            "calm"
+          ]
+        ],
+        "bg": "warm",
+        "look": [
+          0,
+          0
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          2.0,
+          "And the part that calms it?"
+        ],
+        [
+          2.1,
+          4.0,
+          "Goes *quiet.*"
+        ]
+      ]
+    },
+    {
+      "template": "bedroom",
+      "duration": 5.0,
+      "mood": "hope",
+      "params": {
+        "pose": "asleep",
+        "light": "dark",
+        "clock": "22:50",
+        "expr": "asleep",
+        "zzz": true,
+        "phone_far": true,
+        "focus": [
+          800,
+          560
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          2.4,
+          "So she *protected* her sleep."
+        ],
+        [
+          2.5,
+          4.8,
+          "Phone away. Lights off by *11.*"
+        ]
+      ]
+    },
+    {
+      "template": "hangout",
+      "duration": 4.4,
+      "mood": "triumph",
+      "params": {
+        "place": "street",
+        "sky": "day",
+        "focus": [
+          940,
+          560
+        ],
+        "hi5_at": 2.4,
+        "hero": {
+          "activity": "idle",
+          "expr": "happy",
+          "x": 780,
+          "look": [
+            0.8,
+            0
+          ]
+        },
+        "friend": {
+          "activity": "talk",
+          "expr": "happy",
+          "x": 1110,
+          "look": [
+            -0.8,
+            0
+          ]
+        }
+      },
+      "captions": [
+        [
+          0.2,
+          4.2,
+          "Same friend. Same joke. She *laughed.*"
+        ]
+      ]
+    },
+    {
+      "template": "end_card",
+      "duration": 3.6,
+      "mood": "calm",
+      "fade_in": 0.1,
+      "params": {
+        "text": "You're not mean. You're tired.",
+        "size": 54
+      }
+    }
+  ],
+  "thumbnail": {
+    "layout": "scene",
+    "device": "none",
+    "shade": [
+      "top"
+    ],
+    "slant": 70,
+    "words": [
+      "ALWAYS",
+      "ANGRY?"
+    ],
+    "highlight": 1,
+    "highlight_color": "#ff6a3d",
+    "title_y": 180,
+    "title_size": 150,
+    "panels": [
+      {
+        "scene": {
+          "template": "face",
+          "t": 1.0,
+          "zoom": 1.25,
+          "focus": [
+            960,
+            560
+          ],
+          "params": {
+            "expr": "grit",
+            "bg": "dark",
+            "glow": "#ff6a3d",
+            "glow_amt": 0.6,
+            "bags": 1.0
+          }
+        },
+        "label": "4 HOURS OF SLEEP",
+        "ok": false
+      },
+      {
+        "scene": {
+          "template": "hangout",
+          "t": 2.9,
+          "zoom": 1.5,
+          "focus": [
+            950,
+            560
+          ],
+          "params": {
+            "place": "street",
+            "sky": "day",
+            "hi5_at": 2.4,
+            "hero": {
+              "activity": "idle",
+              "expr": "happy",
+              "x": 780
+            },
+            "friend": {
+              "activity": "talk",
+              "expr": "happy",
+              "x": 1110
+            }
+          }
+        },
+        "label": "8 HOURS OF SLEEP",
+        "ok": true,
+        "label_color": "#7dffa8"
+      }
+    ]
+  },
+  "youtube": {
+    "title": "Why You Snap At Everyone After A Bad Night #shorts",
+    "description": "Short on sleep and suddenly everything annoys you? It's not your personality. It's your brain.\n\nIn a brain-scan study, people kept awake all night showed an emotional alarm system (the amygdala) that reacted over 60% more to upsetting images, while its connection to the part of the brain that calms it down got weaker.\n\nProtect your sleep like it protects your mood: phone away, lights off at the same time each night.\n\nResearch: Yoo, Gujar, Hu, Jolesz & Walker (2007), \"The human emotional brain without sleep\", Current Biology.\n\n#shorts #sleep #psychology #mentalhealth #anger #animation #selfimprovement",
+    "tags": [
+      "shorts",
+      "sleep deprivation",
+      "why am i so irritable",
+      "lack of sleep anger",
+      "amygdala",
+      "psychology facts",
+      "sleep tips",
+      "mental health",
+      "animated story",
+      "self improvement"
+    ],
+    "comment": "How many hours did you sleep last night? Be honest 👇"
+  }
+}

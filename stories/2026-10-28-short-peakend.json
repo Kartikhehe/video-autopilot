@@ -1,0 +1,524 @@
+{
+  "id": "2026-10-28-short-peakend",
+  "format": "short",
+  "topic": "peak-end rule: we remember experiences by their peak and their ending; people chose to repeat a longer painful trial that ended better (Kahneman et al. 1993)",
+  "cast": {
+    "hero": {
+      "skin": "#a9714a",
+      "hoodie": "#e8b84a",
+      "pants": "#2b2f3a",
+      "hair": "#16100c",
+      "hair_style": "long",
+      "shoe": "#efe9e0"
+    },
+    "friend": {
+      "skin": "#e8bf98",
+      "hoodie": "#3d6fb6",
+      "pants": "#2f3550",
+      "hair": "#2a1a10",
+      "hair_style": "cap",
+      "cap": "#c8423b",
+      "shoe": "#f2c14e"
+    },
+    "habit": {
+      "glow": "#6fd3ff"
+    }
+  },
+  "music": {
+    "key": 0,
+    "tempo": 102,
+    "seed": 331
+  },
+  "short": {
+    "hook": {
+      "text": "WHY *ONE* BAD MOMENT RUINS THE *WHOLE* DAY",
+      "until": 3.2,
+      "y": 430,
+      "size": 92
+    },
+    "highlight_color": "#8fe0ff",
+    "cover_time": 1.3
+  },
+  "scenes": [
+    {
+      "template": "hangout",
+      "duration": 3.4,
+      "mood": "groove",
+      "params": {
+        "place": "park",
+        "sky": "day",
+        "focus": [
+          940,
+          560
+        ],
+        "hero": {
+          "activity": "ball",
+          "expr": "happy",
+          "x": 780
+        },
+        "friend": {
+          "activity": "wave",
+          "expr": "happy",
+          "x": 1110
+        }
+      }
+    },
+    {
+      "template": "montage",
+      "duration": 5.0,
+      "mood": "groove",
+      "params": {
+        "shots": [
+          {
+            "dur": 1.7,
+            "template": "hangout",
+            "params": {
+              "place": "park",
+              "sky": "day",
+              "focus": [
+                940,
+                560
+              ],
+              "hero": {
+                "activity": "ball",
+                "expr": "happy",
+                "x": 780
+              },
+              "friend": {
+                "activity": "ball",
+                "expr": "happy",
+                "x": 1110
+              }
+            }
+          },
+          {
+            "dur": 1.6,
+            "template": "hangout",
+            "params": {
+              "place": "street",
+              "sky": "day",
+              "focus": [
+                940,
+                560
+              ],
+              "hero": {
+                "activity": "talk",
+                "expr": "happy",
+                "x": 780
+              },
+              "friend": {
+                "activity": "idle",
+                "expr": "happy",
+                "x": 1110,
+                "look": [
+                  -0.8,
+                  0
+                ]
+              }
+            }
+          },
+          {
+            "dur": 1.7,
+            "template": "hangout",
+            "params": {
+              "place": "rooftop",
+              "sky": "sunset",
+              "focus": [
+                940,
+                560
+              ],
+              "hero": {
+                "activity": "idle",
+                "expr": "happy",
+                "x": 780,
+                "look": [
+                  0.8,
+                  0
+                ]
+              },
+              "friend": {
+                "activity": "wave",
+                "expr": "happy",
+                "x": 1110
+              }
+            }
+          }
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          2.4,
+          "Best day of the *summer.*"
+        ],
+        [
+          2.5,
+          4.8,
+          "Six hours of *laughing.*"
+        ]
+      ]
+    },
+    {
+      "template": "hangout",
+      "duration": 5.0,
+      "mood": "tense",
+      "sfx": [
+        [
+          2.6,
+          "boom"
+        ]
+      ],
+      "params": {
+        "place": "street",
+        "sky": "dusk",
+        "focus": [
+          940,
+          560
+        ],
+        "hero": {
+          "activity": "idle",
+          "expr": [
+            [
+              0,
+              "happy"
+            ],
+            [
+              2.4,
+              "shock"
+            ]
+          ],
+          "x": 780,
+          "look": [
+            0.8,
+            0
+          ]
+        },
+        "friend": {
+          "activity": "talk",
+          "expr": [
+            [
+              0,
+              "neutral"
+            ],
+            [
+              2.4,
+              "sad"
+            ]
+          ],
+          "x": 1110,
+          "look": [
+            -0.8,
+            0
+          ]
+        },
+        "thoughts": [
+          {
+            "t": 0.6,
+            "x": 1040,
+            "y": 330,
+            "text": "you forgot. again.",
+            "to": [
+              1100,
+              470
+            ],
+            "size": 34
+          }
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          2.4,
+          "Then, the last *5* *minutes...*"
+        ],
+        [
+          2.5,
+          4.8,
+          "...one stupid *fight.*"
+        ]
+      ]
+    },
+    {
+      "template": "bedroom",
+      "duration": 3.8,
+      "mood": "sad",
+      "params": {
+        "pose": "lying_awake",
+        "light": "dark",
+        "clock": "23:10",
+        "expr": "sad",
+        "focus": [
+          800,
+          560
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          3.6,
+          "\"Worst day *ever.*\""
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 5.0,
+      "mood": "curious",
+      "params": {
+        "expr": [
+          [
+            0,
+            "sad"
+          ],
+          [
+            2.5,
+            "neutral"
+          ]
+        ],
+        "bg": "dark",
+        "glow": "#6fd3ff",
+        "glow_amt": 0.3,
+        "look": [
+          0,
+          0.2
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          2.4,
+          "Your memory doesn't *average* a day."
+        ],
+        [
+          2.5,
+          4.8,
+          "It keeps the *peak* and the *ending.*"
+        ]
+      ]
+    },
+    {
+      "template": "face",
+      "duration": 6.4,
+      "mood": "curious",
+      "params": {
+        "expr": [
+          [
+            0,
+            "neutral"
+          ],
+          [
+            2.8,
+            "wow"
+          ]
+        ],
+        "bg": "dark",
+        "glow": "#6fd3ff",
+        "glow_amt": 0.4,
+        "look": [
+          0,
+          0
+        ]
+      },
+      "captions": [
+        [
+          0.2,
+          2.7,
+          "In one experiment, most people chose to repeat..."
+        ],
+        [
+          2.8,
+          6.2,
+          "...the *longer* ice-water test. It *ended* gentler."
+        ]
+      ]
+    },
+    {
+      "template": "phone_chat",
+      "duration": 4.6,
+      "mood": "tender",
+      "params": {
+        "contact": "Leo",
+        "clock": "23:15",
+        "glow": "#ffcf8a",
+        "messages": [
+          [
+            0.4,
+            "R",
+            "sorry about the end :("
+          ],
+          [
+            1.6,
+            "L",
+            "already forgot lol"
+          ],
+          [
+            2.6,
+            "L",
+            "tomorrow?"
+          ]
+        ],
+        "typing": [
+          1.0,
+          1.6,
+          "L"
+        ]
+      },
+      "captions": [
+        [
+          3.2,
+          4.4,
+          "So she fixed the *ending.*"
+        ]
+      ]
+    },
+    {
+      "template": "hangout",
+      "duration": 4.2,
+      "mood": "triumph",
+      "params": {
+        "place": "rooftop",
+        "sky": "sunset",
+        "focus": [
+          940,
+          560
+        ],
+        "hi5_at": 1.6,
+        "hero": {
+          "activity": "idle",
+          "expr": "happy",
+          "x": 780,
+          "look": [
+            0.8,
+            0
+          ]
+        },
+        "friend": {
+          "activity": "idle",
+          "expr": "happy",
+          "x": 1110,
+          "look": [
+            -0.8,
+            0
+          ]
+        }
+      },
+      "captions": [
+        [
+          0.2,
+          4.0,
+          "Now she ends every day on a *high.*"
+        ]
+      ]
+    },
+    {
+      "template": "end_card",
+      "duration": 3.4,
+      "mood": "calm",
+      "fade_in": 0.1,
+      "params": {
+        "text": "Protect the ending.",
+        "size": 60
+      }
+    }
+  ],
+  "thumbnail": {
+    "layout": "scene",
+    "device": "none",
+    "shade": [
+      "top"
+    ],
+    "slant": 70,
+    "words": [
+      "ONE",
+      "BAD",
+      "MOMENT?"
+    ],
+    "highlight": 2,
+    "highlight_color": "#6fd3ff",
+    "title_y": 170,
+    "title_size": 130,
+    "panels": [
+      {
+        "scene": {
+          "template": "hangout",
+          "t": 3.0,
+          "zoom": 1.5,
+          "focus": [
+            950,
+            560
+          ],
+          "params": {
+            "place": "street",
+            "sky": "dusk",
+            "hero": {
+              "activity": "idle",
+              "expr": "shock",
+              "x": 780,
+              "look": [
+                0.8,
+                0
+              ]
+            },
+            "friend": {
+              "activity": "talk",
+              "expr": "sad",
+              "x": 1110,
+              "look": [
+                -0.8,
+                0
+              ]
+            }
+          }
+        },
+        "label": "BAD ENDING = BAD DAY",
+        "ok": false
+      },
+      {
+        "scene": {
+          "template": "hangout",
+          "t": 2.0,
+          "zoom": 1.5,
+          "focus": [
+            950,
+            560
+          ],
+          "params": {
+            "place": "rooftop",
+            "sky": "sunset",
+            "hi5_at": 1.6,
+            "hero": {
+              "activity": "idle",
+              "expr": "happy",
+              "x": 780
+            },
+            "friend": {
+              "activity": "idle",
+              "expr": "happy",
+              "x": 1110
+            }
+          }
+        },
+        "label": "FIX THE ENDING",
+        "ok": true,
+        "label_color": "#8fe0ff"
+      }
+    ]
+  },
+  "youtube": {
+    "title": "Why One Bad Moment Ruins Your Whole Day #shorts",
+    "description": "Six great hours, five bad minutes, and you remember it as the worst day ever? That's the peak-end rule.\n\nYour memory doesn't average an experience. It mostly keeps the most intense moment and the ending. In a classic experiment, most people chose to repeat a LONGER painful ice-water trial over a shorter one, because the longer one ended a little gentler.\n\nSo protect your endings: end hangouts, study sessions and days on a good note, and fix a bad ending when you can.\n\nResearch: Kahneman, Fredrickson, Schreiber & Redelmeier (1993), \"When More Pain Is Preferred to Less\", Psychological Science.\n\n#shorts #psychology #peakendrule #friendship #mindset #animation #selfimprovement",
+    "tags": [
+      "shorts",
+      "peak end rule",
+      "psychology facts",
+      "bad day",
+      "memory",
+      "friendship",
+      "kahneman",
+      "mindset",
+      "animated story",
+      "self improvement"
+    ],
+    "comment": "What's a day you remember only for its ending? 👇"
+  }
+}

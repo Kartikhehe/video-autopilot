@@ -659,6 +659,8 @@ def t_face(c, t, d, p, S):
     tear_at = p.get('tear_at')
     fkw = dict(bags=p.get('bags', 0.0), tear=((t - tear_at) / 3.0) if tear_at is not None and t > tear_at else None,
                pupil_glow=p.get('pupil_glow'), sweat=math.sin(t * 2) if p.get('sweat') else None)
+    hero = dict(hero, shade=dict(dir=(-0.6, -0.7), amt=0.32, spec=0.1, rim=p.get('glow') or '#ffd7a0',
+                                 rim_back=True, rim_a=0.75 if p.get('glow') else 0.35))
     r = draw_person(c, 960 + sw, 1560, 3.1, hero, expr, t, arms=((8, 4), (-8, -4)), look=tuple(p.get('look', (0, 0.3))),
                     blink=blink_at(t, 3.0, 0.7), face_kw=fkw)
     g = p.get('glow')
