@@ -100,8 +100,25 @@ def post_v(c, fi, vignette=0.5, grain=0.06):
     c.drawImageRect(_grain[(fi // 2) % len(_grain)], skia.Rect.MakeWH(OW, OH), skia.SamplingOptions(skia.FilterMode.kLinear), gp)
 
 
+COVER_SECONDS = 0.3   # the designed thumbnail is the first ~9 frames, so it can always be picked as the Short's cover
+
+
+def _cover_image(S):
+    """The Short's designed thumbnail as a skia image (rendered once per process)."""
+    if '_cover_img' not in S:
+        import os, tempfile
+        from . import thumbnail as TH
+        path = os.path.join(tempfile.gettempdir(), f"cover-{S['spec']['id']}-{os.getpid()}.png")
+        TH.make_vertical(S, path)
+        S['_cover_img'] = skia.Image.open(path)
+    return S['_cover_img']
+
+
 def render_frame(c, gt, fi, S):
     sh = S['spec'].get('short', {})
+    if sh.get('cover_frame', True) and gt < COVER_SECONDS:
+        c.drawImageRect(_cover_image(S), skia.Rect.MakeWH(OW, OH), skia.SamplingOptions(skia.FilterMode.kLinear))
+        return S['timeline'][0]
     hl_col = sh.get('highlight_color', URGE['say'])
     tl = S['timeline']
     for sc in tl:
