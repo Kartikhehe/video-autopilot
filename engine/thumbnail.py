@@ -157,8 +157,9 @@ def make_vertical(S, path):
     bl.moveTo(-50, OH + 50); bl.lineTo(-50, 1450); bl.cubicTo(300, 1390, 650, 1430, 900, 1480)
     bl.cubicTo(1000, 1500, 1060, 1490, OW + 50, 1500); bl.lineTo(OW + 50, OH + 50); bl.close()
     c.drawPath(bl, paint('#26315c')); c.drawPath(bl, paint('#46578f', stroke=10))
-    _device(c, 820, 1330, 0.95, th.get('device', 'phone'), (mix(gcol, '#ffffff', 0.55), gcol), gcol)
-    if th.get('device', 'phone') != 'laptop':
+    if th.get('device', 'phone') != 'none':
+        _device(c, 820, 1330, 0.95, th.get('device', 'phone'), (mix(gcol, '#ffffff', 0.55), gcol), gcol)
+    if th.get('device', 'phone') not in ('laptop', 'none'):
         for (x2, y2) in ((715, 1440), (935, 1390)):
             circle(c, x2, y2, 55, hero['skin'], ow=11)
     lp_ = paint(shader=rad_grad((760, 1300), 700, [(gcol, 0.5), (gcol, 0.0)]))

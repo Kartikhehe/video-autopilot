@@ -169,3 +169,16 @@ creature inside a ~600 px wide window around the focus (check the preview!).
   must be small (~46-62) to fit the narrow frame.
 - Outputs: `video.mp4`, `thumbnail.png` (1080x1920 cover with `thumbnail.badge` support), `cover_frame.png`.
   YouTube uses a frame of the Short as its cover, so the first ~1 s must look like a thumbnail.
+
+### Extra scene params (all templates)
+- `thoughts`: thought bubbles `[{"t": 0.5, "until": 4, "x": 900, "y": 400, "text": "why did i SAY that??", "to": [700, 600], "size": 34}]`
+- `pov: "friend"`: draw the scene from the friend's side (friend becomes the main character).
+- `spotlight`: `{"x": 960, "from": 0}` darkens everything except a light cone (embarrassment, being watched).
+- `hangout.extras`: background people `[{"x": 700, "expr": "neutral", "look": [0.8, 0], "look_as": {"hoodie": "#6d8f5a", "hair_style": "bun"}}]`
+- Activities also include `talk` and `write` (checklist notepad). Cast option `"stain": true` puts a coffee stain on the hoodie.
+- Phone chat `avatar` can be a dict of character overrides for a third person.
+
+### Shorts that get likes
+Best performers are **surprising, research-backed facts told as a tiny story**: a relatable moment → the
+"wait, really?" fact (name the effect, give one concrete number) → a comforting twist → a tiny action.
+Not generic advice. Cite the study in the description.

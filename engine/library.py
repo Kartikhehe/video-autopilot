@@ -87,6 +87,21 @@ def person_activity(c, x, y, t, ch, act='idle', expr='neutral', look=(0, 0), s=1
         r = draw_person(c, x, y, s, ch, expr, t, arms=((-10, 160), (10 + k, -160 + k)), **common)
         draw_sketchbook(c, x, y - 225 * s * ch.get('height', 1), s * 0.95, t, 0.4 + 0.6 * ((t * 0.15) % 1))
         return r
+    if act == 'talk':
+        k = math.sin(t * 5.5)
+        return draw_person(c, x, y, s, ch, expr, t, arms=((15 + 20 * k, -40 - 50 * max(0, k)), (-10, -5)), **common)
+    if act == 'write':
+        k = math.sin(t * 12) * 5
+        r = draw_person(c, x, y, s, ch, expr, t, arms=((-10, 160), (10 + k, -155 + k)), **common)
+        nx, ny = x, y - 225 * s * ch.get('height', 1)
+        rrect(c, nx - 60 * s, ny - 70 * s, 120 * s, 140 * s, 6 * s, '#fbf6e8', INK, ow=4 * s)
+        done = int(clamp01(kw.get('progress', (t * 0.35) % 1.2)) * 5)
+        for i in range(5):
+            ly = ny - 45 * s + i * 24 * s
+            rrect(c, nx - 46 * s, ly - 7 * s, 14 * s, 14 * s, 3 * s, '#ffffff', INK, ow=2.5 * s)
+            if i < done:
+                c.drawLine(nx - 30 * s, ly, nx + (20 + (i * 13) % 25) * s, ly, paint('#3d5a80', stroke=4 * s))
+        return r
     if act == 'camera':
         r = draw_person(c, x, y, s, ch, expr, t, arms=((-10, 160), (10, -160)), **common)
         ph = (t + (hash(ch.get('hoodie', '')) % 5) * 0.4) % 3.2
@@ -284,6 +299,11 @@ def t_hangout(c, t, d, p, S):
     hero, friend = S['hero'], S['friend']
     hp, fp = p.get('hero', {'present': True}), p.get('friend', {'present': True})
     hi = ramp(t, p['hi5_at'], p['hi5_at'] + 0.4) if 'hi5_at' in p else 0
+    for ex in p.get('extras', []):
+        ch_ = dict(KID, **ex.get('look_as', {}))
+        ch_.setdefault('hoodie_dark', mix(ch_['hoodie'], '#000000', 0.25))
+        person_activity(c, ex['x'], ex.get('y', 900), t + ex['x'] * 0.01, ch_, ex.get('activity', 'idle'),
+                        at_time(ex.get('expr', 'neutral'), t), tuple(ex.get('look', (0, 0))), s=ex.get('s', 0.95))
     if p.get('empty_seat'):
         rrect(c, 690, 830, 140, 70, 6, '#7a5236', ow=5)
     if fp.get('present', True):
@@ -292,7 +312,7 @@ def t_hangout(c, t, d, p, S):
         if hi > 0:
             draw_person(c, fx, 900, 1.0, friend, 'happy', t, arms=((10, 5), (-120 * hi - 10, -150 * hi - 5)), look=(1, 0))
         else:
-            person_activity(c, fx, 900, t, friend, act, fp.get('expr', 'happy'), fp.get('look', (-0.7, 0)))
+            person_activity(c, fx, 900, t, friend, act, at_time(fp.get('expr', 'happy'), t), fp.get('look', (-0.7, 0)))
     if hp.get('present', True):
         act = hp.get('activity', 'guitar')
         hx = hp.get('x', 760)
@@ -305,7 +325,7 @@ def t_hangout(c, t, d, p, S):
         if hi > 0:
             r = draw_person(c, hx, 900, 1.0, hero, 'happy', t, arms=((120 * hi + 10, 150 * hi + 5), (-10, -5)), look=(1, 0))
         else:
-            r = person_activity(c, hx, 900, t, hero, act, hp.get('expr', 'happy'), hp.get('look', (0.5, 0)), walk_ph=walk_ph,
+            r = person_activity(c, hx, 900, t, hero, act, at_time(hp.get('expr', 'happy'), t), hp.get('look', (0.5, 0)), walk_ph=walk_ph,
                                 face_kw=dict(bags=hp.get('bags', 0)) if hp.get('bags') else None)
         if act in ('guitar',) and not hp.get('no_notes'):
             notes(c, t, hx, 560, 5)
@@ -565,7 +585,11 @@ def t_phone_chat(c, t, d, p, S):
     typing = p.get('typing')
     seen = p.get('seen_at')
     name = p.get('contact', 'Dev')
-    avatar = S['friend'] if p.get('avatar', 'friend') == 'friend' else S.get(p.get('avatar'), S['friend'])
+    av = p.get('avatar', 'friend')
+    if isinstance(av, dict):
+        avatar = dict(KID, **av)
+    else:
+        avatar = S['friend'] if av == 'friend' else S.get(av, S['friend'])
     clock = p.get('clock', '18:02')
 
     def content(cc, tt, sw, sh):
@@ -948,8 +972,71 @@ def _cursor(c, x, y, s, a):
     c.drawPath(p, paint('#ffffff', a)); c.drawPath(p, paint('#000000', a, stroke=3))
 
 
+def draw_thoughts(c, t, thoughts):
+    """Thought bubbles: [{"t": 0.5, "until": 3, "x": 900, "y": 300, "text": "...", "to": [x, y], "size": 34}]"""
+    for th in thoughts:
+        if not (th.get('t', 0) <= t <= th.get('until', 999)):
+            continue
+        k = ease_out((t - th.get('t', 0)) / 0.25) * (1 - ramp(t, th.get('until', 999) - 0.2, th.get('until', 999)))
+        size = th.get('size', 34)
+        w = measure(th['text'], size) + 48
+        h = size * 1.6
+        x, y = th['x'], th['y']
+        c.save()
+        c.translate(x, y); c.scale(0.6 + 0.4 * k, 0.6 + 0.4 * k); c.translate(-x, -y)
+        if th.get('to'):
+            tx, ty = th['to']
+            for i, rr in enumerate((12, 8)):
+                u = 0.45 + 0.25 * i
+                circle(c, lerp(x, tx, u), lerp(y + h / 2, ty, u), rr, '#f8f5ee', INK, ow=3, a=k)
+        rrect(c, x - w / 2, y - h / 2, w, h, h / 2, th.get('fill', '#f8f5ee'), INK, ow=4, a=k)
+        text(c, th['text'], x, y + size * 0.35, size, th.get('color', '#2a2630'), a=k, shadow=False)
+        c.restore()
+
+
+def draw_spotlight(c, t, sp):
+    """Darken everything except a cone of light on x: {"x": 760, "from": 0, "dim": 0.6}"""
+    a = sp.get('dim', 0.62) * ramp(t, sp.get('from', 0), sp.get('from', 0) + 0.4)
+    if a <= 0:
+        return
+    x = sp['x']
+    cone = skia.Path()
+    cone.moveTo(x - 50, -60); cone.lineTo(x + 50, -60); cone.lineTo(x + 190, 960); cone.lineTo(x - 190, 960); cone.close()
+    full = skia.Path()
+    full.addRect(skia.Rect.MakeLTRB(-400, -400, W + 400, H + 400))
+    dark = skia.Op(full, cone, skia.PathOp.kDifference_PathOp)
+    c.drawPath(dark, paint('#05040a', a, blur=14))
+    c.drawPath(cone, paint('#fff3d6', 0.12 * a / 0.62, blur=10))
+    oval(c, x, 905, 190, 30, '#fff3d6', a=0.25 * a / 0.62)
+
+
+def _wrap(fn):
+    def run(c, t, d, p, S):
+        if S.get('short') and p.get('camera', 'pan') in ('pan', 'pan_right', 'pan_left'):
+            p = dict(p, camera='push')  # sideways pans push characters out of the 9:16 window
+        if p.get('pov') == 'friend':
+            S = dict(S, hero=S['friend'], friend=S['hero'])
+        hero_patch = p.get('hero_patch')
+        if hero_patch:
+            S = dict(S, hero=dict(S['hero'], **hero_patch))
+        fn(c, t, d, p, S)
+        if p.get('spotlight'):
+            c.save()
+            cam(c, t, d, p, 'push')
+            draw_spotlight(c, t, p['spotlight'])
+            c.restore()
+        if p.get('thoughts'):
+            c.save()
+            cam(c, t, d, p, 'push')
+            draw_thoughts(c, t, p['thoughts'])
+            c.restore()
+    run.__name__ = fn.__name__
+    return run
+
+
 TEMPLATES = {
     'card': t_card, 'hangout': t_hangout, 'bedroom': t_bedroom, 'phone_feed': t_phone_feed, 'phone_chat': t_phone_chat,
     'face': t_face, 'mirror': t_mirror, 'desk': t_desk, 'montage': t_montage, 'stage': t_stage, 'gallery': t_gallery,
     'sunrise': t_sunrise, 'end_card': t_end_card, 'outro': t_outro,
 }
+TEMPLATES = {k: _wrap(v) for k, v in TEMPLATES.items()}

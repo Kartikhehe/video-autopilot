@@ -1,0 +1,49 @@
+{
+  "id": "2026-10-28-short-todolist",
+  "format": "short",
+  "topic": "unfinished tasks loop at night (Zeigarnik effect) + writing tomorrow's to-do list helps you fall asleep faster",
+  "cast": {
+    "hero": {"skin": "#f0c9a0", "hoodie": "#5b5f97", "pants": "#2b2f3a", "hair": "#2d6b52", "hair_style": "beanie", "shoe": "#efe9e0"},
+    "habit": {"glow": "#2ee6c8"}
+  },
+  "music": {"key": 0, "tempo": 92, "seed": 71},
+  "short": {"hook": {"text": "WHY YOUR BRAIN *WON'T* *SHUT* *UP* AT NIGHT", "until": 3.2, "y": 440, "size": 96},
+            "highlight_color": "#5ff2da", "cover_time": 1.4},
+  "scenes": [
+    {"template": "bedroom", "duration": 3.4, "mood": "tense",
+     "params": {"pose": "lying_awake", "clock": "02:47", "expr": "worried", "bags": 0.8, "focus": [800, 540],
+                "thoughts": [{"t": 0.2, "x": 880, "y": 390, "text": "essay!!", "to": [700, 600], "size": 32},
+                             {"t": 0.6, "x": 960, "y": 455, "text": "reply to mom", "to": [720, 600], "size": 32},
+                             {"t": 1.0, "x": 860, "y": 520, "text": "gym??", "to": [700, 600], "size": 32},
+                             {"t": 1.4, "x": 960, "y": 585, "text": "rent due", "to": [720, 610], "size": 32}]}},
+    {"template": "bedroom", "duration": 5.0, "mood": "tense",
+     "params": {"pose": "lying_awake", "clock": "02:51", "expr": "tired", "bags": 1.0, "focus": [800, 540],
+                "urge": {"size": 70, "grow": 140, "x": 1010, "y": 760, "look": [-1, -0.2], "say_x": 960, "say_y": 260,
+                         "whispers": [[0.6, "don't forget..."], [2.8, "what about..."]]}},
+     "captions": [[0.2, 4.8, "Every night, the *same* list on repeat."]]},
+    {"template": "face", "duration": 6.0, "mood": "curious",
+     "params": {"expr": "tired", "bg": "dark", "bags": 1.0, "glow": "#2ee6c8", "glow_amt": 0.2, "look": [0, 0.3]},
+     "captions": [[0.2, 2.9, "Your brain keeps *unfinished* tasks on loop."], [3.0, 5.8, "It's called the *Zeigarnik* *effect.*"]]},
+    {"template": "face", "duration": 4.6, "mood": "numb",
+     "params": {"expr": [[0, "neutral"], [2.3, "worried"]], "bg": "dark", "bags": 1.0, "look": [0, 0.2]},
+     "captions": [[0.2, 2.2, "It's not trying to *annoy* you."], [2.3, 4.4, "It's scared you'll *forget.*"]]},
+    {"template": "bedroom", "duration": 6.0, "mood": "tender",
+     "params": {"pose": "sitting_activity", "activity": "write", "light": "lamp", "clock": "22:40", "expr": "determined", "focus": [960, 540],
+                "urge": {"size": 120, "grow": 70, "x": 1140, "y": 880, "alpha": 0.85}},
+     "captions": [[0.2, 2.9, "So one night, he tried something *simple.*"], [3.0, 5.8, "He wrote tomorrow's to-do list. *Before* bed."]]},
+    {"template": "face", "duration": 6.4, "mood": "hope",
+     "params": {"expr": [[0, "neutral"], [2.3, "wow"], [4.3, "calm"]], "bg": "warm", "look": [0, 0]},
+     "captions": [[0.2, 2.2, "In a sleep study, people who did this..."], [2.3, 4.2, "...fell asleep about *9* *minutes* *faster.*"], [4.3, 6.2, "The list holds it. So *you* don't."]]},
+    {"template": "bedroom", "duration": 4.6, "mood": "hope",
+     "params": {"pose": "asleep", "expr": "calm", "clock": "23:05", "zzz": true, "focus": [760, 540],
+                "urge": {"size": 32, "x": 900, "y": 760, "eye": 0.5, "pop_at": 1.2}},
+     "captions": [[0.3, 4.4, "Asleep by *11.*"]]},
+    {"template": "end_card", "duration": 3.6, "mood": "calm", "fade_in": 0.1, "params": {"text": "Write it down. Let it go.", "size": 54}}
+  ],
+  "thumbnail": {"words": ["WHY", "YOU", "OVERTHINK"], "highlight": 2, "highlight_color": "#2ee6c8", "glow": "#2ee6c8", "device": "none", "badge": "2:47 AM"},
+  "youtube": {
+    "title": "Why Your Brain Won't Shut Up At Night #shorts",
+    "description": "Lying awake running the same to-do list on repeat? Your brain holds onto unfinished tasks (the Zeigarnik effect). It isn't trying to annoy you. It's scared you'll forget.\n\nThe fix is weirdly simple: write tomorrow's to-do list before bed. In a sleep study, people who did this fell asleep about 9 minutes faster than people who wrote about what they'd already finished.\n\nResearch: Scullin et al. (2018), Journal of Experimental Psychology: General.\n\n#shorts #sleep #overthinking #psychology #productivity #animation #selfimprovement",
+    "tags": ["shorts", "overthinking at night", "can't sleep", "zeigarnik effect", "to do list before bed", "sleep tips", "psychology facts", "racing thoughts", "animated story", "self improvement"]
+  }
+}

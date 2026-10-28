@@ -407,6 +407,17 @@ def draw_person(c, x, y, s=1.0, ch=KID, expr='neutral', t=0.0, pose='stand', arm
     tx0, ty0 = x - 64 * s, hip_y - 160 * s
     rrect(c, tx0, ty0, 128 * s, 172 * s, 46 * s, ch['hoodie'], ow=5.5 * s)
     # pocket
+    if ch.get('stain'):
+        st = skia.Path()
+        sx, sy = x + 18 * s, hip_y - 110 * s
+        for i in range(14):
+            a_ = i / 14 * math.tau
+            rr = (30 + 9 * math.sin(i * 2.7) + 6 * math.cos(i * 4.1)) * s
+            (st.moveTo if i == 0 else st.lineTo)(sx + math.cos(a_) * rr, sy + math.sin(a_) * rr * 0.85)
+        st.close()
+        c.drawPath(st, paint('#5a3418', 0.85))
+        circle(c, sx + 40 * s, sy + 34 * s, 7 * s, '#5a3418', None, a=0.85)
+        circle(c, sx - 30 * s, sy + 40 * s, 5 * s, '#5a3418', None, a=0.85)
     pk = skia.Path()
     pk.moveTo(x - 40 * s, hip_y - 22 * s)
     pk.lineTo(x - 30 * s, hip_y - 62 * s)
