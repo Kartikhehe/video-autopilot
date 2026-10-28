@@ -293,30 +293,68 @@
     }
   ],
   "thumbnail": {
-    "layout": "scene",
-    "scene": {
-      "index": 4,
-      "t": 3.2,
-      "zoom": 1.0
-    },
-    "words": [
-      "ONE",
-      "SENTENCE"
-    ],
-    "highlight": 1,
+    "slant": -60,
     "highlight_color": "#c9a2ff",
-    "title_y": 230,
-    "title_size": 170,
-    "big": {
-      "text": "91%",
-      "x": 540,
-      "y": 1650,
-      "size": 340,
-      "color": "#5dff8f",
-      "rotate": -5,
-      "sub": "vs 38% without it",
-      "sub_size": 74
-    },
+    "words": [
+      "WANT",
+      "TO",
+      "WORK OUT?"
+    ],
+    "highlight": 2,
+    "title_y": 180,
+    "title_size": 120,
+    "shade": [
+      "top"
+    ],
+    "panels": [
+      {
+        "scene": {
+          "template": "bedroom",
+          "t": 1.0,
+          "zoom": 1.55,
+          "focus": [
+            760,
+            640
+          ],
+          "params": {
+            "pose": "lying_phone",
+            "light": "night",
+            "clock": "23:10",
+            "expr": "bored",
+            "bags": 0.6
+          }
+        },
+        "label": "\"THIS WEEK\" = 38%",
+        "ok": false
+      },
+      {
+        "scene": {
+          "template": "hangout",
+          "t": 1.5,
+          "zoom": 1.6,
+          "focus": [
+            780,
+            600
+          ],
+          "params": {
+            "place": "park",
+            "sky": "dawn",
+            "hero": {
+              "activity": "ball",
+              "x": 780,
+              "expr": "happy"
+            },
+            "friend": {
+              "present": false
+            }
+          }
+        },
+        "label": "\"MON, 7AM, PARK\" = 91%",
+        "ok": true,
+        "label_color": "#7dffa8"
+      }
+    ],
+    "layout": "scene",
     "device": "none"
   },
   "youtube": {

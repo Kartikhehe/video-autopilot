@@ -340,38 +340,79 @@
     }
   ],
   "thumbnail": {
-    "layout": "scene",
-    "scene": {
-      "index": 6,
-      "t": 3.2,
-      "zoom": 1.05,
-      "focus": [
-        900,
-        560
-      ]
-    },
-    "words": [
-      "21",
-      "DAYS?"
-    ],
-    "strike": [
-      0,
-      1
-    ],
-    "highlight": -1,
+    "slant": 70,
     "highlight_color": "#7fe0a0",
-    "title_y": 260,
-    "title_size": 210,
-    "big": {
-      "text": "66",
-      "x": 540,
-      "y": 1560,
-      "size": 420,
-      "color": "#7fe0a0",
-      "rotate": -6,
-      "sub": "DAYS. REALLY.",
-      "sub_size": 86
-    },
+    "words": [
+      "HABITS",
+      "TAKE",
+      "66",
+      "DAYS"
+    ],
+    "highlight": 2,
+    "title_y": 170,
+    "title_size": 112,
+    "shade": [
+      "top"
+    ],
+    "panels": [
+      {
+        "scene": {
+          "template": "bedroom",
+          "t": 1.2,
+          "zoom": 1.45,
+          "focus": [
+            900,
+            560
+          ],
+          "params": {
+            "pose": "sitting_activity",
+            "activity": "guitar",
+            "light": "night",
+            "expr": "tired",
+            "bags": 0.8,
+            "urge": {
+              "size": 120,
+              "x": 1100,
+              "y": 880,
+              "look": [
+                -1,
+                -0.2
+              ],
+              "say_x": 1180,
+              "say_y": 700,
+              "whispers": [
+                [
+                  0.0,
+                  "just quit."
+                ]
+              ]
+            }
+          }
+        },
+        "label": "DAY 21",
+        "ok": false
+      },
+      {
+        "scene": {
+          "template": "stage",
+          "t": 2.5,
+          "zoom": 1.5,
+          "focus": [
+            900,
+            560
+          ],
+          "params": {
+            "activity": "guitar",
+            "friend": false,
+            "cheer_at": 0.5
+          }
+        },
+        "label": "DAY 66",
+        "ok": true,
+        "label_color": "#7dffa8"
+      }
+    ],
+    "layout": "scene",
     "device": "none"
   },
   "youtube": {

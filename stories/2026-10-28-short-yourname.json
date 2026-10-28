@@ -250,31 +250,59 @@
     }
   ],
   "thumbnail": {
-    "layout": "scene",
-    "scene": {
-      "index": 3,
-      "t": 3.6,
-      "zoom": 1.2,
-      "focus": [
-        955,
-        470
-      ]
-    },
-    "words": [
-      "SAY",
-      "YOUR",
-      "OWN",
-      "NAME."
-    ],
-    "highlight": 3,
+    "slant": 60,
     "highlight_color": "#8fd3ff",
-    "title_y": 1380,
-    "title_size": 175,
-    "badge": "BEFORE YOU PANIC",
-    "badge_pos": [
-      540,
-      1780
+    "words": [
+      "NERVOUS?"
     ],
+    "highlight": 0,
+    "title_y": 190,
+    "title_size": 170,
+    "shade": [
+      "top"
+    ],
+    "panels": [
+      {
+        "scene": {
+          "template": "mirror",
+          "t": 1.0,
+          "zoom": 1.45,
+          "focus": [
+            950,
+            520
+          ],
+          "params": {
+            "expr": "worried",
+            "bags": 0.4,
+            "thoughts": []
+          }
+        },
+        "label": "\"WHY AM I SO NERVOUS?\"",
+        "ok": false,
+        "label_size": 54
+      },
+      {
+        "scene": {
+          "template": "stage",
+          "t": 3.5,
+          "zoom": 1.6,
+          "focus": [
+            960,
+            600
+          ],
+          "params": {
+            "activity": "speech",
+            "friend": false,
+            "cheer_at": 0.5
+          }
+        },
+        "label": "\"MAYA, YOU'VE GOT THIS.\"",
+        "ok": true,
+        "label_size": 54,
+        "label_color": "#8fd3ff"
+      }
+    ],
+    "layout": "scene",
     "device": "none"
   },
   "youtube": {

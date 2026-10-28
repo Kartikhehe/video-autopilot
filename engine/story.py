@@ -100,6 +100,8 @@ def validate(spec, S):
     th = spec.get('thumbnail', {})
     if not th.get('words') or len(th['words']) > 4:
         errs.append('thumbnail.words must be 1-4 words')
+    if not th.get('panels'):
+        warns.append('thumbnail: use a before/after split ("panels"), see STORY_GUIDE "Thumbnails"')
     return errs, warns
 
 

@@ -323,46 +323,94 @@
     }
   ],
   "thumbnail": {
-    "layout": "scene",
-    "scene": {
-      "index": 4,
-      "t": 4.6,
-      "zoom": 1.15,
-      "focus": [
-        870,
-        520
-      ],
-      "params": {
-        "hero": {
-          "activity": "idle",
-          "x": 790,
-          "expr": "wow",
-          "look": [
-            -0.6,
-            -0.4
-          ]
-        }
-      }
-    },
+    "slant": 70,
+    "highlight_color": "#ffd84d",
     "words": [
-      "STUCK?",
-      "DO",
-      "THIS."
+      "STUCK?"
     ],
     "highlight": 0,
-    "highlight_color": "#ffd84d",
-    "title_y": 250,
-    "title_size": 190,
-    "big": {
-      "text": "+60%",
-      "x": 540,
-      "y": 1560,
-      "size": 330,
-      "color": "#ffd84d",
-      "rotate": -6,
-      "sub": "MORE IDEAS",
-      "sub_size": 86
-    },
+    "title_y": 190,
+    "title_size": 170,
+    "shade": [
+      "top"
+    ],
+    "panels": [
+      {
+        "scene": {
+          "template": "desk",
+          "t": 1.0,
+          "zoom": 1.7,
+          "focus": [
+            900,
+            640
+          ],
+          "params": {
+            "pose": "head_down",
+            "screen": "work",
+            "light": "lamp",
+            "expr": "sad",
+            "bags": 1.0
+          }
+        },
+        "label": "SITTING",
+        "ok": false
+      },
+      {
+        "scene": {
+          "template": "hangout",
+          "t": 3.0,
+          "zoom": 1.55,
+          "focus": [
+            930,
+            560
+          ],
+          "params": {
+            "place": "park",
+            "sky": "day",
+            "hero": {
+              "activity": "idle",
+              "x": 930,
+              "expr": "wow",
+              "look": [
+                0,
+                -0.6
+              ]
+            },
+            "friend": {
+              "present": false
+            },
+            "thoughts": [
+              {
+                "t": 0.1,
+                "x": 700,
+                "y": 330,
+                "text": "OH!",
+                "to": [
+                  860,
+                  430
+                ],
+                "size": 44
+              },
+              {
+                "t": 0.1,
+                "x": 1150,
+                "y": 360,
+                "text": "what if...",
+                "to": [
+                  1000,
+                  440
+                ],
+                "size": 40
+              }
+            ]
+          }
+        },
+        "label": "WALKING = +60% IDEAS",
+        "ok": true,
+        "label_color": "#ffd84d"
+      }
+    ],
+    "layout": "scene",
     "device": "none"
   },
   "youtube": {

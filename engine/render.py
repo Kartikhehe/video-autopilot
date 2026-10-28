@@ -58,8 +58,10 @@ def thumbs(spec, S, d):
         ST.render_frame(c, ct, int(ct * FPS), S)
         surf.makeImageSnapshot().save(os.path.join(d, 'cover_frame.png'), skia.kPNG)
         return
-    TH.make(S, os.path.join(d, 'thumbnail.png'), spec.get('thumbnail', {}).get('variant', 'face'))
-    TH.make(S, os.path.join(d, 'thumbnail_alt.png'), 'split' if spec.get('thumbnail', {}).get('variant', 'face') == 'face' else 'face')
+    th = spec.get('thumbnail', {})
+    v = 'scene' if th.get('layout') == 'scene' else th.get('variant', 'face')
+    TH.make(S, os.path.join(d, 'thumbnail.png'), v)
+    TH.make(S, os.path.join(d, 'thumbnail_alt.png'), 'split' if v != 'split' else 'face')
 
 
 def preview(path):

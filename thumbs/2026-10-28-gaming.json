@@ -1,0 +1,92 @@
+{
+  "id": "2026-10-28-gaming",
+  "topic": "gaming all night (thumbnail-only spec; story file was lost)",
+  "cast": {
+    "hero": {
+      "skin": "#8d5a3b",
+      "hoodie": "#3f7d8c",
+      "pants": "#2b2f3a",
+      "hair": "#16100c",
+      "hair_style": "bun",
+      "shoe": "#efe9e0"
+    },
+    "habit": {
+      "glow": "#ff8a3d"
+    }
+  },
+  "scenes": [],
+  "thumbnail": {
+    "slant": 70,
+    "highlight_color": "#ff9a3d",
+    "words": [
+      "GAMING",
+      "TOOK",
+      "HER",
+      "ART."
+    ],
+    "highlight": 0,
+    "title_y": 150,
+    "title_size": 140,
+    "title_w": 1700,
+    "shade": [
+      "top"
+    ],
+    "panels": [
+      {
+        "scene": {
+          "template": "hangout",
+          "t": 1.5,
+          "zoom": 1.45,
+          "focus": [
+            800,
+            560
+          ],
+          "params": {
+            "place": "park",
+            "sky": "sunset",
+            "hero": {
+              "activity": "sketch",
+              "x": 800,
+              "expr": "happy"
+            },
+            "friend": {
+              "present": false
+            }
+          }
+        }
+      },
+      {
+        "scene": {
+          "template": "desk",
+          "t": 2.0,
+          "zoom": 1.45,
+          "focus": [
+            1000,
+            620
+          ],
+          "params": {
+            "pose": "staring",
+            "screen": "game",
+            "light": "dark",
+            "expr": "tired",
+            "bags": 1.0,
+            "urge": {
+              "size": 200,
+              "x": 1350,
+              "y": 980,
+              "look": [
+                -1,
+                0.2
+              ],
+              "mouth": 0.7
+            }
+          }
+        },
+        "label": "400 HOURS LATER",
+        "label_color": "#ff9a3d"
+      }
+    ],
+    "layout": "scene",
+    "device": "none"
+  }
+}

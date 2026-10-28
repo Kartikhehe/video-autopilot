@@ -49,6 +49,8 @@ python3 -m youtube.auth_check        # if NOT SET UP → still make the video, s
 Fix and re-preview if: a face is hidden or cut off, the creature covers a face, text overlaps text, a bubble or
 whisper is cut off at the edge, a caption sits on a face, a character falls outside the vertical window (short),
 or the thumbnail isn't readable small. Up to 3 rounds.
+The thumbnail must be a before/after split that a stranger understands in one second and that differs from the
+last 3 uploads' thumbnails (scene pair, colours, slant, wording). See STORY_GUIDE "Thumbnails".
 
 ## 5. Render
 `python3 -m engine.render stories/<file>.json --full`, then Read `out/<id>/final_sheet.jpg`. Duration must be

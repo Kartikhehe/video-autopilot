@@ -863,21 +863,79 @@
     }
   ],
   "thumbnail": {
-    "words": [
-      "ONE",
-      "MORE",
-      "SCROLL."
-    ],
-    "highlight": 2,
+    "slant": 50,
     "highlight_color": "#b98cff",
+    "words": [
+      "1,000",
+      "VIDEOS.",
+      "0",
+      "FRIENDS."
+    ],
+    "colors": {
+      "0": "#b98cff",
+      "2": "#ff5a6e",
+      "3": "#ff5a6e"
+    },
+    "highlight": -1,
+    "title_y": 150,
+    "title_size": 140,
+    "title_w": 1700,
+    "shade": [
+      "top"
+    ],
     "glow": "#a46bff",
-    "device": "phone",
-    "variant": "face",
-    "split_left": {
-      "place": "street",
-      "sky": "dusk",
-      "activity": "camera"
-    }
+    "panels": [
+      {
+        "scene": {
+          "template": "sunrise",
+          "t": 2.0,
+          "zoom": 1.3,
+          "focus": [
+            960,
+            600
+          ],
+          "params": {
+            "activity": "camera",
+            "friend": true
+          }
+        },
+        "label": "BEFORE",
+        "label_color": "#ffd27a"
+      },
+      {
+        "scene": {
+          "template": "bedroom",
+          "t": 4.0,
+          "zoom": 1.75,
+          "focus": [
+            860,
+            640
+          ],
+          "params": {
+            "pose": "lying_phone",
+            "light": "night",
+            "expr": "tired",
+            "bags": 1.0,
+            "phone_color": "#b98cff",
+            "urge": {
+              "size": 150,
+              "x": 1050,
+              "y": 780,
+              "look": [
+                -1,
+                -0.2
+              ],
+              "say_x": 1000,
+              "say_y": 330
+            }
+          }
+        },
+        "label": "AFTER",
+        "label_color": "#b98cff"
+      }
+    ],
+    "layout": "scene",
+    "device": "none"
   },
   "youtube": {
     "title": "Why You Can't Stop Scrolling.",

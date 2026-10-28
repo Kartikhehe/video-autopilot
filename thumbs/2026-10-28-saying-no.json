@@ -1,0 +1,150 @@
+{
+  "id": "2026-10-28-saying-no",
+  "topic": "people-pleasing (thumbnail-only spec; story file was lost)",
+  "cast": {
+    "hero": {
+      "skin": "#f0c9a0",
+      "hoodie": "#3d6fb6",
+      "pants": "#2b2f3a",
+      "hair": "#5a3a1a",
+      "hair_style": "beanie",
+      "shoe": "#efe9e0"
+    },
+    "habit": {
+      "glow": "#4ee08a"
+    }
+  },
+  "scenes": [],
+  "thumbnail": {
+    "slant": -70,
+    "highlight_color": "#4ee08a",
+    "words": [
+      "\"YES\"",
+      "COST",
+      "HIM",
+      "THIS."
+    ],
+    "highlight": 0,
+    "title_y": 150,
+    "title_size": 140,
+    "title_w": 1700,
+    "shade": [
+      "top"
+    ],
+    "panels": [
+      {
+        "scene": {
+          "template": "hangout",
+          "t": 1.5,
+          "zoom": 1.3,
+          "focus": [
+            940,
+            580
+          ],
+          "params": {
+            "place": "park",
+            "sky": "day",
+            "hero": {
+              "activity": "ball",
+              "x": 800,
+              "expr": "happy"
+            },
+            "friend": {
+              "activity": "wave",
+              "x": 1100,
+              "expr": "happy"
+            }
+          }
+        },
+        "label": "HIS GAME",
+        "label_color": "#4ee08a"
+      },
+      {
+        "scene": {
+          "template": "hangout",
+          "t": 1.0,
+          "zoom": 1.3,
+          "focus": [
+            960,
+            600
+          ],
+          "params": {
+            "place": "street",
+            "sky": "night",
+            "hero": {
+              "activity": "idle",
+              "x": 960,
+              "expr": "tired",
+              "look": [
+                0,
+                -0.3
+              ],
+              "bags": 1.0
+            },
+            "friend": {
+              "present": false
+            },
+            "extras": [
+              {
+                "x": 720,
+                "expr": "happy",
+                "look": [
+                  0.8,
+                  0
+                ],
+                "look_as": {
+                  "hoodie": "#c8423b",
+                  "hair_style": "long",
+                  "hair": "#2a1a10",
+                  "skin": "#e8bf98"
+                }
+              },
+              {
+                "x": 1200,
+                "expr": "happy",
+                "look": [
+                  -0.8,
+                  0
+                ],
+                "look_as": {
+                  "hoodie": "#e3a33e",
+                  "hair_style": "cap",
+                  "cap": "#2f6fd6",
+                  "skin": "#a9714a"
+                }
+              }
+            ],
+            "thoughts": [
+              {
+                "t": 0.1,
+                "x": 800,
+                "y": 400,
+                "text": "quick favour?",
+                "to": [
+                  740,
+                  520
+                ],
+                "size": 38
+              },
+              {
+                "t": 0.1,
+                "x": 1110,
+                "y": 450,
+                "text": "help me move?",
+                "to": [
+                  1190,
+                  540
+                ],
+                "size": 38
+              }
+            ]
+          }
+        },
+        "label": "50 FAVOURS LATER",
+        "label_color": "#ffd84d"
+      }
+    ],
+    "layout": "scene",
+    "device": "none"
+  }
+}

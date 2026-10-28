@@ -289,54 +289,67 @@
     }
   ],
   "thumbnail": {
-    "layout": "scene",
-    "scene": {
-      "index": 1,
-      "t": 4.2,
-      "zoom": 1.1,
-      "focus": [
-        930,
-        600
-      ],
-      "params": {
-        "expr": "shock",
-        "urge": {
-          "size": 190,
-          "x": 1190,
-          "y": 930,
-          "look": [
-            -1,
-            -0.4
-          ],
-          "eye": 1.0,
-          "mouth": 1.0
-        }
-      }
-    },
-    "tint": "#ff3030",
-    "words": [
-      "NEVER",
-      "SAY",
-      "\"CALM",
-      "DOWN\""
-    ],
-    "highlight": -1,
-    "colors": {
-      "2": "#ff5a4e",
-      "3": "#ff5a4e"
-    },
-    "strike": [
-      2,
-      3
-    ],
-    "title_y": 240,
-    "title_size": 150,
+    "slant": -70,
     "highlight_color": "#ff5a4e",
-    "badge": "SAY THIS INSTEAD",
-    "badge_pos": [
-      540,
-      1720
+    "words": [
+      "ANXIOUS?"
     ],
+    "highlight": 0,
+    "title_y": 190,
+    "title_size": 170,
+    "shade": [
+      "top"
+    ],
+    "panels": [
+      {
+        "scene": {
+          "template": "face",
+          "t": 1.0,
+          "zoom": 1.25,
+          "focus": [
+            960,
+            560
+          ],
+          "params": {
+            "expr": "shock",
+            "bg": "dark",
+            "glow": "#ff3b30",
+            "glow_amt": 0.55,
+            "pulse": true,
+            "sweat": true,
+            "look": [
+              0,
+              0
+            ]
+          }
+        },
+        "label": "\"CALM DOWN!\"",
+        "ok": false
+      },
+      {
+        "scene": {
+          "template": "face",
+          "t": 1.0,
+          "zoom": 1.25,
+          "focus": [
+            960,
+            560
+          ],
+          "params": {
+            "expr": "calm",
+            "bg": "warm",
+            "look": [
+              0,
+              0
+            ]
+          }
+        },
+        "label": "\"I FEEL ANXIOUS.\"",
+        "ok": true,
+        "label_color": "#7dffa8"
+      }
+    ],
+    "layout": "scene",
     "device": "none"
   },
   "youtube": {

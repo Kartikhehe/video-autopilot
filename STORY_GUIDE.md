@@ -80,9 +80,8 @@ something, etc. The reframe line is the heart of the video.
 - Title: 3-7 words, a statement with a sting, ends with a period. Pattern ideas: "X Is Stealing Your Life.",
   "What X Really Takes From You.", "He Fed It Every Night.", "The X Trap.", "Why You Can't Stop X."
   Never clickbait anything the video doesn't deliver.
-- Thumbnail words: 2-4 words, ALL CAPS, one highlighted word (the habit or the cost), different from the title.
-  `variant: face` = exhausted face + glowing device + the creature (best default). `split` = happy life vs.
-  trapped (good for "what it took" angles). Use the habit's glow colour as `highlight_color` and `glow`.
+- Thumbnail: a **before/after split** built from the story's own scenes (see "Thumbnails" below). The old fixed
+  `variant: face` template made every video look the same, so don't use it.
 - Description: 1 hook line, 2-3 sentences of what the story is about and the reframe, 2-3 practical tips,
   the closing aphorism, a soft CTA, 5-7 hashtags. Chapters are added automatically from scenes with `chapter`.
 
@@ -171,19 +170,33 @@ creature inside a ~600 px wide window around the focus (check the preview!).
 - Outputs: `video.mp4`, `thumbnail.png` (1080x1920 cover with `thumbnail.badge` support), `cover_frame.png`.
   YouTube uses a frame of the Short as its cover, so the first ~1 s must look like a thumbnail.
 
-### Shorts thumbnails (`"layout": "scene"`, preferred)
-Build the cover from a real frame of the Short so every thumbnail looks different, then add one loud element:
+### Thumbnails (long videos and Shorts): before/after split
+The best performer ("Lust Is Stealing Your Life.") is a split: the happy life on one side, the trapped version on the
+other, big faces, and 3 words ("LUST TOOK THIS."). A viewer gets it in one second. Build every thumbnail that way,
+from two real scenes of the story (left/right for 16:9, top/bottom for Shorts):
 ```json
-"thumbnail": {"layout": "scene", "scene": {"index": 4, "t": 3.2, "zoom": 1.1, "focus": [870, 520], "params": {"expr": "shock"}},
-  "words": ["STUCK?", "DO", "THIS."], "highlight": 0, "highlight_color": "#ffd84d", "title_y": 250, "title_size": 190,
-  "big": {"text": "+60%", "y": 1560, "size": 330, "color": "#ffd84d", "sub": "MORE IDEAS"},
-  "strike": [], "colors": {"2": "#ff5a4e"}, "tint": "#ff3030", "badge": "SAY THIS INSTEAD", "badge_pos": [540, 1720],
-  "arrows": [[x0, y0, x1, y1]], "rings": [[x, y, r]]}
+"thumbnail": {"layout": "scene", "slant": 70, "words": ["STUCK?"], "highlight": 0, "highlight_color": "#ffd84d",
+  "title_y": 190, "title_size": 170, "shade": ["top"],
+  "panels": [
+    {"scene": {"template": "desk", "t": 1.0, "zoom": 1.7, "focus": [900, 640], "params": {"pose": "head_down", "expr": "sad"}},
+     "label": "SITTING", "ok": false},
+    {"scene": {"index": 4, "t": 3.0, "zoom": 1.55, "focus": [930, 560], "params": {"hero": {"expr": "wow"}}},
+     "label": "WALKING = +60% IDEAS", "ok": true, "label_color": "#ffd84d"}]}
 ```
-- Pick the most expressive frame (shock/wow face, the creature at its biggest, the payoff) and override params to sharpen it.
-- One hook: a giant number (`big`), a crossed-out myth (`strike`), or a short command. Max ~4 title words.
-- Vary it every Short: different scene type, colour, text position (top vs. bottom) and hook style from the last 3 uploads.
-- Keep the face visible: nothing big on top of it. Check `thumbnail_small.png`; it must read at phone size.
+- `scene` is a scene of the story (`index`) or any template (`template` + `params`), with `params` overrides to
+  sharpen the emotion. `ok` adds a green tick / red cross to the label; leave it out for BEFORE/AFTER-style labels.
+- **Easy to understand first**: the title names the viewer's problem or the cost in plain words (1-4 words:
+  "ANXIOUS?", "GAMING TOOK HER ART.", "1,000 VIDEOS. 0 FRIENDS."). Labels say what each side is. A number only
+  goes next to what it measures ("\"THIS WEEK\" = 38%"), never alone.
+- **Attention**: big faces with opposite emotions (happy/calm vs. exhausted/shocked), warm vs. cold colours, the
+  creature at its biggest on the bad side.
+- **Never the same twice**: vs. the last 3 uploads change the scene pair, colours, slant direction (`slant` +/-),
+  title wording and layout. Don't reuse a title pattern ("X TOOK THIS.") two videos in a row.
+- Faces stay visible: no text or creature on a face. Check `thumbnail_small.png`; it must read at phone size.
+- Other overlays still work when they help: `big` (giant number/text, `\n` for lines), `strike`, `badge`,
+  `arrows`, `rings`, `tint`. Coordinates are output pixels (1920x1080 or 1080x1920).
+- Re-render only the thumbnail: `python3 -m engine.rethumb stories/<file>.json`. Replace one on YouTube:
+  `python3 -m youtube.set_thumbnail <video_id> out/<id>/thumbnail.png`.
 
 ### Extra scene params (all templates)
 - `thoughts`: thought bubbles `[{"t": 0.5, "until": 4, "x": 900, "y": 400, "text": "why did i SAY that??", "to": [700, 600], "size": 34}]`
