@@ -106,7 +106,7 @@ something, etc. The reframe line is the heart of the video.
                 "fade_in": 0.35, "fade_out": 0.35 } ],
   "thumbnail": {"words": ["WHAT","LUST","TAKES."], "highlight": 1, "highlight_color": "#ff3d6e",
                 "glow": "#ff8a3d", "device": "phone|laptop", "variant": "face|split",
-                "split_left": {"place": "rooftop|park|street", "sky": "sunset|day|dusk|night", "activity": "guitar|sketch|ball|book|idle"}},
+                "split_left": {"place": "rooftop|park|street", "sky": "sunset|day|dusk|night", "activity": "guitar|sketch|camera|ball|book|idle"}},
   "youtube": {"title": "...", "description": "...", "tags": ["...", "..."]}
 }
 ```
@@ -132,8 +132,8 @@ Size guide: 30 = cute & harmless, 100 = present, 170 = dominant, 240 = towering.
 | template | what it shows | key params |
 |---|---|---|
 | `card` | text on black | `text`, `size` (72), `sub` |
-| `hangout` | hero + friend outside | `place` rooftop/park/street, `sky` sunset/day/dusk/night/dawn, `poster` ["OPEN MIC","SAT 8PM"] (rooftop), `hero` {present, activity guitar/guitar_still/sketch/ball/book/phone/idle/wave/walk_in, expr, look, x, distracted, distracted_at, bags, from_x, walk_dur}, `friend` {present, activity drum/idle/ball/wave/sit, expr, look, x}, `empty_seat`, `hi5_at`, `urge` (use `on_shoulder`), `camera` |
-| `bedroom` | hero's room | `pose` lying_phone/lying_awake/asleep/reach/sitting/sitting_phone/sitting_activity/standing/empty, `activity` (for sitting_activity: guitar/sketch/book), `light` night/dark/lamp/dawn/day, `clock`, `expr`, `look`, `bags`, `sweat`, `zzz`, `phone_color`, `phone_far`, `drawer_glow` (number or [t0,t1]), `reach_at`, `put_away` [t0,t1], `corner_item` guitar/ball/sketchbook/shoes, `corner_glow`, `label`, `blanket`, `urge` |
+| `hangout` | hero + friend outside | `place` rooftop/park/street, `sky` sunset/day/dusk/night/dawn, `poster` ["OPEN MIC","SAT 8PM"] (rooftop), `hero` {present, activity guitar/guitar_still/sketch/camera/ball/book/phone/idle/wave/walk_in, expr, look, x, distracted, distracted_at, bags, from_x, walk_dur}, `friend` {present, activity drum/idle/ball/wave/sit, expr, look, x}, `empty_seat`, `hi5_at`, `urge` (use `on_shoulder`), `camera` |
+| `bedroom` | hero's room | `pose` lying_phone/lying_awake/asleep/reach/sitting/sitting_phone/sitting_activity/standing/empty, `activity` (for sitting_activity: guitar/sketch/camera/book), `light` night/dark/lamp/dawn/day, `clock`, `expr`, `look`, `bags`, `sweat`, `zzz`, `phone_color`, `phone_far`, `drawer_glow` (number or [t0,t1]), `reach_at`, `put_away` [t0,t1], `corner_item` guitar/ball/sketchbook/camera/shoes, `corner_glow`, `label`, `blanket`, `urge` |
 | `phone_feed` | close-up, scrolling a feed, one tile glows, thumb taps | `tap_at`, `clock`, `special_color` |
 | `phone_chat` | close-up chat with the friend | `contact`, `clock`, `messages` [[t,"L"/"R","text"]] (L = friend, R = hero), `typing` [t0,t1,"L"/"R"], `seen_at`, `glow` |
 | `face` | big close-up for emotion | `expr`, `bg` bedroom/dark/warm, `glow` colour, `glow_amt`, `pulse`, `sparkles`, `pupil_glow`, `bags`, `tear_at`, `sweat`, `look` |

@@ -513,6 +513,19 @@ def draw_ball(c, x, y, r, rot=0.0):
     c.restore()
 
 
+def draw_camera(c, x, y, s=1.0, flash=0.0, body='#2a2b33'):
+    """Small photo camera centred at (x, y). flash 0..1 fires the flash glow."""
+    rrect(c, x - 62 * s, y - 38 * s, 124 * s, 76 * s, 12 * s, body, INK, ow=4 * s)
+    rrect(c, x - 40 * s, y - 52 * s, 34 * s, 18 * s, 4 * s, body, INK, ow=3.5 * s)
+    circle(c, x + 6 * s, y + 2 * s, 28 * s, '#3a3b45', INK, ow=4 * s)
+    circle(c, x + 6 * s, y + 2 * s, 16 * s, '#1b2a44', None)
+    circle(c, x + 11 * s, y - 4 * s, 5 * s, '#9fc2ff', None, a=0.8)
+    rrect(c, x + 34 * s, y - 30 * s, 18 * s, 10 * s, 3 * s, '#e8e8ee', None)
+    if flash > 0:
+        glow(c, x + 43 * s, y - 25 * s, 260 * s * flash, '#ffffff', 0.7 * flash)
+        circle(c, x + 43 * s, y - 25 * s, 10 * s, '#ffffff', None, a=flash)
+
+
 def draw_sketchbook(c, x, y, s=1.0, t=0.0, progress=0.6):
     c.save()
     c.rotate(-8, x, y)

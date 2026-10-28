@@ -84,11 +84,16 @@ def person_activity(c, x, y, t, ch, act='idle', expr='neutral', look=(0, 0), s=1
         return draw_person(c, x, y, s, ch, expr, t, prop='guitar', arms=strum_arms(t, False), **common)
     if act == 'sketch':
         k = math.sin(t * 9) * 6
-        r = draw_person(c, x, y, s, ch, expr, t, arms=((-35, -95), (35 + k, -110 + k)), **common)
+        r = draw_person(c, x, y, s, ch, expr, t, arms=((-10, 160), (10 + k, -160 + k)), **common)
         draw_sketchbook(c, x, y - 225 * s * ch.get('height', 1), s * 0.95, t, 0.4 + 0.6 * ((t * 0.15) % 1))
         return r
+    if act == 'camera':
+        r = draw_person(c, x, y, s, ch, expr, t, arms=((-10, 160), (10, -160)), **common)
+        ph = (t + (hash(ch.get('hoodie', '')) % 5) * 0.4) % 3.2
+        draw_camera(c, x, y - 232 * s * ch.get('height', 1), 0.95 * s, max(0.0, 1 - ph / 0.35) if ph < 0.35 else 0.0)
+        return r
     if act == 'book':
-        r = draw_person(c, x, y, s, ch, expr, t, arms=((-30, -100), (30, 100)), **common)
+        r = draw_person(c, x, y, s, ch, expr, t, arms=((-10, 160), (10, -160)), **common)
         rrect(c, x - 70 * s, y - 280 * s, 140 * s, 95 * s, 6 * s, '#c8423b', INK, ow=4 * s)
         c.drawLine(x, y - 280 * s, x, y - 185 * s, paint(INK, stroke=3 * s))
         return r
@@ -101,8 +106,8 @@ def person_activity(c, x, y, t, ch, act='idle', expr='neutral', look=(0, 0), s=1
         draw_ball(c, x + 70 * s, bh, 32 * s, t * 200)
         return r
     if act == 'phone':
-        r = draw_person(c, x, y, s, ch, expr, t, arms=((-30, -120), (30, 120)), **common)
-        draw_phone_small(c, x, y - 250 * s * ch.get('height', 1), 1.0 * s, kw.get('phone_col', '#8fb4ff'), 1.0, 0)
+        r = draw_person(c, x, y, s, ch, expr, t, arms=((-8, 168), (8, -168)), **common)
+        draw_phone_small(c, x, y - 218 * s * ch.get('height', 1), 1.0 * s, kw.get('phone_col', '#8fb4ff'), 1.0, 0)
         return r
     if act == 'wave':
         w = math.sin(t * 7)
@@ -351,6 +356,9 @@ def t_bedroom(c, t, d, p, S):
             draw_guitar(c, 1560, 760, 1.0, -72)
         elif it == 'ball':
             draw_ball(c, 1560, 845, 36)
+        elif it == 'camera':
+            rrect(c, 1490, 846, 150, 34, 6, '#4a3a30', INK, ow=4)
+            draw_camera(c, 1565, 806, 0.9)
         elif it == 'sketchbook':
             draw_sketchbook(c, 1560, 840, 1.0)
         elif it == 'shoes':
