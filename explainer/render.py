@@ -135,7 +135,10 @@ def _worker(path, f0, f1, out):
     surf = skia.Surface(A.W, A.H)
     c = surf.getCanvas()
     for fi in range(f0, f1):
-        render_frame(c, fi / A.FPS, shots)
+        try:
+            render_frame(c, fi / A.FPS, shots)
+        except Exception as e:      # never lose a whole segment to one bad frame; keep the previous frame
+            print(f'frame {fi} failed: {e!r}', file=sys.stderr, flush=True)
         p.stdin.write(surf.makeImageSnapshot().tobytes())
     p.stdin.close()
     p.wait()

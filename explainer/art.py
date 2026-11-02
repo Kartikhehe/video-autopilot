@@ -580,6 +580,8 @@ def person(c, x, y, s=1.0, look_as=None, expr='neutral', look=(0, 0), t=0.0, arm
 # ------------------------------------------------------------------ objects
 def glass(c, x, y, s=1.0, fill=0.8, liquid='#cfe8b0', t=0.0, garnish=True, a=1.0, glowc=None):
     """Tall tumbler of thandai/bhang. x,y = bottom centre."""
+    if s <= 0.01 or a <= 0:
+        return
     if glowc:
         glow(c, x, y - 130 * s, 260 * s, glowc, 0.35 * a)
     top_w, bot_w, h = 92 * s, 70 * s, 250 * s
