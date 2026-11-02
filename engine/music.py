@@ -418,7 +418,39 @@ class Score:
         return [c for c in out if c['end'] - c['start'] > 0.5]
 
     # ------------------------------------------------ mix
-    def render(self, timeline, path, short=False):
+    def mix_voice(self, music_bed, sfx_bed, voice, n_end, fi, fo):
+        """Narration on top: music ducks smoothly under the voice and breathes back up in the gaps."""
+        from scipy.signal import resample_poly
+        v = resample_poly(voice.astype(np.float64), 147, 80)[:len(music_bed)]
+        v = np.pad(v, (0, max(0, len(music_bed) - len(v))))
+        # voice envelope with attack 60 ms / release 450 ms (one-pole followers, vectorised by blocks)
+        blk = 441
+        nb = len(v) // blk + 1
+        lev = np.array([np.sqrt(np.mean(v[i * blk:(i + 1) * blk] ** 2)) if i * blk < len(v) else 0 for i in range(nb)])
+        on = (lev > 0.012).astype(float)
+        env = np.zeros(nb)
+        a_up, a_dn = 1 - np.exp(-1 / 6), 1 - np.exp(-1 / 45)
+        for i in range(1, nb):
+            k = a_up if on[i] > env[i - 1] else a_dn
+            env[i] = env[i - 1] + (on[i] - env[i - 1]) * k
+        env = np.interp(np.arange(len(v)) / blk, np.arange(nb), env)
+        mb = hp(music_bed.T, 28).T
+        mb /= np.sqrt(np.mean(mb[:n_end] ** 2)) + 1e-9
+        sb = sfx_bed
+        sb_rms = np.sqrt(np.mean(sb[:n_end] ** 2)) + 1e-9
+        bed = mb * 10 ** (-24 / 20) * (1 - 0.62 * env)[:, None]            # -24 dBFS bed, ~-32 under the voice
+        bed += sb * (10 ** (-27 / 20) / sb_rms) * (1 - 0.4 * env)[:, None]  # effects a little quieter under the voice
+        bed[:fi] *= np.linspace(0, 1, fi)[:, None]
+        bed[n_end - fo:n_end] *= np.linspace(1, 0, fo)[:, None] ** 1.5
+        vv = v * 10 ** (-17 / 20) / 0.1                                      # voice RMS ~ -17 dBFS while speaking
+        mix = bed + np.stack([vv, vv], 1)
+        mix = mix[:n_end]
+        pk = np.max(np.abs(mix))
+        if pk > 0.97:                                                         # soft-knee safety limiter
+            mix = np.where(np.abs(mix) > 0.8, np.sign(mix) * (0.8 + 0.17 * np.tanh((np.abs(mix) - 0.8) / 0.17)), mix)
+        return mix
+
+    def render(self, timeline, path, short=False, voice=None):
         xf = min(self.bar, 2.6)                  # crossfade length between sections
         music = np.zeros_like(self.music)
         cues = self.cues(timeline, short)
@@ -449,15 +481,19 @@ class Score:
         ir /= np.sqrt((ir ** 2).sum(0))
         wet = np.stack([fftconvolve(self.music[:, k], ir[:, k])[:self.N] for k in range(2)], 1)
         swet = np.stack([fftconvolve(self.sfx[:, k], ir[:, k])[:self.N] for k in range(2)], 1)
-        mix = self.music * 0.8 + wet * 0.55 + self.sfx * 0.9 + swet * 0.2
-        mix = hp(mix.T, 28).T
+        music_bed = self.music * 0.8 + wet * 0.55
+        sfx_bed = self.sfx * 0.9 + swet * 0.2
         n_end = int(self.total * SR)
         fi, fo = int(0.6 * SR), int(3.0 * SR)
-        mix[:fi] *= np.linspace(0, 1, fi)[:, None]
-        mix[n_end - fo:n_end] *= np.linspace(1, 0, fo)[:, None] ** 1.5
-        mix = mix[:n_end]
-        mix /= np.max(np.abs(mix)) + 1e-9
-        mix = np.tanh(mix * 1.6) / np.tanh(1.6) * 0.89
+        if voice is None:
+            mix = hp((music_bed + sfx_bed).T, 28).T
+            mix[:fi] *= np.linspace(0, 1, fi)[:, None]
+            mix[n_end - fo:n_end] *= np.linspace(1, 0, fo)[:, None] ** 1.5
+            mix = mix[:n_end]
+            mix /= np.max(np.abs(mix)) + 1e-9
+            mix = np.tanh(mix * 1.6) / np.tanh(1.6) * 0.89
+        else:
+            mix = self.mix_voice(music_bed, sfx_bed, voice, n_end, fi, fo)
         with wave.open(path, 'wb') as w:
             w.setnchannels(2)
             w.setsampwidth(2)

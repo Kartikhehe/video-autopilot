@@ -97,9 +97,9 @@ def make(S, path, variant='face'):
         draw_urge(c, 1580, 860, 330, 2.0, eye=1.0, look=(-0.8, 0.5), mouth=1.0)
         rrect(c, 980, 820, 700, 200, 100, '#7d8099', '#9a9db6', ow=10)
         hx, hy, r = 1250, 700, 210
-        circle(c, hx, hy, r, hero['skin'], ow=11)
-        exhausted_face(c, hx, hy, r, (0.6, 0.6), gcol)
-        draw_hair(c, hx, hy, r, hero, 0.5)
+        from .rig2 import draw_head2
+        draw_head2(c, hx, hy - r * 0.05, r * 1.02, dict(hero), th.get('expr', 'exhausted'), 0.5, look=(0.6, 0.6),
+                   pupil_glow=gcol, neck=True)
         bl = skia.Path()
         bl.moveTo(900, H + 50); bl.lineTo(900, 960); bl.cubicTo(1200, 900, 1500, 940, W + 50, 960); bl.lineTo(W + 50, H + 50); bl.close()
         c.drawPath(bl, paint('#26315c')); c.drawPath(bl, paint('#46578f', stroke=10))
@@ -117,9 +117,9 @@ def make(S, path, variant='face'):
         draw_urge(c, 1450, 1080, 430, 2.0, eye=1.0, look=(-0.6, 0.6), mouth=1.0)
         rrect(c, 150, 760, 1050, 260, 130, '#7d8099', '#9a9db6', ow=10)
         hx, hy, r = 680, 610, 300
-        circle(c, hx, hy, r, hero['skin'], ow=14)
-        exhausted_face(c, hx, hy, r, (1, 0.35), gcol)
-        draw_hair(c, hx, hy, r, hero, 0.5)
+        from .rig2 import draw_head2
+        draw_head2(c, hx, hy - r * 0.05, r * 1.02, dict(hero), th.get('expr', 'exhausted'), 0.5, look=(1, 0.35),
+                   pupil_glow=gcol, neck=True)
         bl = skia.Path()
         bl.moveTo(-50, H + 50); bl.lineTo(-50, 930); bl.cubicTo(400, 860, 800, 900, 1100, 950)
         bl.cubicTo(1400, 1000, 1700, 960, W + 50, 990); bl.lineTo(W + 50, H + 50); bl.close()
@@ -157,9 +157,9 @@ def make_vertical(S, path):
     draw_urge(c, 760, 1430, 430, 2.0, eye=1.0, look=(-0.7, 0.5), mouth=1.0)
     rrect(c, -80, 1290, 900, 260, 130, '#7d8099', '#9a9db6', ow=10)
     hx, hy, r = 430, 1130, 290
-    circle(c, hx, hy, r, hero['skin'], ow=14)
-    exhausted_face(c, hx, hy, r, (1, 0.35), gcol)
-    draw_hair(c, hx, hy, r, hero, 0.5)
+    from .rig2 import draw_head2
+    draw_head2(c, hx, hy - r * 0.05, r * 1.02, dict(hero), th.get('expr', 'exhausted'), 0.5, look=(1, 0.35),
+               pupil_glow=gcol, neck=True)
     bl = skia.Path()
     bl.moveTo(-50, OH + 50); bl.lineTo(-50, 1450); bl.cubicTo(300, 1390, 650, 1430, 900, 1480)
     bl.cubicTo(1000, 1500, 1060, 1490, OW + 50, 1500); bl.lineTo(OW + 50, OH + 50); bl.close()
@@ -504,7 +504,7 @@ def make_hero(S, path, OW=W, OH=H):
         c.drawRect(skia.Rect.MakeWH(OW, OH), paint(shader=rad_grad((OW * 0.6, OH * 0.45), OW * 0.8, ['#1c1830', '#0a0912', '#040407'])))
         rrect(c, hx - 560, hy + 40, 600, 300, 140, '#1b2038', '#2b3254', ow=10)       # pillow
         rrect(c, hx + 120, hy - 20, 520, 280, 140, '#171b30', '#262c48', ow=10)
-    feet_y = hy + 328 * sc * hero.get('height', 1.0)
+    feet_y = hy + 406 * sc * hero.get('height', 1.0)
     r = draw_person(c, hx, feet_y, sc, hero, th.get('expr', 'tired'), 1.0, look=tuple(th.get('look', (0.6, 0.4))),
                     arms=((6, 3), (-6, -3)), face_kw=dict(bags=th.get('bags', 1.0), pupil_glow=th.get('eye_glow')))
     hcx, hcy = r['head']

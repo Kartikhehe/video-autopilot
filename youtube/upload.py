@@ -9,6 +9,8 @@ import argparse, datetime, json, os, sys
 from zoneinfo import ZoneInfo
 from . import api
 
+COMMENT_MARK = '💬'
+
 
 def publish_at_iso(hhmm, tz):
     now = datetime.datetime.now(ZoneInfo(tz))
@@ -37,6 +39,8 @@ def main():
             sys.exit(f'missing {k}: {meta[k]}')
     if any(h.get('id') == meta['id'] and h.get('video_id') for h in api.load_history()):
         sys.exit(f"already uploaded: {meta['id']}")
+    if meta.get('comment') and COMMENT_MARK not in meta['description']:
+        meta['description'] = meta['description'].rstrip() + '\n\n' + COMMENT_MARK + ' ' + meta['comment']
     if a.publish_at and meta.get('privacyStatus', 'public') == 'public':
         meta['publishAt'] = publish_at_iso(a.publish_at, tz)
     if a.dry_run or not api.have_creds():
@@ -59,7 +63,10 @@ def main():
         thumb_ok = False
         print('WARNING thumbnail:', e)
     comment_ok = None
-    if meta.get('comment'):
+    if meta.get('comment') and meta.get('publishAt'):
+        comment_ok = 'pending'   # YouTube refuses comments on scheduled videos; youtube.comments posts it once public
+        print('comment: will be posted after the video goes public (python3 -m youtube.comments)')
+    elif meta.get('comment'):
         try:
             api.post_comment(vid, meta['comment'])
             comment_ok = True

@@ -165,3 +165,19 @@ routine"*. Or manage it at **claude.ai/code → Routines**.
 | Videos upload as **Private (locked)** | Google may restrict brand-new API projects until a free audit. Search "YouTube API Services Audit and Quota Extension Form", submit it for this project ("personal tool uploading my own animated videos to my own channel"). Meanwhile set `"privacy": "private"` and publish each video in YouTube Studio with one click. |
 | "invalid_grant" later | The token was revoked or the app was in Testing. Do B4, then repeat B6 and update `YT_REFRESH_TOKEN`. |
 | Thumbnail not applied | Do B7 (phone verification). |
+
+---
+
+## Fix: automatic first comment (2 minutes)
+Runs report "MISSING post the first comment" because the refresh token was created without the comment permission.
+1. Open **developers.google.com/oauthplayground** (gear icon: your own Client ID + secret, as in B6).
+2. In "Input your own scopes" paste all three:
+   `https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/youtube.force-ssl`
+3. Authorize APIs → channel Gmail → Continue → **Exchange authorization code for tokens** → copy the new Refresh token.
+4. Environment settings → replace `YT_REFRESH_TOKEN` with the new value → Save.
+Comments are then posted automatically once each scheduled video goes public (every run checks recent videos).
+
+## Fix: let scheduled runs save to GitHub
+Scheduled runs start without the repository attached, so they can't push their story files. Open the environment
+settings → **Repositories** → add **Kartikhehe/video-autopilot** → Save. (Until then runs still work; they read
+their memory from the YouTube channel instead.)

@@ -69,7 +69,7 @@ def validate(spec, S):
             caps += 1
             if b > d + 0.01 or a < 0:
                 errs.append(f'{name}: caption "{s}" outside scene (0-{d})')
-            if b - a < (1.2 if S.get('short') else 1.8):
+            if b - a < (0.25 if sc.get('_words') else (1.2 if S.get('short') else 1.8)):
                 warns.append(f'{name}: caption "{s}" only {b - a:.1f}s on screen')
             if a < prev_end:
                 errs.append(f'{name}: caption "{s}" overlaps previous caption')
@@ -108,6 +108,7 @@ def validate(spec, S):
 def draw_caption(c, s, a, t_local):
     if a <= 0:
         return
+    s = s.replace('*', '')
     rise = (1 - ramp(t_local, 0, 0.35)) * 8
     w = measure(s, 50)
     c.drawRoundRect(skia.Rect.MakeXYWH(W / 2 - w / 2 - 30, 962 + rise, w + 60, 70), 30, 30, paint('#000000', 0.55 * a, blur=18))
