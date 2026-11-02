@@ -12,3 +12,6 @@ Animated self-improvement channel: long story videos (16:9) and Shorts (9:16).
 - Memory: `history/<id>.json` (one per upload) + `stories/`. Commit both after each run (pull --rebase before push).
 - Settings: `config.json` (timezone, privacy, outro text, channel name, length limits).
 - Every story must be original. Never copy another creator's plot, scenes or lines. Never invent statistics.
+- **Second channel format (narrated explainers, 5-6 min, neon flat-vector style)**: everything lives in `explainer/`
+  (see explainer/README.md). Episodes are `explainer/episodes/<slug>.json`; render with `python3 -m explainer.render`.
+  Channel name/banner/avatar options: `explainer/BRANDING.md`.

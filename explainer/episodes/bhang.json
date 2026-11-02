@@ -1,0 +1,463 @@
+{
+  "id": "bhang-brain",
+  "title": "What Bhang Really Does To Your Brain",
+  "voice": "af_heart",
+  "speed": 1.0,
+  "music": {
+    "seed": 7,
+    "root": 50
+  },
+  "shots": [
+    {
+      "scene": "holi",
+      "say": [
+        "Every spring, the streets of India explode into colour."
+      ],
+      "p": {},
+      "mood": "bright"
+    },
+    {
+      "scene": "holi",
+      "say": [
+        "And somewhere in the middle of the chaos, people pass around a cold, sweet, pale green milkshake."
+      ],
+      "p": {
+        "glass": true
+      },
+      "mood": "bright"
+    },
+    {
+      "scene": "glass",
+      "say": [
+        "It's called bhang.",
+        "It's made from the cannabis plant.",
+        "And it has been part of these festivals for thousands of years."
+      ],
+      "mood": "bright"
+    },
+    {
+      "scene": "shop",
+      "say": [
+        "In some states, you can even buy it from a government-licensed shop."
+      ],
+      "mood": "bright"
+    },
+    {
+      "scene": "party_clock",
+      "say": [
+        "But bhang has a strange reputation.",
+        "People drink a glass, feel nothing, have another one...",
+        "and then, hours later, the world turns into a very weird place."
+      ],
+      "mood": "weird"
+    },
+    {
+      "scene": "brain_q",
+      "say": [
+        "So what is bhang actually doing inside your body?",
+        "And why does it ambush people so badly?"
+      ],
+      "mood": "weird",
+      "pad": 0.4
+    },
+    {
+      "scene": "title",
+      "say": [],
+      "hold": 3.6,
+      "mood": "hit",
+      "chapter": "Intro"
+    },
+    {
+      "scene": "chapter",
+      "say": [],
+      "hold": 2.6,
+      "p": {
+        "n": 1,
+        "text": "One Plant, Two Lives",
+        "c1": "#2bd17e",
+        "c2": "#0f5c66"
+      },
+      "mood": "wonder",
+      "chapter": "One Plant, Two Lives"
+    },
+    {
+      "scene": "plant",
+      "say": [
+        "Let's start with the plant.",
+        "Cannabis lives two very different lives in India.",
+        "Its sticky flowers and resin become ganja and charas, which are illegal under India's narcotics law of 1985."
+      ],
+      "p": {
+        "focus": "flowers"
+      },
+      "mood": "wonder"
+    },
+    {
+      "scene": "plant",
+      "say": [
+        "But its leaves and seeds are left out of that law's definition.",
+        "Ground into a paste, they become bhang, and each state decides what to do with it."
+      ],
+      "p": {
+        "focus": "leaves"
+      },
+      "mood": "wonder"
+    },
+    {
+      "scene": "scroll",
+      "say": [
+        "This loophole has very old roots.",
+        "The Atharva Veda, an ancient Hindu text, names bhang as one of five sacred plants that relieve anxiety."
+      ],
+      "mood": "wonder"
+    },
+    {
+      "scene": "commission",
+      "say": [
+        "In the 1890s, the British were worried enough to set up a commission.",
+        "It heard from more than a thousand witnesses and concluded that moderate use caused no serious harm.",
+        "Historians today aren't so sure it was neutral."
+      ],
+      "mood": "wonder",
+      "cite": "Indian Hemp Drugs Commission, 1893-94"
+    },
+    {
+      "scene": "people_grid",
+      "say": [
+        "Today, according to a national survey, around two crore Indians use bhang in a single year.",
+        "So what actually happens when it goes down?"
+      ],
+      "p": {
+        "big": "~2 CRORE",
+        "sub": "Indians used bhang in the past year",
+        "color": "#2bd17e"
+      },
+      "mood": "wonder",
+      "cite": "Magnitude of Substance Use in India, AIIMS-NDDTC / MoSJE 2019"
+    },
+    {
+      "scene": "chapter",
+      "say": [],
+      "hold": 2.6,
+      "p": {
+        "n": 2,
+        "text": "The Slow Road",
+        "c1": "#ffb02e",
+        "c2": "#7a2a8c"
+      },
+      "mood": "groove",
+      "chapter": "The Slow Road"
+    },
+    {
+      "scene": "body",
+      "say": [
+        "When cannabis is smoked, it reaches the brain within minutes.",
+        "Drinking it is a completely different trip."
+      ],
+      "p": {
+        "stage": "compare"
+      },
+      "mood": "groove"
+    },
+    {
+      "scene": "body",
+      "say": [
+        "Bhang first has to make it through your stomach and your gut.",
+        "Then it gets shipped to the liver, your body's chemical processing plant."
+      ],
+      "p": {
+        "stage": "gut"
+      },
+      "mood": "groove"
+    },
+    {
+      "scene": "liver",
+      "say": [
+        "The liver grabs the active ingredient, THC, and converts a lot of it into a new molecule:",
+        "eleven hydroxy THC, which is very good at getting into the brain."
+      ],
+      "mood": "groove"
+    },
+    {
+      "scene": "timeline",
+      "say": [
+        "All of this takes time.",
+        "In one lab study, the effects of eaten cannabis only showed up after thirty to sixty minutes,",
+        "and peaked around one and a half to three hours after eating it."
+      ],
+      "mood": "groove",
+      "cite": "Schlienz et al., Drug & Alcohol Dependence, 2020"
+    },
+    {
+      "scene": "second_glass",
+      "say": [
+        "And here is the trap.",
+        "Forty minutes in, you feel... nothing.",
+        "So you have another glass.",
+        "And then, both glasses arrive at once."
+      ],
+      "mood": "weird"
+    },
+    {
+      "scene": "chapter",
+      "say": [],
+      "hold": 2.6,
+      "p": {
+        "n": 3,
+        "text": "Your Brain's Own Bhang",
+        "c1": "#ff4fa3",
+        "c2": "#3a1d8f"
+      },
+      "mood": "wonder",
+      "chapter": "Your Brain's Own Bhang"
+    },
+    {
+      "scene": "neurons",
+      "say": [
+        "To understand what THC does next, we need to talk about something your brain has been doing all along."
+      ],
+      "mood": "wonder"
+    },
+    {
+      "scene": "lab",
+      "say": [
+        "In 1992, scientists in Jerusalem found a molecule, made by the brain itself, that fits the same receptor as THC.",
+        "They named it after the Sanskrit word for bliss, ananda.",
+        "Anandamide."
+      ],
+      "mood": "wonder",
+      "cite": "Devane et al., Science, 1992"
+    },
+    {
+      "scene": "synapse",
+      "say": [
+        "Anandamide works like a brake.",
+        "When a neuron is shouting too loudly, the neuron receiving the message releases a little anandamide.",
+        "It travels backwards, and tells the shouting neuron: calm down."
+      ],
+      "mood": "wonder"
+    },
+    {
+      "scene": "synapse",
+      "say": [
+        "The receptor it docks to, called C B one, is one of the most common receptors in your brain.",
+        "THC is a clumsy copy of anandamide.",
+        "Instead of gently tapping a few brakes, it slams thousands of them at once, for hours."
+      ],
+      "p": {
+        "flood": true
+      },
+      "mood": "weird"
+    },
+    {
+      "scene": "brain_map",
+      "say": [
+        "Where those brakes sit decides what you feel.",
+        "In the hippocampus, your memory hub, new memories struggle to form.",
+        "That's why people lose track of what they were saying, halfway through a sentence."
+      ],
+      "p": {
+        "region": "hippo"
+      },
+      "mood": "weird"
+    },
+    {
+      "scene": "brain_map",
+      "say": [
+        "In the cerebellum and basal ganglia, which help coordinate movement, you get clumsy and slow."
+      ],
+      "p": {
+        "region": "cereb"
+      },
+      "mood": "weird"
+    },
+    {
+      "scene": "brain_map",
+      "say": [
+        "In the amygdala, part of your fear system, it can feel calming at first...",
+        "or flip into anxiety and paranoia."
+      ],
+      "p": {
+        "region": "amyg"
+      },
+      "mood": "weird"
+    },
+    {
+      "scene": "mouse",
+      "say": [
+        "And then there's the hunger.",
+        "In one study, mice given THC smelled food more intensely, and ate a lot more.",
+        "So the munchies might partly be your nose."
+      ],
+      "mood": "groove",
+      "cite": "Soria-Gomez et al., Nature Neuroscience, 2014"
+    },
+    {
+      "scene": "brain_map",
+      "say": [
+        "But there's one place with very few of these receptors:",
+        "the brainstem areas that keep you breathing.",
+        "That's one big reason cannabis doesn't shut down breathing the way opioids can."
+      ],
+      "p": {
+        "region": "stem"
+      },
+      "mood": "wonder"
+    },
+    {
+      "scene": "chapter",
+      "say": [],
+      "hold": 2.6,
+      "p": {
+        "n": 4,
+        "text": "The Dark Side",
+        "c1": "#7b5cff",
+        "c2": "#140a33"
+      },
+      "mood": "dark",
+      "chapter": "The Dark Side"
+    },
+    {
+      "scene": "panic",
+      "say": [
+        "Not deadly is not the same as harmless.",
+        "Too much THC can mean a racing heart, nausea, panic, and the terrifying feeling that something is very wrong.",
+        "Every festival season, there are stories of people ending up in hospital, scared and confused."
+      ],
+      "mood": "dark"
+    },
+    {
+      "scene": "loop",
+      "say": [
+        "And used regularly, it can stop being a festival thing.",
+        "According to the C D C, about three in ten people who use cannabis have some level of cannabis use disorder.",
+        "The risk is higher for people who start young and use often."
+      ],
+      "mood": "dark",
+      "cite": "CDC, Cannabis and Public Health"
+    },
+    {
+      "scene": "teen",
+      "say": [
+        "That matters, because a teenage brain is still wiring itself.",
+        "And the brain's own cannabis system helps guide that wiring."
+      ],
+      "mood": "dark"
+    },
+    {
+      "scene": "bars",
+      "say": [
+        "A large European study found that people who used cannabis every day had about three times the odds of a psychotic disorder,",
+        "and close to five times, if it was high potency cannabis.",
+        "That's a link, not a final verdict. But it's a strong one."
+      ],
+      "mood": "dark",
+      "cite": "Di Forti et al., The Lancet Psychiatry, 2019"
+    },
+    {
+      "scene": "people_grid",
+      "say": [
+        "In India, the same national survey estimated that around seventy two lakh people need help for cannabis problems."
+      ],
+      "p": {
+        "big": "~72 LAKH",
+        "sub": "people in India need help for cannabis use",
+        "color": "#9d7bff",
+        "dark": true
+      },
+      "mood": "dark",
+      "cite": "Magnitude of Substance Use in India, AIIMS-NDDTC / MoSJE 2019"
+    },
+    {
+      "scene": "chapter",
+      "say": [],
+      "hold": 2.6,
+      "p": {
+        "n": 5,
+        "text": "So, Is Bhang Bad?",
+        "c1": "#ffd23f",
+        "c2": "#d1366b"
+      },
+      "mood": "warm",
+      "chapter": "So, Is Bhang Bad?"
+    },
+    {
+      "scene": "balance",
+      "say": [
+        "So, is bhang evil? Not exactly.",
+        "An adult sharing one glass at Holi is a very different story from someone who needs it every day just to feel okay."
+      ],
+      "mood": "warm"
+    },
+    {
+      "scene": "hidden",
+      "say": [
+        "The real danger is how sneaky it is.",
+        "You can't see how strong a glass is, and your body only tells you, hours too late."
+      ],
+      "mood": "warm"
+    },
+    {
+      "scene": "bliss",
+      "say": [
+        "And maybe the most fascinating part is this.",
+        "The bliss was never really in the plant.",
+        "Your brain has been making its own bliss molecule all along.",
+        "Bhang just borrows the keys."
+      ],
+      "mood": "warm",
+      "pad": 1.0
+    },
+    {
+      "scene": "end_card",
+      "say": [],
+      "hold": 3.8,
+      "p": {
+        "text": "The bliss was always yours."
+      },
+      "mood": "warm"
+    },
+    {
+      "scene": "outro",
+      "say": [
+        "If this made your brain light up a little, subscribe.",
+        "We'll keep exploring the strange things happening inside you."
+      ],
+      "mood": "warm",
+      "pad": 2.5
+    }
+  ],
+  "youtube": {
+    "title": "What Bhang Really Does To Your Brain",
+    "description": "Every Holi, millions of people drink bhang. But what is it actually doing inside your body, and why does it hit hours after the first glass?\n\nIn this animated explainer:\n• Why bhang is legal in many states while ganja and charas are not\n• The slow road from your stomach to your liver to your brain (and the 'second glass' trap)\n• The bliss molecule your brain already makes: anandamide, named after the Sanskrit word ānanda\n• What THC does to memory, movement, fear and hunger\n• The real risks: overdoing it, cannabis use disorder, teenage brains and psychosis\n\nThe bliss was always yours. Bhang just borrows the keys.\n\nThis video is for education only. It is not medical advice and does not encourage drug use. If you or someone you know is struggling with drug use in India, the free national de-addiction helpline is 14446.\n\n📚 Sources\n• NDPS Act 1985, Sec. 2(iii) (definition of cannabis; leaves and seeds excluded)\n• Indian Hemp Drugs Commission Report, 1893-94\n• Magnitude of Substance Use in India, NDDTC-AIIMS for MoSJE, 2019\n• Schlienz et al. (2020), Pharmacodynamic dose effects of oral cannabis ingestion, Drug and Alcohol Dependence 211:107969\n• Devane et al. (1992), Isolation and structure of a brain constituent that binds to the cannabinoid receptor, Science 258:1946-49\n• Soria-Gómez et al. (2014), The endocannabinoid system controls food intake via olfactory processes, Nature Neuroscience\n• CDC, Cannabis and Public Health: Understanding your risk for cannabis use disorder\n• Di Forti et al. (2019), The contribution of cannabis use to variation in the incidence of psychotic disorder across Europe (EU-GEI), The Lancet Psychiatry\n\n#bhang #holi #cannabis #brain #science #animation #explained",
+    "tags": [
+      "bhang",
+      "what bhang does to your brain",
+      "bhang holi",
+      "bhang effects",
+      "cannabis brain",
+      "thc",
+      "anandamide",
+      "endocannabinoid system",
+      "edibles",
+      "holi",
+      "science animation",
+      "explained",
+      "india",
+      "ganja",
+      "brain science"
+    ],
+    "comment": "Have you ever had the 'I feel nothing... let me have another glass' moment at Holi? Tell us what happened 👇😅"
+  },
+  "tts_fix": {
+    "bhang": "bhaang",
+    "Bhang": "Bhaang",
+    "1890s": "eighteen nineties",
+    "ananda.": "aanunda.",
+    "ganja": "gaanja",
+    "lakh": "laakh"
+  },
+  "ipa_fix": {
+    "ˈænɐndˌæmaɪd": "ɐnˈændəmˌaɪd"
+  }
+}
