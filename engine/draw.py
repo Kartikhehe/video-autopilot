@@ -880,3 +880,10 @@ def post(c, frame_idx, vignette=0.55, grain=0.06):
         gp.setBlendMode(skia.BlendMode.kOverlay)
         c.drawImageRect(_grain[(frame_idx // 2) % len(_grain)], skia.Rect.MakeWH(W, H),
                         skia.SamplingOptions(skia.FilterMode.kLinear), gp)
+
+
+# ---------------------------------------------------------------- character style
+# v2 = semi-realistic rig (engine/rig2.py): human proportions, cel shading, detailed faces and clothes.
+# It replaces the old bean characters everywhere (same arguments). Set VA_STYLE=v1 to get the old look back.
+if os.environ.get('VA_STYLE', 'v2') == 'v2':
+    from .rig2 import draw_person, draw_head, draw_hair  # noqa: E402,F811

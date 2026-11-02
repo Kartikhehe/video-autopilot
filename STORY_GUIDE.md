@@ -129,6 +129,33 @@ Most sounds are automatic (chat blips, taps, whispers, cheers, drawer, ticks on 
   "whispers": [[0.8, "just once."], [3.0, "come on..."]], "say_x": 1400, "say_y": 300, "on_shoulder": true}`
 Size guide: 30 = cute & harmless, 100 = present, 170 = dominant, 240 = towering. Keep whispers to 2-4 words.
 
+## Narration (every video has a voice now)
+Every scene gets a `"narration"` string. The engine voices it with Kokoro (`"voice": {"name": "af_heart"}` by default),
+checks every sentence with speech recognition and stretches the scene to fit the voice, then writes the captions
+from it (karaoke word highlight in Shorts). Write it like a friend telling a story, not like an essay:
+- **Shorts (100-130 words):** line 1 says the hook out loud as a question or bold claim ("Ever rested all day...
+  and still felt exhausted?"). Then a tiny story in 2nd/3rd person, ONE named fact with a number, the reframe in
+  one sentence, a tiny action, and a 3-5 word closer that loops back to the hook.
+- **Long (300-380 words, ~2:30):** a third-person storyteller ("Arjun had..."). One idea per sentence, 5-15 words
+  each. Leave music-only breathing room after the big emotional lines (`"tail": 2` on that scene).
+- Spoken style: contractions, short sentences, "..." for a pause. Write numbers the way they should be said
+  ("twenty minutes", "sixty-five percent"). No emoji, hashtags, URLs or symbols in narration.
+- Names: add them to `"voice": {"names": ["Arjun"]}` so the voice check doesn't flag them.
+- On-screen text (`card`, `end_card`, `stat`) should match what the voice says at that moment.
+- Other voices if a story needs one: `af_bella` (warm female), `am_michael` / `am_fenrir` (male), `bm_george`
+  (British male). Keep one narrator per video; change it rarely so the channel has a recognisable voice.
+
+## Art style (rig v2, semi-realistic 2D)
+Characters have human proportions, cel shading, ink outlines, detailed faces, hands and clothes (like
+hand-drawn Indian/Asian YouTube story animation, not chibi). Cast keys: `skin, hoodie` (top colour), `pants,
+shoe, hair, hair_style` (spiky|messy|short|bun|long|curly|cap|beanie), `top` (tshirt|shirt|hoodie),
+`bottom` (pants|shorts), `female`, `glasses`, `earrings`, `cap`, `eyes`, `stain`, `height`.
+Expressions: neutral happy smile grin laugh bored wow dazed tired exhausted sad worried determined angry rage
+shout shock calm asleep grit embarrassed smug.
+- Favour **medium and close shots**: `face` for emotion, `hangout` with `"camera": {"z0": 1.14, "z1": 1.22}`,
+  `stat` for the key fact. Avoid more than two `face` scenes in a row.
+- Bright, saturated clothing colours on darker or pastel backgrounds so characters pop.
+
 ## Templates
 | template | what it shows | key params |
 |---|---|---|
@@ -143,6 +170,7 @@ Size guide: 30 = cute & harmless, 100 = present, 170 = dominant, 240 = towering.
 | `montage` | hard cuts between shots | `shots` [{"dur": 4, "template": "bedroom", "label": "DAY 1", "params": {...}}] (durations are scaled to fit) |
 | `stage` | payoff performance with crowd | `activity` guitar/speech, `friend` (bool), `cheer_at`, `banner` |
 | `gallery` | payoff for creative work | `plaque`, `friend`, `cheer_at` |
+| `stat` | the key fact as a big animated number (comic burst, battery icon), the hero reacting | `value`, `suffix`, `sign`, `unit` (text under the number), `icon` battery, `color`, `bg`, `expr`, `activity` |
 | `sunrise` | quiet win, hero (+friend) watching sunrise | `activity` sit, `friend` |
 | `end_card` | closing aphorism with a sprout | `text`, `sprout`, `size` |
 | `outro` | added automatically (like/share/subscribe, from config.json) | none |

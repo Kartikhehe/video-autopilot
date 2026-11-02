@@ -1,0 +1,647 @@
+{
+  "id": "2026-11-02-textfirst",
+  "topic": "always being the one who texts first; people underestimate how much reaching out is appreciated (Liu et al., 2022/2023)",
+  "voice": {
+    "name": "af_heart",
+    "speed": 0.95,
+    "names": [
+      "Arjun",
+      "Kabir"
+    ],
+    "gap": 0.42
+  },
+  "cast": {
+    "hero": {
+      "skin": "#c68a5e",
+      "hoodie": "#bfe0f2",
+      "pants": "#2b2f3a",
+      "hair": "#1a120d",
+      "hair_style": "short",
+      "top": "shirt",
+      "shoe": "#f4f4f4"
+    },
+    "friend": {
+      "skin": "#f0cfae",
+      "hoodie": "#4caf7a",
+      "pants": "#3a4a8a",
+      "hair": "#4a2a18",
+      "hair_style": "curly",
+      "top": "tshirt",
+      "shoe": "#f2c14e",
+      "height": 1.03
+    },
+    "habit": {
+      "glow": "#7fb0ff"
+    }
+  },
+  "music": {
+    "key": -1,
+    "tempo": 92,
+    "seed": 97
+  },
+  "scenes": [
+    {
+      "template": "card",
+      "duration": 4,
+      "mood": "calm",
+      "chapter": "Always first",
+      "fade_in": 0,
+      "narration": "Have you ever noticed... that you're always the one who texts first?",
+      "params": {
+        "text": "Nobody texts me first."
+      }
+    },
+    {
+      "template": "hangout",
+      "duration": 9,
+      "mood": "warm",
+      "narration": "Arjun had. He was the glue of his friend group. Birthday plans, chai runs, random memes at midnight. If the group chat was alive, it was because of him.",
+      "params": {
+        "place": "rooftop",
+        "sky": "sunset",
+        "camera": {
+          "z0": 1.14,
+          "z1": 1.22,
+          "fx": 0.5,
+          "fy": 0.5
+        },
+        "scale": 1.2,
+        "hero": {
+          "activity": "talk",
+          "expr": "laugh",
+          "x": 820,
+          "look": [
+            0.8,
+            0
+          ]
+        },
+        "friend": {
+          "activity": "idle",
+          "expr": [
+            [
+              0,
+              "smile"
+            ],
+            [
+              3,
+              "laugh"
+            ]
+          ],
+          "x": 1080,
+          "look": [
+            -0.8,
+            0
+          ]
+        },
+        "extras": [
+          {
+            "x": 560,
+            "expr": "grin",
+            "look": [
+              1,
+              0
+            ],
+            "s": 1.1,
+            "look_as": {
+              "hoodie": "#e05a4f",
+              "hair_style": "spiky",
+              "hair": "#26262b",
+              "skin": "#e9b48a",
+              "top": "tshirt"
+            }
+          },
+          {
+            "x": 1340,
+            "expr": "happy",
+            "look": [
+              -1,
+              0
+            ],
+            "s": 1.1,
+            "look_as": {
+              "hoodie": "#8a6fc0",
+              "hair_style": "long",
+              "hair": "#3a2210",
+              "skin": "#d9a77b",
+              "female": true,
+              "top": "tshirt"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "template": "desk",
+      "duration": 8,
+      "mood": "warm",
+      "narration": "He remembered every birthday. He planned the trips, booked the tables, and sent the good morning messages that nobody really answered.",
+      "params": {
+        "pose": "typing",
+        "screen": "work",
+        "expr": [
+          [
+            0,
+            "smile"
+          ],
+          [
+            5.5,
+            "neutral"
+          ]
+        ],
+        "light": "lamp",
+        "note": "SAM'S BDAY",
+        "thoughts": [
+          {
+            "t": 1.0,
+            "until": 5.0,
+            "x": 1460,
+            "y": 560,
+            "text": "good morning guys!",
+            "to": [
+              1000,
+              600
+            ],
+            "size": 32
+          }
+        ]
+      }
+    },
+    {
+      "template": "phone_chat",
+      "duration": 6,
+      "mood": "curious",
+      "narration": "One night, he sent his usual message. Movie this weekend? Then he waited.",
+      "params": {
+        "contact": "the boys",
+        "clock": "22:41",
+        "avatar": {
+          "skin": "#e9b48a",
+          "hoodie": "#e05a4f",
+          "hair": "#26262b",
+          "hair_style": "spiky"
+        },
+        "messages": [
+          [
+            0.8,
+            "R",
+            "movie this weekend?"
+          ],
+          [
+            2.2,
+            "R",
+            "who's free saturday"
+          ]
+        ],
+        "seen_at": 4.5
+      }
+    },
+    {
+      "template": "bedroom",
+      "duration": 8,
+      "mood": "tense",
+      "narration": "Seen by four people. Nobody replied. And a quiet thought crept in. What if I just stopped? Would anyone even notice?",
+      "params": {
+        "pose": "lying_awake",
+        "clock": "00:40",
+        "expr": [
+          [
+            0,
+            "sad"
+          ],
+          [
+            4,
+            "worried"
+          ]
+        ],
+        "bags": 0.4,
+        "thoughts": [
+          {
+            "t": 0.4,
+            "until": 3.6,
+            "x": 900,
+            "y": 420,
+            "text": "seen by 4...",
+            "to": [
+              700,
+              600
+            ]
+          },
+          {
+            "t": 4.2,
+            "x": 920,
+            "y": 400,
+            "text": "would anyone notice?",
+            "to": [
+              700,
+              600
+            ]
+          }
+        ],
+        "urge": {
+          "size": 50,
+          "grow": 110,
+          "appear_at": 3.0,
+          "x": 1150,
+          "y": 760,
+          "look": [
+            -1,
+            0
+          ],
+          "say_x": 1300,
+          "say_y": 330,
+          "whispers": [
+            [
+              5.0,
+              "they don't care."
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "template": "montage",
+      "duration": 10,
+      "mood": "tense",
+      "chapter": "The silence",
+      "narration": "So he went silent. Day one. Day three. A whole week. His phone stayed quiet, and that silence started to feel like an answer.",
+      "params": {
+        "shots": [
+          {
+            "dur": 3.3,
+            "template": "bedroom",
+            "label": "DAY 1",
+            "params": {
+              "pose": "sitting_phone",
+              "clock": "19:10",
+              "expr": "sad",
+              "phone_color": "#cfd8ff",
+              "urge": {
+                "size": 90,
+                "x": 1300,
+                "y": 880
+              }
+            }
+          },
+          {
+            "dur": 3.3,
+            "template": "bedroom",
+            "label": "DAY 3",
+            "params": {
+              "pose": "lying_phone",
+              "clock": "23:55",
+              "expr": "tired",
+              "bags": 0.6,
+              "phone_color": "#cfd8ff",
+              "urge": {
+                "size": 140,
+                "x": 1150,
+                "y": 760
+              }
+            }
+          },
+          {
+            "dur": 3.4,
+            "template": "bedroom",
+            "label": "DAY 7",
+            "params": {
+              "pose": "lying_awake",
+              "light": "dark",
+              "clock": "01:30",
+              "expr": "sad",
+              "bags": 1.0,
+              "urge": {
+                "size": 190,
+                "x": 1150,
+                "y": 760,
+                "mouth": 0.4
+              }
+            }
+          }
+        ]
+      },
+      "tail": 1.2
+    },
+    {
+      "template": "mirror",
+      "duration": 8,
+      "mood": "dark",
+      "narration": "Maybe this was the truth. Maybe he was just the friend nobody misses.",
+      "params": {
+        "expr": "sad",
+        "urge_at": 2.5,
+        "wall": "#3e4a62",
+        "bags": 0.8
+      },
+      "tail": 2.2
+    },
+    {
+      "template": "card",
+      "duration": 2.6,
+      "mood": "silence",
+      "fade_in": 0,
+      "fade_out": 0,
+      "narration": "Meanwhile.",
+      "params": {
+        "text": "Meanwhile...",
+        "size": 64
+      }
+    },
+    {
+      "template": "bedroom",
+      "duration": 8,
+      "mood": "tender",
+      "chapter": "The other side",
+      "fade_in": 0,
+      "narration": "Across town, Kabir was staring at his own phone. He typed, hey bro, you good? He looked at it for a while. And then he deleted it.",
+      "params": {
+        "pov": "friend",
+        "pose": "lying_phone",
+        "clock": "01:30",
+        "expr": [
+          [
+            0,
+            "worried"
+          ],
+          [
+            5,
+            "sad"
+          ]
+        ],
+        "phone_color": "#cfd8ff",
+        "thoughts": [
+          {
+            "t": 0.6,
+            "x": 900,
+            "y": 420,
+            "text": "arjun's been so quiet...",
+            "to": [
+              700,
+              600
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "template": "phone_chat",
+      "duration": 7,
+      "mood": "numb",
+      "narration": "He thought, he's probably busy. I don't want to bother him. And four other friends were thinking the exact same thing.",
+      "params": {
+        "pov": "friend",
+        "contact": "Arjun",
+        "clock": "01:31",
+        "avatar": {
+          "skin": "#c68a5e",
+          "hoodie": "#bfe0f2",
+          "hair": "#1a120d",
+          "hair_style": "short"
+        },
+        "typing": [
+          0.4,
+          4.5,
+          "R"
+        ]
+      }
+    },
+    {
+      "template": "stat",
+      "duration": 9,
+      "mood": "curious",
+      "chapter": "The science",
+      "narration": "Psychologists actually tested this. Across thirteen experiments with more than five thousand people, the ones reaching out kept underestimating how much a simple message would mean.",
+      "params": {
+        "value": 5900,
+        "suffix": "+",
+        "unit": "people, 13 experiments",
+        "color": "#9fd0ff",
+        "bg": "#23395f",
+        "expr": [
+          [
+            0,
+            "neutral"
+          ],
+          [
+            5,
+            "wow"
+          ]
+        ]
+      }
+    },
+    {
+      "template": "face",
+      "duration": 8,
+      "mood": "hope",
+      "narration": "And it gets better. The more unexpected the message, the more it means. A random hey from an old friend can quietly make someone's whole week.",
+      "params": {
+        "expr": [
+          [
+            0,
+            "neutral"
+          ],
+          [
+            3.0,
+            "wow"
+          ],
+          [
+            6.0,
+            "smile"
+          ]
+        ],
+        "bg": "warm",
+        "camera": "push"
+      }
+    },
+    {
+      "template": "face",
+      "duration": 8,
+      "mood": "hope",
+      "narration": "The quieter you get, the more everyone assumes you want space. Everybody is waiting for someone else to go first.",
+      "params": {
+        "expr": [
+          [
+            0,
+            "sad"
+          ],
+          [
+            4.5,
+            "smile"
+          ]
+        ],
+        "bg": "dark",
+        "glow": "#7fb0ff",
+        "glow_amt": 0.12
+      }
+    },
+    {
+      "template": "phone_chat",
+      "duration": 9,
+      "mood": "hope",
+      "chapter": "Going first",
+      "narration": "So Arjun sent one more message. Hey. I miss you guys. Chai tomorrow? This time, the replies came in seconds.",
+      "params": {
+        "contact": "the boys",
+        "clock": "18:02",
+        "glow": "#ffcf8a",
+        "avatar": {
+          "skin": "#e9b48a",
+          "hoodie": "#e05a4f",
+          "hair": "#26262b",
+          "hair_style": "spiky"
+        },
+        "messages": [
+          [
+            2.2,
+            "R",
+            "hey. i miss you guys."
+          ],
+          [
+            3.4,
+            "R",
+            "chai tomorrow?"
+          ],
+          [
+            6.2,
+            "L",
+            "FINALLY"
+          ],
+          [
+            6.8,
+            "L",
+            "we thought you were mad at us"
+          ],
+          [
+            7.6,
+            "L",
+            "5pm. usual spot."
+          ]
+        ],
+        "typing": [
+          4.6,
+          6.2,
+          "L"
+        ]
+      }
+    },
+    {
+      "template": "hangout",
+      "duration": 10,
+      "mood": "triumph",
+      "narration": "Nobody had forgotten him. They had all just been waiting for somebody to go first.",
+      "params": {
+        "place": "rooftop",
+        "sky": "sunset",
+        "camera": {
+          "z0": 1.14,
+          "z1": 1.22,
+          "fx": 0.5,
+          "fy": 0.5
+        },
+        "scale": 1.2,
+        "hi5_at": 3.0,
+        "hero": {
+          "activity": "idle",
+          "expr": "laugh",
+          "x": 860,
+          "look": [
+            0.8,
+            0
+          ]
+        },
+        "friend": {
+          "activity": "idle",
+          "expr": "laugh",
+          "x": 1080,
+          "look": [
+            -0.8,
+            0
+          ]
+        },
+        "extras": [
+          {
+            "x": 580,
+            "expr": "laugh",
+            "look": [
+              1,
+              0
+            ],
+            "s": 1.1,
+            "look_as": {
+              "hoodie": "#e05a4f",
+              "hair_style": "spiky",
+              "hair": "#26262b",
+              "skin": "#e9b48a",
+              "top": "tshirt"
+            }
+          },
+          {
+            "x": 1340,
+            "expr": "grin",
+            "look": [
+              -1,
+              0
+            ],
+            "s": 1.1,
+            "look_as": {
+              "hoodie": "#8a6fc0",
+              "hair_style": "long",
+              "hair": "#3a2210",
+              "skin": "#d9a77b",
+              "female": true,
+              "top": "tshirt"
+            }
+          }
+        ]
+      },
+      "tail": 2.8
+    },
+    {
+      "template": "end_card",
+      "duration": 9,
+      "mood": "calm",
+      "fade_in": 0,
+      "narration": "So if someone crossed your mind today, text them first. It means more than you think.",
+      "params": {
+        "text": "Text them first.",
+        "size": 84
+      },
+      "tail": 3.0
+    }
+  ],
+  "thumbnail": {
+    "layout": "hero",
+    "bg": "bedroom",
+    "expr": "sad",
+    "prop": "phone",
+    "glow": "#7fb0ff",
+    "look": [
+      0.7,
+      0.4
+    ],
+    "words": [
+      "NOBODY",
+      "TEXTS",
+      "FIRST?"
+    ],
+    "highlight": 0,
+    "highlight_color": "#7fb0ff",
+    "device": "phone"
+  },
+  "youtube": {
+    "title": "Nobody Texts You First. Here's Why.",
+    "description": "Always the one who texts first? Then one day you stop... and the silence feels like an answer.\n\nBut here's what's really happening: everyone is waiting for someone else to go first. Psychologists ran 13 experiments with more than 5,900 people and found that people consistently underestimate how much a simple \"thinking of you\" message is appreciated. The more unexpected it is, the more it means.\n\nIf someone crossed your mind today, text them first.\n\nResearch: Liu, Rim, Min & Min, \"The Surprise of Reaching Out: Appreciated More Than We Think\", Journal of Personality and Social Psychology (2023).\n\n#friendship #loneliness #psychology #selfimprovement #animation #storytime",
+    "tags": [
+      "nobody texts me first",
+      "always texting first",
+      "friendship",
+      "loneliness",
+      "psychology facts",
+      "reaching out",
+      "animated story",
+      "self improvement",
+      "lonely",
+      "friends"
+    ],
+    "comment": "Who's the friend you've been meaning to text? Go do it, then come back and tell me 👇"
+  }
+}

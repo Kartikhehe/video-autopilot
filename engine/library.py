@@ -88,34 +88,35 @@ def person_activity(c, x, y, t, ch, act='idle', expr='neutral', look=(0, 0), s=1
         return draw_person(c, x, y, s, ch, expr, t, prop='guitar', arms=strum_arms(t, False), **common)
     if act == 'sketch':
         k = math.sin(t * 9) * 6
-        r = draw_person(c, x, y, s, ch, expr, t, arms=((-10, 160), (10 + k, -160 + k)), **common)
-        draw_sketchbook(c, x, y - 225 * s * ch.get('height', 1), s * 0.95, t, 0.4 + 0.6 * ((t * 0.15) % 1))
-        return r
+        pr = lambda cc, hs: draw_sketchbook(cc, (hs[0][0] + hs[1][0]) / 2, (hs[0][1] + hs[1][1]) / 2 + 10 * s, s * 1.05, t,
+                                            0.4 + 0.6 * ((t * 0.15) % 1))
+        return draw_person(c, x, y, s, ch, expr, t, arms=((-10, 152), (10 + k, -152 + k)), prop_fn=pr, **common)
     if act == 'talk':
         k = math.sin(t * 5.5)
         return draw_person(c, x, y, s, ch, expr, t, arms=((15 + 20 * k, -40 - 50 * max(0, k)), (-10, -5)), **common)
     if act == 'write':
         k = math.sin(t * 12) * 5
-        r = draw_person(c, x, y, s, ch, expr, t, arms=((-10, 160), (10 + k, -155 + k)), **common)
-        nx, ny = x, y - 225 * s * ch.get('height', 1)
-        rrect(c, nx - 60 * s, ny - 70 * s, 120 * s, 140 * s, 6 * s, '#fbf6e8', INK, ow=4 * s)
-        done = int(clamp01(kw.get('progress', (t * 0.35) % 1.2)) * 5)
-        for i in range(5):
-            ly = ny - 45 * s + i * 24 * s
-            rrect(c, nx - 46 * s, ly - 7 * s, 14 * s, 14 * s, 3 * s, '#ffffff', INK, ow=2.5 * s)
-            if i < done:
-                c.drawLine(nx - 30 * s, ly, nx + (20 + (i * 13) % 25) * s, ly, paint('#3d5a80', stroke=4 * s))
-        return r
+        def pr(cc, hs):
+            nx, ny = (hs[0][0] + hs[1][0]) / 2, (hs[0][1] + hs[1][1]) / 2 + 30 * s
+            rrect(cc, nx - 60 * s, ny - 70 * s, 120 * s, 140 * s, 6 * s, '#fbf6e8', INK, ow=4 * s)
+            done = int(clamp01(kw.get('progress', (t * 0.35) % 1.2)) * 5)
+            for i in range(5):
+                ly = ny - 45 * s + i * 24 * s
+                rrect(cc, nx - 46 * s, ly - 7 * s, 14 * s, 14 * s, 3 * s, '#ffffff', INK, ow=2.5 * s)
+                if i < done:
+                    cc.drawLine(nx - 30 * s, ly, nx + (20 + (i * 13) % 25) * s, ly, paint('#3d5a80', stroke=4 * s))
+        return draw_person(c, x, y, s, ch, expr, t, arms=((-10, 150), (10 + k, -150 + k)), prop_fn=pr, **common)
     if act == 'camera':
-        r = draw_person(c, x, y, s, ch, expr, t, arms=((-10, 160), (10, -160)), **common)
         ph = (t + (hash(ch.get('hoodie', '')) % 5) * 0.4) % 3.2
-        draw_camera(c, x, y - 232 * s * ch.get('height', 1), 0.95 * s, max(0.0, 1 - ph / 0.35) if ph < 0.35 else 0.0)
-        return r
+        pr = lambda cc, hs: draw_camera(cc, (hs[0][0] + hs[1][0]) / 2, (hs[0][1] + hs[1][1]) / 2, 1.05 * s,
+                                        max(0.0, 1 - ph / 0.35) if ph < 0.35 else 0.0)
+        return draw_person(c, x, y, s, ch, expr, t, arms=((-10, 160), (10, -160)), prop_fn=pr, **common)
     if act == 'book':
-        r = draw_person(c, x, y, s, ch, expr, t, arms=((-10, 160), (10, -160)), **common)
-        rrect(c, x - 70 * s, y - 280 * s, 140 * s, 95 * s, 6 * s, '#c8423b', INK, ow=4 * s)
-        c.drawLine(x, y - 280 * s, x, y - 185 * s, paint(INK, stroke=3 * s))
-        return r
+        def pr(cc, hs):
+            bx, by = (hs[0][0] + hs[1][0]) / 2, (hs[0][1] + hs[1][1]) / 2 + 20 * s
+            rrect(cc, bx - 74 * s, by - 50 * s, 148 * s, 100 * s, 6 * s, '#c8423b', INK, ow=4 * s)
+            cc.drawLine(bx, by - 50 * s, bx, by + 50 * s, paint(INK, stroke=3 * s))
+        return draw_person(c, x, y, s, ch, expr, t, arms=((-10, 150), (10, -150)), prop_fn=pr, **common)
     if act == 'ball':
         ph = (t * 1.6) % 1
         by = y - 160 * s - abs(math.sin(ph * math.pi)) * -140 * s
@@ -125,9 +126,9 @@ def person_activity(c, x, y, t, ch, act='idle', expr='neutral', look=(0, 0), s=1
         draw_ball(c, x + 70 * s, bh, 32 * s, t * 200)
         return r
     if act == 'phone':
-        r = draw_person(c, x, y, s, ch, expr, t, arms=((-8, 168), (8, -168)), **common)
-        draw_phone_small(c, x, y - 218 * s * ch.get('height', 1), 1.0 * s, kw.get('phone_col', '#8fb4ff'), 1.0, 0)
-        return r
+        pr = lambda cc, hs: draw_phone_small(cc, (hs[0][0] + hs[1][0]) / 2, (hs[0][1] + hs[1][1]) / 2 + 6 * s, 1.15 * s,
+                                             kw.get('phone_col', '#8fb4ff'), 1.0, 0)
+        return draw_person(c, x, y, s, ch, expr, t, arms=((-8, 150), (8, -150)), prop_fn=pr, **common)
     if act == 'wave':
         w = math.sin(t * 7)
         return draw_person(c, x, y, s, ch, expr, t, arms=((10, 5), (150, 165 + 25 * w)), **common)
@@ -323,7 +324,7 @@ def t_hangout(c, t, d, p, S):
         if hi > 0:
             draw_person(c, fx, 900, 1.0, friend, 'happy', t, arms=((10, 5), (-120 * hi - 10, -150 * hi - 5)), look=(1, 0))
         else:
-            person_activity(c, fx, 900, t, friend, act, at_time(fp.get('expr', 'happy'), t), fp.get('look', (-0.7, 0)))
+            person_activity(c, fx, 900, t, friend, act, at_time(fp.get('expr', 'happy'), t), fp.get('look', (-0.7, 0)), s=p.get('scale', 1.2))
     if hp.get('present', True):
         act = hp.get('activity', 'guitar')
         hx = hp.get('x', 760)
@@ -342,7 +343,7 @@ def t_hangout(c, t, d, p, S):
                 fkw['bags'] = hp['bags']
             if hp.get('sweat'):
                 fkw['sweat'] = math.sin(t * 3)
-            r = person_activity(c, hx, 900, t, hero, act, at_time(hp.get('expr', 'happy'), t), hp.get('look', (0.5, 0)), walk_ph=walk_ph,
+            r = person_activity(c, hx, 900, t, hero, act, at_time(hp.get('expr', 'happy'), t), hp.get('look', (0.5, 0)), walk_ph=walk_ph, s=p.get('scale', 1.2),
                                 face_kw=fkw or None, run=run)
         if act in ('guitar',) and not hp.get('no_notes'):
             notes(c, t, hx, 560, 5)
@@ -425,8 +426,9 @@ def t_bedroom(c, t, d, p, S):
         draw_blanket(c, colr=p.get('blanket', '#3d4f86'))
         if on:
             draw_phone_small(c, 790, 610, 1.15, phone_col, 1.0, -18)
-            circle(c, 772, 640, 15, hero['skin'], ow=4)
-            circle(c, 808, 628, 15, hero['skin'], ow=4)
+            from .rig2 import draw_hand
+            draw_hand(c, 760, 618, 0.9, 0.8, hero['skin'], -1, 'open', 3.4)
+            draw_hand(c, 822, 604, -0.9, 0.8, hero['skin'], 1, 'open', 3.4)
         if pose == 'reach' and t > p.get('reach_at', d * 0.6):
             k = ease_out((t - p.get('reach_at', d * 0.6)) / 0.9)
             limb(c, [(700, 712), (lerp(700, 560, k), 740), (lerp(700, 470, k), lerp(740, 790, k))], 26, hero['hoodie'], ow=5)
@@ -661,7 +663,7 @@ def t_face(c, t, d, p, S):
                pupil_glow=p.get('pupil_glow'), sweat=math.sin(t * 2) if p.get('sweat') else None)
     hero = dict(hero, shade=dict(dir=(-0.6, -0.7), amt=0.32, spec=0.1, rim=p.get('glow') or '#ffd7a0',
                                  rim_back=True, rim_a=0.75 if p.get('glow') else 0.35))
-    r = draw_person(c, 960 + sw, 1560, 3.1, hero, expr, t, arms=((8, 4), (-8, -4)), look=tuple(p.get('look', (0, 0.3))),
+    r = draw_person(c, 960 + sw, 1730, 3.1, hero, expr, t, arms=((8, 4), (-8, -4)), look=tuple(p.get('look', (0, 0.3))),
                     blink=blink_at(t, 3.0, 0.7), face_kw=fkw)
     g = p.get('glow')
     if g:
@@ -1029,6 +1031,57 @@ def draw_spotlight(c, t, sp):
     oval(c, x, 905, 190, 30, '#fff3d6', a=0.25 * a / 0.62)
 
 
+def _battery(c, x, y, s, level, colr):
+    rrect(c, x - 70 * s, y - 120 * s, 140 * s, 240 * s, 22 * s, '#ffffff', INK, ow=7 * s)
+    rrect(c, x - 26 * s, y - 140 * s, 52 * s, 22 * s, 6 * s, '#ffffff', INK, ow=6 * s)
+    h = 204 * s * clamp01(level)
+    if h > 2:
+        rrect(c, x - 54 * s, y + 102 * s - h, 108 * s, h, 12 * s, colr, None)
+    bolt = skia.Path()
+    for (bx, by) in ((10, -60), (-24, 8), (2, 8), (-10, 62), (26, -10), (0, -10)):
+        (bolt.lineTo if bolt.countPoints() else bolt.moveTo)(x + bx * s, y + by * s)
+    bolt.close()
+    c.drawPath(bolt, paint('#ffffff', 0.9))
+    c.drawPath(bolt, paint(INK, stroke=4 * s))
+
+
+def t_stat(c, t, d, p, S):
+    """Big animated number for the key fact: {"value": -65, "suffix": "%", "unit": "less tired", "icon": "battery",
+    "color": "#ffd84d", "bg": "#2b3a8f", "expr": "wow"}. The hero reacts below."""
+    hero = S['hero']
+    bg = p.get('bg', '#22305f')
+    c.drawRect(skia.Rect.MakeWH(W, H), paint(shader=rad_grad((W / 2, H * 0.35), 1100, [mix(bg, '#ffffff', 0.12), bg, mix(bg, '#000000', 0.45)],
+                                                         [0, 0.5, 1])))
+    for i in range(18):                     # comic burst rays
+        a = math.tau * i / 18 + t * 0.15
+        ray = skia.Path()
+        ray.moveTo(W / 2, 300)
+        ray.lineTo(W / 2 + math.cos(a - 0.08) * 1500, 300 + math.sin(a - 0.08) * 1500)
+        ray.lineTo(W / 2 + math.cos(a + 0.08) * 1500, 300 + math.sin(a + 0.08) * 1500)
+        ray.close()
+        c.drawPath(ray, paint('#ffffff', 0.05))
+    col_ = p.get('color', '#ffd84d')
+    v = p.get('value', 0)
+    k = ease_out(clamp01((t - 0.3) / 1.2))
+    num = f"{int(round(v * k)):+d}" if p.get('sign') else f"{int(round(v * k))}"
+    num += p.get('suffix', '')
+    pop = 1 + 0.12 * math.sin(clamp01((t - 1.5) / 0.35) * math.pi)
+    c.save(); c.translate(W / 2, 310); c.scale(pop, pop)
+    f = font(TF_BOLD, 170 if S.get('short') else 230)
+    w = f.measureText(num)
+    c.drawString(num, -w / 2 + 10, 90, f, paint('#000000', 0.5, blur=12))
+    c.drawString(num, -w / 2, 80, f, paint(INK, stroke=38))
+    c.drawString(num, -w / 2, 80, f, paint(col_))
+    c.restore()
+    if p.get('unit'):
+        text(c, p['unit'].upper(), W / 2, 500, 40 if S.get('short') else 64, '#ffffff', tf=TF_BOLD, outline=INK, ow=10, a=ramp(t, 0.8, 1.2))
+    if p.get('icon') == 'battery':
+        lvl = 0.15 + 0.85 * ease_in_out(clamp01((t - 0.4) / 2.0))
+        _battery(c, 1500 if not S.get('short') else 1165, 640 + 8 * math.sin(t * 3), 1.0, lvl, '#5fe07a' if lvl > 0.5 else '#ffb02e')
+    person_activity(c, 960 if not S.get('short') else 830, 1330, t, hero, p.get('activity', 'idle'),
+                    at_time(p.get('expr', 'wow'), t), tuple(p.get('look', (0, -0.5))), s=1.55)
+
+
 def _wrap(fn):
     def run(c, t, d, p, S):
         if S.get('short') and p.get('camera', 'pan') in ('pan', 'pan_right', 'pan_left'):
@@ -1063,6 +1116,7 @@ def _wrap(fn):
 
 
 TEMPLATES = {
+    'stat': t_stat,
     'card': t_card, 'hangout': t_hangout, 'bedroom': t_bedroom, 'phone_feed': t_phone_feed, 'phone_chat': t_phone_chat,
     'face': t_face, 'mirror': t_mirror, 'desk': t_desk, 'montage': t_montage, 'stage': t_stage, 'gallery': t_gallery,
     'sunrise': t_sunrise, 'end_card': t_end_card, 'outro': t_outro,

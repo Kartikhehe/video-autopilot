@@ -120,10 +120,16 @@ def render_frame(c, gt, fi, S):
         tpl, p, lt, ld, label = active(sc, t)
         if label:
             bold_block(c, label, OW / 2, 360, 84, hl_col, ramp(lt, 0.0, 0.25), 0.9 + 0.1 * ease_out(lt / 0.2))
+        words = sc.get('_words')
         for (a0, a1, s) in sc.get('captions', []):
             if a0 - 0.05 <= t <= a1 + 0.05:
-                a = window(t, a0, a1, 0.15)
-                pop = 0.82 + 0.18 * ease_out((t - a0) / 0.18)
+                a = window(t, a0, a1, 0.12)
+                pop = 0.86 + 0.14 * ease_out((t - a0) / 0.15)
+                if words:   # karaoke: the word being spoken lights up
+                    ws = [w for w in words if a0 - 0.01 <= w[0] <= a1]
+                    cur = max([i for i, w in enumerate(ws) if w[0] <= t] or [0])
+                    s = ' '.join(('*' + w[2].replace('*', '') + '*') if i == cur else w[2].replace('*', '')
+                                 for i, w in enumerate(ws)) or s
                 bold_block(c, s, OW / 2, CAPTION_Y, sh.get('caption_size', 74), hl_col, a, pop)
         hook = sh.get('hook')
         if hook and gt < hook.get('until', 2.8):
@@ -133,7 +139,7 @@ def render_frame(c, gt, fi, S):
         if sc is tl[-1] and sh.get('cta', True):
             k = ramp(t, dur - 2.6, dur - 2.3)
             if k > 0:
-                cy = 1290
+                cy = 1540
                 pop = 1 + 0.08 * math.sin(clamp01((t - (dur - 2.3)) / 0.3) * math.pi)
                 c.save(); c.translate(OW / 2, cy); c.scale(pop, pop)
                 rrect(c, -230, -58, 460, 116, 58, '#e0322d', '#000000', ow=6, a=k)
