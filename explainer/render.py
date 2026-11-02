@@ -18,12 +18,13 @@ from . import art as A
 from . import voice
 from .scenes_a import SCENES as SA
 from .scenes_b import SCENES as SB
+from .scenes_c import SCENES as SC
 
-SCENES = {**SA, **SB}
+SCENES = {**SA, **SB, **SC}
 ROOT = voice.ROOT
 TR = 0.5            # crossfade length
 IRIS = 0.65         # iris wipe into chapter cards
-NO_PUSH = {'chapter', 'title', 'outro', 'end_card'}
+NO_PUSH = {'chapter', 'title', 'outro', 'end_card', 'signs'}
 
 
 def load(path):
@@ -162,8 +163,8 @@ def write_meta(ep, shots, d):
         desc = parts[0] + '\n\n⏱️ Chapters\n' + '\n'.join(ch) + ('\n\n📚 Sources' + parts[1] if len(parts) > 1 else '')
     meta = dict(title=yt.get('title', ep['title']), description=desc, tags=yt.get('tags', []), categoryId='27',
                 privacyStatus='private', madeForKids=False, defaultLanguage='en', video=os.path.join(d, 'video.mp4'),
-                thumbnail=os.path.join(d, 'thumbnail_A_bhang_brain.png'), captions=os.path.join(d, 'subtitles.srt'),
-                id=ep['id'], kind='long', comment=yt.get('comment'))
+                thumbnail=next((os.path.join(d, f) for f in sorted(os.listdir(d)) if f.startswith('thumbnail_A')), None), captions=os.path.join(d, 'subtitles.srt'),
+                id=ep['id'], kind='long', comment=yt.get('comment'), alt_title=yt.get('alt_title'))
     with open(os.path.join(d, 'metadata.json'), 'w') as f:
         json.dump(meta, f, indent=2, ensure_ascii=False)
     with open(os.path.join(d, 'description.txt'), 'w') as f:

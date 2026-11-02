@@ -1,0 +1,375 @@
+{
+  "id": "porn-brain",
+  "title": "What Porn Actually Does To Your Brain",
+  "voice": "af_heart",
+  "speed": 1.0,
+  "music": {
+    "seed": 11,
+    "root": 48
+  },
+  "shots": [
+    {
+      "scene": "cave",
+      "say": [
+        "For almost all of human history, finding a partner was hard work.",
+        "You had to walk, talk, risk rejection, and hope you got lucky once in a while."
+      ],
+      "mood": "wonder"
+    },
+    {
+      "scene": "pocket",
+      "say": [
+        "Today, an endless stream of attractive strangers fits in your pocket.",
+        "Free, private, and always one tap away."
+      ],
+      "mood": "weird"
+    },
+    {
+      "scene": "flat_life",
+      "say": [
+        "Lots of people watch porn and move on with their day.",
+        "But for some, it quietly takes over.",
+        "Hours disappear, and real life starts to feel... flat."
+      ],
+      "mood": "weird"
+    },
+    {
+      "scene": "brain_q",
+      "say": [
+        "So what is actually happening in your brain?",
+        "Is porn addiction real? And why does it feel so hard to stop?"
+      ],
+      "p": {
+        "prop": "phone"
+      },
+      "mood": "weird",
+      "pad": 0.4
+    },
+    {
+      "scene": "title",
+      "say": [],
+      "hold": 3.6,
+      "p": {
+        "l1": "WHAT PORN ACTUALLY DOES",
+        "l2": "TO YOUR BRAIN",
+        "prop": "phone"
+      },
+      "mood": "hit",
+      "chapter": "Intro"
+    },
+    {
+      "scene": "chapter",
+      "say": [],
+      "hold": 2.6,
+      "p": {
+        "n": 1,
+        "text": "The Wanting Machine",
+        "c1": "#ffb02e",
+        "c2": "#b8326a"
+      },
+      "mood": "groove",
+      "chapter": "The Wanting Machine"
+    },
+    {
+      "scene": "dopamine",
+      "say": [
+        "Let's start with a molecule you've probably heard of: dopamine.",
+        "It's often called the pleasure chemical.",
+        "But that's not quite right."
+      ],
+      "mood": "groove"
+    },
+    {
+      "scene": "rats_sugar",
+      "say": [
+        "In experiments on rats, rats with almost no dopamine left still enjoyed the taste of sugar.",
+        "They just stopped going out of their way to get it."
+      ],
+      "p": {
+        "mode": "low"
+      },
+      "mood": "groove",
+      "cite": "Berridge & Robinson, 1998; 2016"
+    },
+    {
+      "scene": "rats_sugar",
+      "say": [
+        "And when researchers boosted dopamine, rats wanted food far more, without enjoying it any more."
+      ],
+      "p": {
+        "mode": "high"
+      },
+      "mood": "groove",
+      "cite": "Berridge & Robinson, 2016"
+    },
+    {
+      "scene": "spotlight",
+      "say": [
+        "So dopamine is less like a reward, and more like a spotlight that shouts:",
+        "this! Get more of this!"
+      ],
+      "mood": "groove"
+    },
+    {
+      "scene": "chapter",
+      "say": [],
+      "hold": 2.6,
+      "p": {
+        "n": 2,
+        "text": "The Giant Egg",
+        "c1": "#2bd1c4",
+        "c2": "#1d3a8f"
+      },
+      "mood": "wonder",
+      "chapter": "The Giant Egg"
+    },
+    {
+      "scene": "birds",
+      "say": [
+        "In the nineteen fifties, the scientist Niko Tinbergen played a trick on birds.",
+        "He offered them fake eggs that were bigger and more boldly marked than their own."
+      ],
+      "p": {
+        "stage": "offer"
+      },
+      "mood": "wonder"
+    },
+    {
+      "scene": "birds",
+      "say": [
+        "The birds preferred the fakes.",
+        "Some kept trying to sit on eggs far too big for them, while their real eggs sat ignored."
+      ],
+      "p": {
+        "stage": "giant"
+      },
+      "mood": "wonder",
+      "cite": "Tinbergen; see 'supernormal stimulus'"
+    },
+    {
+      "scene": "super_card",
+      "say": [
+        "Their brains followed a simple rule: bigger and brighter is better.",
+        "In nature, that rule worked. Nobody expected a scientist with a paintbrush.",
+        "This is called a supernormal stimulus: an exaggerated version of something our brains are built to chase."
+      ],
+      "mood": "wonder"
+    },
+    {
+      "scene": "phone_egg",
+      "say": [
+        "Porn might be one of the most powerful supernormal stimuli humans have ever made.",
+        "Endless novelty. Perfect-looking bodies. Zero rejection. All on demand."
+      ],
+      "mood": "weird"
+    },
+    {
+      "scene": "chapter",
+      "say": [],
+      "hold": 2.6,
+      "p": {
+        "n": 3,
+        "text": "The Novelty Trap",
+        "c1": "#ff4fa3",
+        "c2": "#3a1d8f"
+      },
+      "mood": "weird",
+      "chapter": "The Novelty Trap"
+    },
+    {
+      "scene": "coolidge",
+      "say": [
+        "There's another piece of the puzzle.",
+        "In classic rat experiments, a male that had lost all interest after mating perked right up when a new female appeared.",
+        "Scientists call it the Coolidge effect."
+      ],
+      "mood": "weird",
+      "cite": "Coolidge effect; Fiorino et al., J Neurosci 1997"
+    },
+    {
+      "scene": "tabs",
+      "say": [
+        "Novelty is one of dopamine's favourite triggers.",
+        "And the internet offers infinite novelty: a new tab, a new click, every few seconds."
+      ],
+      "mood": "weird"
+    },
+    {
+      "scene": "habituation",
+      "say": [
+        "Meanwhile, your brain gets used to whatever it sees often.",
+        "The same thing feels a little less exciting each time,",
+        "so for some people the hunt keeps moving: more tabs, more extreme, more time."
+      ],
+      "mood": "weird"
+    },
+    {
+      "scene": "scan",
+      "say": [
+        "In a 2014 brain scan study of 64 men, more hours of porn per week went along with a smaller caudate, a part of the reward system.",
+        "But the authors were careful. They couldn't tell if porn changed the brain, or if brains like that find porn more rewarding in the first place."
+      ],
+      "mood": "wonder",
+      "cite": "Kuhn & Gallinat, JAMA Psychiatry, 2014"
+    },
+    {
+      "scene": "chapter",
+      "say": [],
+      "hold": 2.6,
+      "p": {
+        "n": 4,
+        "text": "Is It Addiction?",
+        "c1": "#7b5cff",
+        "c2": "#140a33"
+      },
+      "mood": "dark",
+      "chapter": "Is It Addiction?"
+    },
+    {
+      "scene": "who_file",
+      "say": [
+        "So, is porn addiction real? Scientists are still arguing about it.",
+        "In 2019, the World Health Organization recognised compulsive sexual behaviour disorder:",
+        "failing again and again to control intense sexual urges, despite real harm.",
+        "But it filed it under impulse control, not addiction, while the research catches up."
+      ],
+      "mood": "dark",
+      "cite": "WHO ICD-11, code 6C72"
+    },
+    {
+      "scene": "pct",
+      "say": [
+        "In a large US survey, about ten percent of men and seven percent of women reported clinically significant distress about controlling their sexual urges and behaviour."
+      ],
+      "mood": "dark",
+      "cite": "Dickenson et al., JAMA Network Open, 2018"
+    },
+    {
+      "scene": "shame",
+      "say": [
+        "Here's a twist.",
+        "Studies by psychologist Joshua Grubbs and others suggest that feeling addicted is linked not only to how much people watch,",
+        "but also to how wrong they believe it is.",
+        "Shame can make the struggle feel bigger, and the loop even harder to break."
+      ],
+      "mood": "dark",
+      "cite": "Grubbs et al., moral incongruence model"
+    },
+    {
+      "scene": "mixed",
+      "say": [
+        "And those scary headlines about erectile problems?",
+        "The evidence is mixed. How often men watch shows no clear link.",
+        "But feeling out of control with porn does seem to be connected."
+      ],
+      "mood": "dark",
+      "cite": "Landripet & Stulhofer, 2015; later surveys"
+    },
+    {
+      "scene": "teen12",
+      "say": [
+        "What worries researchers most is how early it starts.",
+        "In one US survey of teenagers, the average age of first seeing porn was twelve."
+      ],
+      "mood": "dark",
+      "cite": "Common Sense Media, Teens and Pornography, 2023"
+    },
+    {
+      "scene": "chapter",
+      "say": [],
+      "hold": 2.6,
+      "p": {
+        "n": 5,
+        "text": "Taking Back Control",
+        "c1": "#ffd23f",
+        "c2": "#d1366b"
+      },
+      "mood": "warm",
+      "chapter": "Taking Back Control"
+    },
+    {
+      "scene": "not_evil",
+      "say": [
+        "So, is porn pure evil? Not exactly.",
+        "Like junk food or endless feeds, the problem isn't that it exists.",
+        "It's that it's engineered to be more than your brain was built for."
+      ],
+      "mood": "warm"
+    },
+    {
+      "scene": "signs",
+      "say": [
+        "The warning signs are simple.",
+        "You've tried to cut down, and can't.",
+        "It eats time you wanted for other things.",
+        "And you feel worse afterwards, not better."
+      ],
+      "mood": "warm"
+    },
+    {
+      "scene": "tips",
+      "say": [
+        "If that sounds familiar, small changes help.",
+        "Charge your phone outside the bedroom at night.",
+        "Notice your triggers: boredom, stress, loneliness.",
+        "Replace the habit instead of just fighting it.",
+        "And drop the shame. Shame feeds the loop."
+      ],
+      "mood": "warm"
+    },
+    {
+      "scene": "real",
+      "say": [
+        "Real connection is slower, messier, and scarier than a screen.",
+        "But it's the thing your wanting machine was built for in the first place."
+      ],
+      "mood": "warm",
+      "pad": 1.0
+    },
+    {
+      "scene": "end_card",
+      "say": [],
+      "hold": 3.8,
+      "p": {
+        "text": "Want what's real."
+      },
+      "mood": "warm"
+    },
+    {
+      "scene": "outro",
+      "say": [
+        "If this made your brain light up a little, subscribe.",
+        "We'll keep exploring the strange things happening inside you."
+      ],
+      "mood": "warm",
+      "pad": 2.5
+    }
+  ],
+  "youtube": {
+    "title": "What Porn Actually Does To Your Brain",
+    "alt_title": "Why Your Brain Can't Handle Infinite Lust",
+    "description": "Your brain was built for a world where finding a partner was hard. Now an endless stream of novelty fits in your pocket. What does that do to the wanting machine in your head?\n\nIn this animated explainer:\n• Why dopamine is about WANTING, not pleasure\n• The birds that chose giant fake eggs over their own (supernormal stimuli)\n• The novelty trap: why new tabs hit harder than the same thing again\n• What brain scans can and can't tell us\n• Is porn addiction real? What the WHO actually says\n• Shame, moral incongruence, and why guilt can make it worse\n• Warning signs and small changes that help\n\nWant what's real.\n\nThis video is for education. It isn't medical advice. If compulsive sexual behaviour is hurting your life, a doctor, counsellor or therapist can help, and it is far more common than people think.\n\n📚 Sources\n• Berridge & Robinson (1998), What is the role of dopamine in reward? Brain Research Reviews\n• Berridge & Robinson (2016), Liking, wanting, and the incentive-sensitization theory of addiction, American Psychologist\n• Tinbergen, studies of supernormal stimuli in birds (The Herring Gull's World, 1953; The Study of Instinct, 1951)\n• Fiorino, Coury & Phillips (1997), Dynamic changes in nucleus accumbens dopamine efflux during the Coolidge effect in male rats, J Neurosci\n• Kühn & Gallinat (2014), Brain structure and functional connectivity associated with pornography consumption, JAMA Psychiatry 71(7):827-834\n• WHO ICD-11, 6C72 Compulsive sexual behaviour disorder\n• Dickenson et al. (2018), Prevalence of distress associated with difficulty controlling sexual urges, feelings, and behaviors in the United States, JAMA Network Open 1(7):e184468\n• Grubbs et al., Moral incongruence and pornography use (PPMI model)\n• Landripet & Štulhofer (2015), Is pornography use associated with sexual difficulties and dysfunctions among younger heterosexual men? J Sex Med\n• Common Sense Media (2023), Teens and Pornography\n\n#brain #dopamine #psychology #science #animation #explained #selfimprovement",
+    "tags": [
+      "what porn does to your brain",
+      "porn brain",
+      "dopamine",
+      "supernormal stimulus",
+      "coolidge effect",
+      "porn addiction",
+      "compulsive sexual behaviour",
+      "nofap science",
+      "brain science",
+      "psychology",
+      "science animation",
+      "explained",
+      "self improvement",
+      "lust",
+      "habits"
+    ],
+    "comment": "Which surprised you more: dopamine being about 'wanting' not pleasure, or the birds sitting on giant fake eggs? 🥚👇"
+  },
+  "tts_fix": {},
+  "ipa_fix": {
+    "tˈɪnbɚdʒən": "tˈɪnbɚɡən"
+  }
+}

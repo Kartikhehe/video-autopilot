@@ -771,3 +771,55 @@ def brain(c, x, y, s=1.0, t=0.0, h=BRAIN_PINK, expr=None, look=(0, 0), a=1.0, st
             glow(c, cx, cy, 190 * s, RC[k], 0.35 * al * a)
     if expr:
         face(c, x - 10 * s, y - 50 * s, face_r * s, expr, look, t, skin=h, eye_gap=0.5, eye_r=0.3)
+
+
+def heart_icon(c, x, y, r, h='#ff3d6e', a=1.0):
+    path = skia.Path()
+    path.moveTo(x, y + r * 0.9)
+    path.cubicTo(x - r * 1.6, y - r * 0.1, x - r * 0.8, y - r * 1.3, x, y - r * 0.45)
+    path.cubicTo(x + r * 0.8, y - r * 1.3, x + r * 1.6, y - r * 0.1, x, y + r * 0.9)
+    path.close()
+    c.drawPath(path, P(h, a))
+
+
+def phone(c, x, y, s=1.0, t=0.0, a=1.0, glow_c='#ff3d8b', scroll=1.0, ang=0.0, eyes=False, tap=None):
+    """Smartphone (centre x,y) whose screen scrolls an endless, abstract, non-explicit feed:
+    pink/purple tiles with play buttons and hearts."""
+    if s <= 0.01 or a <= 0:
+        return
+    c.save()
+    c.translate(x, y)
+    c.rotate(ang)
+    w, h = 230 * s, 440 * s
+    if glow_c:
+        glow(c, 0, 0, 520 * s, glow_c, 0.45 * a)
+    rrect(c, -w / 2 - 14 * s, -h / 2 - 14 * s, w + 28 * s, h + 28 * s, 40 * s, '#1b1030', a)
+    rrect(c, -w / 2, -h / 2, w, h, 28 * s, '#2a1450', a)
+    c.save()
+    c.clipRRect(skia.RRect.MakeRectXY(skia.Rect(-w / 2, -h / 2, w / 2, h / 2), 28 * s, 28 * s), doAntiAlias=True)
+    off = (t * 160 * s * scroll) % (150 * s)
+    pal = [('#ff3d8b', '#ff9a4d'), ('#9d5cff', '#ff4fa3'), ('#ff5f8f', '#ffd23f'), ('#7b5cff', '#2bd1ff')]
+    for i in range(-1, 5):
+        k = int((t * 160 * s * scroll) // (150 * s)) + i
+        yy = -h / 2 + 12 * s + i * 150 * s - off
+        c1, c2 = pal[k % 4]
+        p = skia.Paint(AntiAlias=True)
+        p.setShader(lin((0, yy), (0, yy + 130 * s), [c1, c2]))
+        p.setAlphaf(a)
+        c.drawRoundRect(skia.Rect(-w / 2 + 12 * s, yy, w / 2 - 12 * s, yy + 130 * s), 16 * s, 16 * s, p)
+        tri = skia.Path()
+        tri.moveTo(-14 * s, yy + 45 * s)
+        tri.lineTo(-14 * s, yy + 85 * s)
+        tri.lineTo(20 * s, yy + 65 * s)
+        tri.close()
+        c.drawPath(tri, P('#ffffff', 0.85 * a))
+        heart_icon(c, w / 2 - 40 * s, yy + 105 * s, 10 * s, '#ffffff', 0.85 * a)
+    c.restore()
+    line(c, [(-30 * s, -h / 2 + 10 * s), (30 * s, -h / 2 + 10 * s)], 7 * s, '#12082a', a)
+    if eyes:
+        for sg in (-1, 1):
+            eye(c, sg * 50 * s, -40 * s, 34 * s, look=(0.3, 0.2), lid=0.25, lid_col='#2a1450')
+        mouth(c, 0, 40 * s, 110 * s, 'grin')
+    if tap is not None and tap > 0:
+        circle(c, 0, 60 * s, 40 * s * tap, '#ffffff', 0.5 * (1 - tap) * a)
+    c.restore()

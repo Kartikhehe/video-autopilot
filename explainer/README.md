@@ -15,9 +15,13 @@ cd /home/user/video-autopilot
 python3 -m explainer.render explainer/episodes/bhang.json --preview     # out/<id>/preview_*.jpg (2 frames/shot)
 python3 -m explainer.render explainer/episodes/bhang.json --shot 8,9    # 6 frames of chosen shots
 python3 -m explainer.render explainer/episodes/bhang.json --full        # video.mp4, subtitles.srt, metadata.json
-python3 -m explainer.thumbs                                             # 3 thumbnail options
+python3 -m explainer.thumbs bhang|lust                                  # 3 thumbnail options per episode
 python3 -m explainer.brand                                              # channel banner + avatar options
 ```
+
+## Episodes
+- `episodes/bhang.json`: What Bhang Really Does To Your Brain (6:00)
+- `episodes/lust.json`: What Porn Actually Does To Your Brain (5:05, non-graphic by design)
 
 ## Episode file (`episodes/<slug>.json`)
 - `voice` (Kokoro voice, default `af_heart`), `speed`, `music.root` (MIDI note of the key).
@@ -35,6 +39,7 @@ python3 -m explainer.brand                                              # channe
 | `art.py` | drawing kit: gradients, glow, two-tone shading, people + faces, brain, glass, leaf, molecules, labels, Devanagari text |
 | `scenes_a.py` | festival, shop, title, chapter cards, plant, scroll, commission, people grid, body journey, liver, graphs |
 | `scenes_b.py` | neurons, lab, synapse, brain map, mice, panic/hospital, risk charts, balance, snail, keys, end card, outro |
+| `scenes_c.py` | episode 2: campfire, phone feed, dopamine, wanting/liking rats, birds + giant egg, tabs, habituation, WHO file, survey grid, shame, tips, bench |
 | `voice.py` | Kokoro TTS per sentence (cached in `out/_tts_cache`), timeline, SRT subtitles |
 | `audio.py` | synthesized score (mood per bar), procedural SFX cued per scene, voice polish, ducking, -14 LUFS |
 | `render.py` | camera push, crossfades + iris wipes, citation tags, vignette, parallel x264 encode |

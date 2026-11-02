@@ -1,14 +1,15 @@
-"""Thumbnail options for the bhang episode (1280x720 PNGs + a phone-size comparison sheet).
-python3 -m explainer.thumbs"""
+"""Thumbnail options per episode (1280x720 PNGs + a phone-size comparison sheet).
+python3 -m explainer.thumbs [bhang|lust]"""
 import math
 import os
+import sys
 
 import skia
 
 from . import art as A
 from .scenes_a import powder_burst, HOLI, rangoli
 
-OUT = os.path.join(A.HERE, '..', 'out', 'bhang-brain')
+OUT_ROOT = os.path.join(A.HERE, '..', 'out')
 
 
 def title(c, words, y=150, size=168, colors=('#ffffff',)):
@@ -83,10 +84,74 @@ def thumb_c(c):
     title(c, ['THE', '2ND GLASS'], 205, 180, ('#ffffff', '#ff3d6e'))
 
 
-def main():
+def lust_a(c):
+    """LUST BRAIN: brain hypnotised by a glowing phone, hearts everywhere."""
+    from .scenes_c import HEARTS
+    A.bg_radial(c, (960, 680), '#ff3d8b', '#1a0838', 1200)
+    c.save()
+    c.translate(960, 700)
+    for i in range(20):
+        path = skia.Path()
+        a0, a1 = math.radians(i * 18), math.radians(i * 18 + 8)
+        path.moveTo(0, 0)
+        path.lineTo(math.cos(a0) * 1500, math.sin(a0) * 1500)
+        path.lineTo(math.cos(a1) * 1500, math.sin(a1) * 1500)
+        path.close()
+        c.drawPath(path, A.P('#ffffff', 0.07))
+    c.restore()
+    A.phone(c, 1380, 720, 1.2, 0.4, glow_c='#ff3d8b', ang=8)
+    A.brain(c, 640, 640, 1.3, 0.0, expr='dazed', look=(1, 0.3), glow_c='#ff3d8b', glow_a=0.4)
+    for s_ in (-1, 1):
+        A.heart_icon(c, 600 + s_ * 75, 590, 34, '#ff3d6e')
+    for i in range(14):
+        an = i / 14 * 6.28
+        A.heart_icon(c, 960 + math.cos(an) * 820, 640 + math.sin(an) * 330, 26, HEARTS[i % 4], 0.85)
+    title(c, ['DOPAMINE', 'TRAP'], 205, 190, ('#ffffff', '#ffd23f'))
+
+
+def lust_b(c):
+    """THE GIANT EGG: bird sitting on a huge painted egg while its own eggs wait."""
+    from .scenes_c import egg, bird, nest
+    A.bg_grad(c, '#7cf2e8', '#2b7bd6', '#4fc8e0')
+    c.drawRect(skia.Rect(0, 880, 1920, 1080), A.P('#f2d39a'))
+    nest(c, 330, 900, 1.0)
+    for i in range(3):
+        egg(c, 260 + i * 70, 870, 0.7)
+    A.glow(c, 1150, 700, 520, '#ffffff', 0.4)
+    egg(c, 1150, 800, 3.6, h='#bfe0ff', spots='#1d1238', bold=1.0)
+    bird(c, 1100, 535, 1.25, 0.0, expr='dazed', look=(-1, 0.4), sit=True)
+    title(c, ['WHY', 'BIRDS', 'GO', 'CRAZY'], 205, 170, ('#ffffff', '#ffd23f', '#ffffff', '#ff3d6e'))
+
+
+def lust_c(c):
+    """ENDLESS TABS: brain overwhelmed by a wall of tabs."""
+    A.bg_grad(c, '#1d1150', '#0a0420')
+    import numpy as np
+    rng = np.random.default_rng(7)
+    for i in range(26):
+        x, y = 100 + rng.random() * 1450, 300 + rng.random() * 600
+        w, h = 330, 210
+        A.rrect(c, x, y, w, h, 18, '#f4f2ff')
+        A.rrect(c, x, y, w, 36, 18, HOLI[i % 6])
+        p = skia.Paint(AntiAlias=True)
+        p.setShader(A.lin((0, y + 46), (0, y + h - 10), ['#ff3d8b', '#9d5cff']))
+        c.drawRoundRect(skia.Rect(x + 12, y + 46, x + w - 12, y + h - 12), 12, 12, p)
+    A.brain(c, 1500, 640, 1.1, 0.0, expr='shock', look=(-0.8, 0.2), glow_c='#ffd23f', glow_a=0.5)
+    A.rrect(c, 100, 900, 560, 130, 30, '#ffffff')
+    A.text(c, 'ONE MORE...', 380, 990, 76, '#1b0f45', weight=900, shadow=0)
+    title(c, ['YOUR', 'BRAIN', 'ON', 'NOVELTY'], 205, 170, ('#ffffff', '#ff3d6e', '#ffffff', '#ffd23f'))
+
+
+SETS = {'bhang': ('bhang-brain', (('A_bhang_brain', thumb_a), ('B_holy_high', thumb_b), ('C_second_glass', thumb_c))),
+        'lust': ('porn-brain', (('A_dopamine_trap', lust_a), ('B_giant_egg', lust_b), ('C_novelty', lust_c)))}
+
+
+def main(which='bhang'):
+    folder, items = SETS[which]
+    OUT = os.path.join(OUT_ROOT, folder)
     os.makedirs(OUT, exist_ok=True)
     imgs = []
-    for name, fn in (('A_bhang_brain', thumb_a), ('B_holy_high', thumb_b), ('C_second_glass', thumb_c)):
+    for name, fn in items:
         s = skia.Surface(1920, 1080)
         c = s.getCanvas()
         fn(c)
@@ -110,4 +175,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    main(sys.argv[1] if len(sys.argv) > 1 else 'bhang')

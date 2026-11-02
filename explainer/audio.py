@@ -457,6 +457,61 @@ def cues(sh):
         c += [(0.4, 'chime', 0.45)]
     elif sc == 'outro':
         c += [(B(0, 0.5) + 1.6, 'pop', 0.5), (B(0, 0.5) + 2.65, 'click', 0.6), (B(0, 0.5) + 2.9, 'bell', 0.5)]
+    elif sc == 'cave':
+        c += [(0.3, 'crowd', 0.15)] + [(B(1) + 0.1 + i * 0.6, 'pop', 0.35) for i in range(3)] + [(B(1) + 2.6, 'ding', 0.3)]
+    elif sc == 'pocket':
+        c += [(0.3, 'whoosh', 0.3), (0.6, 'sparkle', 0.4)] + [(B(1) + 0.1 + i * 0.6, 'pop', 0.35) for i in range(3)]
+    elif sc == 'flat_life':
+        c += [(B(1), 'tick', 0.2), (B(2) + 0.3, 'whoosh_dn', 0.4), (B(2) + 1.5, 'stamp', 0.4)]
+    elif sc == 'dopamine':
+        c += [(0.8, 'pop', 0.45), (1.0, 'sparkle', 0.4), (B(1) + 0.2, 'pop', 0.4), (B(2) + 0.2, 'whoosh', 0.35), (B(2) + 0.6, 'boing', 0.35)]
+    elif sc == 'rats_sugar':
+        if p.get('mode') == 'low':
+            c += [(0.6, 'squeak', 0.4), (1.5, 'sparkle', 0.35), (B(1), 'pop', 0.4), (B(1) + 0.3, 'boing', 0.3)]
+        else:
+            c += [(t, 'squeak', 0.25) for t in np.arange(0.4, d, 0.9)] + [(1.5, 'pop', 0.4), (3.5, 'pop', 0.4)]
+    elif sc == 'spotlight':
+        c += [(0.4, 'whoosh', 0.4), (B(1), 'impact', 0.35), (B(1) + 0.6, 'pop', 0.45)]
+    elif sc == 'birds':
+        if p.get('stage') == 'offer':
+            c += [(0.6, 'pop', 0.4), (B(1), 'sparkle', 0.4), (B(1) + 1.2, 'pop', 0.4)]
+        else:
+            c += [(0.5, 'pop', 0.4)] + [(t, 'boing', 0.25) for t in np.arange(1.55, d, 2.22)]
+    elif sc == 'super_card':
+        c += [(0.4, 'pop', 0.45), (B(1), 'ding', 0.3), (B(1) + 2.0, 'boing', 0.3), (B(2) + 0.1, 'impact', 0.4), (B(2) + 0.4, 'sparkle', 0.4)]
+    elif sc == 'phone_egg':
+        c += [(0.2, 'whoosh', 0.4)] + [(B(1) + 0.1 + i * 0.85, 'pop', 0.4) for i in range(4)]
+    elif sc == 'coolidge':
+        c += [(0.5, 'squeak', 0.3), (B(1) + 4.5, 'sparkle', 0.45), (B(1) + 5.6, 'squeak', 0.45), (B(1) + 5.8, 'boing', 0.35),
+              (B(2) + 0.2, 'ding', 0.35)]
+    elif sc == 'tabs':
+        c += [(0.3, 'pop', 0.4)] + [(B(1) + i * (d - B(1)) / 32, 'pop_hi', 0.22) for i in range(30)]
+    elif sc == 'habituation':
+        c += [(0.4 + i * (B(2) - 0.4) / 8, 'pop', 0.3 * 0.8 ** i) for i in range(8)] + [(B(2) + 0.5 + i, 'stamp', 0.35) for i in range(3)]
+    elif sc == 'scan':
+        c += [(0.5, 'pop', 0.4), (1.0, 'sparkle', 0.35), (5.0, 'ding', 0.3), (B(1) + 1.5, 'pop', 0.35), (B(1) + 3.3, 'pop', 0.35)]
+    elif sc == 'who_file':
+        c += [(0.3, 'pop', 0.35), (B(1), 'whoosh', 0.4), (B(1) + 0.8, 'pop', 0.4), (B(2), 'pop', 0.3), (B(3) + 1.2, 'whoosh', 0.35),
+              (B(3) + 2.4, 'stamp', 0.5)]
+    elif sc == 'pct':
+        c += [(0.3, 'sparkle', 0.35), (2.0, 'pop', 0.45), (3.2, 'pop', 0.45)]
+    elif sc == 'shame':
+        c += [(B(1) + 0.5, 'pop', 0.3), (B(2), 'whoosh_dn', 0.35), (B(2) + 1.8, 'ding', 0.3), (B(3) + 0.6, 'whoosh', 0.3)]
+    elif sc == 'mixed':
+        c += [(0.3, 'pop', 0.4), (B(1) + 1.1, 'whoosh', 0.3), (B(1) + 2.6, 'ding', 0.25), (B(2) - 0.2, 'whoosh', 0.3), (B(2) + 1.3, 'ding', 0.3)]
+    elif sc == 'teen12':
+        c += [(0.4, 'pop', 0.4), (B(1), 'pop', 0.45), (B(1) + 0.3, 'chime', 0.35)]
+    elif sc == 'not_evil':
+        c += [(0.3, 'pop', 0.5), (B(1) - 1.6, 'boing', 0.5), (B(1) - 1.4, 'pop', 0.4), (B(1) + 0.3, 'pop', 0.4), (B(1) + 0.8, 'pop', 0.4),
+              (B(2), 'whoosh', 0.35)]
+    elif sc == 'signs':
+        c += [(0.3, 'pop', 0.45)] + [(B(i), 'click', 0.5) for i in (1, 2, 3)]
+    elif sc == 'tips':
+        c += [(B(1), 'whoosh', 0.35), (B(1) + 1.0, 'click', 0.4), (B(2), 'whoosh', 0.35)] + [(B(2) + 0.8 + i * 0.6, 'pop', 0.4) for i in range(3)]
+        c += [(B(3), 'whoosh', 0.35)] + [(B(3) + 0.5 + i * 0.5, 'pop', 0.35) for i in range(3)] + [(B(4) + 0.4, 'whoosh', 0.3),
+                                                                                                  (B(4) + 1.2, 'chime', 0.4)]
+    elif sc == 'real':
+        c += [(1.5, 'sparkle', 0.3), (B(1), 'chime', 0.35)]
     return c
 
 
@@ -529,7 +584,7 @@ def mix(ep, shots, vtrack, total, out_path):
     m = _j.loads(js)
     gain = -14.0 - float(m['input_i'])
     subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', raw, '-af',
-                    f'volume={gain:.2f}dB,alimiter=limit=0.84:attack=3:release=60:level=disabled', '-ar', str(SR), out_path],
+                    f'volume={gain:.2f}dB,alimiter=limit=0.72:attack=2:release=60:level=disabled', '-ar', str(SR), out_path],
                    check=True)
     os.remove(raw)
     # also keep stems for QA

@@ -329,10 +329,15 @@ def s_brain_q(c, t, d, p, b):
     if t > t1:
         gx = lerp(1700, 1380, eout(ramp(t, t1, t1 + 0.6)))
         gy = 760 - 120 * jump
-        glass(c, gx, gy, 0.75, 0.8, t=t, glowc='#9cff7a')
-        # sneaky eyes on the glass
-        for s in (-1, 1):
-            eye(c, gx + s * 28, gy - 120, 20, look=(-0.8, 0), lid=0.45 * (1 - jump), lid_col='#cfe8b0', red=0)
+        if p.get('prop') == 'phone':
+            phone(c, gx, gy - 150, 0.62, t, glow_c='#ff3d8b', ang=-8)
+            for s in (-1, 1):
+                eye(c, gx + s * 30 - 10, gy - 190, 20, look=(-0.8, 0), lid=0.45 * (1 - jump), lid_col='#2a1450', red=0)
+        else:
+            glass(c, gx, gy, 0.75, 0.8, t=t, glowc='#9cff7a')
+            # sneaky eyes on the glass
+            for s in (-1, 1):
+                eye(c, gx + s * 28, gy - 120, 20, look=(-0.8, 0), lid=0.45 * (1 - jump), lid_col='#cfe8b0', red=0)
         if jump > 0.2:
             text(c, 'BOO!', gx + 20, gy - 250, 90 * clamp01(jump), '#ffe14d', weight=900)
 
@@ -352,19 +357,29 @@ def s_title(c, t, d, p, b):
         c.drawPath(path, P('#ffffff', 0.07))
     c.restore()
     k = back(ramp(t, 0.0, 0.8))
-    glass(c, 960, 1040, 2.6 * k, 0.86, t=t, glowc='#c8ffb0', garnish=False)
+    ph = p.get('prop') == 'phone'
+    if ph:
+        phone(c, 960, 760, 1.25 * k, t, glow_c='#ff3d8b')
+    else:
+        glass(c, 960, 1040, 2.6 * k, 0.86, t=t, glowc='#c8ffb0', garnish=False)
     c.save()
     c.translate(960, 780)
     c.scale(0.62 * k, 0.62 * k)
-    brain(c, 0, 0, 1.0, t, expr='high', look=(0.2, -0.3), stem=False)
+    if ph:
+        c.translate(0, -330)
+        c.scale(0.8, 0.8)
+    brain(c, 0, 0, 1.0, t, expr='dazed' if ph else 'high', look=(0, 0.6) if ph else (0.2, -0.3), stem=False)
     c.restore()
     for i in range(12):
         an = i / 12 * 6.28 + t * 0.5
-        leaf(c, 960 + math.cos(an) * 700, 560 + math.sin(an) * 330, 0.28, ang=math.degrees(an) + 90, a=0.75)
+        if ph:
+            heart_icon(c, 960 + math.cos(an) * 700, 560 + math.sin(an) * 330, 26, ['#ff3d6e', '#ffd23f', '#ff9ad5'][i % 3], 0.8)
+        else:
+            leaf(c, 960 + math.cos(an) * 700, 560 + math.sin(an) * 330, 0.28, ang=math.degrees(an) + 90, a=0.75)
     w1 = pop(t, 0.35)
     w2 = pop(t, 0.7)
-    text(c, 'WHAT BHANG REALLY DOES', 960, 170, 104 * w1 + 1, '#ffffff', clamp01(w1), weight=900, shadow=0.55)
-    text(c, 'TO YOUR BRAIN', 960, 300, 128 * w2 + 1, '#ffe14d', clamp01(w2), weight=900, shadow=0.55)
+    text(c, p.get('l1', 'WHAT BHANG REALLY DOES'), 960, 170, 104 * w1 + 1, '#ffffff', clamp01(w1), weight=900, shadow=0.55)
+    text(c, p.get('l2', 'TO YOUR BRAIN'), 960, 300, 128 * w2 + 1, '#ffe14d', clamp01(w2), weight=900, shadow=0.55)
 
 
 def s_chapter(c, t, d, p, b):
