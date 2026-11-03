@@ -83,10 +83,11 @@ python3 -m youtube.upload out/<id>/metadata.json --publish-at <SLOT>     # omit 
 ## 6b. Shorts thumbnail (YouTube ignores API thumbnails on Shorts)
 YouTube accepts `thumbnails.set` for a Short and then silently ignores it; custom Shorts thumbnails can only be
 set by hand in YouTube Studio on a computer. So for every Short:
-1. `mkdir -p thumbnails/shorts && cp out/<id>/thumbnail.png "thumbnails/shorts/<YYYY-MM-DD>_<slug>.png"` (committed in step 7).
+1. `mkdir -p thumbnails/shorts && cp out/<id>/thumbnail.png "thumbnails/shorts/<exact video title without #shorts>.png"`
+   (strip only the characters `\ / : * ? " < > |`; committed in step 7). Name the file you send in step 2 the same way.
 2. Send the image to the owner with the SendUserFile tool (status `proactive`), caption:
-   "Thumbnail for <title> (https://youtu.be/<video id>): YouTube Studio on a computer → Content → Shorts → click the
-   Short → Thumbnail → Upload file → Save."
+   "Thumbnail for <title>: open https://studio.youtube.com/video/<video id>/edit on a computer → Thumbnail →
+   Upload file → Save."
 3. Repeat the same link + instruction in the final message.
 The cover is made by `make_short_cover`: set `thumbnail.words` (2-4 words, one `highlight`), `highlight_color`, `bg`
 (dark saturated colour), `expr`, `pose` (down|cheer|think|phone|point|shrug), `icon` (dumbbell|coin|battery_low|
