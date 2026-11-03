@@ -255,3 +255,9 @@ from two real scenes of the story (left/right for 16:9, top/bottom for Shorts):
 Best performers are **surprising, research-backed facts told as a tiny story**: a relatable moment → the
 "wait, really?" fact (name the effect, give one concrete number) → a comforting twist → a tiny action.
 Not generic advice. Cite the study in the description.
+
+### Shorts covers (`make_short_cover`)
+YouTube ignores thumbnails sent through the API for Shorts, so the cover is uploaded by the owner in YouTube Studio.
+Make it worth the click: a big expressive character, one topic icon, 2-4 huge words with one highlighted word, and a
+red badge with the hook detail. Keys: `words, highlight, highlight_color, bg, expr, pose, icon, badge`
+(see PLAYBOOK step 6b for the allowed values). Vary bg colour, pose and icon between consecutive Shorts.

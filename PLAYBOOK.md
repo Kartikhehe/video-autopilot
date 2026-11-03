@@ -80,9 +80,22 @@ python3 -m youtube.upload out/<id>/metadata.json --publish-at <SLOT>     # omit 
   description (💬 line) and `python3 -m youtube.comments` (step 0 of every run) posts it once the video is public.
   YouTube has no API for pinning; the owner can pin it with one tap.
 
+## 6b. Shorts thumbnail (YouTube ignores API thumbnails on Shorts)
+YouTube accepts `thumbnails.set` for a Short and then silently ignores it; custom Shorts thumbnails can only be
+set by hand in YouTube Studio on a computer. So for every Short:
+1. `mkdir -p thumbnails/shorts && cp out/<id>/thumbnail.png "thumbnails/shorts/<YYYY-MM-DD>_<slug>.png"` (committed in step 7).
+2. Send the image to the owner with the SendUserFile tool (status `proactive`), caption:
+   "Thumbnail for <title> (https://youtu.be/<video id>): YouTube Studio on a computer → Content → Shorts → click the
+   Short → Thumbnail → Upload file → Save."
+3. Repeat the same link + instruction in the final message.
+The cover is made by `make_short_cover`: set `thumbnail.words` (2-4 words, one `highlight`), `highlight_color`, `bg`
+(dark saturated colour), `expr`, `pose` (down|cheer|think|phone|point|shrug), `icon` (dumbbell|coin|battery_low|
+battery|checklist|clock|brain|heart|chat|book|zzz|star|phone) and a short `badge` (the hook detail: "+51%", "3:12 AM").
+Look at `out/<id>/thumbnail_small.png` in step 4: it must read clearly at phone size.
+
 ## 7. Save memory to git (another run may be pushing at the same time)
 ```bash
-git add stories/ history/ engine/ STORY_GUIDE.md
+git add stories/ history/ engine/ thumbnails/ STORY_GUIDE.md
 git commit -m "<KIND>: <title>"
 for i in 1 2 3 4; do git pull --rebase origin main && git push origin HEAD:main && break; sleep $((2**i)); done
 ```

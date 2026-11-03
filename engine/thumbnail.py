@@ -600,3 +600,171 @@ def make_hero(S, path, OW=W, OH=H):
     s2 = skia.Surface(320, 180)
     s2.getCanvas().drawImageRect(img, skia.Rect.MakeWH(320, 180), skia.SamplingOptions(skia.CubicResampler.Mitchell()))
     s2.makeImageSnapshot().save(path.replace('.png', '_small.png'), skia.kPNG)
+
+
+# ---------------------------------------------------------------- Shorts cover (9:16) for YouTube Studio upload
+COVER_POSES = {
+    'down': ((8, 4), (-8, -4)),
+    'cheer': ((-150, -170), (150, 170)),
+    'think': ((-10, 160), (12, 6)),
+    'phone': ((-8, 150), (8, -150)),
+    'point': ((10, 4), (120, 160)),
+    'shrug': ((-55, -125), (55, 125)),
+}
+
+
+def _icon(c, kind, x, y, s, colr):
+    """Simple bold icons in the channel's ink style."""
+    ow = 9 * s
+    if kind == 'battery_low' or kind == 'battery':
+        lvl = 0.18 if kind == 'battery_low' else 0.9
+        rrect(c, x - 80 * s, y - 140 * s, 160 * s, 280 * s, 26 * s, '#ffffff', '#151218', ow=ow)
+        rrect(c, x - 30 * s, y - 164 * s, 60 * s, 26 * s, 6 * s, '#ffffff', '#151218', ow=ow * 0.8)
+        h = 236 * s * lvl
+        rrect(c, x - 60 * s, y + 118 * s - h, 120 * s, h, 14 * s, '#ff4b3e' if lvl < 0.5 else '#5fe07a', None)
+    elif kind == 'phone':
+        rrect(c, x - 95 * s, y - 170 * s, 190 * s, 340 * s, 30 * s, '#17171d', '#000000', ow=ow)
+        rrect(c, x - 80 * s, y - 150 * s, 160 * s, 300 * s, 20 * s, mix(colr, '#ffffff', 0.55), None)
+    elif kind == 'clock':
+        circle(c, x, y, 150 * s, '#ffffff', '#151218', ow=ow)
+        for i in range(12):
+            a = math.tau * i / 12
+            c.drawLine(x + math.cos(a) * 125 * s, y + math.sin(a) * 125 * s, x + math.cos(a) * 140 * s, y + math.sin(a) * 140 * s,
+                       paint('#151218', stroke=6 * s))
+        c.drawLine(x, y, x + 70 * s, y - 40 * s, paint('#151218', stroke=12 * s))
+        c.drawLine(x, y, x - 10 * s, y - 105 * s, paint(colr, stroke=9 * s))
+        circle(c, x, y, 12 * s, '#151218', None)
+    elif kind == 'dumbbell':
+        c.drawLine(x - 150 * s, y, x + 150 * s, y, paint('#151218', stroke=34 * s))
+        c.drawLine(x - 150 * s, y, x + 150 * s, y, paint('#9aa3b5', stroke=20 * s))
+        for sx in (-1, 1):
+            for k, (w, h) in enumerate(((44, 190), (40, 150))):
+                bx = x + sx * (150 - k * 48) * s
+                rrect(c, bx - w * s / 2, y - h * s / 2, w * s, h * s, 10 * s, colr if k == 0 else mix(colr, '#000000', 0.25), '#151218', ow=ow * 0.8)
+    elif kind == 'coin':
+        circle(c, x, y, 140 * s, '#ffcf3a', '#151218', ow=ow)
+        circle(c, x, y, 108 * s, '#ffdb63', '#c99a16', ow=6 * s)
+        text(c, '$', x, y + 62 * s, 180 * s, '#c48a00', tf=TF_BOLD, shadow=False)
+    elif kind == 'checklist':
+        rrect(c, x - 130 * s, y - 170 * s, 260 * s, 340 * s, 18 * s, '#fbf6e8', '#151218', ow=ow)
+        for i in range(4):
+            yy = y - 110 * s + i * 72 * s
+            rrect(c, x - 100 * s, yy - 20 * s, 40 * s, 40 * s, 8 * s, '#ffffff', '#151218', ow=6 * s)
+            c.drawLine(x - 40 * s, yy, x + 100 * s, yy, paint('#9a96a8', stroke=10 * s))
+            if i < 2:
+                c.drawLine(x - 94 * s, yy, x - 80 * s, yy + 14 * s, paint('#2fae5a', stroke=9 * s))
+                c.drawLine(x - 80 * s, yy + 14 * s, x - 56 * s, yy - 18 * s, paint('#2fae5a', stroke=9 * s))
+    elif kind == 'brain':
+        p = skia.Path()
+        for i in range(9):
+            a = math.tau * i / 9
+            q = skia.Path(); q.addCircle(x + math.cos(a) * 95 * s, y + math.sin(a) * 70 * s, 70 * s)
+            p = skia.Op(p, q, skia.PathOp.kUnion_PathOp) if i else q
+        c.drawPath(p, paint('#ff9fb8')); c.drawPath(p, paint('#151218', stroke=ow))
+        c.drawLine(x, y - 120 * s, x, y + 100 * s, paint('#c4567a', stroke=7 * s))
+        for k in (-1, 1):
+            arc = skia.Path(); arc.addArc(skia.Rect.MakeXYWH(x + k * 60 * s - 45 * s, y - 50 * s, 90 * s, 90 * s), 200, 180)
+            c.drawPath(arc, paint('#c4567a', stroke=7 * s))
+    elif kind == 'heart':
+        p = skia.Path()
+        p.moveTo(x, y + 140 * s)
+        p.cubicTo(x - 260 * s, y - 40 * s, x - 120 * s, y - 210 * s, x, y - 80 * s)
+        p.cubicTo(x + 120 * s, y - 210 * s, x + 260 * s, y - 40 * s, x, y + 140 * s)
+        c.drawPath(p, paint('#ff4f6d')); c.drawPath(p, paint('#151218', stroke=ow))
+    elif kind == 'chat':
+        rrect(c, x - 170 * s, y - 110 * s, 340 * s, 200 * s, 70 * s, '#3b6cf6', '#151218', ow=ow)
+        tail = skia.Path(); tail.moveTo(x - 80 * s, y + 86 * s); tail.lineTo(x - 120 * s, y + 160 * s); tail.lineTo(x - 20 * s, y + 88 * s); tail.close()
+        c.drawPath(tail, paint('#3b6cf6')); c.drawPath(tail, paint('#151218', stroke=ow * 0.8))
+        for i in range(3):
+            circle(c, x - 70 * s + i * 70 * s, y - 10 * s, 20 * s, '#ffffff', None)
+    elif kind == 'book':
+        rrect(c, x - 160 * s, y - 120 * s, 320 * s, 240 * s, 14 * s, colr, '#151218', ow=ow)
+        c.drawLine(x, y - 120 * s, x, y + 120 * s, paint('#151218', stroke=ow))
+        for i in range(3):
+            c.drawLine(x - 130 * s, y - 60 * s + i * 50 * s, x - 30 * s, y - 60 * s + i * 50 * s, paint('#ffffff', 0.8, stroke=8 * s))
+    elif kind == 'zzz':
+        for i, (dx, dy, sz) in enumerate(((-80, 60, 110), (20, -30, 150), (110, -150, 190))):
+            text(c, 'Z', x + dx * s, y + dy * s, sz * s, '#ffffff', tf=TF_BOLD, outline='#151218', ow=14 * s, shadow=False)
+    elif kind == 'star':
+        p = skia.Path()
+        for i in range(10):
+            a = -math.pi / 2 + i * math.pi / 5
+            rr = (160 if i % 2 == 0 else 68) * s
+            (p.moveTo if i == 0 else p.lineTo)(x + math.cos(a) * rr, y + math.sin(a) * rr)
+        p.close()
+        c.drawPath(p, paint('#ffd33a')); c.drawPath(p, paint('#151218', stroke=ow))
+
+
+def make_short_cover(S, path, th=None):
+    """1080x1920 cover meant for YouTube Studio > Content > Short > Thumbnail (the API can't set Shorts thumbnails).
+
+    thumbnail: {"words": [...], "highlight": i, "highlight_color": "#hex", "bg": "#hex", "expr": "shock",
+                "pose": "down|cheer|think|phone|point|shrug", "icon": "dumbbell|coin|battery_low|...", "badge": "+51%"}
+    """
+    from .rig2 import draw_person as rig_person
+    th = th or S['spec'].get('thumbnail', {})
+    OW, OH = 1080, 1920
+    hero = dict(S['hero'])
+    hl_col = th.get('highlight_color', '#ffd33a')
+    bg = th.get('bg', '#2b3a8f')
+    surf = skia.Surface(OW, OH)
+    c = surf.getCanvas()
+    c.drawRect(skia.Rect.MakeWH(OW, OH), paint(shader=rad_grad((OW / 2, OH * 0.55), OH * 0.8,
+                                                             [mix(bg, '#ffffff', 0.18), bg, mix(bg, '#000000', 0.5)], [0, 0.45, 1])))
+    for i in range(22):
+        a = math.tau * i / 22
+        ray = skia.Path()
+        ray.moveTo(OW / 2, OH * 0.62)
+        ray.lineTo(OW / 2 + math.cos(a - 0.07) * 2400, OH * 0.62 + math.sin(a - 0.07) * 2400)
+        ray.lineTo(OW / 2 + math.cos(a + 0.07) * 2400, OH * 0.62 + math.sin(a + 0.07) * 2400)
+        ray.close()
+        c.drawPath(ray, paint('#ffffff', 0.06))
+    icon = th.get('icon')
+    if icon:
+        glow(c, 800, 1130, 330, hl_col, 0.35)
+        _icon(c, icon, 800, 1130, 1.15, hl_col)
+    sc = 3.2
+    hx = 420 if icon else OW / 2
+    r = rig_person(c, hx, 1340 + 406 * sc, sc, hero, th.get('expr', 'shock'), 1.0,
+                   arms=COVER_POSES.get(th.get('pose', 'down'), COVER_POSES['down']), look=tuple(th.get('look', (0.4, -0.2))),
+                   face_kw=dict(bags=th.get('bags', 0)), shadow=False)
+    vp = paint(shader=rad_grad((OW / 2, OH / 2), OH * 0.7, [('#000000', 0), ('#000000', 0), ('#000000', 0.4)], [0, 0.6, 1]))
+    c.drawRect(skia.Rect.MakeWH(OW, OH), vp)
+    words = th.get('words', ['WATCH', 'THIS'])
+    hl = th.get('highlight', len(words) - 1)
+    hl = hl if hl >= 0 else len(words) + hl
+    size = th.get('size', 190)
+    f = font(TF_BOLD, size)
+    lines, cur = [], []
+    for i, w in enumerate(words):
+        if cur and f.measureText(' '.join(x for x, _ in cur + [(w, i)])) > OW - 100:
+            lines.append(cur); cur = []
+        cur.append((w, i))
+    lines.append(cur)
+    widest = max(f.measureText(' '.join(w for w, _ in ln)) for ln in lines)
+    if widest > OW - 100:
+        size *= (OW - 100) / widest
+        f = font(TF_BOLD, size)
+    y = 150 + size * 0.85
+    for ln in lines:
+        lw = f.measureText(' '.join(w for w, _ in ln))
+        x = OW / 2 - lw / 2
+        for w, i in ln:
+            c.drawString(w, x + 10, y + 14, f, paint('#000000', 0.7, blur=12))
+            c.drawString(w, x, y, f, paint('#000000', stroke=size * 0.2))
+            c.drawString(w, x, y, f, paint(hl_col if i == hl else '#ffffff'))
+            x += f.measureText(w + ' ')
+        y += size * 1.02
+    if th.get('badge'):                       # under the title, wherever it ends
+        b = th['badge']
+        bw = measure(b, 76, TF_BOLD) + 80
+        by = max(762, y - size * 0.75 + 30)
+        c.save(); c.rotate(-5, OW / 2, by + 58)
+        rrect(c, OW / 2 - bw / 2, by, bw, 116, 26, '#e0322d', '#151218', ow=8)
+        text(c, b, OW / 2, by + 86, 76, '#ffffff', tf=TF_BOLD, shadow=False)
+        c.restore()
+    img = surf.makeImageSnapshot()
+    img.save(path, skia.kPNG)
+    s2 = skia.Surface(270, 480)
+    s2.getCanvas().drawImageRect(img, skia.Rect.MakeWH(270, 480), skia.SamplingOptions(skia.CubicResampler.Mitchell()))
+    s2.makeImageSnapshot().save(path.replace('.png', '_small.png'), skia.kPNG)
